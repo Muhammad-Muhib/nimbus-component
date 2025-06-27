@@ -1,0 +1,35 @@
+{
+  "name": "api-service",
+  "version": "1.0.0",
+  "type": "module",
+  "main": "dist/index.cjs",
+  "style": "dist/index.css",
+  "module": "dist/index.modern.js",
+  "source": "src/index.js",
+  "exports": {
+    ".": {
+      "import": "./dist/index.modern.js",
+      "require": "./dist/index.cjs"
+    }
+  },
+  "scripts": {
+    "build": "microbundle build --jsxImportSource react --jsx React.createElement --format modern,cjs",
+    "dev": "microbundle watch --jsxImportSource react --jsx React.createElement --format modern,cjs"
+  },
+  "files": [
+    "dist"
+  ],
+  "peerDependencies": {
+    "react": "^16.8.0 || ^17.0.0 || ^18.0.0",
+    "react-dom": "^16.8.0 || ^17.0.0 || ^18.0.0",
+    "axios":"^1.9.0",
+    "react-router-dom": "^6.0.0"
+  },
+  "devDependencies": {
+    "microbundle": "^0.15.0",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
+    "react-router-dom": "^6.10.0",
+    "axios":"^1.9.0"
+  }
+}

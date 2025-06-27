@@ -1,0 +1,2 @@
+import r from"axios";import e from"js-cookie";import"react";async function o({endpoint:o,method:t="GET",data:a=null}){try{const n={method:t,url:o,headers:{"Content-Type":"application/json",Authorization:`Bearer ${e.get("access_token")}`}};return"GET"==t.toUpperCase()&&a?n.params=a:a&&(n.data=a),await r(n)}catch(r){var n;return console.error("API Error:",r),{error:(null==(n=r.response)||null==(n=n.data)?void 0:n.message)||r.message}}}export{o as apiService};
+//# sourceMappingURL=index.modern.js.map
