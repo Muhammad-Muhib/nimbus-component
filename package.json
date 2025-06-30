@@ -1,24 +1,19 @@
 {
-  "name": "left-menu-library",
+  "name": "nimbus-kit",
   "version": "1.0.0",
   "type": "module",
   "main": "dist/index.cjs",
   "style": "dist/index.css",
   "module": "dist/index.modern.js",
   "source": "src/index.js",
-  "author": "Muhammad Muhib Mirza",
-  "browser": {
-    "./dist/index.css": "./dist/index.css"
-  },
-  "exports": {
+  "exports": {  
     ".": {
       "import": "./dist/index.modern.js",
       "require": "./dist/index.cjs"
-    },
-    "./styles": "./dist/index.css"
+    }
   },
   "scripts": {
-    "build": "microbundle build --jsxImportSource react --jsx React.createElement --format modern,cjs && cp styles/*.css dist/",
+    "build": "microbundle build --jsxImportSource react --jsx React.createElement --format modern,cjs",
     "dev": "microbundle watch --jsxImportSource react --jsx React.createElement --format modern,cjs"
   },
   "files": [
@@ -27,17 +22,28 @@
   "peerDependencies": {
     "react": "^16.8.0 || ^17.0.0 || ^18.0.0",
     "react-dom": "^16.8.0 || ^17.0.0 || ^18.0.0",
-    "react-icons": "^4.0.0",
-    "react-router-dom": "^6.0.0"
+    "axios":"^1.9.0",
+    "react-router-dom": "^6.0.0",
+    "js-cookie":"^3.0.5",
+    "react-datepicker": "^8.3.0",
+    "react-bootstrap": "^2.10.9",
+    "react-toastify": "^11.0.5",
+    "date-fns": "^4.1.0",
+    "framer-motion": "^12.18.1",
+    "react-icons": "^5.5.0"
   },
   "devDependencies": {
     "microbundle": "^0.15.0",
-    "postcss": "^8.5.6",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
-    "react-icons": "^4.7.1",
     "react-router-dom": "^6.10.0",
-    "rollup": "^2.79.2",
-    "rollup-plugin-postcss": "^4.0.2"
+    "axios":"^1.9.0",
+    "js-cookie":"^3.0.5",
+    "react-datepicker": "^8.3.0",
+    "react-bootstrap": "^2.10.9",
+    "react-toastify": "^11.0.5",
+    "framer-motion": "^12.18.1",
+    "date-fns": "^4.1.0",
+    "react-icons": "^5.5.0"
   }
 }
