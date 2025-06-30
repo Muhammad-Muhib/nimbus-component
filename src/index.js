@@ -24,6 +24,8 @@ import LeftMenu from './Controls/LeftMenu/LeftMenu';
 import RecordGrid from './Controls/RecordGrid/RecordGrid';
 import ConfirmationPopup from "./Controls/Popup/ConfirmationPopup"
 import InformationPopup from "./Controls/Popup/InformationPopup"
+import OptionSelection from './Controls/DropDown/OptionSelection';
+import OptionSelectorTopMenu from './Controls/DropDown/OptionSelectorTopMenu';
 
 export {apiService};
 export {CheckBox};
@@ -49,3 +51,5 @@ export {LeftMenu};
 export {RecordGrid};
 export {InformationPopup};
 export {ConfirmationPopup};
+export {OptionSelection};
+export {OptionSelectorTopMenu};

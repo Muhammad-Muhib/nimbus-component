@@ -1053,3 +1053,107 @@ border: 1px solid white;
     border: 2px solid black;
   }
 }
+
+
+/* F1 F6 Popup Styling */
+.productPopupHeader {
+    background-color: rgb(52, 152, 219) !important;
+    color: white !important;
+    font-size: 13px !important;
+}
+
+.productPopupText {
+    font-size: 13px !important;
+}
+
+.css-1wy0on6 {
+    display: none !important;
+}
+
+.modalCloseBtn {
+    filter: invert(1) !important;
+    margin-right: 0%;
+    font-size: 12px !important;
+    padding-right: 0rem !important;
+    padding-top: 1rem !important;
+}
+
+.closeBtnContainer {
+    position: absolute;
+    right: 2rem;
+    border: 2px solid white;
+    border-radius: 50%;
+    width: 1.5rem;
+    height: 1.5rem;
+}
+.modalSearchContainer{
+    display: flex;
+    gap: 2rem;
+}
+.itemSearchBtn{
+    height: 2.3rem;
+}
+.F6PopupQtyContainer{
+    position: relative;
+}
+.F6QtyLabler{
+    position: absolute;
+    top: -10px;
+    font-size: 13px;
+    color: rgb(52, 152, 219);
+    background-color: white;
+    left: 5px;
+    padding-left: 3px;
+    padding-right: 3px;
+}
+.F6QtyInput{
+    outline: none;
+    padding: 0.35rem;
+}
+
+/* Drop Down Styling */
+#react-select-3-listbox {
+  z-index: 10 !important;
+}
+.DepartmentCompStyle__menu {
+  z-index: 10 !important;
+}
+.DepartmentCompStyle__menu-list {
+  max-height: 200px !important;
+  overflow-y: auto !important;
+}
+/* Hide dropdown indicator and separator */
+[class*="DepartmentCompStyle__dropdown-indicator"],
+[class*="DepartmentCompStyle__indicator-separator"] {
+  display: none !important;
+}
+
+/* Style the clear (X) indicator */
+[class*="DepartmentCompStyle__clear-indicator"] {
+  color: black !important;
+}
+
+.dropdown-wrapper {
+  position: relative;
+  margin-bottom: 24px;
+  z-index: 10;
+}
+
+.dropdown-wrapper .custom-label {
+  position: absolute;
+  top: -8px;
+  left: 12px;
+  padding: 0 4px;
+  background-color: white;
+  font-size: 12px;
+  color: deepskyblue;
+}
+
+#react-select-3-listbox,
+.DepartmentCompStyle__menu {
+  z-index: 9999 !important; 
+}
+
+.dropdown-wrapper{
+  width: 283px
+}
