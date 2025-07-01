@@ -3,14 +3,15 @@ import { useEffect } from "react";
 export default function SaveUpdateBtn({showPrint,mode,handlePrint,handleReset,handleSave,loading,handleUpdate,handleDelete}) {
     useEffect(() => {
       const handleKeyDown = (e) => {
+        e.stopPropagation();
         if (e.altKey) {
         switch (e.key.toLowerCase()) {
           case 's':
             if(mode.toLowerCase() != "update"){
-            break;  
-            }else{
               handleSave()
               break;
+            }else{
+              break;              
             }
             case 'u':
               if(mode.toLowerCase() == "update"){

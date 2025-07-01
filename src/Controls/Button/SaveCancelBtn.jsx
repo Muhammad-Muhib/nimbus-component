@@ -10,7 +10,7 @@ export default function SaveCancelBtn({hideCancel,handleReset,handleSave,loading
             default:
               break;
         }
-      }
+      }   
       };
       document.addEventListener("keydown", handleKeyDown);
       return () => {

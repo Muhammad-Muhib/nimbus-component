@@ -690,12 +690,35 @@
 
 .topmenucontainer {
   width: 100vw;
-  height: 3rem;
+  height: 4rem;
   margin-left: 14rem;
   background-color: #F6F8FC;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
   z-index: 100; 
   position: relative; /* Needed for proper stacking */
+}
+
+.breadCrumbHead{
+    display: inline-block;
+    border-right: solid 1px #dee4e4;
+    font-size: 20px;
+    padding-left: 10px;
+    padding-top: 4px;
+    padding-right: 20px;
+    padding-bottom: 0;
+    margin-right: 10px;
+    color:#2c3e50;
+    font-family :Segoe, "Segoe UI", "DejaVu Sans", "Trebuchet MS", Verdana, sans-serif;
+}
+.breadCrumbContainer{
+    display: flex;
+    font-size: 12px;
+    padding-left: 10px;
+    gap: 0.4rem;
+    align-items: center;
+}
+.breadCrumbUrlText{
+    text-decoration: none;
 }
 
 #nimbusLogo {
