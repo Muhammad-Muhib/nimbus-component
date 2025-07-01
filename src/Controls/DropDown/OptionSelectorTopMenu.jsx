@@ -1,5 +1,4 @@
 import Select from "react-select";
-import "../../../styles/Dropdown.css";
 
 export default function OptionSelectorTopMenu({label,customClass,selectedOption,setSelectedOption,options,placeholder}) {
   const classNamePrefix = `DepartmentCompStyle-${label.replace(
