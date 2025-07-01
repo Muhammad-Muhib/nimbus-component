@@ -12,7 +12,9 @@ export default function LeftMenuTop() {
   },[screenName])
   return (
     <>
-    <div>
+    {
+      breadCrumb != "" ? 
+      <div>      
       <div className='breadCrumbHead'>{breadCrumb}</div>
         <div className='breadCrumbContainer'>
           <a href="https://nimbus.nimbusrms.com/Home" className='breadCrumbUrlText'>Home</a>
@@ -20,6 +22,8 @@ export default function LeftMenuTop() {
           <span>{breadCrumb}</span>
       </div>
     </div>
+      : <></>
+    }
     </>
   )
 }
