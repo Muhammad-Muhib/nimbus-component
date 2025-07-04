@@ -1,5 +1,37 @@
 import { FaPrint } from "react-icons/fa";
+import { useEffect } from "react";
 export default function SaveUpdateBtn({showPrint,mode,handlePrint,handleReset,handleSave,loading,handleUpdate,handleDelete}) {
+    useEffect(() => {
+      const handleKeyDown = (e) => {
+        e.stopPropagation();
+        if (e.altKey) {
+        switch (e.key.toLowerCase()) {
+          case 's':
+            if(mode.toLowerCase() != "update"){
+              handleSave()
+              break;
+            }else{
+              break;              
+            }
+            case 'u':
+              if(mode.toLowerCase() == "update"){
+                handleUpdate()
+                break;
+              }else{
+                break;
+              }
+              case 'd':
+                handleDelete()
+              break;
+              default: break;
+        }
+      }
+      };
+      document.addEventListener("keydown", handleKeyDown);
+      return () => {
+        document.removeEventListener("keydown", handleKeyDown);
+      };
+    }, []);
   return (
     <>
     <div className="btnMainContainer col-md-10 col-sm-10 form-group print_box_bg low_margin">

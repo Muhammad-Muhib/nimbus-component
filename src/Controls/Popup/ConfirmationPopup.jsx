@@ -3,9 +3,18 @@ import React, { useState,useEffect } from 'react'
 export default function ConfirmationPopup({setShowModal,onClose,onConfirm,showExtraText,additionalText,modalBody,modalTitle}) {
     const [addBgColor,setAddBgColor] = useState(true)
     useEffect(() => {
+      document.querySelector("#okBtn").focus()
     const handleKeyDown = (e) => {
       if (e.key == "Escape") {
         setShowModal(false);
+      }
+      if (e.key == "ArrowLeft") {
+        setAddBgColor(true)
+        document.querySelector("#okBtn").focus()
+      }
+      if (e.key == "ArrowRight") {
+        setAddBgColor(false)
+        document.querySelector("#noBtn").focus()
       }
     };
 
@@ -35,6 +44,7 @@ export default function ConfirmationPopup({setShowModal,onClose,onConfirm,showEx
                   <button
                     type="button"
                     className="btn btn-secondary confirmationbtn"
+                    id='okBtn'
                     style={{
                         backgroundColor: addBgColor ? '#3f4d54' : "white",
                         color: addBgColor ? "white" : "black"
@@ -49,6 +59,7 @@ export default function ConfirmationPopup({setShowModal,onClose,onConfirm,showEx
                   </button>
                   <button
                     type="button"
+                    id='noBtn'
                     className="btn btn-secondary confirmationbtn"   
                     style={{
                         backgroundColor: !addBgColor ? '#3f4d54' : "white",
