@@ -632,9 +632,10 @@
 }
 
 /* Left Menu Styling */
-.mainContainer{
+.leftMenumainContainer{
   display: flex;
-  position:fixed
+  position:absolute;
+  z-index: 70;
 }
 #searchInput{
   display: none
@@ -643,7 +644,6 @@
 .leftmenucontainer {
   width: 14rem;
   background-color: white;
-  position: fixed;
   box-shadow: 0 0 5px 0 rgba(0, 0, 0, 0.1);
   height: 100%;
   
@@ -1179,4 +1179,24 @@ border: 1px solid white;
 
 .dropdown-wrapper{
   width: 283px
+}
+
+
+
+@media screen and (max-width:700px) {
+  .leftMenumainContainer{
+    flex-direction: column;
+  }
+  .leftmenucontainer{
+    width: 100%;
+  }
+  .topmenucontainer{
+    margin-left: 0;
+  }
+  .scoop-logo{
+    width: 100vw ;
+  }
+  .leftMenuListContiner{
+    height: 100vh;
+  }
 }
