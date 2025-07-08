@@ -2,7 +2,7 @@ import { useEffect, useState } from "react"
 import {getAllDataIndexDb} from "../IndexDbServices/indexDbServices"
 
 export const useGetAllDataOfTable = (tableName)=>{
-    const [returnData,setReturnData] = useState(null)
+    const [returnData,setReturnData] = useState([])
     useEffect(()=>{
         fetchAllData();
     },[])
