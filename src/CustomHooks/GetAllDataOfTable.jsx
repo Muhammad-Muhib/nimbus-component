@@ -8,7 +8,7 @@ export const useGetAllDataOfTable = (tableName)=>{
     },[])
     const fetchAllData = async ()=>{
         let data = await getAllDataIndexDb(tableName)
-        setReturnData(data)
+        setReturnData(data || [])
     }
     return returnData
 }
