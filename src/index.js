@@ -27,6 +27,8 @@ import InformationPopup from "./Controls/Popup/InformationPopup"
 import OptionSelection from './Controls/DropDown/OptionSelection';
 import OptionSelectorTopMenu from './Controls/DropDown/OptionSelectorTopMenu';
 import {addDataIndexDb,getAllDataIndexDb,initDb} from "./IndexDbServices/indexDbServices"
+import {useGetAllDataOfTable} from "./CustomHooks/GetAllDataOfTable"
+import {useGetTokenValue} from "./CustomHooks/GetTokenValue"
 
 export {apiService};
 export {CheckBox};
@@ -57,3 +59,5 @@ export {OptionSelectorTopMenu};
 export {addDataIndexDb}
 export {initDb}
 export {getAllDataIndexDb}
+export {useGetTokenValue}
+export {useGetAllDataOfTable}
