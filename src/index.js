@@ -26,6 +26,7 @@ import ConfirmationPopup from "./Controls/Popup/ConfirmationPopup"
 import InformationPopup from "./Controls/Popup/InformationPopup"
 import OptionSelection from './Controls/DropDown/OptionSelection';
 import OptionSelectorTopMenu from './Controls/DropDown/OptionSelectorTopMenu';
+import {addDataIndexDb,getAllDataIndexDb,initDb} from "./IndexDbServices/indexDbServices"
 
 export {apiService};
 export {CheckBox};
@@ -53,3 +54,6 @@ export {InformationPopup};
 export {ConfirmationPopup};
 export {OptionSelection};
 export {OptionSelectorTopMenu};
+export {addDataIndexDb}
+export {initDb}
+export {getAllDataIndexDb}
