@@ -1,4 +1,5 @@
 import { openDB } from "idb";
+const DB_VERSION = 1;
 
 export const initDb = async () => {
   const tables = [
@@ -7,9 +8,15 @@ export const initDb = async () => {
         tableIndexes:["productId","productCode","productName","lineItemId","categoryId","subCategoryId","productItemId"],
         keyPath:'autoIncrement_ID'
     },    
+    {
+        tableName: "Company",
+        tableIndexes:["CompanyId"],
+        keyPath:'CompanyId'
+    }
   ];
-  return await openDB("myDataBase", 1, {
-    upgrade(db) {
+  return await openDB("myDataBase",DB_VERSION, {
+    upgrade(db,oldVersion) {
+        console.log(oldVersion)
         tables.map((item)=>{
             if(!db.objectStoreNames.contains(item.tableName)){
                 let store = db.createObjectStore(item.tableName,{

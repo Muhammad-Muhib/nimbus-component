@@ -1,9 +1,7 @@
-import "../../css/index.css";
 import { FaSearch } from "react-icons/fa";
 import { LuMenu } from "react-icons/lu";
 import LeftMenuList from "./LeftMenuList";
 import { MdLaptop } from "react-icons/md";
-import { useState } from "react";
 import LeftMenuTop from "./LeftMenuTop";
 import { motion, AnimatePresence } from "framer-motion";
 
@@ -117,7 +115,7 @@ export default function LeftMenu({
           {isOpen && (
             <motion.div
               variants={contentVariants}
-              initial="closed"
+              initial={false}
               animate="open"
               exit="closed"
               style={{ overflow: 'hidden' }}
@@ -134,11 +132,9 @@ export default function LeftMenu({
           )}
         </AnimatePresence>
       </motion.div>
-      {
-        !isOpen ?  <div className="topmenucontainer">
+      <div className="topmenucontainer">
         <LeftMenuTop />
-      </div> : <></>
-      }
+      </div>
     </motion.div>
   );
 }

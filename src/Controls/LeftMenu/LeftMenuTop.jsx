@@ -8,6 +8,7 @@ export default function LeftMenuTop() {
   })
   const [breadCrumb,setBreadCrumb] = useState("")
   useEffect(()=>{
+    console.log(screenName)
     setBreadCrumb(screenName)
   },[screenName])
   return (
