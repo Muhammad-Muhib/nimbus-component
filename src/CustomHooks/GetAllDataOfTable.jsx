@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react"
-import {getAllDataIndexDb} from "../IndexDbServices/indexDbServices"
+import {getTableData} from "../IndexDbServices/indexDbServices"
 
 export const useGetAllDataOfTable = (tableName,length = 0)=>{
     const [returnData,setReturnData] = useState([])
@@ -9,7 +9,7 @@ export const useGetAllDataOfTable = (tableName,length = 0)=>{
         }
     },[])
     const fetchAllData = async ()=>{
-        let data = await getAllDataIndexDb(tableName)
+        let data = await getTableData(tableName)
         setReturnData(data || [])
     }
     return (returnData || [])
