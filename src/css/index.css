@@ -1074,6 +1074,12 @@ border: 1px solid white;
   .print-border{
     border: 2px solid black;
   }
+  .outletContainer{
+    height: auto;
+  }
+  .scoop-left-header{
+    display: none;
+  }
 }
 
 
