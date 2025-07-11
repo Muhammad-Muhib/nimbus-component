@@ -454,6 +454,7 @@
   background: #ecf0f1;
   width: 100%;
   margin-bottom: 3rem;
+  position: fixed;
 }
 
 #ReportModeDiv {

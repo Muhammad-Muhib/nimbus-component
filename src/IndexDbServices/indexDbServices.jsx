@@ -1,96 +1,61 @@
-import { openDB,deleteDB } from "idb";
-const DB_Name = "myDataBase"
+import Dexie from "dexie";
 
+export const db = new Dexie("myDatabase");
+db.version(1).stores({
+  Product:
+    "++row,autoIncrement_ID,productId,productCode,productName,lineItemId,productItemId",
+  Company: "CompanyId",
+});
 export const initDb = async () => {
-  const tables = [
-    {
-        tableName: "Product",
-        tableIndexes:["productId","productCode","productName","lineItemId","categoryId","subCategoryId","productItemId"],
-        keyPath:'autoIncrement_ID'
-    },    
-    {
-        tableName: "Company",
-        tableIndexes:["CompanyId"],
-        keyPath:'CompanyId'
-    }
-  ];
-  return await openDB(DB_Name,1, {
-    upgrade(db,oldVersion) {
-        tables.map((item)=>{
-            if(!db.objectStoreNames.contains(item.tableName)){
-                let store = db.createObjectStore(item.tableName,{
-                    keyPath:item.keyPath
-                })
-                item.tableIndexes.map((row)=>{
-                    store.createIndex(row,row,{unique:false})
-                })
-            }
-        })
-    },
-  });
+  return await db.open();
 };
 
-export const addDataIndexDb = async (tableName,tableData)=>{
-  const db = await openDB(DB_Name)
-  return  tableData.map(async (item)=>{
-      await db.add(tableName,item)
-  })
-}
-
-export const getAllDataIndexDb = async(tableName)=>{
-  const db = await openDB(DB_Name)
-  return db.getAll(tableName)
-}
-
-export const checkIndexDBExistance = async()=>{
-    const db = await openDB(DB_Name)
-    const count = await db.count("Company")
-    if(count > 0){
-        return await db.getAll("Company")
-    }else{
-        return false
-    }
-}
-
-export const addMultipleTableData = async(tableNameArray,tableDataArray)=>{
-    tableNameArray.map(async (item,index)=>{
-        return await addDataIndexDb(item,tableDataArray[index])
+const syncDataIndexDb = async (tableData) => {
+  return await Promise.all(
+    tableData.map(async (item) => {
+      const [tableName] = Object.keys(item); //To get Key Name
+      const records = item[tableName];
+      if (Array.isArray(records)) {
+        db[tableName].bulkAdd(records);
+      } else {
+        db[tableName].add(records);
+      }
     })
-}
+  );
+};
 
-export const deleteIndexDB = async()=>{
-    return await deleteDB(DB_Name)
-}
+export const getTableData = async (tableName) => {
+  return await db[tableName].toArray();
+};
 
-export const isIndexDBExist = async (companyId,dispatch,addAllProduct,apiUrl) => {
-    const isExist = await checkIndexDBExistance();
-    if (isExist == false) {
-        syncIndexDB()
-    } else {
-      if(isExist[0].CompanyId != companyId){
-        await deleteIndexDB();
-        await initDb();
-        syncIndexDB(companyId,dispatch,addAllProduct,apiUrl)
-      }
-    }
-  };
+export const syncIndexDb = async (tableData, companyId) => {
+  let company = await db.Company.get(companyId);
+  if (company == null) {
+    await db.delete();
+    await initDb();
+    return await syncDataIndexDb(tableData);
+  } else if (company.CompanyId != companyId) {
+    await db.delete();
+    return await syncDataIndexDb(tableData);
+  }
+};
 
-const syncIndexDB = (companyId,dispatch,addAllProduct,apiUrl) => {
-    let obj = {
-      CompanyId: companyId,
-    };
-    apiService({
-      endpoint: apiUrl + "/Common/GetProductList",
-      method: "POST",
-      data: obj,
-    }).then((res) => {
-      if (res.data.success) {
-        let tableNameArray = ["Company", "Product"];
-        let tableDataArray = [[{ CompanyId: companyId }], res.data.data];
-        addMultipleTableData(tableNameArray, tableDataArray);
-        dispatch(addAllProduct(res.data.data));
-      }
-    }).catch((ex)=>{
-        console.log(ex)
-    });
-  };
+export const deleteDataIndexDb = async (tableName, key, data) => {
+  let records = await db[tableName].where(key).equals(data).toArray();
+  await records.map((item) => {
+    db[tableName].delete(item.row);
+  });
+  return true;
+};
+
+export const updateDataIndexDb = async (tableName, key, id, data) => {
+  let records = await db[tableName].where(key).equals(id).toArray();
+  records.map((item) => {
+    db[tableName].put(data, item.row);
+  });
+  return true;
+};
+
+export const addDataIndexDb = async (tableName, tableData) => {
+  return await db[tableName].bulkAdd(tableData);
+};

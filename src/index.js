@@ -26,7 +26,7 @@ import ConfirmationPopup from "./Controls/Popup/ConfirmationPopup"
 import InformationPopup from "./Controls/Popup/InformationPopup"
 import OptionSelection from './Controls/DropDown/OptionSelection';
 import OptionSelectorTopMenu from './Controls/DropDown/OptionSelectorTopMenu';
-import {addDataIndexDb,getAllDataIndexDb,initDb,isIndexDBExist} from "./IndexDbServices/indexDbServices"
+import {addDataIndexDb,updateDataIndexDb,deleteDataIndexDb,syncIndexDb,initDb} from "./IndexDbServices/indexDbServices"
 import {useGetAllDataOfTable} from "./CustomHooks/GetAllDataOfTable"
 import {useGetTokenValue} from "./CustomHooks/GetTokenValue"
 
@@ -58,7 +58,8 @@ export {OptionSelection};
 export {OptionSelectorTopMenu};
 export {addDataIndexDb}
 export {initDb}
-export {getAllDataIndexDb}
 export {useGetTokenValue}
 export {useGetAllDataOfTable}
-export {isIndexDBExist}
+export {syncIndexDb}
+export {updateDataIndexDb}
+export {deleteDataIndexDb}
