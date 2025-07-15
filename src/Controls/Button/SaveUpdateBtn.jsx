@@ -1,6 +1,6 @@
 import { FaPrint } from "react-icons/fa";
 import { useEffect } from "react";
-export default function SaveUpdateBtn({showPrint,mode,handlePrint,handleReset,handleSave,loading,handleUpdate,handleDelete}) {
+export default function SaveUpdateBtn({showPrint,mode,handlePrint,handleReset,handleSave,loading,handleUpdate,handleDelete,disableSave,disableUpdate,disableDelete}) {
     useEffect(() => {
       const handleKeyDown = (e) => {
         e.stopPropagation();
@@ -52,7 +52,7 @@ export default function SaveUpdateBtn({showPrint,mode,handlePrint,handleReset,ha
           onClick={handleReset}
         >Cancel</button>
         }
-        {mode.toLowerCase() == "update" || mode.toLowerCase() == "viewmode" ? (
+        {mode.toLowerCase() == "update" || mode.toLowerCase() == "viewmode" || disableSave ? (
           <button type="button" className="btn-style btn-disable" disabled>
             Save
           </button>
@@ -65,7 +65,7 @@ export default function SaveUpdateBtn({showPrint,mode,handlePrint,handleReset,ha
             {loading ? <span className="loader"></span> : "Save"}
           </button>
         )}
-        {mode.toLowerCase() == "new" || mode.toLowerCase() == "viewmode"  ? (
+        {mode.toLowerCase() == "new" || mode.toLowerCase() == "viewmode" || disableUpdate ? (
           <>
             <button
               type="button"
@@ -73,13 +73,6 @@ export default function SaveUpdateBtn({showPrint,mode,handlePrint,handleReset,ha
               disabled
             >
               Update
-            </button>
-            <button
-              type="button"
-              className="btn-style btn-disable"
-              disabled
-            >
-              Delete
             </button>
           </>
         ) : (
@@ -91,15 +84,25 @@ export default function SaveUpdateBtn({showPrint,mode,handlePrint,handleReset,ha
             >
               {loading ? <span className="loader"></span> : "Update"}
             </button>
-            <button
+          </>
+        )}
+        {mode.toLowerCase() == "new" || mode.toLowerCase() == "viewmode" || disableDelete ? 
+        <button
+              type="button"
+              className="btn-style btn-disable"
+              disabled
+            >
+              Delete
+            </button>
+        : 
+        <button
               type="button"
               className="btn-style btn-red"
               onClick={handleDelete}
             >
               Delete
             </button>
-          </>
-        )}
+        }
       </div>
     </div>
     </>
