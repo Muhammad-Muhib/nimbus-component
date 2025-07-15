@@ -2,7 +2,7 @@ import { useEffect, useState} from "react";
 import { Table } from "react-bootstrap";
 import { parse, isValid, format, parseISO } from "date-fns";
 
-export default function RecordGrid({tablebody,id,setSelectedRecord,gridModel,csvName,rowsPerPage,handledblclick,printHeading,header,showFotter = false,totalQtyFoot,totalAmountFoot}) {
+export default function RecordGrid({tablebody,id,setSelectedRecord,gridModel,csvName,rowsPerPage,handledblclick,printHeading,header,showFotter = false,totalQtyFoot,totalAmountFoot,disablePrint=false,disableCSV=false}) {
   const [selectedId, setSelectedId] = useState()
   const [tableData, setTableData] = useState(tablebody);
 
@@ -112,8 +112,8 @@ export default function RecordGrid({tablebody,id,setSelectedRecord,gridModel,csv
         <div className="tableHeaderContainer">
           <span className="tablePrintHead fontStyle">{printHeading}</span>
           <span className="printBtnContainer">
-            <button onClick={handleDownloadPDF} className="gridPrintBtn">Print</button>
-            <button onClick={handleDownloadCSV} className="gridPrintBtn">CSV</button>
+            <button onClick={handleDownloadPDF} className={`gridPrintBtn ${disablePrint ? "disableBtn" : ""}`} disabled={disablePrint}>Print</button>
+            <button onClick={handleDownloadCSV} className={`gridPrintBtn ${disableCSV ? "disableBtn" : ""}`} disabled={disableCSV}>CSV</button>
             <button onClick={handleDownloadPDF} className="gridPrintBtn">Email</button>
           </span>
         </div>

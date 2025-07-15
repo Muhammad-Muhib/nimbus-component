@@ -1,6 +1,6 @@
 import { FaPrint } from "react-icons/fa";
 import { useEffect } from "react";
-export default function SaveUpdateBtn({showPrint,mode,handlePrint,handleReset,handleSave,loading,handleUpdate,handleDelete,disableSave,disableUpdate,disableDelete}) {
+export default function SaveUpdateBtn({showPrint,mode,handlePrint,handleReset,handleSave,loading,handleUpdate,handleDelete,disableSave = false,disableUpdate = false,disableDelete = false}) {
     useEffect(() => {
       const handleKeyDown = (e) => {
         e.stopPropagation();
