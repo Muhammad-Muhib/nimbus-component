@@ -1,4 +1,5 @@
 import { FaPrint } from "react-icons/fa";
+import {motion} from "framer-motion"
 import { useEffect } from "react";
 export default function SaveUpdateBtn({showPrint,mode,handlePrint,handleReset,handleSave,loading,handleUpdate,handleDelete,disableSave = false,disableUpdate = false,disableDelete = false}) {
     useEffect(() => {
@@ -46,24 +47,30 @@ export default function SaveUpdateBtn({showPrint,mode,handlePrint,handleReset,ha
           type="button"
           className="btn-style btn-disable"
           disabled
-        >Cancel</button> : <button
+        >Cancel</button> : <motion.button
           type="button"
           className="btn-style blue-btn"
           onClick={handleReset}
-        >Cancel</button>
+          whileTap={{
+              scale:'0.8'
+            }}
+        >Cancel</motion.button>
         }
         {mode.toLowerCase() == "update" || mode.toLowerCase() == "viewmode" || disableSave ? (
           <button type="button" className="btn-style btn-disable" disabled>
             Save
           </button>
         ) : (
-          <button
+          <motion.button
             type="button"
             className="btn-style btn-green"
             onClick={handleSave}
+            whileTap={{
+              scale:'0.8'
+            }}
           >
             {loading ? <span className="loader"></span> : "Save"}
-          </button>
+          </motion.button>
         )}
         {mode.toLowerCase() == "new" || mode.toLowerCase() == "viewmode" || disableUpdate ? (
           <>
@@ -77,13 +84,16 @@ export default function SaveUpdateBtn({showPrint,mode,handlePrint,handleReset,ha
           </>
         ) : (
           <>
-            <button
+            <motion.button
               type="button"
               className="btn-style btn-orange"
               onClick={handleUpdate}
+              whileTap={{
+              scale:'0.8'
+            }}
             >
               {loading ? <span className="loader"></span> : "Update"}
-            </button>
+            </motion.button>
           </>
         )}
         {mode.toLowerCase() == "new" || mode.toLowerCase() == "viewmode" || disableDelete ? 
@@ -95,13 +105,16 @@ export default function SaveUpdateBtn({showPrint,mode,handlePrint,handleReset,ha
               Delete
             </button>
         : 
-        <button
+        <motion.button
               type="button"
               className="btn-style btn-red"
               onClick={handleDelete}
+              whileTap={{
+              scale:'0.8'
+            }}
             >
               Delete
-            </button>
+            </motion.button>
         }
       </div>
     </div>

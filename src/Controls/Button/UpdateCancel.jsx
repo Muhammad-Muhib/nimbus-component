@@ -1,4 +1,5 @@
 import { useEffect } from "react";
+import {motion} from "framer-motion"
 export default function UpdateCancelBtn({handleReset,handleUpdate}) {
   useEffect(() => {
       const handleKeyDown = (e) => {
@@ -20,20 +21,26 @@ export default function UpdateCancelBtn({handleReset,handleUpdate}) {
   return (
     <div className="btnMainContainer saveCancel col-md-10 col-sm-10 form-group print_box_bg low_margin">
       <div>
-        <button
+        <motion.button
           type="button"
           className="btn-style blue-btn"
           onClick={handleReset}
+          whileTap={{
+              scale:'0.8'
+            }}
         >
           Cancel
-        </button>
-        <button
+        </motion.button>
+        <motion.button
             type="button"
             className="btn-style btn-green"
             onClick={handleUpdate}
+            whileTap={{
+              scale:'0.8'
+            }}
           >
             Update
-          </button>
+          </motion.button>
       </div>
     </div>
   );
