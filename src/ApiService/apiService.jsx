@@ -23,6 +23,6 @@ export default async function apiService({ endpoint, method = 'GET', data = null
     return response;
   } catch (error) {
     console.error('API Error:', error);
-    return { error: error.response?.data?.message || error.message };
+    return { error: error.response?.data?.message || error.message,data:{success:false} };
   }
 }
