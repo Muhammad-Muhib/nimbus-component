@@ -125,7 +125,7 @@ export default function RecordGrid({
       <div className="recordGridContainter" id="printable-area">
         <h3 className="printHeading">{printHeading || ""}</h3>
         <div className="tableHeaderContainer">
-          <span className="tablePrintHead fontStyle">{printHeading}</span>
+          <span className="tablePrintHead ">{printHeading}</span>
           <span className="printBtnContainer">
             <motion.button
               whileTap={{
