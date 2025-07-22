@@ -158,7 +158,7 @@ export default function RecordGrid({
             </motion.button>
           </span>
         </div>
-        <Table bordered responsive striped>
+        <Table bordered responsive striped className="tableContainer">
           <thead>
             <tr>
               {header.map((item, index) => {
