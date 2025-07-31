@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { Table } from "react-bootstrap";
 import { parse, isValid, format, parseISO } from "date-fns";
 import { motion } from "framer-motion";
+import { toast } from "react-toastify";
 
 export default function RecordGrid({
   tablebody,
@@ -33,7 +34,7 @@ export default function RecordGrid({
   };
   const handleDownloadCSV = () => {
     if (!tableData || tableData.length === 0) {
-      alert("No data to export");
+      toast.error("No data to export");
       return;
     }
 

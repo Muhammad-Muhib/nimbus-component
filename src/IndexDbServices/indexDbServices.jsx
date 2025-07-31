@@ -3,7 +3,7 @@ import Dexie from "dexie";
 export const db = new Dexie("myDatabase");
 db.version(1).stores({
   product:
-    "++row,autoIncrement_ID,productId,productCode,productName,lineItemId,productItemId",
+    "productCode,autoIncrement_ID,productId,productName,lineItemId,productItemId",
   company: "CompanyId",
   suppliers:"value,label",
   shop:"value,label"

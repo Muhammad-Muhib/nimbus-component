@@ -90,7 +90,7 @@ export default function SaveUpdateBtn({showPrint,mode,handlePrint,handleReset,ha
                 <span>
                   ave (F8)
                 </span>
-              </> : Save
+              </> : "Save"
             }
           </button>
         ) : (
@@ -127,7 +127,7 @@ export default function SaveUpdateBtn({showPrint,mode,handlePrint,handleReset,ha
                 <span>
                   pdate (F7)
                 </span>
-              </> : Update              
+              </> : "Update"              
               }
             </button>
           </>
@@ -167,7 +167,7 @@ export default function SaveUpdateBtn({showPrint,mode,handlePrint,handleReset,ha
                 <span>
                   elete
                 </span>
-              </> : Delete              
+              </> : "Delete"              
             }
             </button>
         : 
@@ -187,7 +187,7 @@ export default function SaveUpdateBtn({showPrint,mode,handlePrint,handleReset,ha
                 <span>
                   elete
                 </span>
-              </> : Delete              
+              </> : "Delete"              
               }
             </motion.button>
         }
