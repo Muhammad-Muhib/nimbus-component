@@ -37,7 +37,7 @@ export default function GridPaginationComp({ currentPage = 1, totalRecords, rows
         >
             <div className="pageDetailContainer">
                 <Form.Group controlId="rowsPerPageDropdown" className={`formContainer`}>
-            Go To:
+            Go To Page:
                 <Form.Control
                     as="select"
                     value={currentPage}

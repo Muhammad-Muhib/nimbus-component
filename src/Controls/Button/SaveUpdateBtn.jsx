@@ -1,7 +1,7 @@
 import { FaPrint } from "react-icons/fa";
 import {motion} from "framer-motion"
 import { useEffect } from "react";
-export default function SaveUpdateBtn({showPrint,mode,handlePrint,handleReset,handleSave,loading,handleUpdate,handleDelete,disableSave = false,disableUpdate = false,disableDelete = false}) {
+export default function SaveUpdateBtn({showPrint,mode,handlePrint,handleReset,handleSave,loading,handleUpdate,handleDelete,disableSave = false,disableUpdate = false,disableDelete = false,showUnderLine = false}) {
     useEffect(() => {
       const handleKeyDown = (e) => {
         e.stopPropagation();
@@ -11,7 +11,7 @@ export default function SaveUpdateBtn({showPrint,mode,handlePrint,handleReset,ha
         if (e.altKey) {
         switch (e.key.toLowerCase()) {
           case 's':
-            if(mode.toLowerCase() != "update"){
+            if(mode.toLowerCase() == "new"){
               handleSave()
               break;
             }else{
@@ -32,6 +32,23 @@ export default function SaveUpdateBtn({showPrint,mode,handlePrint,handleReset,ha
                 break;
               }
               default: break;
+        }
+      }else{
+        switch (e.key) {
+          case 'F7':
+            if(mode.toLowerCase() == "update"){
+                handleUpdate()
+                break;
+              }else{
+                break;
+              }
+          case 'F8':
+            if(mode.toLowerCase() == "new"){
+              handleSave()
+              break;
+            }else{
+              break;              
+            }
         }
       }
       };
@@ -65,7 +82,16 @@ export default function SaveUpdateBtn({showPrint,mode,handlePrint,handleReset,ha
         }
         {mode.toLowerCase() == "update" || mode.toLowerCase() == "viewmode" || disableSave ? (
           <button type="button" className="btn-style btn-disable" disabled>
-            Save
+            {
+              showUnderLine ? <>
+                <span style={{textDecoration:"underline"}}>
+                  S
+                </span>
+                <span>
+                  ave (F8)
+                </span>
+              </> : Save
+            }
           </button>
         ) : (
           <motion.button
@@ -76,7 +102,14 @@ export default function SaveUpdateBtn({showPrint,mode,handlePrint,handleReset,ha
               scale:'0.8'
             }}
           >
-            {loading ? <span className="loader"></span> : "Save"}
+            {loading ? <span className="loader"></span> : showUnderLine ? <>
+                <span style={{textDecoration:"underline"}}>
+                  S
+                </span>
+                <span>
+                  ave (F8)
+                </span>
+              </> : "Save" }
           </motion.button>
         )}
         {mode.toLowerCase() == "new" || mode.toLowerCase() == "viewmode" || disableUpdate ? (
@@ -86,7 +119,16 @@ export default function SaveUpdateBtn({showPrint,mode,handlePrint,handleReset,ha
               className="btn-style btn-disable"
               disabled
             >
-              Update
+              {
+                showUnderLine ? <>
+                <span style={{textDecoration:"underline"}}>
+                  U
+                </span>
+                <span>
+                  pdate (F7)
+                </span>
+              </> : Update              
+              }
             </button>
           </>
         ) : (
@@ -99,7 +141,15 @@ export default function SaveUpdateBtn({showPrint,mode,handlePrint,handleReset,ha
               scale:'0.8'
             }}
             >
-              {loading ? <span className="loader"></span> : "Update"}
+              {loading ? <span className="loader"></span> : showUnderLine ? <>
+                <span style={{textDecoration:"underline"}}>
+                  U
+                </span>
+                <span>
+                  pdate (F7)
+                </span>
+              </> : "Update"
+              }
             </motion.button>
           </>
         )}
@@ -109,7 +159,16 @@ export default function SaveUpdateBtn({showPrint,mode,handlePrint,handleReset,ha
               className="btn-style btn-disable"
               disabled
             >
-              Delete
+              {
+                showUnderLine ? <>
+                <span style={{textDecoration:"underline"}}>
+                  D
+                </span>
+                <span>
+                  elete
+                </span>
+              </> : Delete              
+            }
             </button>
         : 
         <motion.button
@@ -120,7 +179,16 @@ export default function SaveUpdateBtn({showPrint,mode,handlePrint,handleReset,ha
               scale:'0.8'
             }}
             >
-              Delete
+              {
+                showUnderLine ? <>
+                <span style={{textDecoration:"underline"}}>
+                  D
+                </span>
+                <span>
+                  elete
+                </span>
+              </> : Delete              
+              }
             </motion.button>
         }
       </div>

@@ -298,21 +298,22 @@
     gap: 2rem;
     justify-content: space-between;
     align-items: center;
-    font-family: FontAwesome;
+    font-family: "Segoe UI Semilight", "Open Sans", Verdana, Arial, Helvetica, sans-serif;
     margin-bottom: 1rem;
     font-size: 0.85rem;
     width: 100%;
 }
 .rowsPerPage{
-    width: 3.5rem !important;
-     display: inline-block
+    width: 1.8rem !important;
+     display: inline-block;
+     font-size: 13px;
 }
 .formContainer{
     display: flex;
     width: 11rem;
     align-items: center;
     gap: 0.5rem;
-    font-size: 16px;
+    font-size: 14px;
 }
 .productPaginationContainer{
     display: flex;
@@ -484,7 +485,7 @@
 
 .modeBtnContainer {
   position: absolute;
-  right: 32%;
+  right: 18%;
   top: 0.15rem;
   display: flex;
 }
@@ -702,7 +703,8 @@
 .topmenucontainer {
   width: 100vw;
   height: 4rem;
-  margin-left: 14rem;
+  /* margin-left: 14rem; */
+  margin-left: 0rem;
   background-color: #F6F8FC;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
   z-index: 100; 
@@ -1029,19 +1031,6 @@ border: 1px solid white;
   body * {
     visibility: hidden;
   }    
-  
-  * {
-        page-break-before: avoid;
-        page-break-after: avoid;
-    }
-
-  #printable-area,
-  #printable-area * {
-    visibility: visible;
-    page-break-before: avoid;
-    page-break-after: avoid;
-  }
-
   #printable-area {
     position: static;
     left: auto;

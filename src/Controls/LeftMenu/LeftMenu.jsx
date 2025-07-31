@@ -112,7 +112,7 @@ export default function LeftMenu({
         </div>
         
         <AnimatePresence mode="wait">
-          {isOpen && (
+          {false && (
             <motion.div
               variants={contentVariants}
               initial={false}
