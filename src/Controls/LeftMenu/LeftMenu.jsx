@@ -72,7 +72,7 @@ export default function LeftMenu({
 
   return (
     <motion.div 
-      className="leftMenumainContainer"
+      className="leftMenumainContainer col-md-12 col-sm-12"
       variants={containerVariants}
       animate={isOpen ? "open" : "closed"}
       initial={false}
