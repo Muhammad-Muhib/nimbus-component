@@ -110,7 +110,9 @@ export default function RecordGrid({
                       color: selectedId == item[id] ? "white" : "black",
                     }}
                   >
-                    {item[key]}
+                    {
+                      obj.columnType.toLowerCase() == "numeric" ? parseFloat(item[key]).toFixed(2)  : item[key]
+                    }
                   </td>
                 </>
               );

@@ -500,6 +500,9 @@
   font-weight: 500;
   font-size: 15px;
   height: 37px;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
 }
 
 .page_add_btn img {
@@ -519,6 +522,9 @@
   font-weight: 500;
   font-size: 15px;
   height: 37px;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
 }
 
 .assembly-enabled {

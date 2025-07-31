@@ -2,9 +2,11 @@ import Dexie from "dexie";
 
 export const db = new Dexie("myDatabase");
 db.version(1).stores({
-  Product:
+  product:
     "++row,autoIncrement_ID,productId,productCode,productName,lineItemId,productItemId",
-  Company: "CompanyId",
+  company: "CompanyId",
+  suppliers:"value,label",
+  shop:"value,label"
 });
 export const initDb = async () => {
   return await db.open();
@@ -13,8 +15,8 @@ export const initDb = async () => {
 const syncDataIndexDb = async (tableData) => {
   return await Promise.all(
     tableData.map(async (item) => {
-      const [tableName] = Object.keys(item); //To get Key Name
-      const records = item[tableName];
+      const tableName = item.key; //To get Key Name
+      const records = item.value;
       if (Array.isArray(records)) {
         db[tableName].bulkAdd(records);
       } else {
@@ -29,13 +31,19 @@ export const getTableData = async (tableName) => {
 };
 
 export const syncIndexDb = async (tableData, companyId) => {
-  let company = await db.Company.get(companyId);
+  let company = await db.company.get(companyId);  
+  tableData = Object.entries(tableData).map(([key, value]) => ({
+    key,
+    value
+}));
   if (company == null) {
     await db.delete();
     await initDb();
+    db["company"].add({CompanyId : companyId});
     return await syncDataIndexDb(tableData);
   } else if (company.CompanyId != companyId) {
     await db.delete();
+    db["company"].add({CompanyId : companyId});
     return await syncDataIndexDb(tableData);
   }
 };

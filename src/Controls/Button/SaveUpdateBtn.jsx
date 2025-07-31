@@ -5,6 +5,9 @@ export default function SaveUpdateBtn({showPrint,mode,handlePrint,handleReset,ha
     useEffect(() => {
       const handleKeyDown = (e) => {
         e.stopPropagation();
+        if(mode.toLowerCase() == "viewmode"){
+          return;
+        }
         if (e.altKey) {
         switch (e.key.toLowerCase()) {
           case 's':
@@ -22,8 +25,12 @@ export default function SaveUpdateBtn({showPrint,mode,handlePrint,handleReset,ha
                 break;
               }
               case 'd':
+                if(mode.toLowerCase() == "update"){
                 handleDelete()
-              break;
+                break;
+              }else{
+                break;
+              }
               default: break;
         }
       }
