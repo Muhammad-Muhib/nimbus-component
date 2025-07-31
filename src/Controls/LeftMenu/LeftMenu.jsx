@@ -4,7 +4,6 @@ import LeftMenuList from "./LeftMenuList";
 import { MdLaptop } from "react-icons/md";
 import LeftMenuTop from "./LeftMenuTop";
 import { motion, AnimatePresence } from "framer-motion";
-import { useNavigation } from "react-router-dom";
 
 export default function LeftMenu({
   isOpen = true,
@@ -12,7 +11,6 @@ export default function LeftMenu({
 }) {
   const updateDate = "Apr 30, 2025" 
   const currentVersion = "4.3.4.5"
-  const navigation = useNavigation();
   // Animation variants for better control
   const containerVariants = {
     open: {
@@ -69,7 +67,7 @@ export default function LeftMenu({
   };
 
   const handleNavigation = ()=>{
-    navigation("https://nimbus.nimbusrms.com/Home")
+    window.location.replace("https://nimbus.nimbusrms.com/Home")
   }
 
   return (
