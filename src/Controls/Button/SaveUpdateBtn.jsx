@@ -59,7 +59,7 @@ export default function SaveUpdateBtn({showPrint,mode,handlePrint,handleReset,ha
     }, []);
   return (
     <>
-    <div className="btnMainContainer col-md-10 col-sm-10 form-group print_box_bg low_margin">
+    <div className="btnMainContainer col-md-12 col-sm-12 form-group print_box_bg low_margin">
       {
             (showPrint && mode.toLowerCase() == "update") && <div className="detailPrinterContainer">
         <FaPrint className="detailPrinterIcon" size={26} onClick={handlePrint} />

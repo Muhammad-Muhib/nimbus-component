@@ -299,13 +299,14 @@
     justify-content: space-between;
     align-items: center;
     font-family: "Segoe UI Semilight", "Open Sans", Verdana, Arial, Helvetica, sans-serif;
+    margin: auto;
     margin-bottom: 1rem;
     font-size: 0.85rem;
-    width: 100%;
+    width: 95%;
 }
 .rowsPerPage{
     display: inline-block;
-    font-size: 13px;
+    font-size: 13px !important;
     width: 2rem !important;
     padding: 5px 0px !important;
     text-align: center;
@@ -714,10 +715,12 @@
 }
 .exitIconContainer{
   position: absolute;
-  top: 1%;
-  right: 2%;
   display: flex;
   flex-direction: column;
+  right: 20%;
+  top: 20%;
+  align-items: center;
+  cursor: pointer;
 }
 
 .breadCrumbHead{
@@ -757,6 +760,7 @@
   z-index: 1; /* Ensure it stays above content */
   position: relative; /* Needed for proper stacking */
   height: 4em;
+  cursor: pointer;
 }
 
 .scoop-logo {

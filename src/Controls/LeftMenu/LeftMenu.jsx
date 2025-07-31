@@ -90,7 +90,7 @@ export default function LeftMenu({
               alt=""
               id="nimbusLogo"
             />
-            <FaSearch id="searchIcon" />
+            {/* <FaSearch id="searchIcon" />
             <input
               type="text"
               className="form-control btnClickTrackCls"
@@ -110,7 +110,7 @@ export default function LeftMenu({
               >
                 <LuMenu className="icon-menu" />
               </a>
-            </div>
+            </div> */}
           </motion.div>
         </div>
         
