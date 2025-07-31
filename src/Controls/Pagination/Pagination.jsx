@@ -27,13 +27,13 @@ export default function PaginationComp({ currentPage = 1, detailObjLength, rowsP
     }
 
     // Options for rows per page
-    // const rowsPerPageOptions = [5, 10, 20, 50, 100];
+     const rowsPerPageOptions = [5, 10, 20, 50, 100];
 
     return (
         <div
             className='paginationContainer'
         >
-            {/* <Form.Group controlId="rowsPerPageDropdown">
+             <Form.Group controlId="rowsPerPageDropdown">
                 <Form.Control
                     as="select"
                     value={rowsPerPage}
@@ -49,7 +49,7 @@ export default function PaginationComp({ currentPage = 1, detailObjLength, rowsP
                         </option>
                     ))}
                 </Form.Control>
-            </Form.Group> */}
+            </Form.Group> 
             <Pagination>
                 <Pagination.First onClick={() => setCurrentPage(1)} disabled={currentPage === 1} />
                 <Pagination.Prev onClick={() => setCurrentPage(currentPage - 1)} disabled={currentPage === 1} />

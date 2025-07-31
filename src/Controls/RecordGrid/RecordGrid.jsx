@@ -202,7 +202,7 @@ export default function RecordGrid({
                   } else if (item.name.toLowerCase().includes("qty")) {
                     return (
                       <td className="footColor recordAlignRight footText">
-                        {totalQtyFoot}
+                        {parseFloat(totalQtyFoot).toFixed(2)}
                       </td>
                     );
                   } else if (
@@ -211,7 +211,7 @@ export default function RecordGrid({
                   ) {
                     return (
                       <td className="footColor recordAlignRight footText">
-                        {totalAmountFoot}
+                        {parseFloat(totalAmountFoot).toFixed(2)}
                       </td>
                     );
                   } else {
