@@ -138,7 +138,7 @@ export default function LeftMenu({
         </AnimatePresence>
       </motion.div>
       <div className="topmenucontainer">
-        <LeftMenuTop />
+        <LeftMenuTop handleNavigation={handleNavigation} />
       </div>
     </motion.div>
   );

@@ -1,8 +1,9 @@
 import { useEffect, useState } from 'react'
 import { useSelector } from 'react-redux'
 import { FaAngleDoubleRight } from "react-icons/fa";
+import { ImExit } from "react-icons/im";
 
-export default function LeftMenuTop() {
+export default function LeftMenuTop({handleNavigation}) {
   let screenName = useSelector(state => {
     return state.breadCrumb
   })
@@ -24,6 +25,12 @@ export default function LeftMenuTop() {
     </div>
       : <></>
     }
+    <div className='exitIconContainer' onClick={handleNavigation}>
+      <ImExit />
+      <div>
+        Go back to Nimbus
+      </div>
+    </div>
     </>
   )
 }

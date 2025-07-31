@@ -712,6 +712,13 @@
   z-index: 100; 
   position: relative; /* Needed for proper stacking */
 }
+.exitIconContainer{
+  position: absolute;
+  top: 1%;
+  right: 2%;
+  display: flex;
+  flex-direction: column;
+}
 
 .breadCrumbHead{
     display: inline-block;
