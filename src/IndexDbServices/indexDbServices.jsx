@@ -3,7 +3,7 @@ import Dexie from "dexie";
 export const db = new Dexie("myDatabase");
 db.version(1).stores({
   product:
-    "productCode,autoIncrement_ID,productId,productName,lineItemId,productItemId",
+    "++row,productCode,autoIncrement_ID,productId,productName,lineItemId,productItemId",
   company: "CompanyId",
   suppliers:"value,label",
   shop:"value,label"
@@ -18,9 +18,9 @@ const syncDataIndexDb = async (tableData) => {
       const tableName = item.key; //To get Key Name
       const records = item.value;
       if (Array.isArray(records)) {
-        db[tableName].bulkAdd(records);
+        await db[tableName].bulkAdd(records);
       } else {
-        db[tableName].add(records);
+        await db[tableName].add(records);
       }
     })
   );

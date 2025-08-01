@@ -1038,7 +1038,7 @@ border: 1px solid white;
   cursor: not-allowed;
 }
 /* Print Page Styling */
-.printHeading {
+/* .printHeading {
   text-align: center;
   font-family: Segoe, "Segoe UI", "DejaVu Sans", "Trebuchet MS", Verdana,
     sans-serif;
@@ -1122,7 +1122,7 @@ border: 1px solid white;
   .scoop-left-header{
     display: none;
   }
-}
+} */
 
 
 /* F1 F6 Popup Styling */
