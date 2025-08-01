@@ -362,7 +362,7 @@
     border-radius: 5px;
     border: 0px;
     cursor: pointer;
-    width: 90px;
+    width: 91px;
     margin: 0px 5px;
 }
 .blue-btn{
@@ -718,9 +718,14 @@
   display: flex;
   flex-direction: column;
   right: 2%;
-  top: 20%;
+  top: 10%;
+  height: 100%;
   align-items: center;
   cursor: pointer;
+}
+.exitIcon{
+  width: 85%;
+  height: 85%;
 }
 
 .breadCrumbHead{
@@ -1238,4 +1243,35 @@ border: 1px solid white;
   .leftMenuListContiner{
     height: 100vh;
   }
+  .pageDetailContainer{
+    margin-top: 1rem;
+    gap: 1rem;
+    width: 9rem;    
+  }
+  .formContainer .gridFootText{
+    font-size: 11px;
+  }
+  .paginationContainer{
+    padding-bottom: 4rem;
+    flex-direction: column;
+  }
+  .btnMainContainer{
+    padding-right: 0;
+    padding-bottom: 4rem;
+  }
+  .btn-style{
+    width: 65px;
+  }
+  .detailPrinterContainer{
+    position: relative;
+    height: 3rem;
+    margin-top: 0.5rem;
+  }
+  .nav-tabs{
+   padding-top: 33px !important; 
+  }
+}
+
+@media screen and (min-width:701px) and (max-width:900px) {
+  
 }

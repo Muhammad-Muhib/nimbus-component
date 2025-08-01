@@ -26,10 +26,7 @@ export default function LeftMenuTop({handleNavigation}) {
       : <></>
     }
     <div className='exitIconContainer' onClick={handleNavigation}>
-      <ImExit color='red' />
-      <div>
-        Go back to Nimbus
-      </div>
+      <ImExit color='red' className='exitIcon' />
     </div>
     </>
   )
