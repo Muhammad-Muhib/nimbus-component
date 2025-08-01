@@ -1246,7 +1246,7 @@ border: 1px solid white;
   .pageDetailContainer{
     margin-top: 1rem;
     gap: 1rem;
-    width: 9rem;    
+    width: 100%;    
   }
   .formContainer .gridFootText{
     font-size: 11px;
@@ -1270,8 +1270,8 @@ border: 1px solid white;
   .nav-tabs{
    padding-top: 33px !important; 
   }
-}
-
-@media screen and (min-width:701px) and (max-width:900px) {
-  
+  .formContainer{
+    width: 9rem;
+    font-size: 11px;
+  }
 }
