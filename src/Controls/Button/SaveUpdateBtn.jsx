@@ -54,6 +54,9 @@ export default function SaveUpdateBtn({
             break;
         }
       } else {
+        if (mode.toLowerCase() == "viewmode") {
+        return;
+      }
         switch (e.key) {
           case "F7":
             if (mode.toLowerCase() == "update") {
