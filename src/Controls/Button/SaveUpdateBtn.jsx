@@ -1,6 +1,8 @@
 import { FaPrint } from "react-icons/fa";
 import { motion } from "framer-motion";
 import { useEffect } from "react";
+import Tooltip from '@mui/material/Tooltip';
+
 export default function SaveUpdateBtn({
   showPrint,
   mode,
@@ -98,10 +100,13 @@ export default function SaveUpdateBtn({
         )}
         <div>
           {mode.toLowerCase() == "viewmode" ? (
+            <Tooltip title="Clear input data" placement="top">
             <button type="button" className="btn-style btn-disable" disabled>
               Cancel
             </button>
+            </Tooltip>
           ) : (
+            <Tooltip title="Clear input data" placement="top">
             <motion.button
               type="button"
               className="btn-style blue-btn"
@@ -112,10 +117,12 @@ export default function SaveUpdateBtn({
             >
               Cancel
             </motion.button>
+            </Tooltip>
           )}
           {mode.toLowerCase() == "update" ||
           mode.toLowerCase() == "viewmode" ||
           disableSave ? (
+            <Tooltip title="Save input data" placement="top">
             <button type="button" className="btn-style btn-disable" disabled>
               {showUnderLine ? (
                 <>
@@ -126,7 +133,9 @@ export default function SaveUpdateBtn({
                 "Save"
               )}
             </button>
+            </Tooltip>
           ) : (
+            <Tooltip title="Save input data" placement="top">
             <motion.button
               type="button"
               className="btn-style btn-green"
@@ -146,11 +155,13 @@ export default function SaveUpdateBtn({
                 "Save"
               )}
             </motion.button>
+            </Tooltip>
           )}
           {mode.toLowerCase() == "new" ||
           mode.toLowerCase() == "viewmode" ||
           disableUpdate ? (
             <>
+            <Tooltip title="Update loaded data" placement="top">
               <button type="button" className="btn-style btn-disable" disabled>
                 {showUnderLine ? (
                   <>
@@ -161,9 +172,11 @@ export default function SaveUpdateBtn({
                   "Update"
                 )}
               </button>
+              </Tooltip>
             </>
           ) : (
             <>
+            <Tooltip title="Update loaded data" placement="top">
               <motion.button
                 type="button"
                 className="btn-style btn-orange"
@@ -183,11 +196,13 @@ export default function SaveUpdateBtn({
                   "Update"
                 )}
               </motion.button>
+              </Tooltip>
             </>
           )}
           {mode.toLowerCase() == "new" ||
           mode.toLowerCase() == "viewmode" ||
           disableDelete ? (
+            <Tooltip title="Delete loaded data" placement="top">
             <button type="button" className="btn-style btn-disable" disabled>
               {showUnderLine ? (
                 <>
@@ -198,7 +213,9 @@ export default function SaveUpdateBtn({
                 "Delete"
               )}
             </button>
+            </Tooltip>
           ) : (
+            <Tooltip title="Delete loaded data" placement="top">
             <motion.button
               type="button"
               className="btn-style btn-red"
@@ -216,6 +233,7 @@ export default function SaveUpdateBtn({
                 "Delete"
               )}
             </motion.button>
+            </Tooltip>
           )}
         </div>
       </div>
