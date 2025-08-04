@@ -15,7 +15,7 @@ export default function SaveUpdateBtn({
   disableSave = false,
   disableUpdate = false,
   disableDelete = false,
-  showUnderLine = false,
+  showUnderLine = false
 }) {
   useEffect(() => {
     const handleKeyDown = (e) => {

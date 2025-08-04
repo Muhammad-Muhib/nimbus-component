@@ -39,7 +39,7 @@ export default function RecordGrid({
     }
 
     // Step 1: Build headers
-    const headers = gridModel.map((col) => col.name);
+    const headers = gridModel.map((col) => col.csvHeader);
 
     // Step 2: Build rows
     const rows = tableData.map((item) => {
@@ -194,6 +194,7 @@ export default function RecordGrid({
           </tbody>
           {showFotter && tableData.length > 0 && (
             <tfoot
+            className="total-section"
               style={{ width: "100%", backgroundColor: "pink", height: "3rem" }}
             >
               <tr>

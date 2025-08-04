@@ -1038,7 +1038,7 @@ border: 1px solid white;
   cursor: not-allowed;
 }
 /* Print Page Styling */
-/* .printHeading {
+.printHeading {
   text-align: center;
   font-family: Segoe, "Segoe UI", "DejaVu Sans", "Trebuchet MS", Verdana,
     sans-serif;
@@ -1047,83 +1047,250 @@ border: 1px solid white;
 }
 
 @media print {
+  /* Reset all margins and padding */
+  * {
+    margin: 0 !important;
+    padding: 0 !important;
+    box-sizing: border-box;
+  }
+
+  /* Reset body and html */
+  html, body {
+    margin: 0 !important;
+    padding: 0 !important;
+    height: auto !important;
+    background: white;
+  }
+
+  /* Page setup with minimal margins */
+  @page {
+    size: A4;
+    padding: 0;
+     margin: 0;
+  }
+
+  /* Hide all elements first */
   body * {
     visibility: hidden;
-  }    
+  }
+
+  /* Show only printable content */
+  #printable-area,
+  #printable-area * {
+    visibility: visible;
+  }
+
+  /* Fix the main printable area positioning */
   #printable-area {
-    position: static;
-    left: auto;
-    top: auto;
+    position: absolute !important;
+    top: 2% !important;
+    width: 98% !important;
+    left: 1%;
+    max-width: 98% !important;
+    padding: 0 !important; /* Remove all padding */
+    background: white;
+    display: block !important;
+    transform: none !important; /* Remove any transforms */
+    page-break-after: avoid;
+  }
+
+  /* Remove margins from common wrapper elements */
+  .container,
+  .wrapper,
+  .main-content,
+  .content-wrapper,
+  .page-wrapper {
+    margin: 0 !important;
+    padding: 0 !important;
+    position: static !important;
+  }
+
+  /* Print heading - reduce top spacing */
+  .printHeading {
+    display: block !important;
+    text-align: center;
+    margin: 5px 0 10px 0 !important; /* Minimal top margin */
+    padding: 0 !important;
+    font-size: 16px;
+    font-weight: bold;
+    color: #000 !important;
+    page-break-after: avoid;
+    line-height: 1.2;
+  }  
+
+  /* Hide non-essential elements */
+  .tableHeaderContainer,
+  .grnPrintPopupPrint,
+  .hide-print,
+  .scoop-left-header,
+  .no-print,
+  nav,
+  header,
+  .navbar,
+  .sidebar,
+  .breadcrumb,
+  .pagination,
+  button,
+  .btn {
+    display: none !important;
+    visibility: hidden !important;
+  }
+
+  /* Table container - remove top spacing */
+  .grn-print-table-container {
     width: 100% !important;
+    max-width: 100% !important;
+    overflow: visible !important;
+    page-break-inside: avoid;
+    margin: 0 !important; /* Remove all margins */
+    padding: 0 !important; /* Remove all padding */
+    border: 1px solid #000;
+    position: static !important;
+  }
+
+  /* Main table - position at top */
+  .grn-print-table {
+    width: 100% !important;
+    table-layout: auto !important;
+    font-size: 10px !important;
+    word-wrap: break-word;
+    border-collapse: collapse !important;
+    border: 1px solid #000;
+    background: white;
+    margin: 0 !important; /* Remove margins */
+    padding: 0 !important; /* Remove padding */
+    position: static !important;
+    table-layout: fixed !important;
+  }
+
+  /* Remove spacing from table elements */
+  .grn-print-table caption {
+    margin: 0 !important;
+    padding: 5px 0 !important;
+    font-weight: bold;
+  }
+
+  /* Table headers */
+  .gridTableHeader,
+  .grn-print-table th {
+    color: #000;
+    font-weight: 700 !important;
+    background-color: #f0f0f0 !important;
+    border: 1px solid #000 !important;
+    padding: 6px 4px !important;
+    text-align: left;
+    font-size: 10px;
+    margin: 0 !important;
+     width: auto !important;
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+  }
+  
+  .gridContainer{
+    height: 90vh !important;
+  }
+
+  /* Table cells */
+  .grn-print-table td {
+    border: 1px solid #000 !important;
+    padding: 4px !important;
+    text-align: left;
+    vertical-align: top;
+    word-break: break-word;
+    font-size: 9px;
+    line-height: 1.2;
+    margin: 0 !important;
+    width: 100% !important;
+  }
+
+  /* Page container - ensure no top spacing */
+  .pagePrintContainer {
+    position: static !important;
+    width: 100%;
+    margin: 0 !important;
+    padding: 0 !important;
+    top: 0 !important;
+  }
+
+  /* Outlet container */
+  .outletContainer {
+    height: 100% !important;
+    min-height: 100% !important;
+    overflow: visible !important;
     margin: 0 !important;
     padding: 0 !important;
   }
 
-  .printHeading {
-    display: block;
+  /* Force content to start at top */
+  .content-start-top {
+    margin-top: 0 !important;
+    padding-top: 0 !important;
+    position: static !important;
+    top: 0 !important;
   }
 
-  .tableHeaderContainer {
-    display: none;
+  /* Remove any absolute positioning that might cause gaps */
+  .absolute,
+  .fixed,
+  .relative {
+    position: static !important;
+    top: auto !important;
+    left: auto !important;
+    right: auto !important;
+    bottom: auto !important;
+    transform: none !important;
+  }
+
+  /* Footer - minimal spacing */
+  .footText,
+  .grnPopupFoot {
+    color: #000 !important;
+    font-weight: 600 !important;
+    margin: 10px 0 0 0 !important;
+    padding: 0 !important;
+    font-size: 16px;
+  }
+
+  /* Utility class to force no top spacing */
+  .print-no-gap {
+    margin-top: 0 !important;
+    padding-top: 0 !important;
+    position: static !important;
+    top: 0 !important;
+  }
+
+  /* Ensure first child has no top margin */
+  #printable-area > *:first-child {
+    margin-top: 0 !important;
+    padding-top: 0 !important;
+  }
+
+  /* Remove transforms that might cause positioning issues */
+  * {
+    transform: none !important;
+    -webkit-transform: none !important;
+    -moz-transform: none !important;
+    -ms-transform: none !important;
   }
 
   .gridTableHeader {
-    color: #3498db !important;
-    font-weight: 700;
+    font-size: 13px !important;
+    color: #23b7ec !important;
   }
 
-  .footText {
-    font-weight: 600;
+  /* Debug helper - add this temporarily to see actual margins */
+  /*
+  #printable-area {
+    border: 2px solid red !important;
   }
-
-  .footColor {
-    font-weight: 700;
-  }
-
   .grn-print-table-container {
-    width: 100%;
-    max-width: 100%;
-    overflow: hidden;
-    page-break-inside: avoid;
+    border: 2px solid blue !important;
   }
-
   .grn-print-table {
-    width: 100% !important;
-    table-layout: fixed;
-    font-size: 10px;
-    word-wrap: break-word;
+    border: 2px solid green !important;
   }
-
-  .pagePrintContainer {
-    position: absolute !important;
-  }
-
-  .grnPopupTableHeader {
-    color: #3498db !important;
-  }
-
-  .grnPopupFoot {
-    color: #3498db !important;
-    font-weight: 700 !important;
-  }
-
-  .grnPrintPopupPrint {
-    display: none !important;
-  }
-  .hide-print{
-    display: none !important;
-  }
-  .print-border{
-    border: 2px solid black;
-  }
-  .outletContainer{
-    height: auto;
-  }
-  .scoop-left-header{
-    display: none;
-  }
-} */
-
+  */
+}
 
 /* F1 F6 Popup Styling */
 .productPopupHeader {
