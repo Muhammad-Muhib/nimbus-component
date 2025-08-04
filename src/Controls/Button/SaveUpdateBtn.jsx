@@ -17,11 +17,79 @@ export default function SaveUpdateBtn({
   disableDelete = false,
   showUnderLine = false
 }) {
- 
+ useEffect(() => {
+    const handleKeyDown = (e) => {
+      e.stopPropagation();
+      if (mode.toLowerCase() == "viewmode") {
+        return;
+      }
+      if (e.altKey) {
+        switch (e.key.toLowerCase()) {
+          case "s":
+            if (mode.toLowerCase() == "new") {
+              e.preventDefault();
+              e.stopPropagation();
+              document.querySelector("#btnSave").click()
+              break;
+            } else {
+              break;
+            }
+          case "u":
+            if (mode.toLowerCase() == "update") {
+              e.preventDefault();
+              e.stopPropagation();
+              document.querySelector("#btnUpdate").click()
+              break;
+            } else {
+              break;
+            }
+          case "d":
+            if (mode.toLowerCase() == "update") {
+              e.preventDefault();
+              e.stopPropagation();
+              document.querySelector("#btnDelete").click()
+              break;
+            } else {
+              break;
+            }
+          default:
+            break;
+        }
+      } else {
+        if (mode.toLowerCase() == "viewmode") {
+        return;
+      }
+        switch (e.key) {
+          case "F7":
+            if (mode.toLowerCase() == "update") {
+              e.preventDefault();
+              e.stopPropagation();
+              handleUpdate();
+              break;
+            } else {
+              break;
+            }
+          case "F8":
+            if (mode.toLowerCase() == "new") {
+              e.preventDefault();
+              e.stopPropagation();
+              handleSave();
+              break;
+            } else {
+              break;
+            }
+        }
+      }
+    };
+    document.addEventListener("keydown", handleKeyDown);
+    return () => {
+      document.removeEventListener("keydown", handleKeyDown);
+    };
+  }, []);
   return (
     <>
       <div className="btnMainContainer col-md-12 col-sm-12 form-group print_box_bg low_margin">
-        {showPrint && mode.toLowerCase() == "update" && (
+        {showPrint && mode.toLowerCase() != "new" && (
           <div className="detailPrinterContainer">
             <FaPrint
               className="detailPrinterIcon"
@@ -70,6 +138,7 @@ export default function SaveUpdateBtn({
             <Tooltip title="Save input data" placement="top">
             <motion.button
               type="button"
+              id="btnSave"
               className="btn-style btn-green"
               onClick={handleSave}
               whileTap={{
@@ -113,6 +182,7 @@ export default function SaveUpdateBtn({
                 type="button"
                 className="btn-style btn-orange"
                 onClick={handleUpdate}
+                id="btnUpdate"
                 whileTap={{
                   scale: "0.8",
                 }}
@@ -155,6 +225,7 @@ export default function SaveUpdateBtn({
               whileTap={{
                 scale: "0.8",
               }}
+              id="btnDelete"
             >
               {showUnderLine ? (
                 <>
