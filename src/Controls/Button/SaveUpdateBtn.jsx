@@ -17,75 +17,7 @@ export default function SaveUpdateBtn({
   disableDelete = false,
   showUnderLine = false
 }) {
-  useEffect(() => {
-    const handleKeyDown = (e) => {
-      e.stopPropagation();
-      if (mode.toLowerCase() == "viewmode") {
-        return;
-      }
-      if (e.altKey) {
-        switch (e.key.toLowerCase()) {
-          case "s":
-            if (mode.toLowerCase() == "new") {
-              e.preventDefault();
-              e.stopPropagation();
-              handleSave();
-              break;
-            } else {
-              break;
-            }
-          case "u":
-            if (mode.toLowerCase() == "update") {
-              e.preventDefault();
-              e.stopPropagation();
-              handleUpdate();
-              break;
-            } else {
-              break;
-            }
-          case "d":
-            if (mode.toLowerCase() == "update") {
-              e.preventDefault();
-              e.stopPropagation();
-              handleDelete();
-              break;
-            } else {
-              break;
-            }
-          default:
-            break;
-        }
-      } else {
-        if (mode.toLowerCase() == "viewmode") {
-        return;
-      }
-        switch (e.key) {
-          case "F7":
-            if (mode.toLowerCase() == "update") {
-              e.preventDefault();
-              e.stopPropagation();
-              handleUpdate();
-              break;
-            } else {
-              break;
-            }
-          case "F8":
-            if (mode.toLowerCase() == "new") {
-              e.preventDefault();
-              e.stopPropagation();
-              handleSave();
-              break;
-            } else {
-              break;
-            }
-        }
-      }
-    };
-    document.addEventListener("keydown", handleKeyDown);
-    return () => {
-      document.removeEventListener("keydown", handleKeyDown);
-    };
-  }, []);
+ 
   return (
     <>
       <div className="btnMainContainer col-md-12 col-sm-12 form-group print_box_bg low_margin">
