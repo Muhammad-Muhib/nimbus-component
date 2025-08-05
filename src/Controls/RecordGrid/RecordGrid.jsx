@@ -1,8 +1,11 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState, useRef } from "react";
 import { Table } from "react-bootstrap";
-import { parse, isValid, format, parseISO } from "date-fns";
+import { parse, isValid, format, parseISO, sub } from "date-fns";
 import { motion } from "framer-motion";
 import { toast } from "react-toastify";
+import html2canvas from "html2canvas";
+import MailPopup from "../Popup/MailPopup";
+import apiService from "../../ApiService/apiService";
 
 export default function RecordGrid({
   tablebody,
@@ -22,6 +25,12 @@ export default function RecordGrid({
 }) {
   const [selectedId, setSelectedId] = useState();
   const [tableData, setTableData] = useState(tablebody);
+  const [showMailModal,setShowMailModal] = useState(false);
+  const [toMail,setToMail] = useState("")
+    const [subject,setSubject] = useState("")
+    const [body,setBody] = useState("")
+  const tableRef = useRef(null);
+  const apiUrl = import.meta.env.VITE_BACKEND_API_URL;
 
   let formattedDate = "";
   useEffect(() => {
@@ -76,6 +85,85 @@ export default function RecordGrid({
 
   const handleDownloadPDF = () => {
     window.print();
+  };
+
+  const sendEmail=async ()=>{
+    if (!tableRef.current) {
+      toast.error("Table not found");
+      return;
+    }
+
+    if (!tableData || tableData.length === 0) {
+      toast.error("No data to convert");
+      return;
+    }
+
+    if(toMail == null || toMail == ""){
+      toast.error("Please enter an Email ID.")
+      return;
+    }
+    if(subject == null || subject == ""){
+      toast.error("Please enter subject.")
+      return
+    }
+
+    try {    
+      // Configure html2canvas options for better quality
+      const canvas = await html2canvas(tableRef.current, {
+        scale: 2, // Higher scale for better quality
+        useCORS: true,
+        allowTaint: true,
+        backgroundColor: "#ffffff",
+        width: tableRef.current.scrollWidth,
+        height: tableRef.current.scrollHeight,
+        scrollX: 0,
+        scrollY: 0,
+        windowWidth: tableRef.current.scrollWidth,
+        windowHeight: tableRef.current.scrollHeight,
+      });
+
+      // Convert canvas to blob
+      canvas.toBlob((blob) => {
+        if (blob) {
+        const formData = new FormData();
+        formData.append('Attachment', blob, `${printHeading}.png`);
+        formData.append("EmailBody",body)
+        formData.append("EmailTo",toMail)
+        formData.append("EmailSubject",subject)
+
+        apiService({
+          endpoint:apiUrl+"/Email/Send",
+          method:"POST",
+          data:formData,
+          contentType:"multipart/form-data"
+        }).then((res)=>{
+          if(res.data.success){
+            setShowMailModal(false)
+            toast.success("Mail sent successfully")
+          }else{
+            setShowMailModal(false)
+            toast(res.error)
+          }
+        }).catch((ex)=>{
+          setShowMailModal(false)
+          console.log(ex)
+          toast.error("Something went wrong")
+        })
+          
+        } else {
+          setShowMailModal(false)
+          toast.error("Failed to create image");
+        }
+      }, "image/png", 0.95);
+
+    } catch (error) {
+      console.error("Error converting table to image:", error);
+      toast.error("Failed to convert table to image");
+    }
+  }
+
+  const convertTableToImage = async () => {
+    setShowMailModal(true)    
   };
 
   const renderTableRows = () => {
@@ -154,14 +242,15 @@ export default function RecordGrid({
               whileTap={{
                 scale: "0.8",
               }}
-              onClick={handleDownloadPDF}
+              onClick={convertTableToImage}
               className="gridPrintBtn"
             >
               Email
             </motion.button>
+            
           </span>
         </div>
-        <Table bordered responsive striped className="gridContainer">
+        <Table ref={tableRef} bordered responsive striped className="gridContainer">
           <thead>
             <tr>
               {header.map((item, index) => {
@@ -225,6 +314,9 @@ export default function RecordGrid({
           )}
         </Table>
       </div>
+      {
+        showMailModal && <MailPopup showMailModal={showMailModal} setShowMailModal={setShowMailModal} body={body} setBody={setBody} subject={subject} setSubject={setSubject} toMail={toMail} setToMail={setToMail} sendEmail={sendEmail} />
+      }
     </>
   );
 }

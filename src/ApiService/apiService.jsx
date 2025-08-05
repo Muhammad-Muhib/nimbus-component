@@ -2,13 +2,13 @@ import axios from "axios";
 import Cookies from "js-cookie"
 import React,{Fragment} from "react";
 
-export default async function apiService({ endpoint, method = 'GET', data = null }) {
+export default async function apiService({ endpoint, method = 'GET', data = null,contentType = "application/json" }) {
   try {
     const config = {
       method,
       url: endpoint,
       headers: {
-        'Content-Type': 'application/json',
+        'Content-Type': `${contentType}`,
         'Authorization': `Bearer ${Cookies.get('access_token')}`
       },
     };

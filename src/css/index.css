@@ -1397,6 +1397,35 @@ border: 1px solid white;
 }
 
 
+/* Email modal Styling */
+.mailInput{
+    width: 80%;
+}
+.mail-modal-body{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 1rem;
+}
+.mailInputContainer{
+    display: flex;
+    width: 90%;
+    justify-content: space-between;
+}
+.mailBody{
+    width: 80% !important ;
+}
+.mailBodyInput{
+    height: 8rem !important;
+}
+.btn-email-send{
+    float: right;
+    align-self: flex-end;
+    margin-right: 1.2rem;
+}
+
+
 
 @media screen and (max-width:700px) {
   .leftMenumainContainer{
