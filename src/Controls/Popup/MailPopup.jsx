@@ -1,6 +1,6 @@
 import { useEffect } from 'react'
-import Input from "../Input/Input"
-import InputComment from "../Input/InputComment"
+import Input from '../Input/Input';
+import InputComment from '../Input/InputComment';
 import { TbSend } from "react-icons/tb";
 
 export default function MailPopup({body,setBody,subject,setSubject,toMail,setToMail,setShowMailModal,showMailModal,sendEmail}) {

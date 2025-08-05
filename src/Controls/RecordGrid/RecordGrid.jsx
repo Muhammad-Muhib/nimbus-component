@@ -1,6 +1,6 @@
 import { useEffect, useState, useRef } from "react";
 import { Table } from "react-bootstrap";
-import { parse, isValid, format, parseISO, sub } from "date-fns";
+import { parse, isValid, format, parseISO } from "date-fns";
 import { motion } from "framer-motion";
 import { toast } from "react-toastify";
 import html2canvas from "html2canvas";
@@ -35,6 +35,21 @@ export default function RecordGrid({
   let formattedDate = "";
   useEffect(() => {
     setTableData(tablebody);
+    setSubject(printHeading)
+    const now = new Date();
+
+  const day = now.getDate();
+  const month = now.getMonth() + 1;
+  const year = now.getFullYear();
+
+  let hours = now.getHours();
+  const minutes = now.getMinutes().toString().padStart(2, '0');
+  const seconds = now.getSeconds().toString().padStart(2, '0');
+
+  const ampm = hours >= 12 ? 'PM' : 'AM';
+  hours = hours % 12;
+  hours = hours ? hours : 12;
+    setBody(`${printHeading} as on ${day}/${month}/${year} ${hours}:${minutes}:${seconds} ${ampm}`)
   }, [tablebody]);
 
   const handleRowSelect = (item) => {
@@ -101,6 +116,12 @@ export default function RecordGrid({
     if(toMail == null || toMail == ""){
       toast.error("Please enter an Email ID.")
       return;
+    }else{
+      const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+      if(!emailRegex.test(toMail)){
+        toast.error("Please enter a Valid Email ID.")
+        return;
+       }
     }
     if(subject == null || subject == ""){
       toast.error("Please enter subject.")

@@ -19,6 +19,8 @@ export default function Datepicker({customClass,startDate,setStartDate,toCaption
         readOnly
         className="custom-input"
         placeholder="Select Date"
+        disabled={disableDateChange}
+        style={disableDateChange ? {backgroundColor:"#e9ecef"} : {backgroundColor:"white"}}
       />
       <span className="calendar-icon"><SlCalender /></span> 
     </div>

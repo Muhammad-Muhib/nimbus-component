@@ -3,10 +3,11 @@ import Dexie from "dexie";
 export const db = new Dexie("myDatabase");
 db.version(1).stores({
   product:
-    "++row,productCode,autoIncrement_ID,productId,productName,lineItemId,productItemId",
+    "productCode,autoIncrement_ID,productId,productName,lineItemId,productItemId",
   company: "CompanyId",
-  suppliers:"value,label",
-  shop:"value,label"
+  suppliers:"autoIncrement_ID,supplierId",
+  shop:"value,label",
+  rcmsConfiguration:"configurationId,configrationNo,configurationName,autoIncrement_ID"
 });
 export const initDb = async () => {
   return await db.open();
@@ -67,3 +68,12 @@ export const updateDataIndexDb = async (tableName, key, id, data) => {
 export const addDataIndexDb = async (tableName, tableData) => {
   return await db[tableName].bulkAdd(tableData);
 };
+
+export const checkExistance = async()=>{
+  await db.open();
+  return await db.product.toCollection().first();
+};
+export const getTableDataByKey = async (tableName,key,id)=>{
+  const data = await db[tableName].where(`${key}`).equals(id).first()
+  return data;
+}
