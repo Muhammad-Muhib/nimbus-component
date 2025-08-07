@@ -25,7 +25,7 @@ export default function RecordGrid({
   disableCSV = false,
 }) {
   const [selectedId, setSelectedId] = useState();
-  const [tableData, setTableData] = useState(tablebody);
+  const [tableData, setTableData] = useState();
   const [showMailModal,setShowMailModal] = useState(false);
   const [toMail,setToMail] = useState("")
     const [subject,setSubject] = useState("")
@@ -35,7 +35,7 @@ export default function RecordGrid({
 
   let formattedDate = "";
   useEffect(() => {
-    setTableData(tablebody);
+    setTableData(JSON.parse(JSON.stringify(tablebody)));
     setSubject(printHeading)
   }, [tablebody]);
 
@@ -63,7 +63,7 @@ export default function RecordGrid({
         let value = item[key];
 
         // Format date
-        if (col.columnType.toLowerCase() === "date") {
+        if (col.columnType.toLowerCase() == "date") {
           value = /^\d{1,2}\/[A-Za-z]{3}\/\d{4}$/.test(value)
             ? value
             : parseDate(value);
@@ -359,5 +359,5 @@ const parseDate = (input) => {
   }
   // Final validation
   if (!isValid(date)) return "";
-  return format(date, "dd/MMM/yyyy hh:mm:ss");
+  return format(date, "dd/MMM/yyyy");
 };
