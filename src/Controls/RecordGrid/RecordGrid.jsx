@@ -25,7 +25,7 @@ export default function RecordGrid({
   disableCSV = false,
 }) {
   const [selectedId, setSelectedId] = useState();
-  const [tableData, setTableData] = useState();
+  const [tableData, setTableData] = useState([]);
   const [showMailModal,setShowMailModal] = useState(false);
   const [toMail,setToMail] = useState("")
     const [subject,setSubject] = useState("")
