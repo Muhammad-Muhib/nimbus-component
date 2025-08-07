@@ -351,13 +351,13 @@ const parseDate = (input) => {
     date = input;
   } else if (typeof input === "string") {
     // Try to parse as ISO first
-    date = parseISO(input);
+    date = new Date(input);
     // If not valid ISO, try custom format
     if (!isValid(date)) {
-      date = parse(input, "MM/dd/yyyy h:mm:ss a", new Date());
+      date = parse(input, "MM/dd/yyyy hh:mm:ss", new Date());
     }
   }
   // Final validation
   if (!isValid(date)) return "";
-  return format(date, "dd/MMM/yyyy");
+  return format(date, "dd/MMM/yyyy hh:mm:ss");
 };
