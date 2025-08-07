@@ -29,6 +29,8 @@ import OptionSelectorTopMenu from './Controls/DropDown/OptionSelectorTopMenu';
 import {addDataIndexDb,updateDataIndexDb,deleteDataIndexDb,syncIndexDb,initDb,checkExistance,getTableDataByKey,syncUpdateDataIndexDb} from "./IndexDbServices/indexDbServices"
 import {useGetAllDataOfTable} from "./CustomHooks/GetAllDataOfTable"
 import {useGetTokenValue} from "./CustomHooks/GetTokenValue"
+import MailPopup from "./Controls/Popup/MailPopup"
+import {sendEmail} from "./Controls/Mail/Email"
 
 export {apiService};
 export {CheckBox};
@@ -66,3 +68,5 @@ export {deleteDataIndexDb}
 export {checkExistance}
 export {getTableDataByKey}
 export {syncUpdateDataIndexDb}
+export {MailPopup}
+export {sendEmail}

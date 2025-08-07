@@ -36,20 +36,6 @@ export default function RecordGrid({
   useEffect(() => {
     setTableData(tablebody);
     setSubject(printHeading)
-    const now = new Date();
-
-  const day = now.getDate();
-  const month = now.getMonth() + 1;
-  const year = now.getFullYear();
-
-  let hours = now.getHours();
-  const minutes = now.getMinutes().toString().padStart(2, '0');
-  const seconds = now.getSeconds().toString().padStart(2, '0');
-
-  const ampm = hours >= 12 ? 'PM' : 'AM';
-  hours = hours % 12;
-  hours = hours ? hours : 12;
-    setBody(`${printHeading} as on ${day}/${month}/${year} ${hours}:${minutes}:${seconds} ${ampm}`)
   }, [tablebody]);
 
   const handleRowSelect = (item) => {
@@ -134,13 +120,9 @@ export default function RecordGrid({
         scale: 2, // Higher scale for better quality
         useCORS: true,
         allowTaint: true,
-        backgroundColor: "#ffffff",
-        width: tableRef.current.scrollWidth,
-        height: tableRef.current.scrollHeight,
+        backgroundColor: "#ffffff",        
         scrollX: 0,
-        scrollY: 0,
-        windowWidth: tableRef.current.scrollWidth,
-        windowHeight: tableRef.current.scrollHeight,
+        scrollY: 0        
       });
 
       // Convert canvas to blob
@@ -184,6 +166,20 @@ export default function RecordGrid({
   }
 
   const convertTableToImage = async () => {
+    const now = new Date();
+
+  const day = now.getDate();
+  const month = now.getMonth() + 1;
+  const year = now.getFullYear();
+
+  let hours = now.getHours();
+  const minutes = now.getMinutes().toString().padStart(2, '0');
+  const seconds = now.getSeconds().toString().padStart(2, '0');
+
+  const ampm = hours >= 12 ? 'PM' : 'AM';
+  hours = hours % 12;
+  hours = hours ? hours : 12;
+    setBody(`${printHeading} as on ${day}/${month}/${year} ${hours}:${minutes}:${seconds} ${ampm}`)
     setShowMailModal(true)    
   };
 

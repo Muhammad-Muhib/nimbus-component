@@ -1194,7 +1194,7 @@ border: 1px solid white;
 
   /* Page container - ensure no top spacing */
   .pagePrintContainer {
-    position: static !important;
+    position: absolute !important;
     width: 100%;
     margin: 0 !important;
     padding: 0 !important;
