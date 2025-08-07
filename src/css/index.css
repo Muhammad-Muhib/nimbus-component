@@ -1179,10 +1179,6 @@ border: 1px solid white;
     overflow-wrap: break-word;
   }
   
-  .gridContainer{
-    height: 90vh !important;
-  }
-
   /* Table cells */
   .grn-print-table td {
     border: 1px solid #000 !important;

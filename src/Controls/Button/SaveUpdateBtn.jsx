@@ -64,7 +64,7 @@ export default function SaveUpdateBtn({
             if (mode.toLowerCase() == "update") {
               e.preventDefault();
               e.stopPropagation();
-              handleUpdate();
+              document.querySelector("#btnUpdate").click()
               break;
             } else {
               break;
@@ -73,7 +73,7 @@ export default function SaveUpdateBtn({
             if (mode.toLowerCase() == "new") {
               e.preventDefault();
               e.stopPropagation();
-              handleSave();
+              document.querySelector("#btnSave").click()
               break;
             } else {
               break;
@@ -89,7 +89,7 @@ export default function SaveUpdateBtn({
   return (
     <>
       <div className="btnMainContainer col-md-12 col-sm-12 form-group print_box_bg low_margin">
-        {showPrint && mode.toLowerCase() != "new" && (
+        {showPrint && mode.toLowerCase() != "new" && mode.toLowerCase() != "viewmode" && (
           <div className="detailPrinterContainer">
             <FaPrint
               className="detailPrinterIcon"
