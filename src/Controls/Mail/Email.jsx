@@ -8,6 +8,21 @@ export const sendEmail = async (tableRef,body,toMail,subject,setShowMailModal)=>
       toast.error("Table not found");
       return;
     }
+
+    if(toMail == null || toMail == ""){
+      toast.error("Please enter an Email ID.")
+      return;
+    }else{
+      const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+      if(!emailRegex.test(toMail)){
+        toast.error("Please enter a Valid Email ID.")
+        return;
+       }
+    }
+    if(subject == null || subject == ""){
+      toast.error("Please enter subject.")
+      return
+    }
     
 
     try {

@@ -1398,11 +1398,11 @@ border: 1px solid white;
     width: 80%;
 }
 .mail-modal-body{
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    gap: 1rem;
+    display: flex !important;
+    flex-direction: column !important;
+    justify-content: center !important;
+    align-items: center !important;
+    gap: 1rem !important;
 }
 .mailInputContainer{
     display: flex;
