@@ -359,5 +359,5 @@ const parseDate = (input) => {
   }
   // Final validation
   if (!isValid(date)) return "";
-  return format(date, "dd/MMM/yyyy");
+  return format(date, "dd/MMM/yyyy h:mm:ss a");
 };
