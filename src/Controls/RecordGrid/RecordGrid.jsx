@@ -10,6 +10,7 @@ import apiService from "../../ApiService/apiService";
 export default function RecordGrid({
   tablebody,
   id,
+  currentPage,
   setSelectedRecord,
   gridModel,
   csvName,
@@ -37,6 +38,10 @@ export default function RecordGrid({
     setTableData(tablebody);
     setSubject(printHeading)
   }, [tablebody]);
+
+  useEffect(()=>{
+    setSelectedId(null)
+  },[currentPage])
 
   const handleRowSelect = (item) => {
     setSelectedId(item[id]);
