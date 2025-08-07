@@ -63,13 +63,13 @@ export default function RecordGrid({
         let value = item[key];
 
         // Format date
-        if (col.columnType.toLowerCase() == "date") {
+        if (col.columnType.toLowerCase() === "date") {
           value = /^\d{1,2}\/[A-Za-z]{3}\/\d{4}$/.test(value)
             ? value
             : parseDate(value);
         }
 
-        return `"${value.toString().split(" ")[0]}"`;
+        return `"${value}"`;
       });
     });
 
@@ -222,7 +222,7 @@ export default function RecordGrid({
                     }}
                   >
                     {
-                      obj.columnType.toLowerCase() == "numeric" ? parseFloat(item[key]).toFixed(2)  : item[key]
+                      obj.columnType.toLowerCase() == "numeric" ? parseFloat(item[key]).toFixed(2)  : obj.columnType.toLowerCase() == "date" ? item[key].split(" ")[0] : item[key]
                     }
                   </td>
                 </>
@@ -351,13 +351,13 @@ const parseDate = (input) => {
     date = input;
   } else if (typeof input === "string") {
     // Try to parse as ISO first
-    date = new Date(input);
+    date = parseISO(input);
     // If not valid ISO, try custom format
     if (!isValid(date)) {
-      date = parse(input, "MM/dd/yyyy hh:mm:ss", new Date());
+      date = parse(input, "MM/dd/yyyy hh:mm:ss a", new Date());
     }
   }
   // Final validation
   if (!isValid(date)) return "";
-  return format(date, "dd/MMM/yyyy hh:mm:ss");
+  return format(date, "dd/MMM/yyyy hh:mm:ss a");
 };
