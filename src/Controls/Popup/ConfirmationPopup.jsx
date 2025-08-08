@@ -5,6 +5,7 @@ export default function ConfirmationPopup({setShowModal,onClose,onConfirm,showEx
     useEffect(() => {
       if(modalBody.toLowerCase().includes("delete")){
         document.querySelector("#noBtn").focus()
+        setAddBgColor(false)
       }else{
         document.querySelector("#okBtn").focus()        
       }
