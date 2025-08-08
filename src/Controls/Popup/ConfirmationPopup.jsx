@@ -3,7 +3,11 @@ import React, { useState,useEffect } from 'react'
 export default function ConfirmationPopup({setShowModal,onClose,onConfirm,showExtraText,additionalText,modalBody,modalTitle}) {
     const [addBgColor,setAddBgColor] = useState(true)
     useEffect(() => {
-      document.querySelector("#okBtn").focus()
+      if(modalBody.toLowerCase().includes("delete")){
+        document.querySelector("#noBtn").focus()
+      }else{
+        document.querySelector("#okBtn").focus()        
+      }
     const handleKeyDown = (e) => {
       if (e.key == "Escape") {
         setShowModal(false);

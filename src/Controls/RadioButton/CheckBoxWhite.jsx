@@ -1,6 +1,6 @@
-export default function CheckBoxWhite({item,setItem,name,disableCheckBox}) {
+export default function CheckBoxWhite({item,setItem,name,disableCheckBox,customClass}) {
   return (
-    <div className="custom-checkbox-wrapper">
+    <div className={`custom-checkbox-wrapper ${customClass}`}>
     <input
         type="checkbox"
         className="custom-checkbox custom-checkbox-white"

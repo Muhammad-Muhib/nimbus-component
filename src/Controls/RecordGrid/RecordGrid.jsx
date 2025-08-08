@@ -1,6 +1,6 @@
 import { useEffect, useState, useRef } from "react";
 import { Table } from "react-bootstrap";
-import { parse, isValid, format, parseISO } from "date-fns";
+import { parse, isValid, format } from "date-fns";
 import { motion } from "framer-motion";
 import { toast } from "react-toastify";
 import html2canvas from "html2canvas";
@@ -23,6 +23,7 @@ export default function RecordGrid({
   totalAmountFoot,
   disablePrint = false,
   disableCSV = false,
+  selectedRecord = null
 }) {
   const [selectedId, setSelectedId] = useState();
   const [tableData, setTableData] = useState(tablebody);
@@ -40,8 +41,10 @@ export default function RecordGrid({
   }, [tablebody]);
 
   useEffect(()=>{
-    setSelectedId(null)
-  },[currentPage])
+    if(selectedRecord == null){
+      setSelectedId(null)
+    }
+  },[selectedRecord])
 
   const handleRowSelect = (item) => {
     setSelectedId(item[id]);
@@ -350,14 +353,12 @@ const parseDate = (input) => {
   if (input instanceof Date) {
     date = input;
   } else if (typeof input === "string") {
-    // Try to parse as ISO first
-    date = parseISO(input);
-    // If not valid ISO, try custom format
+    date = new Date(input);
     if (!isValid(date)) {
       date = parse(input, "MM/dd/yyyy hh:mm:ss a", new Date());
     }
   }
   // Final validation
   if (!isValid(date)) return "";
-  return format(date, "dd/MMM/yyyy hh:mm:ss a");
+  return  format(date, "dd/MMM/yyyy hh:mm:ss a");
 };

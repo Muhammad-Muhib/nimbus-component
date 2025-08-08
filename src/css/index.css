@@ -439,7 +439,7 @@
 .fileLoaderComponent{
     position: relative;
     border: 1px solid rgba(0,0,0,0.5);
-    width: 13rem;
+    width: 17rem;
     height: 2.5rem;
 }
 .fileLoaderLabel{
@@ -657,7 +657,7 @@
 }
 
 .leftmenucontainer {
-  width: 14rem;
+  width: 10rem;
   background-color: white;
   box-shadow: 0 0 5px 0 rgba(0, 0, 0, 0.1);
   height: 100%;
