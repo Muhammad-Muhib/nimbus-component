@@ -6,7 +6,7 @@ db.version(1).stores({
     "productCode,productId,productName,lineItemId,productItemId,packagingBarcodeProductId",
   company: "CompanyId",
   suppliers:"supplierId",
-  shop:"value,label",
+  shop:"shopId,shopName",
   rcmsConfiguration:"configurationId,configrationNo,configurationName"
 });
 
@@ -42,6 +42,18 @@ const syncDataIndexDb = async (tableData) => {
 export const getTableData = async (tableName) => {
   return await db[tableName].toArray();
 };
+
+export const getDataForDropDown = async (tableName,id,name) =>{
+  const data = await getTableData(tableName)
+  return await Promise.all(
+    data.map((item)=>{
+    return ({
+      value : item[id],
+      label : item[name]
+    })
+  })
+  )
+}
 
 export const syncIndexDb = async (tableData, companyId) => {
   let company = await db.company.get(companyId);  
