@@ -3,11 +3,11 @@ import Dexie from "dexie";
 export const db = new Dexie("myDatabase");
 db.version(1).stores({
   product:
-    "productCode,autoIncrement_ID,productId,productName,lineItemId,productItemId",
+    "productCode,productId,productName,lineItemId,productItemId,packagingBarcodeProductId",
   company: "CompanyId",
-  suppliers:"autoIncrement_ID,supplierId",
-  shop:"value,label",
-  rcmsConfiguration:"configurationId,configrationNo,configurationName,autoIncrement_ID"
+  suppliers:"supplierId",
+  shop:"shopId,shopName",
+  rcmsConfiguration:"configurationId,configrationNo,configurationName"
 });
 
 const getUpdateKey = (tableName) => {
@@ -15,7 +15,7 @@ const getUpdateKey = (tableName) => {
     product: 'productCode',
     company: 'CompanyId',
     suppliers: 'supplierId',
-    shop: 'value',
+    shop: 'shopId',
     rcmsConfiguration: 'configurationId'
   };
   return primaryKeys[tableName];
