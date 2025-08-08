@@ -6,7 +6,7 @@ db.version(1).stores({
     "productCode,productId,productName,lineItemId,productItemId,packagingBarcodeProductId",
   company: "CompanyId",
   suppliers:"supplierId",
-  shop:"shopId,shopName",
+  shop:"value,label",
   rcmsConfiguration:"configurationId,configrationNo,configurationName"
 });
 
@@ -15,7 +15,7 @@ const getUpdateKey = (tableName) => {
     product: 'productCode',
     company: 'CompanyId',
     suppliers: 'supplierId',
-    shop: 'shopId',
+    shop: 'value',
     rcmsConfiguration: 'configurationId'
   };
   return primaryKeys[tableName];
