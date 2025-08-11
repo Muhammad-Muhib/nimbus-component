@@ -7,7 +7,8 @@ db.version(1).stores({
   company: "CompanyId",
   suppliers:"supplierId",
   shop:"shopId,shopName",
-  rcmsConfiguration:"configurationId,configrationNo,configurationName"
+  rcmsConfiguration:"configurationId,configrationNo,configurationName",
+  creditCards:"creditCardId,cardName"
 });
 
 const getUpdateKey = (tableName) => {
