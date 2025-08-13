@@ -1,10 +1,9 @@
 import { useEffect, useState } from "react"
 import {jwtDecode} from 'jwt-decode'
-import Cookies from "js-cookie"
 
 export const useGetTokenValue = (name)=>{
     const [tokenValue,setTokenValue] = useState("")
-    const decodedToken = jwtDecode(Cookies.get("access_token"))   
+    const decodedToken = jwtDecode(localStorage.AccessToken)   
     useEffect(()=>{
         setTokenValue(decodedToken[name])
     },[])
