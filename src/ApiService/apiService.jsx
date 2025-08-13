@@ -9,7 +9,7 @@ export default async function apiService({ endpoint, method = 'GET', data = null
       url: endpoint,
       headers: {
         'Content-Type': `${contentType}`,
-        'Authorization': `Bearer ${Cookies.get('access_token')}`
+        'Authorization': `Bearer ${localStorage.AccessToken}`
       },
     };
 

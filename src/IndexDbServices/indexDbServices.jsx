@@ -74,12 +74,147 @@ export const syncIndexDb = async (tableData, companyId) => {
   }
 };
 
-export const deleteDataIndexDb = async (tableName, key, data) => {
-  let records = await db[tableName].where(key).equals(data).toArray();
-  await records.map((item) => {
-    db[tableName].delete(item.row);
-  });
-  return true;
+export const deleteDataIndexDb = async (tableData) => {
+  try {
+    // Handle both object and array formats
+    let tableEntries = [];
+
+    if (Array.isArray(tableData)) {
+      // If it's already an array of {key, value} objects
+      tableEntries = tableData;
+    } else if (typeof tableData === "object" && tableData !== null) {
+      // If it's an object with table names as keys
+      tableEntries = Object.entries(tableData).map(([key, value]) => ({
+        key,
+        value,
+      }));
+    } else {
+      return false;
+    }
+
+    // Handle each table's deletion based on specific criteria
+    for (const tableEntry of tableEntries) {
+      const tableName = tableEntry.key;
+      const records = tableEntry.value;
+
+      if (!Array.isArray(records) || records.length === 0) {
+        continue;
+      }
+
+      switch (tableName) {        
+        case "shop":
+          // Delete shop data based on shopId
+          for (const record of records) {
+            if (record.shopId) {
+              const deletedCount = await db[tableName]
+                .where("value")
+                .equals(record.shopId)
+                .delete();
+              console.log(
+                `Deleted ${deletedCount} shop records with shopId: ${record.shopId}`
+              );
+            }
+          }
+          break;
+
+        case "suppliers":
+          // Delete supplier data based on supplierId
+          for (const record of records) {
+            if (record.supplierID) {
+              const deletedCount = await db[tableName]
+                .where("supplierId")
+                .equals(record.supplierID)
+                .delete();
+              console.log(
+                `Deleted ${deletedCount} supplier records with supplierId: ${record.supplierId}`
+              );
+            }
+          }
+          break;
+
+        case "product":
+          // Handle product deletion based on different criteria
+          for (const record of records) {
+            if (record.productId) {
+              // Delete by productId
+              const deletedCount = await db[tableName]
+                .where("productId")
+                .equals(record.productId)
+                .delete();
+              console.log(
+                `Deleted ${deletedCount} product records with productId: ${record.productId}`
+              );
+            }
+          }
+          break;
+
+        case "productItem":
+          // Handle productItem deletion based on productItemId
+          for (const record of records) {
+            if (record.productItemId) {
+              const deletedCount = await db[tableName]
+                .where("productItemId")
+                .equals(record.productItemId)
+                .delete();
+              console.log(
+                `Deleted ${deletedCount} productItem records with productItemId: ${record.productItemId}`
+              );
+            }
+          }
+          break;
+
+        case "productNestedBarCode":
+          // Handle productNestedBarCode deletion based on packagingBarcodeProductId
+          for (const record of records) {
+            if (record.packagingBarcodeProductId) {
+              const deletedCount = await db[tableName]
+                .where("packagingBarcodeProductId")
+                .equals(record.packagingBarcodeProductId)
+                .delete();
+              console.log(
+                `Deleted ${deletedCount} productNestedBarCode records with packagingBarcodeProductId: ${record.packagingBarcodeProductId}`
+              );
+            }
+          }
+          break;
+
+        default:
+          // For other tables, try to delete based on common patterns
+          for (const record of records) {
+            // Try to find a primary key or unique identifier
+            const keys = Object.keys(record);
+            for (const key of keys) {
+              if (
+                key.toLowerCase().includes("id") ||
+                key.toLowerCase().includes("code")
+              ) {
+                try {
+                  const deletedCount = await db[tableName]
+                    .where(key)
+                    .equals(record[key])
+                    .delete();
+                  console.log(
+                    `Deleted ${deletedCount} ${tableName} records with ${key}: ${record[key]}`
+                  );
+                  break; // Exit inner loop once deletion is attempted
+                } catch (error) {
+                  console.warn(
+                    `Failed to delete from ${tableName} using key ${key}:`,
+                    error
+                  );
+                }
+              }
+            }
+          }
+          break;
+      }
+    }
+    console.log("deleteDataIndexDb completed successfully");
+    return true;
+  } catch (error) {
+    console.error("Error in deleteDataIndexDb:", error);
+    return false;
+  }
 };
 
 export const updateDataIndexDb = async (tableName, key, id, data) => {

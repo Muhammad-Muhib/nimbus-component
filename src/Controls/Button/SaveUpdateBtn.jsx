@@ -15,7 +15,8 @@ export default function SaveUpdateBtn({
   disableSave = false,
   disableUpdate = false,
   disableDelete = false,
-  showUnderLine = false
+  showUnderLine = false,
+  hideDelete = false
 }) {
  useEffect(() => {
     const handleKeyDown = (e) => {
@@ -201,7 +202,8 @@ export default function SaveUpdateBtn({
               </Tooltip>
             </>
           )}
-          {mode.toLowerCase() == "new" ||
+          {
+            !hideDelete && mode.toLowerCase() == "new" ||
           mode.toLowerCase() == "viewmode" ||
           disableDelete ? (
             <Tooltip title="Delete loaded data" placement="top">
@@ -237,7 +239,8 @@ export default function SaveUpdateBtn({
               )}
             </motion.button>
             </Tooltip>
-          )}
+          )
+          }
         </div>
       </div>
     </>
