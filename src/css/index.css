@@ -651,6 +651,7 @@
   display: flex;
   position:absolute;
   z-index: 70;
+  top: 0;
 }
 #searchInput{
   display: none
@@ -1426,6 +1427,7 @@ border: 1px solid white;
 @media screen and (max-width:700px) {
   .leftMenumainContainer{
     flex-direction: column;
+    position: fixed;
   }
   .leftmenucontainer{
     width: 100%;
