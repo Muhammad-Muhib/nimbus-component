@@ -1,14 +1,15 @@
 import Dexie from "dexie";
 
 export const db = new Dexie("myDatabase");
-db.version(1).stores({
+db.version(2).stores({
   product:
     "productCode,productId,productName,lineItemId,productItemId,packagingBarcodeProductId",
   company: "CompanyId",
   suppliers:"supplierId",
   shop:"shopId,shopName",
   rcmsConfiguration:"configurationId,configrationNo,configurationName",
-  creditCards:"creditCardId,cardName"
+  creditCards:"creditCardId,cardName",
+  department:"lineItemId,lineItemName"
 });
 
 const getUpdateKey = (tableName) => {
@@ -17,7 +18,8 @@ const getUpdateKey = (tableName) => {
     company: 'CompanyId',
     suppliers: 'supplierId',
     shop: 'value',
-    rcmsConfiguration: 'configurationId'
+    rcmsConfiguration: 'configurationId',
+    department:"lineItemId"
   };
   return primaryKeys[tableName];
 };
@@ -112,6 +114,20 @@ export const deleteDataIndexDb = async (tableData) => {
                 .delete();
               console.log(
                 `Deleted ${deletedCount} shop records with shopId: ${record.shopId}`
+              );
+            }
+          }
+          break;
+          // Delete department data based on DepartmentId
+        case 'deparmtent':
+          for (const record of records) {
+            if (record.lineItemId) {
+              const deletedCount = await db[tableName]
+                .where("lineItemId")
+                .equals(record.lineItemId)
+                .delete();
+              console.log(
+                `Deleted ${deletedCount} lineItem records with LineItemId: ${record.lineItemId}`
               );
             }
           }

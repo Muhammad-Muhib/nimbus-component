@@ -1,6 +1,6 @@
 {
   "name": "nimbus-kit",
-  "version": "2.1.0",
+  "version": "2.1.2",
   "type": "module",
   "main": "dist/index.cjs",
   "style": "dist/index.css",

@@ -53,6 +53,7 @@ export {FileLoader};
 export {Tabs};
 export {ShowHideContainer};
 export {LeftMenu};
+export {default as LeftMenuMUI} from './Controls/LeftMenu/LeftMenuMUI.jsx';
 export {RecordGrid};
 export {InformationPopup};
 export {ConfirmationPopup};
