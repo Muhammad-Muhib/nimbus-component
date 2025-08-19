@@ -9,7 +9,8 @@ db.version(2).stores({
   shop:"shopId,shopName",
   rcmsConfiguration:"configurationId,configrationNo,configurationName",
   creditCards:"creditCardId,cardName",
-  department:"lineItemId,lineItemName"
+  department:"lineItemId,lineItemName",
+  category:"categoryId,categoryName"
 });
 
 const getUpdateKey = (tableName) => {
@@ -19,7 +20,8 @@ const getUpdateKey = (tableName) => {
     suppliers: 'supplierId',
     shop: 'value',
     rcmsConfiguration: 'configurationId',
-    department:"lineItemId"
+    department:"lineItemId",
+    category:"categoryId"
   };
   return primaryKeys[tableName];
 };
@@ -118,20 +120,6 @@ export const deleteDataIndexDb = async (tableData) => {
             }
           }
           break;
-          // Delete department data based on DepartmentId
-        case 'deparmtent':
-          for (const record of records) {
-            if (record.lineItemId) {
-              const deletedCount = await db[tableName]
-                .where("lineItemId")
-                .equals(record.lineItemId)
-                .delete();
-              console.log(
-                `Deleted ${deletedCount} lineItem records with LineItemId: ${record.lineItemId}`
-              );
-            }
-          }
-          break;
 
         case "suppliers":
           // Delete supplier data based on supplierId
@@ -147,7 +135,34 @@ export const deleteDataIndexDb = async (tableData) => {
             }
           }
           break;
-
+// Delete department data based on DepartmentId
+        case 'deparmtent':
+          for (const record of records) {
+            if (record.lineItemId) {
+              const deletedCount = await db[tableName]
+                .where("lineItemId")
+                .equals(record.lineItemId)
+                .delete();
+              console.log(
+                `Deleted ${deletedCount} lineItem records with LineItemId: ${record.lineItemId}`
+              );
+            }
+          }
+          break;
+          // Delete category data based on categoryId
+        case 'deparmtent':
+          for (const record of records) {
+            if (record.categoryId) {
+              const deletedCount = await db[tableName]
+                .where("categoryId")
+                .equals(record.categoryId)
+                .delete();
+              console.log(
+                `Deleted ${deletedCount} category records with categoryId: ${record.categoryId}`
+              );
+            }
+          }
+          break;
         case "product":
           // Handle product deletion based on different criteria
           for (const record of records) {
@@ -168,7 +183,7 @@ export const deleteDataIndexDb = async (tableData) => {
           // Handle productItem deletion based on productItemId
           for (const record of records) {
             if (record.productItemId) {
-              const deletedCount = await db[tableName]
+              const deletedCount = await db.product
                 .where("productItemId")
                 .equals(record.productItemId)
                 .delete();
@@ -183,7 +198,7 @@ export const deleteDataIndexDb = async (tableData) => {
           // Handle productNestedBarCode deletion based on packagingBarcodeProductId
           for (const record of records) {
             if (record.packagingBarcodeProductId) {
-              const deletedCount = await db[tableName]
+              const deletedCount = await db.product
                 .where("packagingBarcodeProductId")
                 .equals(record.packagingBarcodeProductId)
                 .delete();
