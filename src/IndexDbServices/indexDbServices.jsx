@@ -10,7 +10,8 @@ db.version(2).stores({
   rcmsConfiguration:"configurationId,configrationNo,configurationName",
   creditCards:"creditCardId,cardName",
   department:"lineItemId,lineItemName",
-  category:"categoryId,categoryName"
+  category:"categoryId,categoryName",
+  memberTypes:"memberTypeId,memberTypeName"
 });
 
 const getUpdateKey = (tableName) => {
@@ -21,7 +22,8 @@ const getUpdateKey = (tableName) => {
     shop: 'value',
     rcmsConfiguration: 'configurationId',
     department:"lineItemId",
-    category:"categoryId"
+    category:"categoryId",
+    memberTypes:"memberTypeId"
   };
   return primaryKeys[tableName];
 };
@@ -120,7 +122,20 @@ export const deleteDataIndexDb = async (tableData) => {
             }
           }
           break;
-
+          // Delete department data based on DepartmentId
+        case 'memberTypes':
+          for (const record of records) {
+            if (record.memberTypeId) {
+              const deletedCount = await db[tableName]
+                .where("memberTypeId")
+                .equals(record.memberTypeId)
+                .delete();
+              console.log(
+                `Deleted ${deletedCount} lineItem records with MemberTypeId: ${record.memberTypeId}`
+              );
+            }
+          }
+          break;
         case "suppliers":
           // Delete supplier data based on supplierId
           for (const record of records) {
