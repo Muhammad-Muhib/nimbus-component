@@ -15,7 +15,8 @@ db.version(2).stores({
   subCategory:"subCategoryId,categoryId,subCategoryName,subCategoryCode",
   productGroup:"productGroupId,productGroupName",
   productSize:"sizeId,sizeName,lineItemId",
-  color:"colorId,colorName,lineItemId"
+  color:"colorId,colorName,lineItemId",
+  productAssembly:"productAssemblyId,productItemIdAssembly,productItemidPart"
 });
 
 const getUpdateKey = (tableName) => {
@@ -31,7 +32,8 @@ const getUpdateKey = (tableName) => {
     subCategory:"subCategoryId",
     productGroup:"productGroupId",
     productSize:"sizeId",
-    color:"colorId"
+    color:"colorId",
+    productAssembly:"productAssemblyId"
   };
   return primaryKeys[tableName];
 };
@@ -140,6 +142,20 @@ export const deleteDataIndexDb = async (tableData) => {
                 .delete();
               console.log(
                 `Deleted ${deletedCount} lineItem records with MemberTypeId: ${record.memberTypeId}`
+              );
+            }
+          }
+          break;
+          // Delete productAssembly data based on productAssemblyId
+        case 'productAssembly':
+          for (const record of records) {
+            if (record.productAssemblyId) {
+              const deletedCount = await db[tableName]
+                .where("productAssemblyId")
+                .equals(record.productAssemblyId)
+                .delete();
+              console.log(
+                `Deleted ${deletedCount} Product Assembly records with productAssemblyId: ${record.productAssemblyId}`
               );
             }
           }
