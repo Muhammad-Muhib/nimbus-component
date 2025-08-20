@@ -11,7 +11,11 @@ db.version(2).stores({
   creditCards:"creditCardId,cardName",
   department:"lineItemId,lineItemName",
   category:"categoryId,categoryName",
-  memberTypes:"memberTypeId,memberTypeName"
+  memberTypes:"memberTypeId,memberTypeName",
+  subCategory:"subCategoryId,categoryId,subCategoryName,subCategoryCode",
+  productGroup:"productGroupId,productGroupName",
+  productSize:"sizeId,sizeName,lineItemId",
+  color:"colorId,colorName,lineItemId"
 });
 
 const getUpdateKey = (tableName) => {
@@ -23,7 +27,11 @@ const getUpdateKey = (tableName) => {
     rcmsConfiguration: 'configurationId',
     department:"lineItemId",
     category:"categoryId",
-    memberTypes:"memberTypeId"
+    memberTypes:"memberTypeId",
+    subCategory:"subCategoryId",
+    productGroup:"productGroupId",
+    productSize:"sizeId",
+    color:"colorId"
   };
   return primaryKeys[tableName];
 };
@@ -122,7 +130,7 @@ export const deleteDataIndexDb = async (tableData) => {
             }
           }
           break;
-          // Delete department data based on DepartmentId
+          // Delete memberTypes data based on memberTypesId
         case 'memberTypes':
           for (const record of records) {
             if (record.memberTypeId) {
@@ -132,6 +140,49 @@ export const deleteDataIndexDb = async (tableData) => {
                 .delete();
               console.log(
                 `Deleted ${deletedCount} lineItem records with MemberTypeId: ${record.memberTypeId}`
+              );
+            }
+          }
+          break;
+          // Delete productSize data based on sizeId
+          case 'productSize':
+          for (const record of records) {
+            if (record.sizeId) {
+              const deletedCount = await db[tableName]
+                .where("sizeId")
+                .equals(record.sizeId)
+                .delete();
+              console.log(
+                `Deleted ${deletedCount} ProductSize records with sizeId: ${record.sizeId}`
+              );
+            }
+          }
+          break;
+          // Delete color data based on colorId
+          case 'color':
+          for (const record of records) {
+            if (record.colorId) {
+              const deletedCount = await db[tableName]
+                .where("colorId")
+                .equals(record.colorId)
+                .delete();
+              console.log(
+                `Deleted ${deletedCount} Color records with colorId: ${record.colorId}`
+              );
+            }
+          }
+          break;
+          
+          // Delete memberTypes data based on memberTypesId
+        case 'productGroup':
+          for (const record of records) {
+            if (record.productGroupId) {
+              const deletedCount = await db[tableName]
+                .where("productGroupId")
+                .equals(record.productGroupId)
+                .delete();
+              console.log(
+                `Deleted ${deletedCount} Product Group records with productGroupId: ${record.productGroupId}`
               );
             }
           }
@@ -150,7 +201,21 @@ export const deleteDataIndexDb = async (tableData) => {
             }
           }
           break;
-// Delete department data based on DepartmentId
+      // Delete SubCategory data based on SubCategoryId
+        case 'subCategory':
+          for (const record of records) {
+            if (record.subCategoryId) {
+              const deletedCount = await db[tableName]
+                .where("subCategoryId")
+                .equals(record.subCategoryId)
+                .delete();
+              console.log(
+                `Deleted ${deletedCount} Sub Category records with SubCategoryId: ${record.subCategoryId}`
+              );
+            }
+          }
+          break;
+          // Delete department data based on DepartmentId
         case 'deparmtent':
           for (const record of records) {
             if (record.lineItemId) {
