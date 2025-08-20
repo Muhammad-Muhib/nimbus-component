@@ -16,7 +16,16 @@ db.version(2).stores({
   productGroup:"productGroupId,productGroupName",
   productSize:"sizeId,sizeName,lineItemId",
   color:"colorId,colorName,lineItemId",
-  productAssembly:"productAssemblyId,productItemIdAssembly,productItemidPart"
+  productAssembly:"productAssemblyId,productItemIdAssembly,productItemidPart",
+  productAttribute1:"productAttribute1Id,lineItemId,productAttribute1Name",
+  productAttribute2:"productAttribute2Id,lineItemId,productAttribute2Name",
+  productAttribute3:"productAttribute3d,lineItemId,productAttribute3Name",
+  productAttribute4:"productAttribute4Id,lineItemId,productAttribute4Name",
+  productAttribute5:"productAttribute5Id,lineItemId,productAttribute5Name",
+  productAttribute6:"productAttribute6Id,lineItemId,productAttribute6Name",
+  productAttribute7:"productAttribute7Id,lineItemId,productAttribute7Name",
+  productAttribute8:"productAttribute8Id,lineItemId,productAttribute8Name",
+  productAttribute9:"productAttribute9Id,lineItemId,productAttribute9Name"
 });
 
 const getUpdateKey = (tableName) => {
@@ -33,7 +42,16 @@ const getUpdateKey = (tableName) => {
     productGroup:"productGroupId",
     productSize:"sizeId",
     color:"colorId",
-    productAssembly:"productAssemblyId"
+    productAssembly:"productAssemblyId",
+    productAttribute1:"productAttribute1Id",
+    productAttribute2:"productAttribute2Id",
+    productAttribute3:"productAttribute3d",
+    productAttribute4:"productAttribute4Id",
+    productAttribute5:"productAttribute5Id",
+    productAttribute6:"productAttribute6Id",
+    productAttribute7:"productAttribute7Id",
+    productAttribute8:"productAttribute8Id",
+    productAttribute9:"productAttribute9Id"
   };
   return primaryKeys[tableName];
 };
@@ -156,6 +174,132 @@ export const deleteDataIndexDb = async (tableData) => {
                 .delete();
               console.log(
                 `Deleted ${deletedCount} Product Assembly records with productAssemblyId: ${record.productAssemblyId}`
+              );
+            }
+          }
+          break;
+          // Delete productAttribute data based on productAttribute1
+        case 'productAttribute1':
+          for (const record of records) {
+            if (record.productAttribute1Id) {
+              const deletedCount = await db[tableName]
+                .where("productAssemblyId")
+                .equals(record.productAttribute1Id)
+                .delete();
+              console.log(
+                `Deleted ${deletedCount} Product Attribute1Id records with productAttribute1Id: ${record.productAttribute1Id}`
+              );
+            }
+          }
+          break;
+          // Delete productAttribute data based on productAttribute1
+        case 'productAttribute2':
+          for (const record of records) {
+            if (record.productAttribute2Id) {
+              const deletedCount = await db[tableName]
+                .where("productAttribute2Id")
+                .equals(record.productAttribute2Id)
+                .delete();
+              console.log(
+                `Deleted ${deletedCount} Product Product Attribute 2 records with productAttribute2Id: ${record.productAttribute2Id}`
+              );
+            }
+          }
+          break;
+          // Delete productAttribute data based on productAttribute1
+        case 'productAttribute3':
+          for (const record of records) {
+            if (record.productAttribute3Id) {
+              const deletedCount = await db[tableName]
+                .where("productAttribute3Id")
+                .equals(record.productAttribute3Id)
+                .delete();
+              console.log(
+                `Deleted ${deletedCount} Product product Attribute 3 records with productAttribute3Id: ${record.productAttribute3Id}`
+              );
+            }
+          }
+          break;
+          // Delete productAttribute data based on productAttribute1
+        case 'productAttribute4':
+          for (const record of records) {
+            if (record.productAttribute4Id) {
+              const deletedCount = await db[tableName]
+                .where("productAttribute4Id")
+                .equals(record.productAttribute4Id)
+                .delete();
+              console.log(
+                `Deleted ${deletedCount} Product product Attribute 4 records with productAttribute4Id: ${record.productAttribute4Id}`
+              );
+            }
+          }
+          break;
+  // Delete productAttribute data based on productAttribute1
+        case 'productAttribute5':
+          for (const record of records) {
+            if (record.productAttribute5Id) {
+              const deletedCount = await db[tableName]
+                .where("productAttribute5Id")
+                .equals(record.productAttribute5Id)
+                .delete();
+              console.log(
+                `Deleted ${deletedCount} Product product Attribute5 records with productAttribute5Id: ${record.productAttribute5Id}`
+              );
+            }
+          }
+          break;
+  // Delete productAttribute data based on productAttribute1
+        case 'productAttribute6':
+          for (const record of records) {
+            if (record.productAttribute6Id) {
+              const deletedCount = await db[tableName]
+                .where("productAttribute6Id")
+                .equals(record.productAttribute6Id)
+                .delete();
+              console.log(
+                `Deleted ${deletedCount} Product product Attribute 6 records with productAttribute6Id: ${record.productAttribute6Id}`
+              );
+            }
+          }
+          break;
+  // Delete productAttribute data based on productAttribute1
+        case 'productAttribute7':
+          for (const record of records) {
+            if (record.productAttribute7Id) {
+              const deletedCount = await db[tableName]
+                .where("productAttribute7Id")
+                .equals(record.productAttribute7Id)
+                .delete();
+              console.log(
+                `Deleted ${deletedCount} Product product Attribute 7 records with productAttribute7Id: ${record.productAttribute7Id}`
+              );
+            }
+          }
+          break;
+      // Delete productAttribute data based on productAttribute1
+        case 'productAttribute8':
+          for (const record of records) {
+            if (record.productAttribute8Id) {
+              const deletedCount = await db[tableName]
+                .where("productAttribute8Id")
+                .equals(record.productAttribute8Id)
+                .delete();
+              console.log(
+                `Deleted ${deletedCount} Product product Attribute 8 records with productAttribute8Id: ${record.productAttribute8Id}`
+              );
+            }
+          }
+          break;
+      // Delete productAttribute data based on productAttribute9
+        case 'productAttribute9':
+          for (const record of records) {
+            if (record.productAttribute9Id) {
+              const deletedCount = await db[tableName]
+                .where("productAttribute9Id")
+                .equals(record.productAttribute9Id)
+                .delete();
+              console.log(
+                `Deleted ${deletedCount} Product product Attribute 9 records with productAttribute9Id: ${record.productAttribute9Id}`
               );
             }
           }
