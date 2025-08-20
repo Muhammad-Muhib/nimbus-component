@@ -390,7 +390,7 @@ export const deleteDataIndexDb = async (tableData) => {
           }
           break;
           // Delete category data based on categoryId
-        case 'deparmtent':
+        case 'category':
           for (const record of records) {
             if (record.categoryId) {
               const deletedCount = await db[tableName]
