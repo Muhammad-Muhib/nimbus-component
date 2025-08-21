@@ -90,7 +90,7 @@ export default function LeftMenu({
               alt=""
               id="nimbusLogo"
             />
-            {/* <FaSearch id="searchIcon" />
+             <FaSearch id="searchIcon" />
             <input
               type="text"
               className="form-control btnClickTrackCls"
@@ -110,15 +110,15 @@ export default function LeftMenu({
               >
                 <LuMenu className="icon-menu" />
               </a>
-            </div> */}
+            </div> 
           </motion.div>
         </div>
         
         <AnimatePresence mode="wait">
-          {false && (
+          {isOpen && (
             <motion.div
               variants={contentVariants}
-              initial={false}
+              initial={isOpen}
               animate="open"
               exit="closed"
               style={{ overflow: 'hidden' }}
