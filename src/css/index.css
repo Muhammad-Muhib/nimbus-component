@@ -716,6 +716,7 @@
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
   z-index: 100; 
   position: relative; /* Needed for proper stacking */
+  display: flex;
 }
 .exitIconContainer{
   position: absolute;
