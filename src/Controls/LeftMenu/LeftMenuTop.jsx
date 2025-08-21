@@ -2,6 +2,9 @@ import { useEffect, useState } from 'react'
 import { useSelector } from 'react-redux'
 import { FaAngleDoubleRight } from "react-icons/fa";
 import { ImExit } from "react-icons/im";
+import { FaSearch } from "react-icons/fa";
+import { LuMenu } from "react-icons/lu";
+import { motion} from "framer-motion";
 
 export default function LeftMenuTop({handleNavigation}) {
   let screenName = useSelector(state => {

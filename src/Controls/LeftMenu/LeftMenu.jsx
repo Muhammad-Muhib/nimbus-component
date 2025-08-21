@@ -1,5 +1,4 @@
-import { FaSearch } from "react-icons/fa";
-import { LuMenu } from "react-icons/lu";
+
 import LeftMenuList from "./LeftMenuList";
 import { MdLaptop } from "react-icons/md";
 import LeftMenuTop from "./LeftMenuTop";
