@@ -662,7 +662,7 @@
   background-color: white;
   box-shadow: 0 0 5px 0 rgba(0, 0, 0, 0.1);
   height: 100%;
-  
+  padding-top: 4rem;
 }
 
 .scoop-item {
@@ -767,6 +767,7 @@
   position: relative; /* Needed for proper stacking */
   height: 4em;
   cursor: pointer;
+  width: 13.5rem;
 }
 
 .scoop-logo {
