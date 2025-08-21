@@ -75,13 +75,13 @@ export default function LeftMenu({
       className="leftMenumainContainer col-md-12 col-sm-12"
       variants={containerVariants}
       animate={isOpen ? "open" : "closed"}
-      initial={false}
+      initial={isOpen}
     >
       <motion.div 
         className="leftmenucontainer"
         variants={menuVariants}
         animate={isOpen ? "open" : "closed"}
-        initial={false}
+        initial={isOpen}
       >
         <div className="scoop-left-header">
           <motion.div className="scoop-logo" onClick={handleNavigation} >
