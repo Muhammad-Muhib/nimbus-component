@@ -37,7 +37,7 @@ const FileLoader = ({ LoadProductsThroughLoaderFile,format }) => {
         const cells = rows[i].split(",");
         if (cells.length > 1) {
           const singleObj = {
-            productCode: cells[0].trim(),
+            productCode: cells[0].toUpperCase().trim(),
             qty: parseFloat(cells[1].trim()) || 0,
           };
           listOfObjects.push(singleObj);

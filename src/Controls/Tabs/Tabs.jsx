@@ -3,7 +3,7 @@ import React,{Fragment} from 'react'
 export default function Tabs({tab1name,isRecordTab,tab2name,setMode,setIsRecordTab,mode,setResetState,resetState,handleEditClick}) {
   return (
     <>
-    <ul className="nav nav-tabs" id="myTab" role="tablist">
+    <ul className="nav nav-tabs col-md-11 col-sm-11" id="myTab" role="tablist">
                 <li className="nav-item">
                     <a className={`nav-link ${isRecordTab ? "tabactive active" : ""}`} data-toggle="tab" href="#tabs-2" role="tab" id="recordsTab" onClick={()=>{setIsRecordTab(true);setMode("")}}  >{tab1name || "Record"}</a> 
                 </li>
