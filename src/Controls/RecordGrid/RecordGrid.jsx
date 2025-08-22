@@ -6,6 +6,7 @@ import { toast } from "react-toastify";
 import html2canvas from "html2canvas";
 import MailPopup from "../Popup/MailPopup";
 import apiService from "../../ApiService/apiService";
+import { getTableDataByKey } from "../../IndexDbServices/indexDbServices";
 
 export default function RecordGrid({
   tablebody,
@@ -29,8 +30,10 @@ export default function RecordGrid({
   const [tableData, setTableData] = useState(tablebody);
   const [showMailModal,setShowMailModal] = useState(false);
   const [toMail,setToMail] = useState("")
-    const [subject,setSubject] = useState("")
-    const [body,setBody] = useState("")
+  const [subject,setSubject] = useState("")
+  const [body,setBody] = useState("")
+  const [quantityPoint,setQuantityPoint] = useState(2);
+  const [amountPoint,setAmountPoint] = useState(2);
   const tableRef = useRef(null);
   const apiUrl = import.meta.env.VITE_BACKEND_API_URL;
 
@@ -39,6 +42,17 @@ export default function RecordGrid({
     setTableData(tablebody);
     setSubject(printHeading)
   }, [tablebody]);
+
+  useEffect(()=>{
+    fetchConfigurationValues()
+  },[])
+
+  const fetchConfigurationValues = async ()=>{
+    let qtyConfig = await getTableDataByKey("rcmsConfiguration","configurationName","DecimalPointInQty")
+    setQuantityPoint(qtyConfig.configurationValue)
+    let amountConfig = await getTableDataByKey("rcmsConfiguration","configurationName","DecimalPointInValue")
+    setAmountPoint(amountConfig.configurationValue)
+  }
 
   useEffect(()=>{
     if(selectedRecord == null){
@@ -225,7 +239,7 @@ export default function RecordGrid({
                     }}
                   >
                     {
-                      obj.columnType.toLowerCase() == "numeric" ? parseFloat(item[key]).toFixed(2)  : obj.columnType.toLowerCase() == "date" ? item[key].split(" ")[0] : item[key]
+                      obj.columnType.toLowerCase() == "numeric" ? item[key]  : obj.columnType.toLowerCase() == "date" ? item[key].split(" ")[0] : obj.columnType.toLowerCase() == "quantity" ? parseFloat(item[key]).toFixed(quantityPoint) : obj.columnType.toLowerCase() == "value" ? parseFloat(item[key]).toFixed(amountPoint) : item[key]
                     }
                   </td>
                 </>
