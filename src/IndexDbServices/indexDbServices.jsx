@@ -26,7 +26,7 @@ db.version(2).stores({
   productAttribute7:"productAttribute7Id,lineItemId,productAttribute7Name",
   productAttribute8:"productAttribute8Id,lineItemId,productAttribute8Name",
   productAttribute9:"productAttribute9Id,lineItemId,productAttribute9Name",
-  grn:"++row"
+  grn:""
 });
 
 const getUpdateKey = (tableName) => {
