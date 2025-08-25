@@ -1,4 +1,14 @@
-export default function InputNumber({customClass,label,name,customInputClass,inputVal,setInputVal,important,disable}) {
+export default function InputNumber({
+  customClass,
+  label,
+  name,
+  customInputClass,
+  inputVal,
+  setInputVal,
+  important,
+  disable,
+  maxLength
+}) {
   const handleChange = (e) => {
     let val = e.target.value;
     // Allow only digits and one optional decimal
@@ -8,10 +18,23 @@ export default function InputNumber({customClass,label,name,customInputClass,inp
   };
   return (
     <div className={`form-group SearchField ${customClass}`}>
-        <div className="inputContainer">
-                        <div className="inputLabel" >{label}</div>
-                        <input name={`${name}`} id="" type="text" onClick={(e)=>e.target.select()} className={`form-control number_input candela_input ${customInputClass}`} value={inputVal} onChange={(e)=>{handleChange(e)}} style={important == "true" ? {backgroundColor:'#FFFFE8'} : {}} disabled={disable || false} />
-        </div>
+      <div className="inputContainer">
+        <div className="inputLabel">{label}</div>
+        <input
+          name={`${name}`}
+          id=""
+          type="text"
+          onClick={(e) => e.target.select()}
+          className={`form-control number_input candela_input ${customInputClass}`}
+          value={inputVal}
+          onChange={(e) => {
+            handleChange(e);
+          }}
+          style={important == "true" ? { backgroundColor: "#FFFFE8" } : {}}
+          disabled={disable || false}
+          maxLength={`${maxLength}`}
+        />
+      </div>
     </div>
-  )
+  );
 }
