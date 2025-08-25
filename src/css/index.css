@@ -661,7 +661,7 @@
 }
 
 .leftmenucontainer {
-  width: 13.5rem;
+  width: 15rem;
   background-color: white;
   box-shadow: 0 0 5px 0 rgba(0, 0, 0, 0.1);
   height: 100%;
@@ -1434,8 +1434,12 @@ border: 1px solid white;
     flex-direction: column;
     position: fixed;
   }
+  #myTab{
+    top: 4rem;
+  }
   .leftmenucontainer{
     width: 100%;
+    display: none;
   }
   .topmenucontainer{
     margin-left: 0;
