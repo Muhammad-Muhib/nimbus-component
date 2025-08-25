@@ -452,7 +452,7 @@ export const deleteDataIndexDb = async (tableData) => {
           }
           break;
           case "SecurityUser":
-          // Handle UserId deletion based on UserId 
+          // Handle UserId deletion based on UserId
           for (const record of records) {
             if (record.userId) {
               const deletedCount = await db[tableName]
