@@ -27,6 +27,7 @@ db.version(2).stores({
   productAttribute8:"productAttribute8Id,lineItemId,productAttribute8Name",
   productAttribute9:"productAttribute9Id,lineItemId,productAttribute9Name",
   grn:"",
+  securityUser:"userId,userName,shopId",
 });
 
 const getUpdateKey = (tableName) => {
@@ -52,7 +53,8 @@ const getUpdateKey = (tableName) => {
     productAttribute6:"productAttribute6Id",
     productAttribute7:"productAttribute7Id",
     productAttribute8:"productAttribute8Id",
-    productAttribute9:"productAttribute9Id"
+    productAttribute9:"productAttribute9Id",
+    securityUser:"userId"
   };
   return primaryKeys[tableName];
 };
@@ -445,6 +447,20 @@ export const deleteDataIndexDb = async (tableData) => {
                 .delete();
               console.log(
                 `Deleted ${deletedCount} productNestedBarCode records with packagingBarcodeProductId: ${record.packagingBarcodeProductId}`
+              );
+            }
+          }
+          break;
+          case "securityUser":
+          // Handle UserId deletion based on UserId 
+          for (const record of records) {
+            if (record.userId) {
+              const deletedCount = await db[tableName]
+                .where("userId")
+                .equals(record.userId)
+                .delete();
+              console.log(
+                `Deleted ${deletedCount} securityUser records with userId: ${record.userId}`
               );
             }
           }
