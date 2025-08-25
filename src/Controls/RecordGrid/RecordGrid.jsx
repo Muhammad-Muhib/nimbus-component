@@ -57,7 +57,9 @@ export default function RecordGrid({
   useEffect(()=>{
     if(selectedRecord == null){
       setSelectedId(null)
-    }
+    }else{
+    setSelectedId(selectedRecord[id]);
+    } 
   },[selectedRecord])
 
   const handleRowSelect = (item) => {

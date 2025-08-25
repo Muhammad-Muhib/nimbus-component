@@ -26,7 +26,7 @@ db.version(2).stores({
   productAttribute7:"productAttribute7Id,lineItemId,productAttribute7Name",
   productAttribute8:"productAttribute8Id,lineItemId,productAttribute8Name",
   productAttribute9:"productAttribute9Id,lineItemId,productAttribute9Name",
-  grn:""
+  grn:"",
 });
 
 const getUpdateKey = (tableName) => {
@@ -542,3 +542,7 @@ export const syncUpdateDataIndexDb = async (tableData) => {
     })
   );
 };
+
+export const addUpdateGRNIndexDb = async(grnModel)=>{
+    return await db.grn.put(grnModel,"singleton");   
+}

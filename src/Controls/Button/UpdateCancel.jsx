@@ -1,6 +1,6 @@
 import { useEffect } from "react";
 import {motion} from "framer-motion"
-export default function UpdateCancelBtn({handleReset,handleUpdate}) {
+export default function UpdateCancelBtn({handleReset,handleUpdate,updateBtnColor = "btn-green"}) {
   useEffect(() => {
       const handleKeyDown = (e) => {
         if (e.altKey) {
@@ -33,7 +33,7 @@ export default function UpdateCancelBtn({handleReset,handleUpdate}) {
         </motion.button>
         <motion.button
             type="button"
-            className="btn-style btn-green"
+            className={`btn-style ${updateBtnColor}`}
             onClick={handleUpdate}
             whileTap={{
               scale:'0.8'
