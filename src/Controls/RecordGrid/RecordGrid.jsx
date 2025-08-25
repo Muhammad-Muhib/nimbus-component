@@ -85,7 +85,7 @@ export default function RecordGrid({
         if (col.columnType.toLowerCase() === "date") {
           value = /^\d{1,2}\/[A-Za-z]{3}\/\d{4}$/.test(value)
             ? value
-            : parseDate(value);
+            : value;
         }
 
         return `"${value}"`;
@@ -224,7 +224,7 @@ export default function RecordGrid({
               if (obj.columnType.toLowerCase() == "date") {
                 formattedDate = /^\d{1,2}\/[A-Za-z]{3}\/\d{4}$/.test(item[key])
                   ? item[key]
-                  : parseDate(item[key]);
+                  : item[key];
                 item[key] = formattedDate;
               }
               return (
@@ -361,20 +361,3 @@ export default function RecordGrid({
     </>
   );
 }
-
-const parseDate = (input) => {
-  if (!input) return "";
-  let date;
-  // If input is already a Date
-  if (input instanceof Date) {
-    date = input;
-  } else if (typeof input === "string") {
-    date = new Date(input);
-    if (!isValid(date)) {
-      date = parse(input, "MM/dd/yyyy hh:mm:ss a", new Date());
-    }
-  }
-  // Final validation
-  if (!isValid(date)) return "";
-  return  format(date, "dd/MMM/yyyy hh:mm:ss a");
-};
