@@ -661,7 +661,7 @@
 }
 
 .leftmenucontainer {
-  width: 15rem;
+  width: 13.5rem;
   background-color: white;
   box-shadow: 0 0 5px 0 rgba(0, 0, 0, 0.1);
   height: 100%;
@@ -1481,4 +1481,7 @@ border: 1px solid white;
     width: 9rem;
     font-size: 11px;
   }
+  .datepickerMainContainer{
+    width: 95%;
+  } 
 }
