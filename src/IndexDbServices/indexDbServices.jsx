@@ -27,7 +27,7 @@ db.version(2).stores({
   productAttribute8:"productAttribute8Id,lineItemId,productAttribute8Name",
   productAttribute9:"productAttribute9Id,lineItemId,productAttribute9Name",
   grn:"",
-  SecurityUser:"UserId,UserName,ShopId",
+  securityUser:"userId,userName,shopId",
 });
 
 const getUpdateKey = (tableName) => {
@@ -54,7 +54,7 @@ const getUpdateKey = (tableName) => {
     productAttribute7:"productAttribute7Id",
     productAttribute8:"productAttribute8Id",
     productAttribute9:"productAttribute9Id",
-    SecurityUser:"UserId"
+    securityUser:"userId"
   };
   return primaryKeys[tableName];
 };
@@ -451,7 +451,7 @@ export const deleteDataIndexDb = async (tableData) => {
             }
           }
           break;
-          case "SecurityUser":
+          case "securityUser":
           // Handle UserId deletion based on UserId 
           for (const record of records) {
             if (record.userId) {
