@@ -1,23 +1,28 @@
 import { useEffect } from "react";
-import {motion} from "framer-motion"
-export default function UpdateCancelBtn({handleReset,handleUpdate,updateBtnColor = "btn-green"}) {
+import { motion } from "framer-motion";
+export default function UpdateCancelBtn({
+  handleReset,
+  handleUpdate,
+  disableUpdate = false,
+  updateBtnColor = "btn-green",
+}) {
   useEffect(() => {
-      const handleKeyDown = (e) => {
-        if (e.altKey) {
+    const handleKeyDown = (e) => {
+      if (e.altKey) {
         switch (e.key.toLowerCase()) {
-            case 'u':
-              handleUpdate()
-              break;
-              default:
-                break;
+          case "u":
+            handleUpdate();
+            break;
+          default:
+            break;
         }
       }
-      };
-      document.addEventListener("keydown", handleKeyDown);
-      return () => {
-        document.removeEventListener("keydown", handleKeyDown);
-      };
-    }, []);
+    };
+    document.addEventListener("keydown", handleKeyDown);
+    return () => {
+      document.removeEventListener("keydown", handleKeyDown);
+    };
+  }, []);
   return (
     <div className="btnMainContainer saveCancel col-md-10 col-sm-10 form-group print_box_bg low_margin">
       <div>
@@ -26,21 +31,42 @@ export default function UpdateCancelBtn({handleReset,handleUpdate,updateBtnColor
           className="btn-style blue-btn"
           onClick={handleReset}
           whileTap={{
-              scale:'0.8'
-            }}
+            scale: "0.8",
+          }}
         >
           Cancel
         </motion.button>
-        <motion.button
-            type="button"
-            className={`btn-style ${updateBtnColor}`}
-            onClick={handleUpdate}
-            whileTap={{
-              scale:'0.8'
-            }}
-          >
-            Update
-          </motion.button>
+        {disableUpdate ? (
+          <>
+            <Tooltip title="Update loaded data" placement="top">
+              <motion.button
+              type="button"
+              className={`btn-style btn-disable`}
+              onClick={handleUpdate}
+              whileTap={{
+                scale: "0.8",
+              }}
+            >
+              Update
+            </motion.button>  
+            </Tooltip>
+          </>
+        ) : (
+          <>
+          <Tooltip title="Update loaded data" placement="top">
+            <motion.button
+              type="button"
+              className={`btn-style ${updateBtnColor}`}
+              onClick={handleUpdate}
+              whileTap={{
+                scale: "0.8",
+              }}
+            >
+              Update
+            </motion.button>
+            </Tooltip>
+          </>
+        )}
       </div>
     </div>
   );
