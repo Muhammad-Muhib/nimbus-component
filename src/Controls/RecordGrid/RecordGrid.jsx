@@ -24,43 +24,51 @@ export default function RecordGrid({
   totalAmountFoot,
   disablePrint = false,
   disableCSV = false,
-  selectedRecord = null
+  selectedRecord = null,
 }) {
   const [selectedId, setSelectedId] = useState();
   const [tableData, setTableData] = useState(tablebody);
-  const [showMailModal,setShowMailModal] = useState(false);
-  const [toMail,setToMail] = useState("")
-  const [subject,setSubject] = useState("")
-  const [body,setBody] = useState("")
-  const [quantityPoint,setQuantityPoint] = useState(2);
-  const [amountPoint,setAmountPoint] = useState(2);
+  const [showMailModal, setShowMailModal] = useState(false);
+  const [toMail, setToMail] = useState("");
+  const [subject, setSubject] = useState("");
+  const [body, setBody] = useState("");
+  const [quantityPoint, setQuantityPoint] = useState(2);
+  const [amountPoint, setAmountPoint] = useState(2);
   const tableRef = useRef(null);
   const apiUrl = import.meta.env.VITE_BACKEND_API_URL;
 
   let formattedDate = "";
   useEffect(() => {
     setTableData(tablebody);
-    setSubject(printHeading)
+    setSubject(printHeading);
   }, [tablebody]);
 
-  useEffect(()=>{
-    fetchConfigurationValues()
-  },[])
+  useEffect(() => {
+    fetchConfigurationValues();
+  }, []);
 
-  const fetchConfigurationValues = async ()=>{
-    let qtyConfig = await getTableDataByKey("rcmsConfiguration","configurationName","DecimalPointInQty")
-    setQuantityPoint(qtyConfig.configurationValue)
-    let amountConfig = await getTableDataByKey("rcmsConfiguration","configurationName","DecimalPointInValue")
-    setAmountPoint(amountConfig.configurationValue)
-  }
+  const fetchConfigurationValues = async () => {
+    let qtyConfig = await getTableDataByKey(
+      "rcmsConfiguration",
+      "configurationName",
+      "DecimalPointInQty"
+    );
+    setQuantityPoint(qtyConfig.configurationValue);
+    let amountConfig = await getTableDataByKey(
+      "rcmsConfiguration",
+      "configurationName",
+      "DecimalPointInValue"
+    );
+    setAmountPoint(amountConfig.configurationValue);
+  };
 
-  useEffect(()=>{
-    if(selectedRecord == null){
-      setSelectedId(null)
-    }else{
-    setSelectedId(selectedRecord[id]);
-    } 
-  },[selectedRecord])
+  useEffect(() => {
+    if (selectedRecord == null) {
+      setSelectedId(null);
+    } else {
+      setSelectedId(selectedRecord[id]);
+    }
+  }, [selectedRecord]);
 
   const handleRowSelect = (item) => {
     setSelectedId(item[id]);
@@ -83,9 +91,7 @@ export default function RecordGrid({
 
         // Format date
         if (col.columnType.toLowerCase() === "date") {
-          value = /^\d{1,2}\/[A-Za-z]{3}\/\d{4}$/.test(value)
-            ? value
-            : value;
+          value = /^\d{1,2}\/[A-Za-z]{3}\/\d{4}$/.test(value) ? value : value;
         }
 
         return `"${value}"`;
@@ -112,7 +118,7 @@ export default function RecordGrid({
     window.print();
   };
 
-  const sendEmail=async ()=>{
+  const sendEmail = async () => {
     if (!tableRef.current) {
       toast.error("Table not found");
       return;
@@ -123,88 +129,94 @@ export default function RecordGrid({
       return;
     }
 
-    if(toMail == null || toMail == ""){
-      toast.error("Please enter an Email ID.")
+    if (toMail == null || toMail == "") {
+      toast.error("Please enter an Email ID.");
       return;
-    }else{
+    } else {
       const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-      if(!emailRegex.test(toMail)){
-        toast.error("Please enter a Valid Email ID.")
+      if (!emailRegex.test(toMail)) {
+        toast.error("Please enter a Valid Email ID.");
         return;
-       }
+      }
     }
-    if(subject == null || subject == ""){
-      toast.error("Please enter subject.")
-      return
+    if (subject == null || subject == "") {
+      toast.error("Please enter subject.");
+      return;
     }
 
-    try {    
+    try {
       // Configure html2canvas options for better quality
       const canvas = await html2canvas(tableRef.current, {
         scale: 2, // Higher scale for better quality
         useCORS: true,
         allowTaint: true,
-        backgroundColor: "#ffffff",        
+        backgroundColor: "#ffffff",
         scrollX: 0,
-        scrollY: 0        
+        scrollY: 0,
       });
 
       // Convert canvas to blob
-      canvas.toBlob((blob) => {
-        if (blob) {
-        const formData = new FormData();
-        formData.append('Attachment', blob, `${printHeading}.png`);
-        formData.append("EmailBody",body)
-        formData.append("EmailTo",toMail)
-        formData.append("EmailSubject",subject)
+      canvas.toBlob(
+        (blob) => {
+          if (blob) {
+            const formData = new FormData();
+            formData.append("Attachment", blob, `${printHeading}.png`);
+            formData.append("EmailBody", body);
+            formData.append("EmailTo", toMail);
+            formData.append("EmailSubject", subject);
 
-        apiService({
-          endpoint:apiUrl+"/Email/Send",
-          method:"POST",
-          data:formData,
-          contentType:"multipart/form-data"
-        }).then((res)=>{
-          if(res.data.success){
-            setShowMailModal(false)
-            toast.success("Mail sent successfully")
-          }else{
-            setShowMailModal(false)
-            toast(res.error)
+            apiService({
+              endpoint: apiUrl + "/Email/Send",
+              method: "POST",
+              data: formData,
+              contentType: "multipart/form-data",
+            })
+              .then((res) => {
+                if (res.data.success) {
+                  setShowMailModal(false);
+                  toast.success("Mail sent successfully");
+                } else {
+                  setShowMailModal(false);
+                  toast(res.error);
+                }
+              })
+              .catch((ex) => {
+                setShowMailModal(false);
+                console.log(ex);
+                toast.error("Something went wrong");
+              });
+          } else {
+            setShowMailModal(false);
+            toast.error("Failed to create image");
           }
-        }).catch((ex)=>{
-          setShowMailModal(false)
-          console.log(ex)
-          toast.error("Something went wrong")
-        })
-          
-        } else {
-          setShowMailModal(false)
-          toast.error("Failed to create image");
-        }
-      }, "image/png", 0.95);
-
+        },
+        "image/png",
+        0.95
+      );
     } catch (error) {
       console.error("Error converting table to image:", error);
       toast.error("Failed to convert table to image");
     }
-  }
+  };
 
   const convertTableToImage = async () => {
     const now = new Date();
 
-  const day = now.getDate();
-  const month = now.getMonth() + 1;
-  const year = now.getFullYear();
+    const day = now.getDate();
+    const month = now.getMonth() + 1;
+    const year = now.getFullYear();
 
-  let hours = now.getHours();
-  const minutes = now.getMinutes().toString().padStart(2, '0');
-  const seconds = now.getSeconds().toString().padStart(2, '0');
+    let hours = now.getHours();
+    const minutes = now.getMinutes().toString().padStart(2, "0");
+    const seconds = now.getSeconds().toString().padStart(2, "0");
 
-  const ampm = hours >= 12 ? 'PM' : 'AM';
-  hours = hours % 12;
-  hours = hours ? hours : 12;
-    setBody(`${printHeading} as on ${day}/${month}/${year} ${hours}:${minutes}:${seconds} ${ampm}`)
-    setShowMailModal(true)    
+    const ampm = hours >= 12 ? "PM" : "AM";
+    hours = hours % 12;
+    hours = hours ? hours : 12;
+    setBody(
+      `${printHeading} as on ${day}/${month}/${year} ${hours}:${minutes}:${seconds} ${ampm}`
+    );
+    setShowMailModal(true);
   };
 
   const renderTableRows = () => {
@@ -233,16 +245,23 @@ export default function RecordGrid({
                     key={index}
                     style={{
                       textAlign:
-                        obj.columnType.toLowerCase() == "string"
+                        obj.columnType.toLowerCase() == "string" ||
+                        obj.columnType.toLowerCase() == "boolean"
                           ? `left`
                           : `right`,
                       backgroundColor: selectedId == item[id] ? "#4FABFF" : "",
                       color: selectedId == item[id] ? "white" : "black",
                     }}
                   >
-                    {
-                      obj.columnType.toLowerCase() == "numeric" ? item[key]  : obj.columnType.toLowerCase() == "date" ? item[key].split(" ")[0] : obj.columnType.toLowerCase() == "quantity" ? parseFloat(item[key]).toFixed(quantityPoint) : obj.columnType.toLowerCase() == "value" ? parseFloat(item[key]).toFixed(amountPoint) : item[key]
-                    }
+                    {obj.columnType.toLowerCase() == "numeric"
+                      ? item[key]
+                      : obj.columnType.toLowerCase() == "date"
+                      ? item[key].split(" ")[0]
+                      : obj.columnType.toLowerCase() == "quantity"
+                      ? parseFloat(item[key]).toFixed(quantityPoint)
+                      : obj.columnType.toLowerCase() == "value"
+                      ? parseFloat(item[key]).toFixed(amountPoint)
+                      : item[key]}
                   </td>
                 </>
               );
@@ -288,10 +307,15 @@ export default function RecordGrid({
             >
               Email
             </motion.button>
-            
           </span>
         </div>
-        <Table ref={tableRef} bordered responsive striped className="gridContainer">
+        <Table
+          ref={tableRef}
+          bordered
+          responsive
+          striped
+          className="gridContainer"
+        >
           <thead>
             <tr>
               {header.map((item, index) => {
@@ -324,7 +348,7 @@ export default function RecordGrid({
           </tbody>
           {showFotter && tableData.length > 0 && (
             <tfoot
-            className="total-section"
+              className="total-section"
               style={{ width: "100%", backgroundColor: "pink", height: "3rem" }}
             >
               <tr>
@@ -355,9 +379,19 @@ export default function RecordGrid({
           )}
         </Table>
       </div>
-      {
-        showMailModal && <MailPopup showMailModal={showMailModal} setShowMailModal={setShowMailModal} body={body} setBody={setBody} subject={subject} setSubject={setSubject} toMail={toMail} setToMail={setToMail} sendEmail={sendEmail} />
-      }
+      {showMailModal && (
+        <MailPopup
+          showMailModal={showMailModal}
+          setShowMailModal={setShowMailModal}
+          body={body}
+          setBody={setBody}
+          subject={subject}
+          setSubject={setSubject}
+          toMail={toMail}
+          setToMail={setToMail}
+          sendEmail={sendEmail}
+        />
+      )}
     </>
   );
 }

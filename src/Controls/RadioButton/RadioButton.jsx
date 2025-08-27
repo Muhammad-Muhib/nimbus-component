@@ -1,4 +1,4 @@
-export default function RadioButton({id,label,groupName,value,setSelectedValue,selectedValue}) {
+export default function RadioButton({id,label,groupName,value,setSelectedValue,selectedValue,disable=false}) {
   return (
     <div className="custom-radio-wrapper">
       <input
@@ -8,6 +8,7 @@ export default function RadioButton({id,label,groupName,value,setSelectedValue,s
         className="custom-radio"
         checked={selectedValue == value}
         onChange={() => setSelectedValue(value)}
+        disabled={disable}
       />
       <label htmlFor={id}>{label}</label>
     </div>

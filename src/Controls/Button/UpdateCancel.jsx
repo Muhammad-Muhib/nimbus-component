@@ -9,10 +9,13 @@ export default function UpdateCancelBtn({
 }) {
   useEffect(() => {
     const handleKeyDown = (e) => {
+      e.stopPropagation();
       if (e.altKey) {
         switch (e.key.toLowerCase()) {
           case "u":
-            handleUpdate();
+            e.preventDefault();
+            e.stopPropagation();
+            document.querySelector("#btnUpdate").click()
             break;
           default:
             break;
@@ -62,6 +65,7 @@ export default function UpdateCancelBtn({
               whileTap={{
                 scale: "0.8",
               }}
+              id="btnUpdate"
             >
               Update
             </motion.button>
