@@ -685,7 +685,7 @@
 }
 
 .leftmenucontainer {
-  min-width: 13.5rem;
+  width: 13.5rem;
   background-color: white;
   box-shadow: 0 0 5px 0 rgba(0, 0, 0, 0.1);
   min-height: 100%;
@@ -1747,22 +1747,22 @@ body.drawer-open {
     top: 4rem;
   }
   .leftmenucontainer {
-    min-width: 100%;
+    width: 100%;
     display: none;
   }
   .topmenucontainer {
     margin-left: 0;
   }
   .scoop-logo {
-    min-width: 100vw;
+    width: 100vw;
   }
   .leftMenuListContiner {
-    min-height: 100vh;
+    height: 100vh;
   }
   .pageDetailContainer {
     margin-top: 1rem;
     gap: 1rem;
-    min-width: 100%;
+    width: 100%;
   }
   .formContainer .gridFootText {
     font-size: 11px;
