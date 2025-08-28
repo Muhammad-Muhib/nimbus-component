@@ -151,6 +151,7 @@ export default function Tabs({
         onClose={handleDrawerClose}
         videoModel={videoModel}
         articleModel={articleModel}
+        setIsOpen={setIsDrawerOpen}
       ></RightDrawer>
     </>
   );

@@ -7,7 +7,20 @@ const RightDrawer = ({
   title = "Help",
   videoModel = [],
   articleModel = [],
+  setIsOpen
 }) => {
+    useEffect(() => {
+            const handleKeyDown = (e) => {
+                if (e.key == "Escape") {
+                    setIsOpen(false);
+                }
+            };
+            document.addEventListener("keydown", handleKeyDown);
+    
+            return () => {
+                document.removeEventListener("keydown", handleKeyDown);
+            };
+        }, [isOpen]);
   return (
     <>
       {/* Overlay */}
