@@ -793,9 +793,9 @@
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Updated */
   z-index: 1; /* Ensure it stays above content */
   position: relative; /* Needed for proper stacking */
-  min-height: 4em;
+  height: 4em;
   cursor: pointer;
-  min-width: 13.5rem;
+  width: 13.5rem;
 }
 
 .scoop-logo {
