@@ -12,7 +12,8 @@ export default function Tabs({
   resetState,
   handleEditClick,
   articleModel = [],
-  videoModel = []
+  videoModel = [],
+  showYouTubeVideo = true
 }) {
     const [isDrawerOpen, setIsDrawerOpen] = useState(false)
     // Add/remove body class to prevent scrolling when drawer is open
@@ -134,13 +135,15 @@ export default function Tabs({
               Edit
             </button>
           )}
-          <span className="yotubeIcon" onClick={handleDrawerToggle}>
+          {
+            showYouTubeVideo && <span className="yotubeIcon" onClick={handleDrawerToggle}>
             <span className="youTubeText">Learn</span>
             <img
-              src="../../public/images/Icons/play-button.png"
+              src="../../public/Icon/play-button.png"
               alt="youTubePlayButton"
             />
           </span>
+          }          
         </li>
       </ul>
       
