@@ -1,4 +1,5 @@
 import React, { useEffect,useState } from "react";
+import { MdInfoOutline } from "react-icons/md";
 import RightDrawer from "../RightDrawer/RightDrawer";
 import Tooltip from '@mui/material/Tooltip';
 import RelatedOperationsMenu from "../RelatedOperation/RelatedOperation";
@@ -17,7 +18,8 @@ export default function Tabs({
   videoModel = [],
   showYouTubeVideo = true,
   showRelatedOperation = true,
-  menuItems = []
+  menuItems = [],
+  tooltipText = ""
 }) {
     const [isDrawerOpen, setIsDrawerOpen] = useState(false)
     // Add/remove body class to prevent scrolling when drawer is open
@@ -59,7 +61,22 @@ export default function Tabs({
               setMode("");
             }}
           >
-            {tab1name || "Record"}
+            {tab1name || "Record"} 
+            {
+              tooltipText.trim() != "" && <span style={{marginLeft:'8px'}}>
+              <Tooltip
+                          placement="top"
+                          title={`${tooltipText}`}
+                          slotProps={{
+                            tooltip: {
+                              sx: { fontSize: "11px", fontWeight: "600",backgroundColor:"rgba(0,0,0,0.6)",color:'white' },
+                            },
+                          }}
+                        >
+                          <MdInfoOutline size={20} />
+                        </Tooltip>
+            </span>
+            }            
           </a>
         </li>
         <li className="nav-item">
