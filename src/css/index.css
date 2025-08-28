@@ -508,9 +508,10 @@
 
 .modeBtnContainer {
   position: absolute;
-  right: 17%;
+  right: 12%;
   top: 0.15rem;
   display: flex;
+  gap: 3px;
 }
 
 .page_add_btn {

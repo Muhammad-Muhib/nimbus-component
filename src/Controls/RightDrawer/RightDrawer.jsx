@@ -4,10 +4,9 @@ import { IoClose } from "react-icons/io5";
 const RightDrawer = ({
   isOpen,
   onClose,
-  title = "Help",
   videoModel = [],
   articleModel = [],
-  setIsOpen
+  setIsOpen,
 }) => {
     useEffect(() => {
             const handleKeyDown = (e) => {
@@ -44,7 +43,8 @@ const RightDrawer = ({
 
         {/* Drawer Content */}
         <div className="drawer-content">
-          <div className="videosContainer">
+            {
+                videoModel.length > 0 && <div className="videosContainer">
             <h2 className="videoHeader">Videos</h2>
             <div className="videoCardContainer">
               {videoModel.map((item, index) => {
@@ -61,7 +61,9 @@ const RightDrawer = ({
               })}
             </div>
           </div>
-          <div className="articleContainer">
+            }
+            {
+                articleModel.length > 0 && <div className="articleContainer">
             <h2 className="videoHeader">Articles</h2>
             <div className="artcleCardContainer">
               {articleModel.map((item, index) => {
@@ -75,6 +77,7 @@ const RightDrawer = ({
               })}
             </div>
           </div>
+            }
         </div>
       </div>
     </>
