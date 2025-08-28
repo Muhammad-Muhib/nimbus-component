@@ -2,7 +2,7 @@ import { FaRecycle } from "react-icons/fa";
 import { FiRefreshCw } from "react-icons/fi";
 import {motion} from "framer-motion"
 
-export default function SearchResetBtn({handleSearch,loading,handleSearchReset,resetLoad}) {
+export default function SearchResetBtn({handleSearch,loading,handleSearchReset,resetLoad,showResetBtn=true}) {
   return (
     <>
     <motion.button
@@ -15,7 +15,8 @@ export default function SearchResetBtn({handleSearch,loading,handleSearchReset,r
         >
       {loading ? <span className="loader"></span> : <span><FiRefreshCw /> Search</span> }    
         </motion.button>
-        <motion.button
+        {
+          showResetBtn && <motion.button
           type="button"
           className="btn-search btn-green btn-reset"
           onClick={handleSearchReset}
@@ -25,6 +26,7 @@ export default function SearchResetBtn({handleSearch,loading,handleSearchReset,r
         >
           {resetLoad ? <span className="loader"></span> : <span><FaRecycle /> Reset</span> }    
         </motion.button>
+        }
     </>
   )
 }
