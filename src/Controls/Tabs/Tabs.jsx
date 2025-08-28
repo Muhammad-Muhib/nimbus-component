@@ -1,6 +1,7 @@
 import React, { useEffect,useState } from "react";
 import RightDrawer from "../RightDrawer/RightDrawer";
 import Tooltip from '@mui/material/Tooltip';
+import RelatedOperationsMenu from "../RelatedOperation/RelatedOperation";
 
 export default function Tabs({
   tab1name,
@@ -14,7 +15,9 @@ export default function Tabs({
   handleEditClick,
   articleModel = [],
   videoModel = [],
-  showYouTubeVideo = true
+  showYouTubeVideo = true,
+  showRelatedOperation = true,
+  menuItems = []
 }) {
     const [isDrawerOpen, setIsDrawerOpen] = useState(false)
     // Add/remove body class to prevent scrolling when drawer is open
@@ -136,6 +139,9 @@ export default function Tabs({
               Edit
             </button>
           )}
+          {
+            showRelatedOperation && <RelatedOperationsMenu menuItems={menuItems} />
+          }
           {
             showYouTubeVideo && 
             <Tooltip title="Videos and Help Documents" placement="top">

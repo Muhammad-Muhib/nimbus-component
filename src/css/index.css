@@ -1410,12 +1410,6 @@ border: 1px solid white;
 .DepartmentCompStyle__menu {
   z-index: 9999 !important; 
 }
-
-.dropdown-wrapper{
-  width: 283px
-}
-
-
 /* Email modal Styling */
 .mailInput{
     width: 80%;
@@ -1722,6 +1716,160 @@ body.drawer-open {
   justify-content: center;
   padding-left: 1rem;
  }
+}
+
+
+/* Related Operation Styling  */
+
+.shortcutKeyContainer {
+  margin-left: 0.5rem;
+  margin-right: 0.5rem;
+  margin-top: 0.2rem;
+  display: flex;
+  align-items: center;
+  background-color: #00AFEF;
+  padding: 0px 10px;
+  border-radius: 50%;
+  color: white;
+  cursor: pointer;
+  height: 85%;
+}
+
+.related-operations-container {
+  position: relative;
+  display: inline-block;
+}
+
+.related-operations-menu {
+  position: absolute;
+  top: 45px;
+  right: 0;
+  background: rgba(0,0,0,0.4);
+  border: none;
+  border-radius: 0;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+  min-width: 200px;
+  z-index: 1000;
+  overflow: hidden;
+  font-family: Arial, sans-serif;
+}
+
+.menu-header {
+  background: #4a4a4a;
+  padding: 8px 12px;
+  border-bottom: none;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-weight: normal;
+  font-size: 13px;
+  color: white;
+  text-align: center;
+}
+
+.menu-title {
+  flex: 1;
+}
+
+.pin-icon {
+  cursor: pointer;
+  padding: 2px 4px;
+  border-radius: 2px;
+  transition: all 0.2s ease;
+  color: white;
+  font-size: 11px;
+}
+
+.pin-icon:hover {
+  background: rgba(255, 255, 255, 0.2);
+  color: white;
+}
+
+.pin-icon.pinned {
+  color: #fc0000;
+  background: rgba(255, 255, 255, 0.1);
+}
+
+.menu-items {
+  max-height: 300px;
+  overflow-y: auto;
+}
+
+.menu-item {
+  display: flex;
+  align-items: center;
+  padding: 8px 12px;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+  border-bottom: 1px solid #e8e8e8;
+  background: rgba(0, 0, 0, 0.4);
+}
+
+.menu-item:last-child {
+  border-bottom: none;
+}
+
+.menu-item:hover {
+  background: #f0f0f0;
+}
+
+.menu-item:hover .menu-item-label {
+  color: black;
+}
+
+.menu-item-icon {
+  margin-right: 8px;
+  font-size: 14px;
+  width: 16px;
+  text-align: center;
+}
+
+.menu-item-label {
+  font-size: 13px;
+  color: white;
+  font-weight: normal;
+}
+
+/* Animation for menu appearance */
+.related-operations-menu {
+  animation: slideDown 0.2s ease-out;
+}
+
+@keyframes slideDown {
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .related-operations-menu {
+    right: -50px;
+    min-width: 200px;
+  }
+}
+
+/* Scrollbar styling for menu items */
+.menu-items::-webkit-scrollbar {
+  width: 6px;
+}
+
+.menu-items::-webkit-scrollbar-track {
+  background: #f1f1f1;
+}
+
+.menu-items::-webkit-scrollbar-thumb {
+  background: #c1c1c1;
+  border-radius: 3px;
+}
+
+.menu-items::-webkit-scrollbar-thumb:hover {
+  background: #a8a8a8;
 }
 
 @media screen and (max-width: 700px) {
