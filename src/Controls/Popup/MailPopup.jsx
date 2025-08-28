@@ -5,7 +5,7 @@ import { TbSend } from "react-icons/tb";
 
 export default function MailPopup({body,setBody,subject,setSubject,toMail,setToMail,setShowMailModal,showMailModal,sendEmail}) {
     
-    const [isButtonDisabled, setIsButtonDisabled] = useState(false);
+    const [isButtonDisabled, setIsButtonDisabled] = useState(false); 
     useEffect(() => {
         if (!showMailModal) {
             setIsButtonDisabled(false);
