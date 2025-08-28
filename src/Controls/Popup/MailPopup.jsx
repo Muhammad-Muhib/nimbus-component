@@ -1,9 +1,25 @@
-import { useEffect } from 'react'
+import { useEffect, useState } from 'react'
 import Input from '../Input/Input';
 import InputComment from '../Input/InputComment';
 import { TbSend } from "react-icons/tb";
 
 export default function MailPopup({body,setBody,subject,setSubject,toMail,setToMail,setShowMailModal,showMailModal,sendEmail}) {
+    
+    const [isButtonDisabled, setIsButtonDisabled] = useState(false);
+    useEffect(() => {
+        if (!showMailModal) {
+            setIsButtonDisabled(false);
+        }
+    }, [showMailModal]);
+    
+    const handleSendEmail = async () => {
+        setIsButtonDisabled(true);
+        try {
+            await sendEmail();
+        } catch (error) {
+            setIsButtonDisabled(false);
+        }
+    };
     
     
     useEffect(() => {
@@ -79,12 +95,14 @@ export default function MailPopup({body,setBody,subject,setSubject,toMail,setToM
                         </div>
                         <button
                                       className="btn-popupPrint btn-green btn-email-send"
-                                      onClick={sendEmail}
+                                      onClick={handleSendEmail}
+                                      disabled={isButtonDisabled}
+                                      style={isButtonDisabled ? {cursor: 'not-allowed'} : {cursor: 'pointer'}}
                                     >
                                       <span>
-                                        <TbSend size={17} />
+                                        {isButtonDisabled ? <span className="loader"></span> : <TbSend size={17} />}
                                       </span>
-                                      <span>Email</span>
+                                      <span>{isButtonDisabled ? 'Sending...' : 'Send'}</span>
                                     </button>
                     </div>
                 </div>
