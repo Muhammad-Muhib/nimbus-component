@@ -1,0 +1,71 @@
+import React from "react";
+import { IoClose } from "react-icons/io5";
+
+const RightDrawer = ({
+  isOpen,
+  onClose,
+  title = "Help",
+  videoModel = [],
+  articleModel = [],
+}) => {
+  return (
+    <>
+      {/* Overlay */}
+      {isOpen && <div className="drawer-overlay" onClick={onClose} />}
+
+      {/* Drawer */}
+      <div
+        className={`right-drawer ${isOpen ? "drawer-open" : "drawer-closed"}`}
+      >
+        {/* Drawer Header */}
+        <div className="drawer-header">
+          <h1 className="drawer-title">Help</h1>
+          <button
+            className="drawer-close-btn"
+            onClick={onClose}
+            aria-label="Close drawer"
+          >
+            <IoClose size={24} />
+          </button>
+        </div>
+
+        {/* Drawer Content */}
+        <div className="drawer-content">
+          <div className="videosContainer">
+            <h2 className="videoHeader">Videos</h2>
+            <div className="videoCardContainer">
+              {videoModel.map((item, index) => {
+                return (
+                  <a
+                    href={`${item.youTubeLink}`}
+                    className="videoCard"
+                    key={index}
+                  >
+                    <img src={`${item.youTubePic}`} className="youTubeImg" />
+                    <div className="youtubeText">{item.description}</div>
+                  </a>
+                );
+              })}
+            </div>
+          </div>
+          <div className="articleContainer">
+            <h2 className="videoHeader">Articles</h2>
+            <div className="artcleCardContainer">
+              {articleModel.map((item, index) => {
+                return (
+                  <div key={index}>
+                    <a href={`${item.articleLink}`} className="articleText">
+                      {item.articleText}
+                    </a>
+                  </div>
+                );
+              })}
+            </div>
+          </div>
+        </div>
+      </div>
+    </>
+  );
+};
+
+export default RightDrawer;
