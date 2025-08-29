@@ -255,15 +255,13 @@ export default function RecordGrid({
                       color: selectedId == item[id] ? "white" : "black",
                     }}
                   >
-                    {obj.columnType.toLowerCase() == "numeric"
-                      ? item[key]
-                      : obj.columnType.toLowerCase() == "date"
-                      ? item[key].split(" ")[0]
-                      : obj.columnType.toLowerCase() == "quantity"
-                      ? parseFloat(item[key]).toFixed(quantityPoint)
-                      : obj.columnType.toLowerCase() == "value"
-                      ? parseFloat(item[key]).toFixed(amountPoint)
-                      : item[key]}
+                    {obj.columnType.toLowerCase() == "numeric" ? item[key] :
+                    obj.columnType.toLowerCase() == "date" ? item[key].split(" ")[0] : obj.columnType.toLowerCase() == "quantity" ?
+                    parseFloat(item[key]).toFixed(quantityPoint) :
+                    obj.columnType.toLowerCase() == "value" ?
+                    parseFloat(item[key]).toFixed(amountPoint) :
+                    obj.columnType.toLowerCase() == "boolean" ? item[key] ==
+                    true ? item[key].toString() : "" : item[key]}                    
                   </td>
                 </>
               );
@@ -285,7 +283,12 @@ export default function RecordGrid({
               title="Note: Email, print or export will be done for the values displayed in the grid."
               slotProps={{
                 tooltip: {
-                  sx: { fontSize: "11px", fontWeight: "600",backgroundColor:"rgba(0,0,0,0.6)",color:'white' },
+                  sx: {
+                    fontSize: "11px",
+                    fontWeight: "600",
+                    backgroundColor: "rgba(0,0,0,0.6)",
+                    color: "white",
+                  },
                 },
               }}
             >

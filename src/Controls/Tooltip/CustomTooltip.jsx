@@ -16,7 +16,7 @@ export default function CustomTooltip({ children, title = "", body = "", placeme
     },
   }));
 
-  if (title.trim() === "" && body() === "") {
+  if (title.trim() == "" && body == "") {
     return <>{children}</>;
   }
 
@@ -24,8 +24,8 @@ export default function CustomTooltip({ children, title = "", body = "", placeme
     <HtmlTooltip
       title={
         <>
-          {title.trim() !== "" && <Typography color="inherit">{title}</Typography>}
-          {body() !== "" && <span>{body}</span>}
+          {title.trim() != "" && <Typography color="inherit">{title}</Typography>}
+          {body != "" && <span>{body}</span>}
         </>
       }
     >
