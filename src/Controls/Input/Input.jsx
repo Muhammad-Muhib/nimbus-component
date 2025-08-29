@@ -1,4 +1,4 @@
-import { useRef } from "react";
+import { useRef,useEffect } from "react";
 
 export default function Input({
   customClass,
@@ -12,12 +12,14 @@ export default function Input({
   disable,
   id,
   maxLength,
-  hasError
+  inputRef
 }) {
-  const inputRef = useRef();
-  if (hasError && inputRef.current) {
-    inputRef.current.focus();
-  }
+  const internalRef = useRef(null);
+  useEffect(() => {
+    if (inputRef) {
+      inputRef.current = internalRef.current;
+    }
+  }, [inputRef]);
   return (
     <div
       className={`form-group ${
@@ -28,13 +30,13 @@ export default function Input({
         <div className="inputLabel">{label}</div>
         {name != null ? (
           <input
+          ref={internalRef}
             name={`${name}`}
             onClick={(e) => e.target.select()}
             placeholder={placeholder != null ? `${placeholder}` : ""}
             id={id}
-            ref={inputRef}
             type="text"
-            className={`form-control candela_input ${customInputClass} ${hasError ? "border-red-500" : ""}`}
+            className={`form-control candela_input ${customInputClass}`}
             value={inputVal}
             onChange={(e) => {
               setInputVal(e);
@@ -42,15 +44,16 @@ export default function Input({
             style={important == "true" ? { backgroundColor: "#FFFFE8" } : {}}
             disabled={disable || false}
             maxLength={`${maxLength}`}
+            
           />
         ) : ( 
           <input
+          ref={internalRef}
             onClick={(e) => e.target.select()}
             placeholder={placeholder != null ? `${placeholder}` : ""}
             id={`${id}`}
-            ref={inputRef}
             type="text"
-            className={`form-control candela_input ${customInputClass} ${hasError ? "border-red-500" : ""}`}
+            className={`form-control candela_input ${customInputClass}`}
             value={inputVal}
             onChange={(e) => {
               setInputVal(e.target.value);

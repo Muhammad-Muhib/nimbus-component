@@ -1393,7 +1393,6 @@ border: 1px solid white;
 
 .dropdown-wrapper {
   position: relative;
-  margin-bottom: 24px;
   z-index: 10;
   cursor: pointer;
 }
