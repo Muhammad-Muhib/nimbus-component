@@ -38,7 +38,7 @@ export default function UpdateCancelBtn({
     return () => {
       document.removeEventListener("keydown", handleKeyDown);
     };
-  }, [disableUpdate]);
+  }, []);
   return (
     <div className="btnMainContainer saveCancel col-md-10 col-sm-10 form-group print_box_bg low_margin">
       <div>
