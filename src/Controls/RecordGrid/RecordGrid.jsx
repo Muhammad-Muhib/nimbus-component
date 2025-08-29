@@ -8,7 +8,7 @@ import MailPopup from "../Popup/MailPopup";
 import apiService from "../../ApiService/apiService";
 import { getTableDataByKey } from "../../IndexDbServices/indexDbServices";
 import { MdInfoOutline } from "react-icons/md";
-import Tooltip from "@mui/material/Tooltip";
+import CustomTooltip from "../Tooltip/CustomTooltip";
 
 export default function RecordGrid({
   tablebody,
@@ -278,22 +278,13 @@ export default function RecordGrid({
         <div className="tableHeaderContainer">
           <span className="tablePrintHead ">{printHeading}</span>
           <span className="printBtnContainer">
-            <Tooltip
+            <CustomTooltip
               placement="top"
-              title="Note: Email, print or export will be done for the values displayed in the grid."
-              slotProps={{
-                tooltip: {
-                  sx: {
-                    fontSize: "11px",
-                    fontWeight: "600",
-                    backgroundColor: "rgba(0,0,0,0.6)",
-                    color: "white",
-                  },
-                },
-              }}
+              body="Note: Email, print or export will be done for the values displayed in the grid."
+              
             >
               <MdInfoOutline size={20} />
-            </Tooltip>
+            </CustomTooltip>
             <motion.button
               whileTap={{
                 scale: "0.8",
