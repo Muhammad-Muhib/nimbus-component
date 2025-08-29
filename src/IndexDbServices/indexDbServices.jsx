@@ -29,7 +29,8 @@ db.version(2).stores({
   grn:"",
   securityUser:"userId,userName,shopId",
   employeeType:"employeeTypeId,employeeTypeName,employeeTypeCode",
-  memberInfo:"autoIncrementId,memberId,memberName,shopId"
+  memberInfo:"autoIncrementId,memberId,memberName,shopId",
+  accountHead:"accountId,accountHead,accountHeadCount"
 });
 
 const getUpdateKey = (tableName) => {
@@ -58,7 +59,8 @@ const getUpdateKey = (tableName) => {
     productAttribute9:"productAttribute9Id",
     securityUser:"userId",
     employeeType:"employeeTypeId",
-    memberInfo:"autoIncrementId"
+    memberInfo:"autoIncrementId",
+    accountHead:"accountId"
   };
   return primaryKeys[tableName];
 };
@@ -167,6 +169,20 @@ export const deleteDataIndexDb = async (tableData) => {
                 .delete();
               console.log(
                 `Deleted ${deletedCount} employeeType records with employeeTypeId: ${record.employeeTypeId}`
+              );
+            }
+          }
+          break;
+            // Delete accountHead data based on employeeTypeId
+        case 'accountHead':
+          for (const record of records) {
+            if (record.accountId) {
+              const deletedCount = await db[tableName]
+                .where("accountId")
+                .equals(record.accountId)
+                .delete();
+              console.log(
+                `Deleted ${deletedCount} accountHead records with accountId: ${record.accountId}`
               );
             }
           }
