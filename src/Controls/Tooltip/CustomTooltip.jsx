@@ -16,7 +16,9 @@ export default function CustomTooltip({children,title = "",body = "",placement =
   },
 }));
   return (
-    <HtmlTooltip 
+    <>
+    {
+      title.trim() != "" || body.trim() != "" ?     <HtmlTooltip 
         title={
           <>
             {
@@ -29,6 +31,8 @@ export default function CustomTooltip({children,title = "",body = "",placement =
         }
       >
          {children}
-      </HtmlTooltip>
+      </HtmlTooltip> : <></>
+    }
+    </>    
   )
 }
