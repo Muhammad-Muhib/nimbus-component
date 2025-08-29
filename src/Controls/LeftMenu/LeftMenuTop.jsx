@@ -46,18 +46,13 @@ export default function LeftMenuTop({handleNavigation}) {
             </div> 
           </motion.div>
         </div>
-    {/* {
+    {
       breadCrumb != "" ? 
       <div>      
       <div className='breadCrumbHead'>{breadCrumb}</div>
-        <div className='breadCrumbContainer'>
-          <a href="https://nimbus.nimbusrms.com/Home" className='breadCrumbUrlText'>Home</a>
-          <FaAngleDoubleRight />
-          <span>{breadCrumb}</span>
-      </div>
     </div>
       : <></>
-    } */}
+    }
     <div className='exitIconContainer' onClick={handleNavigation}>
       <ImExit color='red' className='exitIcon' />
     </div>
