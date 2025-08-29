@@ -1,3 +1,4 @@
+import Tooltip from "../Tooltip/CustomTooltip";
 export default function Input({
   customClass,
   label,
@@ -9,7 +10,9 @@ export default function Input({
   important,
   disable,
   id,
-  maxLength
+  maxLength,
+  tooltipBody = "",
+  tooltipTitle = ""
 }) {
   return (
     <div
@@ -20,6 +23,7 @@ export default function Input({
       <div className="inputContainer">
         <div className="inputLabel">{label}</div>
         {name != null ? (
+          <Tooltip body={tooltipBody} title={tooltipTitle}>
           <input
             name={`${name}`}
             onClick={(e) => e.target.select()}
@@ -35,7 +39,9 @@ export default function Input({
             disabled={disable || false}
             maxLength={`${maxLength}`}
           />
-        ) : (
+          </Tooltip>
+        ) : ( 
+          <Tooltip body={tooltipBody} title={tooltipTitle}>
           <input
             onClick={(e) => e.target.select()}
             placeholder={placeholder != null ? `${placeholder}` : ""}
@@ -50,6 +56,7 @@ export default function Input({
             disabled={disable || false}
             maxLength={`${maxLength}`}
           />
+          </Tooltip>                   
         )}
       </div>
     </div>

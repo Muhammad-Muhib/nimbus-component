@@ -31,6 +31,7 @@ import {useGetAllDataOfTable} from "./CustomHooks/GetAllDataOfTable"
 import {useGetTokenValue} from "./CustomHooks/GetTokenValue"
 import MailPopup from "./Controls/Popup/MailPopup"
 import {sendEmail} from "./Controls/Mail/Email"
+import Tooltip from './Controls/Tooltip/CustomTooltip';
 
 export {apiService};
 export {CheckBox};
@@ -74,3 +75,4 @@ export {sendEmail}
 export {getDataForDropDown}
 export {getTableData}
 export {addUpdateGRNIndexDb}
+export {Tooltip}
