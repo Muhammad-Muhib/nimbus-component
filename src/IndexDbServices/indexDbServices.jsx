@@ -28,7 +28,8 @@ db.version(2).stores({
   productAttribute9:"productAttribute9Id,lineItemId,productAttribute9Name",
   grn:"",
   securityUser:"userId,userName,shopId",
-  employeeType:"employeeTypeId,employeeTypeName,employeeTypeCode"
+  employeeType:"employeeTypeId,employeeTypeName,employeeTypeCode",
+  MemberInfo:"autoIncrementId,memberId,memberName,shopId"
 });
 
 const getUpdateKey = (tableName) => {
@@ -56,7 +57,8 @@ const getUpdateKey = (tableName) => {
     productAttribute8:"productAttribute8Id",
     productAttribute9:"productAttribute9Id",
     securityUser:"userId",
-    employeeType:"employeeTypeId"
+    employeeType:"employeeTypeId",
+    MemberInfo:"autoIncrementId"
   };
   return primaryKeys[tableName];
 };
@@ -481,7 +483,19 @@ export const deleteDataIndexDb = async (tableData) => {
             }
           }
           break;
-
+          case 'memberInfo':
+            for (const record of records) {
+              if (record.autoIncrementId) {
+                const deletedCount = await db[tableName]
+                  .where("autoIncrementId")
+                  .equals(record.autoIncrementId)
+                  .delete();
+                console.log(
+                  `Deleted ${deletedCount} memberInfo records with autoIncrementId: ${record.autoIncrementId}`
+                );
+              }
+            }
+            break;
         default:
           // For other tables, try to delete based on common patterns
           for (const record of records) {

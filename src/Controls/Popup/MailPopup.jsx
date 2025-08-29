@@ -3,15 +3,15 @@ import Input from '../Input/Input';
 import InputComment from '../Input/InputComment';
 import { TbSend } from "react-icons/tb";
 
-export default function MailPopup({body,setBody,subject,setSubject,toMail,setToMail,setShowMailModal,showMailModal,sendEmail}) {
-    
-    const [isButtonDisabled, setIsButtonDisabled] = useState(false); 
+export default function MailPopup({ body, setBody, subject, setSubject, toMail, setToMail, setShowMailModal, showMailModal, sendEmail }) {
+
+    const [isButtonDisabled, setIsButtonDisabled] = useState(false);
     useEffect(() => {
         if (!showMailModal) {
             setIsButtonDisabled(false);
         }
     }, [showMailModal]);
-    
+
     const handleSendEmail = async () => {
         setIsButtonDisabled(true);
         try {
@@ -20,8 +20,8 @@ export default function MailPopup({body,setBody,subject,setSubject,toMail,setToM
             setIsButtonDisabled(false);
         }
     };
-    
-    
+
+
     useEffect(() => {
         const handleKeyDown = (e) => {
             if (e.key == "Escape") {
@@ -94,16 +94,16 @@ export default function MailPopup({body,setBody,subject,setSubject,toMail,setToM
                             />
                         </div>
                         <button
-                                      className="btn-popupPrint btn-green btn-email-send"
-                                      onClick={handleSendEmail}
-                                      disabled={isButtonDisabled}
-                                      style={isButtonDisabled ? {cursor: 'not-allowed'} : {cursor: 'pointer'}}
-                                    >
-                                      <span>
-                                        {isButtonDisabled ? <span className="loader"></span> : <TbSend size={17} />}
-                                      </span>
-                                      <span>{isButtonDisabled ? 'Sending...' : 'Send'}</span>
-                                    </button>
+                            className={`btn-popupPrint btn-email-send ${isButtonDisabled ? "disable" : "btn-green"}`}
+                            onClick={handleSendEmail}
+                            disabled={isButtonDisabled}
+                        >
+                            <span>
+                                {isButtonDisabled ? <span className="loader"></span> : <TbSend size={17} />}
+                            </span>
+                            <span>Send</span>
+                        </button>
+
                     </div>
                 </div>
             </div>

@@ -299,7 +299,7 @@ export default function RecordGrid({
                 scale: "0.8",
               }}
               onClick={handleDownloadPDF}
-              className={`gridPrintBtn ${disablePrint ? "disableBtn" : ""}`}
+              className={`gridPrintBtn mobileHideShow ${disablePrint ? "disableBtn" : ""}`}
               disabled={disablePrint}
             >
               Print
@@ -309,7 +309,7 @@ export default function RecordGrid({
                 scale: "0.8",
               }}
               onClick={handleDownloadCSV}
-              className={`gridPrintBtn ${disableCSV ? "disableBtn" : ""}`}
+              className={`gridPrintBtn mobileHideShow ${disableCSV ? "disableBtn" : ""}`}
               disabled={disableCSV}
             >
               CSV

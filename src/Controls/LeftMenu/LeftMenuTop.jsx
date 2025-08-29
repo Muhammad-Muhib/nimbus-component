@@ -46,7 +46,7 @@ export default function LeftMenuTop({handleNavigation}) {
             </div> 
           </motion.div>
         </div>
-    {
+    {/* {
       breadCrumb != "" ? 
       <div>      
       <div className='breadCrumbHead'>{breadCrumb}</div>
@@ -57,7 +57,7 @@ export default function LeftMenuTop({handleNavigation}) {
       </div>
     </div>
       : <></>
-    }
+    } */}
     <div className='exitIconContainer' onClick={handleNavigation}>
       <ImExit color='red' className='exitIcon' />
     </div>
