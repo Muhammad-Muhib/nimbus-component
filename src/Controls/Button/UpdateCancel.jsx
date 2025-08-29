@@ -63,7 +63,14 @@ export default function UpdateCancelBtn({
                 scale: "0.8",
               }}
             >
-              Update
+               {showUnderLine ? (
+                  <>
+                    <span style={{ textDecoration: "underline" }}>U</span>
+                    <span>pdate (F7)</span>
+                  </>
+                ) : (
+                  "Update"
+                )}
             </motion.button>  
             </CustomTooltip>
           </>
@@ -79,7 +86,14 @@ export default function UpdateCancelBtn({
               }}
               id="btnUpdate"
             >
-              Update
+              {showUnderLine ? (
+                <>
+                  <span style={{ textDecoration: "underline" }}>U</span>
+                  <span>pdate (F7)</span>
+                </>
+              ) : (
+                "Update"
+              )}
             </motion.button>
             </CustomTooltip>
           </>
