@@ -12,7 +12,8 @@ export default function Input({
   id,
   maxLength,
   tooltipBody = "",
-  tooltipTitle = ""
+  tooltipTitle = "",
+  placement = "bottom"
 }) {
   return (
     <div
@@ -23,7 +24,7 @@ export default function Input({
       <div className="inputContainer">
         <div className="inputLabel">{label}</div>
         {name != null ? (
-          <Tooltip body={tooltipBody} title={tooltipTitle}>
+          <Tooltip body={tooltipBody} title={tooltipTitle} placement={placement}>
           <input
             name={`${name}`}
             onClick={(e) => e.target.select()}
@@ -41,7 +42,7 @@ export default function Input({
           />
           </Tooltip>
         ) : ( 
-          <Tooltip body={tooltipBody} title={tooltipTitle}>
+          <Tooltip body={tooltipBody} title={tooltipTitle} placement={placement}>
           <input
             onClick={(e) => e.target.select()}
             placeholder={placeholder != null ? `${placeholder}` : ""}

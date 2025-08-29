@@ -2,9 +2,9 @@ import { styled } from '@mui/material/styles';
 import Tooltip, { tooltipClasses } from '@mui/material/Tooltip';
 import Typography from '@mui/material/Typography';
 
-export default function CustomTooltip({children,title = "",body = ""}) {
+export default function CustomTooltip({children,title = "",body = "",placement = "bottom"}) {
     const HtmlTooltip = styled(({ className, ...props }) => (
-  <Tooltip {...props} classes={{ popper: className }} arrow />
+  <Tooltip {...props} classes={{ popper: className }} arrow placement={placement} />
 ))(({ theme }) => ({
   [`& .${tooltipClasses.tooltip}`]: {
     backgroundColor: 'white',
@@ -16,7 +16,7 @@ export default function CustomTooltip({children,title = "",body = ""}) {
   },
 }));
   return (
-    <HtmlTooltip
+    <HtmlTooltip 
         title={
           <>
             {
