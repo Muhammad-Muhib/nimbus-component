@@ -1,11 +1,12 @@
 import { useEffect } from "react";
 import { motion } from "framer-motion";
-import Tooltip from '@mui/material/Tooltip';
+import CustomTooltip from "../Tooltip/CustomTooltip";
 export default function UpdateCancelBtn({
   handleReset,
   handleUpdate,
   disableUpdate = false,
   updateBtnColor = "btn-green",
+  showUnderLine = false,
 }) {
   useEffect(() => {
     const handleKeyDown = (e) => {
@@ -13,20 +14,31 @@ export default function UpdateCancelBtn({
       if (e.altKey) {
         switch (e.key.toLowerCase()) {
           case "u":
-            e.preventDefault();
-            e.stopPropagation();
-            document.querySelector("#btnUpdate").click()
+            if (!disableUpdate) {
+              e.preventDefault();
+              e.stopPropagation();
+              document.querySelector("#btnUpdate").click()
+            }
             break;
           default:
             break;
-        }
+        } } else {
+          switch (e.key) {
+            case "F7":
+              if (!disableUpdate) {
+                e.preventDefault();
+                e.stopPropagation();
+                document.querySelector("#btnUpdate").click()
+              }
+              break;
+          }
       }
     };
     document.addEventListener("keydown", handleKeyDown);
     return () => {
       document.removeEventListener("keydown", handleKeyDown);
     };
-  }, []);
+  }, [disableUpdate]);
   return (
     <div className="btnMainContainer saveCancel col-md-10 col-sm-10 form-group print_box_bg low_margin">
       <div>
@@ -42,7 +54,7 @@ export default function UpdateCancelBtn({
         </motion.button>
         {disableUpdate ? (
           <>
-            <Tooltip title="Update loaded data" placement="top">
+            <CustomTooltip body="Update loaded data" placement="top">
               <motion.button
               type="button"
               className={`btn-style btn-disable`}
@@ -53,11 +65,11 @@ export default function UpdateCancelBtn({
             >
               Update
             </motion.button>  
-            </Tooltip>
+            </CustomTooltip>
           </>
         ) : (
           <>
-          <Tooltip title="Update loaded data" placement="top">
+          <CustomTooltip body="Update loaded data" placement="top">
             <motion.button
               type="button"
               className={`btn-style ${updateBtnColor}`}
@@ -69,7 +81,7 @@ export default function UpdateCancelBtn({
             >
               Update
             </motion.button>
-            </Tooltip>
+            </CustomTooltip>
           </>
         )}
       </div>
