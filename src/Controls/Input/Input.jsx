@@ -1,4 +1,5 @@
-import Tooltip from "../Tooltip/CustomTooltip";
+import { useRef } from "react";
+
 export default function Input({
   customClass,
   label,
@@ -11,10 +12,12 @@ export default function Input({
   disable,
   id,
   maxLength,
-  tooltipBody = "",
-  tooltipTitle = "",
-  placement = "bottom"
+  hasError
 }) {
+  const inputRef = useRef();
+  if (hasError && inputRef.current) {
+    inputRef.current.focus();
+  }
   return (
     <div
       className={`form-group ${
@@ -24,14 +27,14 @@ export default function Input({
       <div className="inputContainer">
         <div className="inputLabel">{label}</div>
         {name != null ? (
-          <Tooltip body={tooltipBody} title={tooltipTitle} placement={placement}>
           <input
             name={`${name}`}
             onClick={(e) => e.target.select()}
             placeholder={placeholder != null ? `${placeholder}` : ""}
-            id=""
+            id={id}
+            ref={inputRef}
             type="text"
-            className={`form-control candela_input ${customInputClass}`}
+            className={`form-control candela_input ${customInputClass} ${hasError ? "border-red-500" : ""}`}
             value={inputVal}
             onChange={(e) => {
               setInputVal(e);
@@ -40,15 +43,14 @@ export default function Input({
             disabled={disable || false}
             maxLength={`${maxLength}`}
           />
-          </Tooltip>
         ) : ( 
-          <Tooltip body={tooltipBody} title={tooltipTitle} placement={placement}>
           <input
             onClick={(e) => e.target.select()}
             placeholder={placeholder != null ? `${placeholder}` : ""}
             id={`${id}`}
+            ref={inputRef}
             type="text"
-            className={`form-control candela_input ${customInputClass}`}
+            className={`form-control candela_input ${customInputClass} ${hasError ? "border-red-500" : ""}`}
             value={inputVal}
             onChange={(e) => {
               setInputVal(e.target.value);
@@ -57,7 +59,6 @@ export default function Input({
             disabled={disable || false}
             maxLength={`${maxLength}`}
           />
-          </Tooltip>                   
         )}
       </div>
     </div>
