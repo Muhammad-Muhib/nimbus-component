@@ -29,7 +29,7 @@ db.version(2).stores({
   grn:"",
   securityUser:"userId,userName,shopId",
   employeeType:"employeeTypeId,employeeTypeName,employeeTypeCode",
-  MemberInfo:"autoIncrementId,memberId,memberName,shopId"
+  memberInfo:"autoIncrementId,memberId,memberName,shopId"
 });
 
 const getUpdateKey = (tableName) => {
@@ -58,7 +58,7 @@ const getUpdateKey = (tableName) => {
     productAttribute9:"productAttribute9Id",
     securityUser:"userId",
     employeeType:"employeeTypeId",
-    MemberInfo:"autoIncrementId"
+    memberInfo:"autoIncrementId"
   };
   return primaryKeys[tableName];
 };
