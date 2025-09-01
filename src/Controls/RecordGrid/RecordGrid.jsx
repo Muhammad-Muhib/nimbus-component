@@ -5,6 +5,7 @@ import { motion } from "framer-motion";
 import { toast } from "react-toastify";
 import html2canvas from "html2canvas";
 import MailPopup from "../Popup/MailPopup";
+import { sendEmail as sendEmailUtil } from "../Mail/Email";
 import apiService from "../../ApiService/apiService";
 import { getTableDataByKey } from "../../IndexDbServices/indexDbServices";
 import { MdInfoOutline } from "react-icons/md";
@@ -174,84 +175,7 @@ export default function RecordGrid({
   };
 
   const sendEmail = async () => {
-    if (!tableRef.current) {
-      toast.error("Table not found");
-      return;
-    }
-
-    if (!tableData || tableData.length === 0) {
-      toast.error("No data to convert");
-      return;
-    }
-
-    if (toMail == null || toMail == "") {
-      toast.error("Please enter an Email ID.");
-      return;
-    } else {
-      const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-      if (!emailRegex.test(toMail)) {
-        toast.error("Please enter a Valid Email ID.");
-        return;
-      }
-    }
-    if (subject == null || subject == "") {
-      toast.error("Please enter subject.");
-      return;
-    }
-
-    try {
-      // Configure html2canvas options for better quality
-      const canvas = await html2canvas(tableRef.current, {
-        scale: 2, // Higher scale for better quality
-        useCORS: true,
-        allowTaint: true,
-        backgroundColor: "#ffffff",
-        scrollX: 0,
-        scrollY: 0,
-      });
-
-      // Convert canvas to blob
-      canvas.toBlob(
-        (blob) => {
-          if (blob) {
-            const formData = new FormData();
-            formData.append("Attachment", blob, `${printHeading}.png`);
-            formData.append("EmailBody", body);
-            formData.append("EmailTo", toMail);
-            formData.append("EmailSubject", subject);
-
-            apiService({
-              endpoint: apiUrl + "/Email/Send",
-              method: "POST",
-              data: formData,
-              contentType: "multipart/form-data",
-            })
-              .then((res) => {
-                if (res.data.success) {
-                  setShowMailModal(false);
-                  toast.success("Mail sent successfully");
-                } else {
-                  setShowMailModal(false);
-                  toast(res.error);
-                }
-              })
-              .catch((ex) => {
-                setShowMailModal(false);
-                console.log(ex);
-                toast.error("Something went wrong");
-              });
-          } else {
-            setShowMailModal(false);
-            toast.error("Failed to create image");
-          }
-        },
-        "image/png",
-        0.95
-      );
-    } catch (error) {
-      console.error("Error converting table to image:", error);
-      toast.error("Failed to convert table to image");
-    }
+    await sendEmailUtil(tableRef, body, toMail, subject, setShowMailModal);
   };
 
   const convertTableToImage = async () => {
