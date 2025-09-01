@@ -10,6 +10,7 @@ export default function InputNumber({
   disable,
   maxLength,
   inputRef,
+  handleBlur
 }) {
   const internalRef = useRef(null);
   useEffect(() => {
@@ -42,6 +43,7 @@ export default function InputNumber({
           style={important == "true" ? { backgroundColor: "#FFFFE8" } : {}}
           disabled={disable || false}
           maxLength={`${maxLength}`}
+          onBlur={handleBlur}
         />
       </div>
     </div>

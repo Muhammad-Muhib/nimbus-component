@@ -12,7 +12,8 @@ export default function Input({
   disable,
   id,
   maxLength,
-  inputRef
+  inputRef,
+  handleBlur
 }) {
   const internalRef = useRef(null);
   useEffect(() => {
@@ -44,7 +45,7 @@ export default function Input({
             style={important == "true" ? { backgroundColor: "#FFFFE8" } : {}}
             disabled={disable || false}
             maxLength={`${maxLength}`}
-            
+            onBlur={handleBlur}
           />
         ) : ( 
           <input
@@ -61,6 +62,7 @@ export default function Input({
             style={important == "true" ? { backgroundColor: "#FFFFE8" } : {}}
             disabled={disable || false}
             maxLength={`${maxLength}`}
+            onBlur={handleBlur}
           />
         )}
       </div>

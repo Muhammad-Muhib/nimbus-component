@@ -8,6 +8,7 @@ export default function InputComment({
   customClass,
   customInputClass,
   inputRef,
+  handleBlur
 }) {
   const internalRef = useRef(null);
   useEffect(() => {
@@ -32,6 +33,7 @@ export default function InputComment({
           }}
           style={important == "true" ? { backgroundColor: "#FFFFE8" } : {}}
           maxLength="1000"
+          onBlur={handleBlur}
         />
       </div>
     </div>
