@@ -6,7 +6,7 @@ export default function UpdateCancelBtn({
   handleUpdate,
   disableUpdate = false,
   updateBtnColor = "btn-green",
-  shouldShowUnderLine = false,
+  showUnderLine = false,
 }) {
   const [isMobile, setIsMobile] = useState(false);
 
@@ -25,8 +25,8 @@ export default function UpdateCancelBtn({
     };
   }, []);
 
-  // Override shouldShowUnderLine to false on mobile
-  const shouldShowUnderLine = shouldShowUnderLine && !isMobile;
+  // Override showUnderLine to false on mobile
+  const showUnderLine = showUnderLine && !isMobile;
   useEffect(() => {
     const handleKeyDown = (e) => {
       e.stopPropagation();
@@ -82,7 +82,7 @@ export default function UpdateCancelBtn({
                 scale: "0.8",
               }}
             >
-               {shouldShowUnderLine ? (
+               {showUnderLine ? (
                   <>
                     <span style={{ textDecoration: "underline" }}>U</span>
                     <span>pdate (F7)</span>
@@ -105,7 +105,7 @@ export default function UpdateCancelBtn({
               }}
               id="btnUpdate"
             >
-              {shouldShowUnderLine ? (
+              {showUnderLine ? (
                 <>
                   <span style={{ textDecoration: "underline" }}>U</span>
                   <span>pdate (F7)</span>

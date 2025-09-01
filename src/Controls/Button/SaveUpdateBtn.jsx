@@ -15,7 +15,7 @@ export default function SaveUpdateBtn({
   disableSave = false,
   disableUpdate = false,
   disableDelete = false,
-  shouldShowUnderLine = false,
+  showUnderLine = false,
   hideDelete = false
 }) {
   const [isMobile, setIsMobile] = useState(false);
@@ -35,8 +35,8 @@ export default function SaveUpdateBtn({
     };
   }, []);
 
-  // Override shouldShowUnderLine to false on mobile
-  const shouldShowUnderLine = shouldShowUnderLine && !isMobile;
+  // Override showUnderLine to false on mobile
+  const showUnderLine = showUnderLine && !isMobile;
  useEffect(() => {
     const handleKeyDown = (e) => {
       e.stopPropagation();
@@ -144,7 +144,7 @@ export default function SaveUpdateBtn({
           disableSave ? (
             <Tooltip title="Save input data" placement="top">
             <button type="button" className="btn-style btn-disable" disabled>
-              {shouldShowUnderLine ? (
+              {showUnderLine ? (
                 <>
                   <span style={{ textDecoration: "underline" }}>S</span>
                   <span>ave (F8)</span>
@@ -168,7 +168,7 @@ export default function SaveUpdateBtn({
             >
               {loading ? (
                 <span className="loader"></span>
-              ) : shouldShowUnderLine ? (
+              ) : showUnderLine ? (
                 <>
                   <span style={{ textDecoration: "underline" }}>S</span>
                   <span>ave (F8)</span>
@@ -185,7 +185,7 @@ export default function SaveUpdateBtn({
             <>
             <Tooltip title="Update loaded data" placement="top">
               <button type="button" className="btn-style btn-disable" disabled>
-                {shouldShowUnderLine ? (
+                {showUnderLine ? (
                   <>
                     <span style={{ textDecoration: "underline" }}>U</span>
                     <span>pdate (F7)</span>
@@ -211,7 +211,7 @@ export default function SaveUpdateBtn({
               >
                 {loading ? (
                   <span className="loader"></span>
-                ) : shouldShowUnderLine ? (
+                ) : showUnderLine ? (
                   <>
                     <span style={{ textDecoration: "underline" }}>U</span>
                     <span>pdate (F7)</span>
@@ -229,7 +229,7 @@ export default function SaveUpdateBtn({
             disableDelete ? (
               <Tooltip title="Delete loaded data" placement="top">
                 <button type="button" className="btn-style btn-disable" disabled>
-                  {shouldShowUnderLine ? (
+                  {showUnderLine ? (
                     <>
                       <span style={{ textDecoration: "underline" }}>D</span>
                       <span>elete</span>
@@ -250,7 +250,7 @@ export default function SaveUpdateBtn({
                   }}
                   id="btnDelete"
                 >
-                  {shouldShowUnderLine ? (
+                  {showUnderLine ? (
                     <>
                       <span style={{ textDecoration: "underline" }}>D</span>
                       <span>elete</span>

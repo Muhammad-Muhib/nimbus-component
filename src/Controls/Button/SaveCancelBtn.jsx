@@ -19,7 +19,7 @@ export default function SaveCancelBtn({hideCancel,handleReset,handleSave,loading
   }, []);
 
   // Override showUnderLine to false on mobile
-  const shouldShowUnderLine = showUnderLine && !isMobile;
+  const showUnderLine = showUnderLine && !isMobile;
   useEffect(() => {
       const handleKeyDown = (e) => {
         if (e.altKey) {
@@ -64,7 +64,7 @@ export default function SaveCancelBtn({hideCancel,handleReset,handleSave,loading
           >
             {loading ? (
               <span className="loader"></span>
-            ) : shouldShowUnderLine ? (
+            ) : showUnderLine ? (
               <>
                 <span style={{ textDecoration: "underline" }}>S</span>
                 <span>ave (F8)</span>
