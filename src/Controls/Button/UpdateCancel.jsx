@@ -1,4 +1,4 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { motion } from "framer-motion";
 import CustomTooltip from "../Tooltip/CustomTooltip";
 export default function UpdateCancelBtn({
@@ -6,8 +6,27 @@ export default function UpdateCancelBtn({
   handleUpdate,
   disableUpdate = false,
   updateBtnColor = "btn-green",
-  showUnderLine = false,
+  shouldShowUnderLine = false,
 }) {
+  const [isMobile, setIsMobile] = useState(false);
+
+  // Check if device is mobile
+  useEffect(() => {
+    const checkMobile = () => {
+      const isMobileDevice = window.innerWidth <= 768;
+      setIsMobile(isMobileDevice);
+    };
+
+    checkMobile();
+    window.addEventListener('resize', checkMobile);
+    
+    return () => {
+      window.removeEventListener('resize', checkMobile);
+    };
+  }, []);
+
+  // Override shouldShowUnderLine to false on mobile
+  const shouldShowUnderLine = shouldShowUnderLine && !isMobile;
   useEffect(() => {
     const handleKeyDown = (e) => {
       e.stopPropagation();
@@ -63,7 +82,7 @@ export default function UpdateCancelBtn({
                 scale: "0.8",
               }}
             >
-               {showUnderLine ? (
+               {shouldShowUnderLine ? (
                   <>
                     <span style={{ textDecoration: "underline" }}>U</span>
                     <span>pdate (F7)</span>
@@ -86,7 +105,7 @@ export default function UpdateCancelBtn({
               }}
               id="btnUpdate"
             >
-              {showUnderLine ? (
+              {shouldShowUnderLine ? (
                 <>
                   <span style={{ textDecoration: "underline" }}>U</span>
                   <span>pdate (F7)</span>

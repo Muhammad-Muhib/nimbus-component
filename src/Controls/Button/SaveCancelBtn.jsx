@@ -1,6 +1,25 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import {motion} from "framer-motion"
-export default function SaveCancelBtn({hideCancel,handleReset,handleSave,loading}) {
+export default function SaveCancelBtn({hideCancel,handleReset,handleSave,loading,showUnderLine = false}) {
+  const [isMobile, setIsMobile] = useState(false);
+
+  // Check if device is mobile
+  useEffect(() => {
+    const checkMobile = () => {
+      const isMobileDevice = window.innerWidth <= 768;
+      setIsMobile(isMobileDevice);
+    };
+
+    checkMobile();
+    window.addEventListener('resize', checkMobile);
+    
+    return () => {
+      window.removeEventListener('resize', checkMobile);
+    };
+  }, []);
+
+  // Override showUnderLine to false on mobile
+  const shouldShowUnderLine = showUnderLine && !isMobile;
   useEffect(() => {
       const handleKeyDown = (e) => {
         if (e.altKey) {
@@ -43,7 +62,16 @@ export default function SaveCancelBtn({hideCancel,handleReset,handleSave,loading
               scale:'0.8'
             }}
           >
-            {loading ? <span className="loader"></span> : "Save"}
+            {loading ? (
+              <span className="loader"></span>
+            ) : shouldShowUnderLine ? (
+              <>
+                <span style={{ textDecoration: "underline" }}>S</span>
+                <span>ave (F8)</span>
+              </>
+            ) : (
+              "Save"
+            )}
           </motion.button>
       </div>
     </div>
