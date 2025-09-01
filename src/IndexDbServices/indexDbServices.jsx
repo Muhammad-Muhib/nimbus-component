@@ -30,7 +30,9 @@ db.version(2).stores({
   securityUser:"userId,userName,shopId",
   employeeType:"employeeTypeId,employeeTypeName,employeeTypeCode",
   memberInfo:"autoIncrementId,memberId,memberName,shopId",
-  accountHead:"accountId,accountHead,accountHeadCount"
+  accountHead:"accountId,accountHead,accountHeadCount",
+  customerTypeBasedPrice:"customerProdPriceId,customerTypeId,proItemId",
+  productPriceShopBased:"autoIncrementId,shopId,productPriceShopBaseId,productItemId",
 });
 
 const getUpdateKey = (tableName) => {
@@ -60,7 +62,9 @@ const getUpdateKey = (tableName) => {
     securityUser:"userId",
     employeeType:"employeeTypeId",
     memberInfo:"autoIncrementId",
-    accountHead:"accountId"
+    accountHead:"accountId",
+    customerTypeBasedPrice:"customerProdPriceId",
+    productPriceShopBased:"autoIncrementId"
   };
   return primaryKeys[tableName];
 };
@@ -155,6 +159,34 @@ export const deleteDataIndexDb = async (tableData) => {
                 .delete();
               console.log(
                 `Deleted ${deletedCount} shop records with shopId: ${record.shopId}`
+              );
+            }
+          }
+          break;
+             case "customerTypeBasedPrice":
+          // Delete customerTypeBasedPrice data based on customerProdPriceId
+          for (const record of records) {
+            if (record.customerProdPriceId) {
+              const deletedCount = await db[tableName]
+                .where("value")
+                .equals(record.customerProdPriceId)
+                .delete();
+              console.log(
+                `Deleted ${deletedCount} customerTypeBasedPrice records with customerProdPriceId: ${record.customerProdPriceId}`
+              );
+            }
+          }
+          break;
+             case "productPriceShopBased":
+          // Delete productPriceShopBased data based on customerProdPriceId
+          for (const record of records) {
+            if (record.autoIncrementId) {
+              const deletedCount = await db[tableName]
+                .where("value")
+                .equals(record.autoIncrementId)
+                .delete();
+              console.log(
+                `Deleted ${deletedCount} productPriceShopBased records with autoIncrementId: ${record.autoIncrementId}`
               );
             }
           }
