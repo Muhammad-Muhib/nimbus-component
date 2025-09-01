@@ -1,6 +1,6 @@
 import React, { useState,useEffect } from 'react'
 
-export default function InformationPopup({setShowModal,onConfirm,showExtraText,additionalText,modalBody,modalTitle}) {
+export default function InformationPopup({setShowModal,onConfirm,modalBody,modalTitle}) {
     const [addBgColor,setAddBgColor] = useState(true)
     useEffect(() => {
           document.querySelector("#okBtn").focus()
@@ -25,10 +25,7 @@ export default function InformationPopup({setShowModal,onConfirm,showExtraText,a
                   <h5 className="modal-title">{modalTitle}</h5>
                 </div>
                 <div className="modal-body">
-                  <div className="displayGroupName">{modalBody}</div>
-                  {
-                    showExtraText && <div className='modalAdditionalText'>{additionalText}</div>
-                  }
+                  <div className="displayGroupName">{modalBody}</div>              
                 </div>
                 <div className="modal-footer">
                   <button

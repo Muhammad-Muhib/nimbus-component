@@ -15,7 +15,11 @@ export default function MailPopup({ body, setBody, subject, setSubject, toMail, 
     const handleSendEmail = async () => {
         setIsButtonDisabled(true);
         try {
-            await sendEmail();
+            const result = await sendEmail();
+            // If validation failed (result is false), re-enable the button
+            if (result === false) {
+                setIsButtonDisabled(false);
+            }
         } catch (error) {
             setIsButtonDisabled(false);
         }

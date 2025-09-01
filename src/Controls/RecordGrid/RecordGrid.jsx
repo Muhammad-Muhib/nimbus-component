@@ -123,27 +123,27 @@ export default function RecordGrid({
   const sendEmail = async () => {
     if (!tableRef.current) {
       toast.error("Table not found");
-      return;
+      return false;
     }
 
     if (!tableData || tableData.length === 0) {
       toast.error("No data to convert");
-      return;
+      return false;
     }
 
     if (toMail == null || toMail == "") {
       toast.error("Please enter an Email ID.");
-      return;
+      return false;
     } else {
       const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
       if (!emailRegex.test(toMail)) {
         toast.error("Please enter a Valid Email ID.");
-        return;
+        return false;
       }
     }
     if (subject == null || subject == "") {
       toast.error("Please enter subject.");
-      return;
+      return false;
     }
 
     try {

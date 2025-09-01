@@ -2,28 +2,27 @@ import apiService from "../../ApiService/apiService"
 import html2canvas from "html2canvas";
 import {toast} from "react-toastify"
 
-export const sendEmail = async (tableRef,body,toMail,subject,setShowMailModal)=>{
+export const sendEmail = async (tableRef,body,toMail,subject,setShowMailModal,isEmailValid)=>{
     const apiUrl = import.meta.env.VITE_BACKEND_API_URL;
     if (!tableRef.current) {
       toast.error("Table not found");
-      return;
+      return false;
     }
 
     if(toMail == null || toMail == ""){
       toast.error("Please enter an Email ID.")
-      return;
+      return false;
     }else{
       const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
       if(!emailRegex.test(toMail)){
         toast.error("Please enter a Valid Email ID.")
-        return;
+        return false;
        }
     }
     if(subject == null || subject == ""){
       toast.error("Please enter subject.")
-      return
+      return false;
     }
-    
 
     try {
       // Configure html2canvas options for better quality
@@ -54,23 +53,23 @@ export const sendEmail = async (tableRef,body,toMail,subject,setShowMailModal)=>
                 if (res.data.success) {
                   setShowMailModal(false);
                   toast.success("Mail sent successfully");
-                  return;
+                  return true;
                 } else {
                   setShowMailModal(false);
                   toast(res.error);
-                  return;
+                  return false;
                 }
               })
               .catch((ex) => {
                 setShowMailModal(false);
                 console.log(ex);
                 toast.error("Something went wrong");
-                return;
+                return false;
               });
           } else {
             setShowMailModal(false);
             toast.error("Failed to create image");
-            return;
+            return false;
           }
         },
         "image/png",
@@ -81,5 +80,6 @@ export const sendEmail = async (tableRef,body,toMail,subject,setShowMailModal)=>
     } catch (error) {
       console.error("Error converting table to image:", error);
       toast.error("Failed to convert table to image");
+      return false;
     }
 }

@@ -2,6 +2,7 @@ import React, { useEffect,useState } from "react";
 import { MdInfoOutline } from "react-icons/md";
 import RightDrawer from "../RightDrawer/RightDrawer";
 import Tooltip from '@mui/material/Tooltip';
+import CustomTooltip from "../Tooltip/CustomTooltip";
 import RelatedOperationsMenu from "../RelatedOperation/RelatedOperation";
 
 export default function Tabs({
@@ -63,18 +64,13 @@ export default function Tabs({
           >
             {tab1name || "Record"} 
             {
-              tooltipText.trim() != "" && <span style={{marginLeft:'8px'}}>
-              <Tooltip
+              tooltipText != "" && <span style={{marginLeft:'8px'}}>
+              <CustomTooltip
                           placement="top"
-                          title={`${tooltipText}`}
-                          slotProps={{
-                            tooltip: {
-                              sx: { fontSize: "11px", fontWeight: "600",backgroundColor:"rgba(0,0,0,0.6)",color:'white' },
-                            },
-                          }}
+                          body={`${tooltipText}`}
                         >
                           <MdInfoOutline size={20} />
-                        </Tooltip>
+                        </CustomTooltip>
             </span>
             }            
           </a>
@@ -119,6 +115,7 @@ export default function Tabs({
           </li>
         )}
         <li className="modeBtnContainer">
+          <CustomTooltip body="Create New Record">
           <button
             style={{
               borderRadius: isRecordTab
@@ -140,7 +137,9 @@ export default function Tabs({
             />
             New
           </button>
+          </CustomTooltip>
           {isRecordTab && (
+            <CustomTooltip body="Modify Selected Record">
             <button
               className="page_edit_btn"
               onClick={() => {
@@ -155,6 +154,7 @@ export default function Tabs({
               />
               Edit
             </button>
+            </CustomTooltip>
           )}
           {
             showRelatedOperation && <RelatedOperationsMenu menuItems={menuItems} />
