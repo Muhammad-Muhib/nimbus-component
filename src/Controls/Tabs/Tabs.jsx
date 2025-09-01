@@ -64,18 +64,13 @@ export default function Tabs({
           >
             {tab1name || "Record"} 
             {
-              tooltipText.trim() != "" && <span style={{marginLeft:'8px'}}>
-              <Tooltip
+              tooltipText != "" && <span style={{marginLeft:'8px'}}>
+              <CustomTooltip
                           placement="top"
-                          title={`${tooltipText}`}
-                          slotProps={{
-                            tooltip: {
-                              sx: { fontSize: "11px", fontWeight: "600",backgroundColor:"rgba(0,0,0,0.6)",color:'white' },
-                            },
-                          }}
+                          body={`${tooltipText}`}
                         >
                           <MdInfoOutline size={20} />
-                        </Tooltip>
+                        </CustomTooltip>
             </span>
             }            
           </a>
