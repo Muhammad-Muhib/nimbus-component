@@ -1,4 +1,4 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { motion } from "framer-motion";
 import CustomTooltip from "../Tooltip/CustomTooltip";
 export default function UpdateCancelBtn({
@@ -8,6 +8,25 @@ export default function UpdateCancelBtn({
   updateBtnColor = "btn-green",
   showUnderLine = false,
 }) {
+  const [isMobile, setIsMobile] = useState(false);
+
+  // Check if device is mobile
+  useEffect(() => {
+    const checkMobile = () => {
+      const isMobileDevice = window.innerWidth <= 768;
+      setIsMobile(isMobileDevice);
+    };
+
+    checkMobile();
+    window.addEventListener('resize', checkMobile);
+    
+    return () => {
+      window.removeEventListener('resize', checkMobile);
+    };
+  }, []);
+
+  // Override showUnderLine to false on mobile
+  const showUnderLine = showUnderLine && !isMobile;
   useEffect(() => {
     const handleKeyDown = (e) => {
       e.stopPropagation();

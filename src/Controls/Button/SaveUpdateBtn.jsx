@@ -1,6 +1,6 @@
 import { FaPrint } from "react-icons/fa";
 import { motion } from "framer-motion";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import Tooltip from '@mui/material/Tooltip';
 
 export default function SaveUpdateBtn({
@@ -18,6 +18,25 @@ export default function SaveUpdateBtn({
   showUnderLine = false,
   hideDelete = false
 }) {
+  const [isMobile, setIsMobile] = useState(false);
+
+  // Check if device is mobile
+  useEffect(() => {
+    const checkMobile = () => {
+      const isMobileDevice = window.innerWidth <= 768;
+      setIsMobile(isMobileDevice);
+    };
+
+    checkMobile();
+    window.addEventListener('resize', checkMobile);
+    
+    return () => {
+      window.removeEventListener('resize', checkMobile);
+    };
+  }, []);
+
+  // Override showUnderLine to false on mobile
+  const showUnderLine = showUnderLine && !isMobile;
  useEffect(() => {
     const handleKeyDown = (e) => {
       e.stopPropagation();
@@ -204,45 +223,45 @@ export default function SaveUpdateBtn({
               </Tooltip>
             </>
           )}
-          {
-            !hideDelete && mode.toLowerCase() == "new" ||
-          mode.toLowerCase() == "viewmode" ||
-          disableDelete ? (
-            <Tooltip title="Delete loaded data" placement="top">
-            <button type="button" className="btn-style btn-disable" disabled>
-              {showUnderLine ? (
-                <>
-                  <span style={{ textDecoration: "underline" }}>D</span>
-                  <span>elete</span>
-                </>
-              ) : (
-                "Delete"
-              )}
-            </button>
-            </Tooltip>
-          ) : (
-            <Tooltip title="Delete loaded data" placement="top">
-            <motion.button
-              type="button"
-              className="btn-style btn-red"
-              onClick={handleDelete}
-              whileTap={{
-                scale: "0.8",
-              }}
-              id="btnDelete"
-            >
-              {showUnderLine ? (
-                <>
-                  <span style={{ textDecoration: "underline" }}>D</span>
-                  <span>elete</span>
-                </>
-              ) : (
-                "Delete"
-              )}
-            </motion.button>
-            </Tooltip>
-          )
-          }
+          {!hideDelete && (
+            mode.toLowerCase() == "new" ||
+            mode.toLowerCase() == "viewmode" ||
+            disableDelete ? (
+              <Tooltip title="Delete loaded data" placement="top">
+                <button type="button" className="btn-style btn-disable" disabled>
+                  {showUnderLine ? (
+                    <>
+                      <span style={{ textDecoration: "underline" }}>D</span>
+                      <span>elete</span>
+                    </>
+                  ) : (
+                    "Delete"
+                  )}
+                </button>
+              </Tooltip>
+            ) : (
+              <Tooltip title="Delete loaded data" placement="top">
+                <motion.button
+                  type="button"
+                  className="btn-style btn-red"
+                  onClick={handleDelete}
+                  whileTap={{
+                    scale: "0.8",
+                  }}
+                  id="btnDelete"
+                >
+                  {showUnderLine ? (
+                    <>
+                      <span style={{ textDecoration: "underline" }}>D</span>
+                      <span>elete</span>
+                    </>
+                  ) : (
+                    "Delete"
+                  )}
+                </motion.button>
+              </Tooltip>
+            )
+          )}
         </div>
       </div>
     </>
