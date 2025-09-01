@@ -5,7 +5,6 @@ import { motion } from "framer-motion";
 import { toast } from "react-toastify";
 import html2canvas from "html2canvas";
 import MailPopup from "../Popup/MailPopup";
-import { sendEmail as sendEmailUtil } from "../Mail/Email";
 import apiService from "../../ApiService/apiService";
 import { getTableDataByKey } from "../../IndexDbServices/indexDbServices";
 import { MdInfoOutline } from "react-icons/md";
