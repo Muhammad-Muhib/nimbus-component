@@ -1,79 +1,25 @@
-import { useEffect, useState, useRef } from 'react'
+import { useEffect, useState } from 'react'
 import Input from '../Input/Input';
 import InputComment from '../Input/InputComment';
 import { TbSend } from "react-icons/tb";
 
 export default function MailPopup({ body, setBody, subject, setSubject, toMail, setToMail, setShowMailModal, showMailModal, sendEmail }) {
 
-    const [isButtonDisabled, setIsButtonDisabled] = useState(true);
-    const [isEmailValid, setIsEmailValid] = useState(false);
-    const emailInputRef = useRef(null);
-
+    const [isButtonDisabled, setIsButtonDisabled] = useState(false);
     useEffect(() => {
         if (!showMailModal) {
-            setIsButtonDisabled(true);
-            setIsEmailValid(false);
-        } else {
-            // Focus on email field when modal opens
-            setTimeout(() => {
-                if (emailInputRef.current) {
-                    emailInputRef.current.focus();
-                }
-            }, 100);
+            setIsButtonDisabled(false);
         }
     }, [showMailModal]);
 
-    // Email validation function
-    const validateEmail = (email) => {
-        if (!email || email.trim() === "") {
-            return false;
-        }
-        const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-        return emailRegex.test(email);
-    };
-
-    // Handle email change with validation
-    const handleEmailChange = (newEmail) => {
-        setToMail(newEmail);
-        const isValid = validateEmail(newEmail);
-        setIsEmailValid(isValid);
-        
-        // Enable/disable send button based on validation
-        if (isValid && subject && subject.trim() !== "") {
-            setIsButtonDisabled(false);
-        } else {
-            setIsButtonDisabled(true);
-        }
-
-        // Focus on email field after validation passes
-        if (isValid && emailInputRef.current) {
-            emailInputRef.current.focus();
-        }
-    };
-
-    // Handle subject change
-    const handleSubjectChange = (newSubject) => {
-        setSubject(newSubject);
-        // Enable/disable send button based on both email and subject
-        if (isEmailValid && newSubject && newSubject.trim() !== "") {
-            setIsButtonDisabled(false);
-        } else {
-            setIsButtonDisabled(true);
-        }
-    };
-
     const handleSendEmail = async () => {
-        // Final validation before sending
-        if (!validateEmail(toMail)) {
-            if (emailInputRef.current) {
-                emailInputRef.current.focus();
-            }
-            return;
-        }
-        
         setIsButtonDisabled(true);
         try {
-            await sendEmail();
+            const result = await sendEmail();
+            // If validation failed (result is false), re-enable the button
+            if (result === false) {
+                setIsButtonDisabled(false);
+            }
         } catch (error) {
             setIsButtonDisabled(false);
         }
@@ -117,22 +63,14 @@ export default function MailPopup({ body, setBody, subject, setSubject, toMail, 
                             <span>
                                 To :
                             </span>
-                            <div style={{ position: 'relative', width: '80%' }}>
-                                <Input
-                                    label=""
-                                    inputVal={toMail}
-                                    setInputVal={handleEmailChange}
-                                    customClass={"mailInput"}
-                                    customInputClass={"rounded"}
-                                    important={"true"}
-                                    inputRef={emailInputRef}
-                                />
-                                {toMail && (
-                                    <div className={`email-validation-indicator ${isEmailValid ? 'valid' : 'invalid'}`}>
-                                        {isEmailValid ? '✓' : '✗'}
-                                    </div>
-                                )}
-                            </div>
+                            <Input
+                                label=""
+                                inputVal={toMail}
+                                setInputVal={setToMail}
+                                customClass={"mailInput"}
+                                customInputClass={"rounded"}
+                                important={"true"}
+                            />
                         </div>
                         <div className='mailInputContainer'>
                             <span>
@@ -141,7 +79,7 @@ export default function MailPopup({ body, setBody, subject, setSubject, toMail, 
                             <Input
                                 label=""
                                 inputVal={subject}
-                                setInputVal={handleSubjectChange}
+                                setInputVal={setSubject}
                                 customClass={"mailInput"}
                                 customInputClass={"rounded"}
                                 important={"true"}
