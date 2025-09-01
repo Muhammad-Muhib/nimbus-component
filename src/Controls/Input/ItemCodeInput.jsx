@@ -8,7 +8,8 @@ export default function ItemCodeInput({
   id,
   maxLength,
   inputRef,
-  handleBlur
+  handleBlur,
+  customInputClass
 }) {
   const internalRef = useRef(null);
   useEffect(() => {
@@ -18,7 +19,7 @@ export default function ItemCodeInput({
   }, [inputRef]);
   const handleInputChange = (e) => {
     let value = e.target.value;    
-    value = value.replace(/[^a-zA-Z\s]/g, "");
+    value = value.replace(/[^a-zA-Z\s0-9]/g, "");
     setInputVal(value);
   };
   return (
@@ -30,7 +31,7 @@ export default function ItemCodeInput({
           onClick={(e) => e.target.select()}
           id={`${id}`}
           type="text"
-          className="form-control item_code_input candela_input"
+          className={`form-control item_code_input candela_input ${customInputClass}`}
           value={inputVal}
           onChange={(e) => {
             handleInputChange(e);
