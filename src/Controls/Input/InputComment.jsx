@@ -1,3 +1,4 @@
+import { useRef } from "react";
 export default function InputComment({
   label,
   placeholder,
@@ -6,12 +7,20 @@ export default function InputComment({
   important,
   customClass,
   customInputClass,
+  inputRef,
 }) {
+  const internalRef = useRef(null);
+  useEffect(() => {
+    if (inputRef) {
+      inputRef.current = internalRef.current;
+    }
+  }, [inputRef]);
   return (
     <div className={`form-group commentField ${customClass}`}>
       <div className="inputContainer">
         <div className="inputLabel">{label}</div>
         <textarea
+        ref={internalRef}
           onClick={(e) => e.target.select()}
           placeholder={placeholder != null ? `${placeholder}` : ""}
           id=""

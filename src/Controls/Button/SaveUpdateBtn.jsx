@@ -145,6 +145,7 @@ export default function SaveUpdateBtn({
               whileTap={{
                 scale: "0.8",
               }}
+              disabled={loading}
             >
               {loading ? (
                 <span className="loader"></span>
@@ -187,6 +188,7 @@ export default function SaveUpdateBtn({
                 whileTap={{
                   scale: "0.8",
                 }}
+                disabled={loading}
               >
                 {loading ? (
                   <span className="loader"></span>

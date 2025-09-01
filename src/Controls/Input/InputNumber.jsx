@@ -1,3 +1,4 @@
+import { useRef } from "react";
 export default function InputNumber({
   customClass,
   label,
@@ -7,8 +8,15 @@ export default function InputNumber({
   setInputVal,
   important,
   disable,
-  maxLength
+  maxLength,
+  inputRef,
 }) {
+  const internalRef = useRef(null);
+  useEffect(() => {
+    if (inputRef) {
+      inputRef.current = internalRef.current;
+    }
+  }, [inputRef]);
   const handleChange = (e) => {
     let val = e.target.value;
     // Allow only digits and one optional decimal
@@ -21,6 +29,7 @@ export default function InputNumber({
       <div className="inputContainer">
         <div className="inputLabel">{label}</div>
         <input
+        ref={internalRef}
           name={`${name}`}
           id=""
           type="text"

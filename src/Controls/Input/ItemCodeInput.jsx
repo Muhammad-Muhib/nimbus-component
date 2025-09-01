@@ -1,3 +1,4 @@
+import { useRef } from "react";
 export default function ItemCodeInput({
   customClass,
   label,
