@@ -130,7 +130,7 @@
     height: 58.500px !important;
     font-size: 13px !important;
     resize: none !important;
-    cursor: default;
+    cursor: text;
     font-family :Segoe, "Segoe UI", "DejaVu Sans", "Trebuchet MS", Verdana, sans-serif !important
 }
 .custom-input {
@@ -508,7 +508,7 @@
 
 .modeBtnContainer {
   position: absolute;
-  right: 12%;
+  right: 9%;
   top: 0.15rem;
   display: flex;
   gap: 3px;
@@ -1439,6 +1439,23 @@ border: 1px solid white;
     margin-right: 1.2rem;
 }
 
+.email-validation-indicator {
+    position: absolute;
+    right: 10px;
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: 14px;
+    font-weight: bold;
+}
+
+.email-validation-indicator.valid {
+    color: #28a745;
+}
+
+.email-validation-indicator.invalid {
+    color: #dc3545;
+}
+
 
 /* Right Drawer  */
 /* Right Drawer Styles */
@@ -1502,15 +1519,16 @@ border: 1px solid white;
 
 .videoCardContainer{
   display: flex;
-  justify-content: space-evenly;
+  padding-left: 1rem;
+  padding-right: 1rem;
   flex-wrap: wrap;
   width: 800px;
-  gap: 0.5rem;
+  gap: 1rem;
 }
 
 .videoCard{
-  width: 15rem;
-  height: 15rem;
+  width: 10rem;
+  height: 10rem;
   overflow: hidden;
   text-decoration: none ;
 }
@@ -1522,7 +1540,6 @@ border: 1px solid white;
   color: rgba(0, 0, 0, 0.4);
   font-weight: bold;
   width: 14rem;
-  text-align: justify;
 }
 /* Drawer Container */
 .right-drawer {
@@ -1567,7 +1584,7 @@ border: 1px solid white;
 }
 
 .drawer-close-btn {
-  background: none;
+  background: #333;
   border: none;
   cursor: pointer;
   padding: 8px;
@@ -1579,10 +1596,10 @@ border: 1px solid white;
   transition: all 0.2s ease;
 }
 
-.drawer-close-btn:hover {
+/* .drawer-close-btn:hover {
   background-color: #e9ecef;
   color: #333;
-}
+} */
 
 .drawer-close-btn:focus {
   outline: 2px solid #007bff;
@@ -1702,10 +1719,10 @@ body.drawer-open {
     color: #a0aec0;
   }
   
-  .drawer-close-btn:hover {
+  /* .drawer-close-btn:hover {
     background-color: #4a5568;
     color: #f7fafc;
-  }  
+  }   */
 }
 
 @media screen and (max-width:800px) {

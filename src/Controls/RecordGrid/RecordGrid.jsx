@@ -117,7 +117,60 @@ export default function RecordGrid({
   };
 
   const handleDownloadPDF = () => {
-    window.print();
+    const printableArea = document.getElementById("printable-area");
+    
+    // Create new window for printing
+    const printWindow = window.open("", "_blank", "width=800,height=600");
+
+    // Get current page styles
+    const styleSheets = Array.from(document.styleSheets)
+      .map(styleSheet => {
+        try {
+          return Array.from(styleSheet.cssRules)
+            .map(rule => rule.cssText)
+            .join('\n');
+        } catch (e) {
+          return '';
+        }
+      })
+      .join('\n');
+
+    const printContent = `
+      <!DOCTYPE html>
+      <html>
+      <head>
+        <meta charset="utf-8">
+        <title>Print - ${printHeading || 'Table'}</title>
+        <style>
+          ${styleSheets}
+          body { 
+            margin: 0; 
+            padding: 20px; 
+            font-family: Arial, sans-serif;
+          }
+          @media print {
+            body { margin: 0; padding: 0; }
+            .no-print { display: none !important; }
+          }
+        </style>
+      </head>
+      <body>
+        ${printableArea.outerHTML}
+        <script>
+          window.onload = function() {
+            window.print();
+            window.onafterprint = function() {
+              window.close();
+            };
+          };
+        </script>
+      </body>
+      </html>
+    `;
+
+    printWindow.document.open();
+    printWindow.document.write(printContent);
+    printWindow.document.close();
   };
 
   const sendEmail = async () => {

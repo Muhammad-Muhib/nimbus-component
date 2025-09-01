@@ -89,7 +89,7 @@ export default function SaveUpdateBtn({
   }, []);
   return (
     <>
-      <div className="btnMainContainer col-md-10 col-sm-10 form-group print_box_bg low_margin">
+      <div className="btnMainContainer col-md-11 col-sm-11 form-group print_box_bg low_margin">
         {showPrint && mode.toLowerCase() != "new" && mode.toLowerCase() != "viewmode" && (
           <div className="detailPrinterContainer">
             <FaPrint

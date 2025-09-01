@@ -40,7 +40,7 @@ export default function UpdateCancelBtn({
     };
   }, []);
   return (
-    <div className="btnMainContainer saveCancel col-md-10 col-sm-10 form-group print_box_bg low_margin">
+    <div className="btnMainContainer saveCancel col-md-11 col-sm-11 form-group print_box_bg low_margin">
       <div>
         <motion.button
           type="button"

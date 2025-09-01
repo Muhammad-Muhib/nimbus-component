@@ -21,6 +21,24 @@ export default function ConfirmationPopup({setShowModal,onClose,onConfirm,showEx
         setAddBgColor(false)
         document.querySelector("#noBtn").focus()
       }
+      // F8 key - focus on Yes button
+      if (e.key == "F8") {
+        e.preventDefault();
+        setAddBgColor(true)
+        document.querySelector("#okBtn").focus()
+      }
+      // F7 key - focus on Yes button
+      if (e.key == "F7") {
+        e.preventDefault();
+        setAddBgColor(true)
+        document.querySelector("#okBtn").focus()
+      }
+      // Alt+D key - focus on No button
+      if (e.altKey && e.key.toLowerCase() == "d") {
+        e.preventDefault();
+        setAddBgColor(false)
+        document.querySelector("#noBtn").focus()
+      }
     };
 
     document.addEventListener("keydown", handleKeyDown);
