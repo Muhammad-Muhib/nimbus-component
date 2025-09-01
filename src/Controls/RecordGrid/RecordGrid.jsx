@@ -118,59 +118,50 @@ export default function RecordGrid({
   };
 
   const handleDownloadPDF = () => {
-    const printableArea = document.getElementById("printable-area");
-    
-    // Create new window for printing
-    const printWindow = window.open("", "_blank", "width=800,height=600");
-
-    // Get current page styles
-    const styleSheets = Array.from(document.styleSheets)
-      .map(styleSheet => {
-        try {
-          return Array.from(styleSheet.cssRules)
-            .map(rule => rule.cssText)
-            .join('\n');
-        } catch (e) {
-          return '';
-        }
-      })
-      .join('\n');
-
-    const printContent = `
-      <!DOCTYPE html>
+    const printContent = document.getElementById("printArea").innerHTML;
+  
+    // Open a new window, size adjusted for any resolution
+    const printWindow = window.open("", "_blank", "left=0,top=0,width=" + screen.width + ",height=" + screen.height);
+  
+    printWindow.document.write(`
       <html>
-      <head>
-        <meta charset="utf-8">
-        <title>Print - ${printHeading || 'Table'}</title>
-        <style>
-          ${styleSheets}
-          body { 
-            margin: 0; 
-            padding: 20px; 
-            font-family: Arial, sans-serif;
-          }
-          @media print {
-            body { margin: 0; padding: 0; }
-            .no-print { display: none !important; }
-          }
-        </style>
-      </head>
-      <body>
-        ${printableArea.outerHTML}
-        <script>
-          window.onload = function() {
-            window.print();
-            window.onafterprint = function() {
-              window.close();
-            };
-          };
-        </script>
-      </body>
+        <head>
+          <title>Print Preview</title>
+          <style>
+            body { 
+              font-family: Arial, sans-serif; 
+              padding: 20px; 
+            }
+            .btn-bar {
+              margin-bottom: 20px;
+            }
+            button {
+              padding: 8px 16px;
+              margin-right: 10px;
+              border: none;
+              border-radius: 5px;
+              cursor: pointer;
+            }
+            .print-btn {
+              background: #4CAF50;
+              color: white;
+            }
+            .close-btn {
+              background: #f44336;
+              color: white;
+            }
+          </style>
+        </head>
+        <body>
+          <div class="btn-bar">
+            <button class="print-btn" onclick="window.print()">Print</button>
+            <button class="close-btn" onclick="window.close()">Close</button>
+          </div>
+          ${printContent}
+        </body>
       </html>
-    `;
-
-    printWindow.document.open();
-    printWindow.document.write(printContent);
+    `);
+  
     printWindow.document.close();
   };
 
