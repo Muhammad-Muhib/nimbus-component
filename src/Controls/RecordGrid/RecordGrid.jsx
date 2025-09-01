@@ -118,51 +118,7 @@ export default function RecordGrid({
   };
 
   const handleDownloadPDF = () => {
-    const printContent = document.getElementById("printArea").innerHTML;
-  
-    // Open a new window, size adjusted for any resolution
-    const printWindow = window.open("", "_blank", "left=0,top=0,width=" + screen.width + ",height=" + screen.height);
-  
-    printWindow.document.write(`
-      <html>
-        <head>
-          <title>Print Preview</title>
-          <style>
-            body { 
-              font-family: Arial, sans-serif; 
-              padding: 20px; 
-            }
-            .btn-bar {
-              margin-bottom: 20px;
-            }
-            button {
-              padding: 8px 16px;
-              margin-right: 10px;
-              border: none;
-              border-radius: 5px;
-              cursor: pointer;
-            }
-            .print-btn {
-              background: #4CAF50;
-              color: white;
-            }
-            .close-btn {
-              background: #f44336;
-              color: white;
-            }
-          </style>
-        </head>
-        <body>
-          <div class="btn-bar">
-            <button class="print-btn" onclick="window.print()">Print</button>
-            <button class="close-btn" onclick="window.close()">Close</button>
-          </div>
-          ${printContent}
-        </body>
-      </html>
-    `);
-  
-    printWindow.document.close();
+    window.print();
   };
 
   const sendEmail = async () => {
