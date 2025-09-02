@@ -16,7 +16,12 @@ export default function SaveUpdateBtn({
   disableUpdate = false,
   disableDelete = false,
   showUnderLine = false,
-  hideDelete = false
+  hideDelete = false,
+  handleCustomButton,
+  disableCustomButton = false,
+  CustomButtonText = "Custom Button",
+  CustomTooltipText = 'Custom Button Tooltip',
+  hideCustomButton = false,
 }) {
   const [isMobile, setIsMobile] = useState(false);
 
@@ -258,6 +263,31 @@ export default function SaveUpdateBtn({
                   ) : (
                     "Delete"
                   )}
+                </motion.button>
+              </Tooltip>
+            )
+          )}
+           {!hideCustomButton && (
+            mode.toLowerCase() == "new" ||
+            mode.toLowerCase() == "viewmode" ||
+            disableCustomButton ? (
+              <Tooltip title={CustomTooltipText} placement="top">
+                <button type="button" className="btn-style btn-disable" disabled>
+                    {CustomButtonText}
+                </button>
+              </Tooltip>
+            ) : (
+              <Tooltip title={CustomTooltipText} placement="top">
+                <motion.button
+                  type="button"
+                  className="btn-style btn-red"
+                  onClick={handleCustomButton}
+                  whileTap={{
+                    scale: "0.8",
+                  }}
+                  id="btnCustom"
+                >
+                  {CustomButtonText}
                 </motion.button>
               </Tooltip>
             )
