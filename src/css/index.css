@@ -463,7 +463,6 @@
   z-index: 100;
   z-index: 10;
   background: #ecf0f1;
-  width: 100%;
   margin-bottom: 3rem;
   position: fixed;
 }
@@ -1498,6 +1497,12 @@ border: 1px solid white;
     margin-bottom: 30px;
     padding-left: 1rem;
     padding-top: 0.5rem;
+}
+
+.videoLanguageDropDownContainer{
+  width: 15rem;
+  padding-left: 1rem;
+  padding-bottom: 1rem;
 }
 
 .videoCardContainer{
