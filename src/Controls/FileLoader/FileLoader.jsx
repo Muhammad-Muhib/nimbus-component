@@ -93,9 +93,7 @@ const FileLoader = ({ LoadProductsThroughLoaderFile,format }) => {
             <br />
             <b>{format}</b>
             <br />
-            <b> Note: </b>
-            <br />
-              Each Item must be in separate line.
+            <b> Note: Each Item must be in separate line. </b>              
           </>
         }
         placement="top"
