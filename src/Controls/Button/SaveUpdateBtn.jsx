@@ -36,7 +36,7 @@ export default function SaveUpdateBtn({
   }, []);
 
   // Override showUnderLine to false on mobile
-  const showUnderLine = showUnderLine && !isMobile;
+  showUnderLine = showUnderLine && !isMobile;
  useEffect(() => {
     const handleKeyDown = (e) => {
       e.stopPropagation();

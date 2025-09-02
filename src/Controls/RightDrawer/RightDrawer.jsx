@@ -1,13 +1,21 @@
-import React,{useEffect} from "react";
+import React,{useEffect, useState} from "react";
 import { IoClose } from "react-icons/io5";
+import OptionSelection from "../DropDown/OptionSelection";
 
 const RightDrawer = ({
   isOpen,
   onClose,
   videoModel = [],
   articleModel = [],
-  setIsOpen,
+  setIsOpen,  
 }) => {
+    const [videoSlice,setVideoSlice] = useState([])
+    const languageOptions = [
+        {value:"1",label:"English"},
+        {value:"2",label:"Urdu"}
+    ]
+    const [selectedLanguage,setSelectedLanguage] = useState({value:"1",label:"English"})
+    
     useEffect(() => {
             const handleKeyDown = (e) => {
                 if (e.key == "Escape") {
@@ -20,6 +28,11 @@ const RightDrawer = ({
                 document.removeEventListener("keydown", handleKeyDown);
             };
         }, [isOpen]);
+        useEffect(()=>{
+            if(videoModel.length > 0){
+                setVideoSlice(videoModel.filter((item)=>item.language.toLowerCase() == selectedLanguage.label.toLowerCase()))
+            }
+        },[videoModel,selectedLanguage])     
   return (
     <>
       {/* Overlay */}
@@ -46,8 +59,14 @@ const RightDrawer = ({
             {
                 videoModel.length > 0 && <div className="videosContainer">
             <h2 className="videoHeader">Videos</h2>
+            <OptionSelection
+            label={"Language"}
+            options={languageOptions}
+            selectedOption={selectedLanguage}
+            setSelectedOption={setSelectedLanguage}
+             />
             <div className="videoCardContainer">
-              {videoModel.map((item, index) => {
+              {videoSlice.map((item, index) => {
                 return (
                   <a
                     href={`${item.youTubeLink}`}

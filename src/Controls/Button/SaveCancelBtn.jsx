@@ -19,7 +19,7 @@ export default function SaveCancelBtn({hideCancel,handleReset,handleSave,loading
   }, []);
 
   // Override showUnderLine to false on mobile
-  const showUnderLine = showUnderLine && !isMobile;
+  showUnderLine = showUnderLine && !isMobile;
   useEffect(() => {
       const handleKeyDown = (e) => {
         if (e.altKey) {
