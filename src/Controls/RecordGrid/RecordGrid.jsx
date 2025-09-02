@@ -9,6 +9,7 @@ import apiService from "../../ApiService/apiService";
 import { getTableDataByKey } from "../../IndexDbServices/indexDbServices";
 import { MdInfoOutline } from "react-icons/md";
 import CustomTooltip from "../Tooltip/CustomTooltip";
+import { useGetTokenValue } from "../../CustomHooks/GetTokenValue";
 
 export default function RecordGrid({
   tablebody,
@@ -28,6 +29,7 @@ export default function RecordGrid({
   disableCSV = false,
   selectedRecord = null,
 }) {
+  const CandelaVersion = useGetTokenValue("CandelaVersion")
   const [selectedId, setSelectedId] = useState();
   const [tableData, setTableData] = useState(tablebody);
   const [showMailModal, setShowMailModal] = useState(false);
@@ -36,6 +38,7 @@ export default function RecordGrid({
   const [body, setBody] = useState("");
   const [quantityPoint, setQuantityPoint] = useState(2);
   const [amountPoint, setAmountPoint] = useState(2);
+  const [showStoreColumn,setShowStoreColumn] = useState(true)
   const tableRef = useRef(null);
   const apiUrl = import.meta.env.VITE_BACKEND_API_URL;
 
@@ -48,6 +51,12 @@ export default function RecordGrid({
   useEffect(() => {
     fetchConfigurationValues();
   }, []);
+
+  useEffect(()=>{
+    if(CandelaVersion == "1"){      
+        setShowStoreColumn(false)
+    }    
+  },[CandelaVersion])
 
   const fetchConfigurationValues = async () => {
     let qtyConfig = await getTableDataByKey(
@@ -241,6 +250,9 @@ export default function RecordGrid({
                   : item[key];
                 item[key] = formattedDate;
               }
+              if((item[key].toLowerCase().includes("shop") || item[key].toLowerCase().includes("store") && showStoreColumn)){
+                return;
+              }
               return (
                 <>
                   <td
@@ -326,6 +338,9 @@ export default function RecordGrid({
           <thead>
             <tr>
               {header.map((item, index) => {
+                if((item.name.toLowerCase().includes("shop") || item.name.toLowerCase().includes("store") && showStoreColumn)){
+                  return ;
+                }
                 return (
                   <th
                     key={index}
