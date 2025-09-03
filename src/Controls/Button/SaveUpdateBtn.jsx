@@ -21,7 +21,7 @@ export default function SaveUpdateBtn({
   disableCustomButton = false,
   CustomButtonText = "Custom Button",
   CustomTooltipText = 'Custom Button Tooltip',
-  hideCustomButton = false,
+  hideCustomButton = true,
 }) {
   const [isMobile, setIsMobile] = useState(false);
 
