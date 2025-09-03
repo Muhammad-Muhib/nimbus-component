@@ -1,6 +1,5 @@
 import { useEffect, useState, useRef } from "react";
 import { Table } from "react-bootstrap";
-import { parse, isValid, format } from "date-fns";
 import { motion } from "framer-motion";
 import { toast } from "react-toastify";
 import html2canvas from "html2canvas";
@@ -10,6 +9,7 @@ import { getTableDataByKey } from "../../IndexDbServices/indexDbServices";
 import { MdInfoOutline } from "react-icons/md";
 import CustomTooltip from "../Tooltip/CustomTooltip";
 import { useGetTokenValue } from "../../CustomHooks/GetTokenValue";
+
 
 export default function RecordGrid({
   tablebody,
@@ -29,7 +29,7 @@ export default function RecordGrid({
   disableCSV = false,
   selectedRecord = null,
 }) {
-  const CandelaVersion = useGetTokenValue("CandelaVersion")
+  const CandelaVersion = useGetTokenValue("CandelaVersion");
   const [selectedId, setSelectedId] = useState();
   const [tableData, setTableData] = useState(tablebody);
   const [showMailModal, setShowMailModal] = useState(false);
@@ -38,7 +38,7 @@ export default function RecordGrid({
   const [body, setBody] = useState("");
   const [quantityPoint, setQuantityPoint] = useState(2);
   const [amountPoint, setAmountPoint] = useState(2);
-  const [showStoreColumn,setShowStoreColumn] = useState(true)
+  const [showStoreColumn, setShowStoreColumn] = useState(true);
   const tableRef = useRef(null);
   const apiUrl = import.meta.env.VITE_BACKEND_API_URL;
 
@@ -52,11 +52,11 @@ export default function RecordGrid({
     fetchConfigurationValues();
   }, []);
 
-  useEffect(()=>{
-    if(CandelaVersion == "1"){      
-        setShowStoreColumn(false)
-    }    
-  },[CandelaVersion])
+  useEffect(() => {
+    if (CandelaVersion == "1") {
+      setShowStoreColumn(false);
+    }
+  }, [CandelaVersion]);
 
   const fetchConfigurationValues = async () => {
     let qtyConfig = await getTableDataByKey(
@@ -92,21 +92,46 @@ export default function RecordGrid({
     }
 
     // Step 1: Build headers
-    const headers = gridModel.map((col) => col.csvHeader);
+    let headers = gridModel.map((col) => col.csvHeader);
+    if (!showStoreColumn) {
+      headers = headers.filter(
+        (item) =>
+          !(
+            item.toLowerCase().includes("store") ||
+            item.toLowerCase().includes("shop")
+          )
+      );
+    }
 
     // Step 2: Build rows
     const rows = tableData.map((item) => {
-      return gridModel.map((col) => {
-        const key = col.name.replace(/\s/g, "");
-        let value = item[key];
+      if (!showStoreColumn) {
+        return gridModel.filter(
+      (col) =>
+        (!col.name.toLowerCase().includes("shop") &&
+         !col.name.toLowerCase().includes("store"))
+    ).map((col) => {
+          const key = col.name.replace(/\s/g, "");
+          let value = item[key];
+          // Format date
+          if (col.columnType.toLowerCase() === "date") {
+            value = /^\d{1,2}\/[A-Za-z]{3}\/\d{4}$/.test(value) ? value : value;
+          }
 
-        // Format date
-        if (col.columnType.toLowerCase() === "date") {
-          value = /^\d{1,2}\/[A-Za-z]{3}\/\d{4}$/.test(value) ? value : value;
-        }
+          return `"${value}"`;
+        });
+      } else {
+        return gridModel.map((col) => {
+          const key = col.name.replace(/\s/g, "");
+          let value = item[key];
+          // Format date
+          if (col.columnType.toLowerCase() === "date") {
+            value = /^\d{1,2}\/[A-Za-z]{3}\/\d{4}$/.test(value) ? value : value;
+          }
 
-        return `"${value}"`;
-      });
+          return `"${value}"`;
+        });
+      }
     });
 
     // Step 3: Combine header + rows into CSV string
@@ -250,32 +275,40 @@ export default function RecordGrid({
                   : item[key];
                 item[key] = formattedDate;
               }
-              if((item[key].toLowerCase().includes("shop") || item[key].toLowerCase().includes("store") && showStoreColumn)){
-                return;
+              if (
+                !showStoreColumn &&
+                (key.toLowerCase().includes("shop") ||
+                  key.toLowerCase().includes("store"))
+              ) {
+                return null;
               }
               return (
-                <>
-                  <td
-                    key={index}
-                    style={{
-                      textAlign:
-                        obj.columnType.toLowerCase() == "string" ||
-                        obj.columnType.toLowerCase() == "boolean"
-                          ? `left`
-                          : `right`,
-                      backgroundColor: selectedId == item[id] ? "#4FABFF" : "",
-                      color: selectedId == item[id] ? "white" : "black",
-                    }}
-                  >
-                    {obj.columnType.toLowerCase() == "numeric" ? item[key] :
-                    obj.columnType.toLowerCase() == "date" ? item[key].split(" ")[0] : obj.columnType.toLowerCase() == "quantity" ?
-                    parseFloat(item[key]).toFixed(quantityPoint) :
-                    obj.columnType.toLowerCase() == "value" ?
-                    parseFloat(item[key]).toFixed(amountPoint) :
-                    obj.columnType.toLowerCase() == "boolean" ? item[key] ==
-                    true ? item[key].toString() : "" : item[key]}                    
-                  </td>
-                </>
+                <td
+                  key={key}
+                  style={{
+                    textAlign:
+                      obj.columnType.toLowerCase() == "string" ||
+                      obj.columnType.toLowerCase() == "boolean"
+                        ? `left`
+                        : `right`,
+                    backgroundColor: selectedId == item[id] ? "#4FABFF" : "",
+                    color: selectedId == item[id] ? "white" : "black",
+                  }}
+                >
+                  {obj.columnType.toLowerCase() == "numeric"
+                    ? item[key]
+                    : obj.columnType.toLowerCase() == "date"
+                    ? item[key].split(" ")[0]
+                    : obj.columnType.toLowerCase() == "quantity"
+                    ? parseFloat(item[key]).toFixed(quantityPoint)
+                    : obj.columnType.toLowerCase() == "value"
+                    ? parseFloat(item[key]).toFixed(amountPoint)
+                    : obj.columnType.toLowerCase() == "boolean"
+                    ? item[key] == true
+                      ? item[key].toString()
+                      : ""
+                    : item[key]}
+                </td>
               );
             })}
           </tr>
@@ -293,7 +326,6 @@ export default function RecordGrid({
             <CustomTooltip
               placement="top"
               body="Note: Email, print or export will be done for the values displayed in the grid."
-              
             >
               <MdInfoOutline size={20} />
             </CustomTooltip>
@@ -302,7 +334,9 @@ export default function RecordGrid({
                 scale: "0.8",
               }}
               onClick={handleDownloadPDF}
-              className={`gridPrintBtn mobileHideShow ${disablePrint ? "disableBtn" : ""}`}
+              className={`gridPrintBtn mobileHideShow ${
+                disablePrint ? "disableBtn" : ""
+              }`}
               disabled={disablePrint}
             >
               Print
@@ -312,7 +346,9 @@ export default function RecordGrid({
                 scale: "0.8",
               }}
               onClick={handleDownloadCSV}
-              className={`gridPrintBtn mobileHideShow ${disableCSV ? "disableBtn" : ""}`}
+              className={`gridPrintBtn mobileHideShow ${
+                disableCSV ? "disableBtn" : ""
+              }`}
               disabled={disableCSV}
             >
               CSV
@@ -338,8 +374,12 @@ export default function RecordGrid({
           <thead>
             <tr>
               {header.map((item, index) => {
-                if((item.name.toLowerCase().includes("shop") || item.name.toLowerCase().includes("store") && showStoreColumn)){
-                  return ;
+                if (
+                  !showStoreColumn &&
+                  (item.name.toLowerCase().includes("shop") ||
+                    item.name.toLowerCase().includes("store"))
+                ) {
+                  return null;
                 }
                 return (
                   <th
@@ -360,7 +400,17 @@ export default function RecordGrid({
           <tbody>
             {tableData == null || tableData.length == 0 ? (
               <tr>
-                <td colSpan={header.length} className="noData">
+                <td
+                  colSpan={
+                    header.filter(
+                      (item) =>
+                        showStoreColumn ||
+                        (!item.name.toLowerCase().includes("shop") &&
+                          !item.name.toLowerCase().includes("store"))
+                    ).length
+                  }
+                  className="noData"
+                >
                   No data available!
                 </td>
               </tr>
@@ -375,11 +425,25 @@ export default function RecordGrid({
             >
               <tr>
                 {header.map((item, index) => {
+                  if (
+                    !showStoreColumn &&
+                    (item.name.toLowerCase().includes("shop") ||
+                      item.name.toLowerCase().includes("store"))
+                  ) {
+                    return null;
+                  }
                   if (index == 0) {
-                    return <td className="footColor recordtotal">Total:</td>;
+                    return (
+                      <td key={index} className="footColor recordtotal">
+                        Total:
+                      </td>
+                    );
                   } else if (item.name.toLowerCase().includes("qty")) {
                     return (
-                      <td className="footColor recordAlignRight footText">
+                      <td
+                        key={index}
+                        className="footColor recordAlignRight footText"
+                      >
                         {parseFloat(totalQtyFoot).toFixed(2)}
                       </td>
                     );
@@ -388,12 +452,15 @@ export default function RecordGrid({
                     item.name.toLowerCase().includes("value")
                   ) {
                     return (
-                      <td className="footColor recordAlignRight footText">
+                      <td
+                        key={index}
+                        className="footColor recordAlignRight footText"
+                      >
                         {parseFloat(totalAmountFoot).toFixed(2)}
                       </td>
                     );
                   } else {
-                    return <td className="footColor"></td>;
+                    return <td key={index} className="footColor"></td>;
                   }
                 })}
               </tr>
