@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react'
+import { useEffect, useState, useRef } from 'react'
 import Input from '../Input/Input';
 import InputComment from '../Input/InputComment';
 import { TbSend } from "react-icons/tb";
@@ -6,6 +6,7 @@ import { TbSend } from "react-icons/tb";
 export default function MailPopup({ body, setBody, subject, setSubject, toMail, setToMail, setShowMailModal, showMailModal, sendEmail }) {
 
     const [isButtonDisabled, setIsButtonDisabled] = useState(false);
+    const emailInputRef = useRef(null);
     useEffect(() => {
         if (!showMailModal) {
             setIsButtonDisabled(false);
@@ -16,9 +17,9 @@ export default function MailPopup({ body, setBody, subject, setSubject, toMail, 
         setIsButtonDisabled(true);
         try {
             const result = await sendEmail();
-            // If validation failed (result is false), re-enable the button
             if (result === false) {
                 setIsButtonDisabled(false);
+                emailInputRef.current?.focus();
             }
         } catch (error) {
             setIsButtonDisabled(false);
@@ -64,6 +65,7 @@ export default function MailPopup({ body, setBody, subject, setSubject, toMail, 
                                 To :
                             </span>
                             <Input
+                                ref={emailInputRef}
                                 label=""
                                 inputVal={toMail}
                                 setInputVal={setToMail}
