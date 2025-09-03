@@ -7,6 +7,7 @@ export default function MailPopup({ body, setBody, subject, setSubject, toMail, 
 
     const [isButtonDisabled, setIsButtonDisabled] = useState(false);
     const emailInputRef = useRef(null);
+    const subjectInputRef = useRef(null);
     useEffect(() => {
         if (!showMailModal) {
             setIsButtonDisabled(false);
@@ -19,7 +20,11 @@ export default function MailPopup({ body, setBody, subject, setSubject, toMail, 
             const result = await sendEmail();
             if (result === false) {
                 setIsButtonDisabled(false);
-                emailInputRef.current?.focus();
+                if (!toMail || toMail.trim() === "") {
+                    emailInputRef.current?.focus();
+                } else if (!subject || subject.trim() === "") {
+                    subjectInputRef.current?.focus();
+                }
             }
         } catch (error) {
             setIsButtonDisabled(false);
@@ -79,6 +84,7 @@ export default function MailPopup({ body, setBody, subject, setSubject, toMail, 
                                 Subject :
                             </span>
                             <Input
+                                ref={subjectInputRef}
                                 label=""
                                 inputVal={subject}
                                 setInputVal={setSubject}
