@@ -21,9 +21,9 @@ export default function MailPopup({ body, setBody, subject, setSubject, toMail, 
             if (result === false) {
                 setIsButtonDisabled(false);
                 if (!toMail || toMail.trim() === "") {
-                    emailInputRef.current?.focus();
+                    emailInputRef.current.focus();
                 } else if (!subject || subject.trim() === "") {
-                    subjectInputRef.current?.focus();
+                    subjectInputRef.current.focus();
                 }
             }
         } catch (error) {
