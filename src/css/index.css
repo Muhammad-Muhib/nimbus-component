@@ -1942,8 +1942,10 @@ body.drawer-open {
 @media screen and (max-width: 425px) {
       .mobileHideShow {
         display: none;
-      }
-      .modeBtnContainer {
-        right: 3%;
+      }      
+}
+@media screen and (max-width:700px) {
+  .modeBtnContainer {
+       position: relative;
       }
 }

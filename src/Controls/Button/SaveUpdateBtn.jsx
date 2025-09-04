@@ -269,15 +269,15 @@ export default function SaveUpdateBtn({
           )}
            {!hideCustomButton && (
             mode.toLowerCase() == "new" ||
-            mode.toLowerCase() == "viewmode" ||
-            disableCustomButton ? (
-              <Tooltip title={CustomTooltipText} placement="top">
+            mode.toLowerCase() == "viewmode"
+            ? (
+              <>
+              {
+                disableCustomButton ? <Tooltip title={CustomTooltipText} placement="top">
                 <button type="button" className="btn-style btn-disable" disabled>
                     {CustomButtonText}
                 </button>
-              </Tooltip>
-            ) : (
-              <Tooltip title={CustomTooltipText} placement="top">
+              </Tooltip> : <Tooltip title={CustomTooltipText} placement="top">
                 <motion.button
                   type="button"
                   className="btn-style btn-red"
@@ -290,6 +290,10 @@ export default function SaveUpdateBtn({
                   {CustomButtonText}
                 </motion.button>
               </Tooltip>
+              }
+              </>              
+            ) : (
+              null
             )
           )}
         </div>
