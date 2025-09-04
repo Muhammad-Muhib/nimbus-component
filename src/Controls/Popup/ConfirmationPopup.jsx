@@ -1,13 +1,16 @@
-import React, { useState,useEffect } from 'react'
+import React, { useState,useEffect,useRef } from 'react'
 
 export default function ConfirmationPopup({setShowModal,onClose,onConfirm,showExtraText,additionalText,modalBody,modalTitle}) {
     const [addBgColor,setAddBgColor] = useState(true)
+    const okRef = useRef()
+    const noRef = useRef()
     useEffect(() => {
       if(modalBody.toLowerCase().includes("delete")){
-        document.querySelector("#noBtn").focus()
+        noRef.current.focus()        
         setAddBgColor(false)
       }else{
-        document.querySelector("#okBtn").focus()        
+        okRef.current.focus()
+        setAddBgColor(true)
       }
     const handleKeyDown = (e) => {
       if (e.key == "Escape") {
@@ -15,29 +18,29 @@ export default function ConfirmationPopup({setShowModal,onClose,onConfirm,showEx
       }
       if (e.key == "ArrowLeft") {
         setAddBgColor(true)
-        document.querySelector("#okBtn").focus()
+        okRef.current.focus()        
       }
       if (e.key == "ArrowRight") {
         setAddBgColor(false)
-        document.querySelector("#noBtn").focus()
+        noRef.current.focus()        
       }
       // F8 key - focus on Yes button
       if (e.key == "F8") {
         e.preventDefault();
         setAddBgColor(true)
-        document.querySelector("#okBtn").focus()
+        okRef.current.focus()        
       }
       // F7 key - focus on Yes button
       if (e.key == "F7") {
         e.preventDefault();
         setAddBgColor(true)
-        document.querySelector("#okBtn").focus()
+        okRef.current.focus()        
       }
       // Alt+D key - focus on No button
       if (e.altKey && e.key.toLowerCase() == "d") {
         e.preventDefault();
         setAddBgColor(false)
-        document.querySelector("#noBtn").focus()
+        noRef.current.focus()        
       }
     };
 
@@ -65,6 +68,7 @@ export default function ConfirmationPopup({setShowModal,onClose,onConfirm,showEx
                 </div>
                 <div className="modal-footer">
                   <button
+                    ref={okRef}
                     type="button"
                     className="btn btn-secondary confirmationbtn"
                     id='okBtn'
@@ -72,7 +76,7 @@ export default function ConfirmationPopup({setShowModal,onClose,onConfirm,showEx
                         backgroundColor: addBgColor ? '#3f4d54' : "white",
                         color: addBgColor ? "white" : "black"
                     }}
-                    onMouseEnter={()=>setAddBgColor(true)}
+                    onMouseEnter={()=>{setAddBgColor(true);okRef.current.focus()}}
                     onClick={()=>{
                         setShowModal(false)
                         onConfirm()
@@ -83,12 +87,13 @@ export default function ConfirmationPopup({setShowModal,onClose,onConfirm,showEx
                   <button
                     type="button"
                     id='noBtn'
+                    ref={noRef}
                     className="btn btn-secondary confirmationbtn"   
                     style={{
                         backgroundColor: !addBgColor ? '#3f4d54' : "white",
                         color: !addBgColor ? "white" : "black"
                     }}
-                    onMouseEnter={()=>setAddBgColor(false)}
+                    onMouseEnter={()=>{setAddBgColor(false);noRef.current.focus()}}
                     onClick={()=>{ if(onClose != null){
                       onClose()
                     } 
