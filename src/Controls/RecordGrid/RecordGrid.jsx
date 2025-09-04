@@ -9,7 +9,7 @@ import { getTableDataByKey } from "../../IndexDbServices/indexDbServices";
 import { MdInfoOutline } from "react-icons/md";
 import CustomTooltip from "../Tooltip/CustomTooltip";
 import { useGetTokenValue } from "../../CustomHooks/GetTokenValue";
-
+import { isValid, format, parse } from "date-fns";
 
 export default function RecordGrid({
   tablebody,
@@ -91,6 +91,9 @@ export default function RecordGrid({
       return;
     }
 
+    //Remove Grid Model 
+    gridModel = gridModel.filter((item)=>!(item.csvHeader.toLowerCase().includes("removefromcsv")))
+
     // Step 1: Build headers
     let headers = gridModel.map((col) => col.csvHeader);
     if (!showStoreColumn) {
@@ -102,9 +105,9 @@ export default function RecordGrid({
           )
       );
     }
-
+        
     // Step 2: Build rows
-    const rows = tableData.map((item) => {
+    const rows = tableData.map((item) => {      
       if (!showStoreColumn) {
         return gridModel.filter(
       (col) =>
@@ -115,7 +118,7 @@ export default function RecordGrid({
           let value = item[key];
           // Format date
           if (col.columnType.toLowerCase() === "date") {
-            value = /^\d{1,2}\/[A-Za-z]{3}\/\d{4}$/.test(value) ? value : value;
+            value = /^\d{1,2}\/[A-Za-z]{3}\/\d{4}$/.test(value) ? value : parseDate(value);
           }
 
           return `"${value}"`;
@@ -126,7 +129,7 @@ export default function RecordGrid({
           let value = item[key];
           // Format date
           if (col.columnType.toLowerCase() === "date") {
-            value = /^\d{1,2}\/[A-Za-z]{3}\/\d{4}$/.test(value) ? value : value;
+            value = /^\d{1,2}\/[A-Za-z]{3}\/\d{4}$/.test(value) ? value : parseDate(value);
           }
 
           return `"${value}"`;
@@ -272,7 +275,7 @@ export default function RecordGrid({
               if (obj.columnType.toLowerCase() == "date") {
                 formattedDate = /^\d{1,2}\/[A-Za-z]{3}\/\d{4}$/.test(item[key])
                   ? item[key]
-                  : item[key];
+                  : parseDate(item[key]);
                 item[key] = formattedDate;
               }
               if (
@@ -484,3 +487,19 @@ export default function RecordGrid({
     </>
   );
 }
+const parseDate = (input) => {
+  if (!input) return "";
+  let date;
+  // If input is already a Date
+  if (input instanceof Date) {
+    date = input;
+  } else if (typeof input === "string") {
+    date = new Date(input);
+    if (!isValid(date)) {
+      date = parse(input, "MM/dd/yyyy hh:mm:ss a", new Date());
+    }
+  }
+  // Final validation
+  if (!isValid(date)) return "";
+  return  format(date, "dd/MMM/yyyy hh:mm:ss a");
+};
