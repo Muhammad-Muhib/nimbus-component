@@ -68,6 +68,9 @@ export default function LeftMenu({
   const handleNavigation = ()=>{
     window.location.replace("https://nimbus.nimbusrms.com/Home")
   }
+  const handleLogOut = ()=>{
+    window.location.href = "/";
+  }
 
   return (
     <motion.div 
@@ -105,7 +108,7 @@ export default function LeftMenu({
         </AnimatePresence>
       </motion.div>
       <div className="topmenucontainer">
-        <LeftMenuTop handleNavigation={handleNavigation} />
+        <LeftMenuTop handleNavigation={handleNavigation} handleLogOut={handleLogOut} />
       </div>
     </motion.div>
   );

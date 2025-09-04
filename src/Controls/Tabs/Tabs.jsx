@@ -101,7 +101,7 @@ export default function Tabs({
             showYouTubeVideo && 
             <Tooltip title="Videos and Help Documents" placement="top">
             <span className="yotubeIcon" onClick={handleDrawerToggle}>
-            <span className="youTubeText">Learn</span>
+            <span className="youTubeBtnText">Learn</span>
             <img
               src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAACXBIWXMAAAsTAAALEwEAmpwYAAAAIGNIUk0AAHolAACAgwAA+f8AAIDpAAB1MAAA6mAAADqYAAAXb5JfxUYAAAFpSURBVHja7Je/S0JRFIA/L4mvRYdHIeIgjkKDLi22tDg4+g84NDQ4iBBoUxLV0BqEEQ41SbS0JSSBDkIOQmFLS5ORoGCKJeVreUKrP8+QZ7rLvd/HPfeee67FMAwkQyEcCwHLs74+HK8BR8AmsDwjXg8oACng8e8OxIAKEJ4hHHPtsMmKDXcgCBSFMrChgKTgEUgqICgoEFSAQ1DAMfI1XFrVZeuA5/6Cld1tLJpNRkBpNvREFG85hz0SkquEVrcTVyaNJ59FC/jkSrEW8OHJZ3Fl0ljdTrm3wB4J4S3n0BNRucfop9Wm9/A02q2aFrx9fcvbzjGDdme+AoN2h3r8kI+bwljzJxLo3pWpxw/4rjfGXmMsAePzi/e9E1rnVxOnbmSBbrFCY/+U/svr1Doi0bZYAU1BflMBJUGBkjIbxL4AvA+kFFADtsyOdV7RM5m1YSm+BPzAGVCdIbhqMvwmE8vib/jvBX4HAMS5XIFFCzgUAAAAAElFTkSuQmCC"
               alt="youTube"

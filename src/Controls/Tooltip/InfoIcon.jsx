@@ -1,7 +1,7 @@
 import { styled } from '@mui/material/styles';
 import Tooltip, { tooltipClasses } from '@mui/material/Tooltip';
 import Typography from '@mui/material/Typography';
-import InfoOutlineIcon from '@mui/icons-material/InfoOutline';
+import { MdInfoOutline } from "react-icons/md";
 
 export default function InfoIcon({ children, title = "", body = "", placement = "bottom" }) {
   const HtmlTooltip = styled(({ className, ...props }) => (
@@ -30,7 +30,7 @@ export default function InfoIcon({ children, title = "", body = "", placement = 
         </>
       }
     >
-      <InfoOutlineIcon />
+      <MdInfoOutline />
     </HtmlTooltip>
   );
 }
