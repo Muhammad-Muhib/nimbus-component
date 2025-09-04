@@ -33,6 +33,8 @@ import MailPopup from "./Controls/Popup/MailPopup"
 import {sendEmail} from "./Controls/Mail/Email"
 import Tooltip from './Controls/Tooltip/CustomTooltip';
 import InfoIcon from './Controls/Tooltip/InfoIcon';
+import RelatedOperationsMenu from './Controls/RelatedOperation/RelatedOperation';
+import RightDrawer from './Controls/RightDrawer/RightDrawer';
 
 export {apiService};
 export {CheckBox};
@@ -78,3 +80,5 @@ export {getTableData}
 export {addUpdateGRNIndexDb}
 export {Tooltip}
 export {InfoIcon}
+export {RelatedOperationsMenu}
+export {RightDrawer}
