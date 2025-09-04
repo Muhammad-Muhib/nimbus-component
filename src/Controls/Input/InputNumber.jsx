@@ -1,4 +1,4 @@
-import { useRef,useEffect  } from "react";
+import { useRef, useEffect } from "react";
 export default function InputNumber({
   customClass,
   label,
@@ -10,7 +10,8 @@ export default function InputNumber({
   disable,
   maxLength,
   inputRef,
-  handleBlur
+  handleBlur,
+  allowNegative = false,
 }) {
   const internalRef = useRef(null);
   useEffect(() => {
@@ -21,8 +22,14 @@ export default function InputNumber({
   const handleChange = (e) => {
     let val = e.target.value;
     // Allow only digits and one optional decimal
-    if (/^[0-9]*\.?[0-9]*$/.test(val)) {
-      setInputVal(val);
+    if (allowNegative) {
+      if (/^-?[0-9]*\.?[0-9]*$/.test(val)) {
+        setInputVal(val);
+      }
+    } else {
+      if (/^[0-9]*\.?[0-9]*$/.test(val)) {
+        setInputVal(val);
+      }
     }
   };
   return (
@@ -30,7 +37,7 @@ export default function InputNumber({
       <div className="inputContainer">
         <div className="inputLabel">{label}</div>
         <input
-        ref={internalRef}
+          ref={internalRef}
           name={`${name}`}
           id=""
           type="text"

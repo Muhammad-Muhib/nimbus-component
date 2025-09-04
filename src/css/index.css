@@ -1183,8 +1183,8 @@ border: 1px solid white;
   /* Table headers */
   .gridTableHeader,
   .grn-print-table th {
-    color: #000;
-    font-weight: 700 !important;
+    color: black !important;
+    font-weight: bold !important;
     background-color: #f0f0f0 !important;
     border: 1px solid #000 !important;
     padding: 6px 4px !important;
