@@ -110,7 +110,7 @@ export default function SaveUpdateBtn({
     return () => {
       document.removeEventListener("keydown", handleKeyDown);
     };
-  }, []);
+  }, [mode]);
   return (
     <>
       <div className="btnMainContainer col-md-11 col-sm-11 form-group print_box_bg low_margin">

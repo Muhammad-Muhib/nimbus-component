@@ -154,6 +154,10 @@ export default function RecordGrid({
   };
 
   const handleDownloadPDF = () => {
+    if (!tableData || tableData.length === 0) {
+      toast.error("No Data in Grid to Print!");
+      return;
+    }
     window.print();
   };
 

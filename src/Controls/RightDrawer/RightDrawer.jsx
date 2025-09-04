@@ -69,7 +69,7 @@ const RightDrawer = ({
               <h2 className="videoHeader">Videos</h2>
               <div className="videoLanguageDropDownContainer">
                 <OptionSelection
-                  label={"Language"}
+                  label={"Select Language for vider"}
                   options={languageOptions}
                   selectedOption={selectedLanguage}
                   setSelectedOption={setSelectedLanguage}
