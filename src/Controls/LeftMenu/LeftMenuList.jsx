@@ -98,6 +98,7 @@ export default function LeftMenuList(props) {
                   <li className="active"><Link className="navLink listLink subLink" to="/app/CalenderSeason"><span className="scoop-micon"></span><span className="scoop-mtext list-text">Calender Season</span></Link></li>
                   <li className="active"><Link className="navLink listLink subLink" to="/app/IBattribute2"><span className="scoop-micon"></span><span className="scoop-mtext list-text">IB attribute 2</span></Link></li>
                   <li className="active"><Link className="navLink listLink subLink" to="/app/Gender"><span className="scoop-micon"></span><span className="scoop-mtext list-text">Gender</span></Link></li>
+                  <li className="active"><Link className="navLink listLink subLink" to="/app/Brand"><span className="scoop-micon"></span><span className="scoop-mtext list-text">Brand</span></Link></li>
                   <li className="active"><Link className="navLink listLink subLink" to="/app/IBattribute5"><span className="scoop-micon"></span><span className="scoop-mtext list-text">IB attribute 5</span></Link></li>
                   <li className="active"><Link className="navLink listLink subLink" to="/app/IBattribute6"><span className="scoop-micon"></span><span className="scoop-mtext list-text">IB attribute 6</span></Link></li>
                   <li className="active"><Link className="navLink listLink subLink" to="/app/ModifierGroup"><span className="scoop-micon"></span><span className="scoop-mtext list-text">Modifier Group</span></Link></li>
