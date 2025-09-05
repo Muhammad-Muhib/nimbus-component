@@ -49,7 +49,7 @@ export default function LeftMenuTop({handleNavigation,handleLogOut}) {
         </div>
      {
       breadCrumb != "" ? 
-      <div>      
+      <div className='hideInMobile'>      
       <div className='breadCrumbHead'>{breadCrumb}</div>
         {/* <div className='breadCrumbContainer'>
           <a href="https://nimbus.nimbusrms.com/Home" className='breadCrumbUrlText'>Home</a>

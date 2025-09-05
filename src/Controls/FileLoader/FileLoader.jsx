@@ -2,6 +2,7 @@ import React, { useRef } from "react";
 import { toast } from "react-toastify";
 import { MdInfoOutline } from "react-icons/md";
 import Tooltip from "@mui/material/Tooltip";
+import CustomTooltip from "../Tooltip/CustomTooltip";
 
 const FileLoader = ({ LoadProductsThroughLoaderFile,format }) => {
   const fileInputRef = useRef(null);
@@ -86,20 +87,19 @@ const FileLoader = ({ LoadProductsThroughLoaderFile,format }) => {
         onChange={handleFileChange}
         className="fileLoaderInput"
       />
-      <Tooltip
-        title={
-          <>
+      <CustomTooltip body={
+        <>
             You can load the text file and it should be in following format:
             <br />
             <b>{format}</b>
             <br />
             <b> Note: Each Item must be in separate line. </b>              
           </>
-        }
-        placement="top"
+      }
+      placement="top"
       >
         <MdInfoOutline />
-      </Tooltip>
+      </CustomTooltip>      
     </div>
   );
 };

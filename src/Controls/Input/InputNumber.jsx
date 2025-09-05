@@ -12,6 +12,7 @@ export default function InputNumber({
   inputRef,
   handleBlur,
   allowNegative = false,
+  placeholder = 0
 }) {
   const internalRef = useRef(null);
   useEffect(() => {
@@ -51,6 +52,7 @@ export default function InputNumber({
           disabled={disable || false}
           maxLength={`${maxLength}`}
           onBlur={handleBlur}
+          placeholder={placeholder}
         />
       </div>
     </div>
