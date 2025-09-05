@@ -1,6 +1,6 @@
 import { Pagination, Form } from 'react-bootstrap';
 
-export default function GridPaginationComp({ currentPage = 1, totalRecords, rowsPerPage, setRowsPerPage, setCurrentPage }) {
+export default function GridPaginationComp({ currentPage = 1, totalRecords, rowsPerPage, setRowsPerPage, setCurrentPage,pageLength=0}) {
     const pageCount = Math.ceil(totalRecords / rowsPerPage);
     // Calculate the range of page numbers to display
     const visiblePages = 5;
@@ -72,7 +72,7 @@ export default function GridPaginationComp({ currentPage = 1, totalRecords, rows
                 </Form.Control>
             </Form.Group>
             <div className={'gridFootText'}>
-                Showing {((currentPage-1) * rowsPerPage)+1} -{currentPage * rowsPerPage} of {totalRecords}
+                Showing {((currentPage-1) * rowsPerPage)+1} -{(currentPage * rowsPerPage) - (rowsPerPage-pageLength)} of {totalRecords}
             </div>
             </div>
             <Pagination>
