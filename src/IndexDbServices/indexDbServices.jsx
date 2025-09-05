@@ -1,7 +1,7 @@
 import Dexie from "dexie";
 
 export const db = new Dexie("myDatabase");
-db.version(2).stores({
+db.version(3).stores({
   product:
     "productCode,productId,productName,lineItemId,productItemId,packagingBarcodeProductId",
   company: "CompanyId",
