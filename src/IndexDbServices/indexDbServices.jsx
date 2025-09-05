@@ -33,6 +33,7 @@ db.version(2).stores({
   accountHead:"accountId,accountHead,accountHeadCount",
   customerTypeBasedPrice:"customerProdPriceId,customerTypeId,proItemId",
   productPriceShopBased:"autoIncrementId,shopId,productPriceShopBaseId,productItemId",
+  discount:"autoIncrementId,discountId,discountCode,discountType"
 });
 
 const getUpdateKey = (tableName) => {
@@ -64,7 +65,8 @@ const getUpdateKey = (tableName) => {
     memberInfo:"autoIncrementId",
     accountHead:"accountId",
     customerTypeBasedPrice:"customerProdPriceId",
-    productPriceShopBased:"autoIncrementId"
+    productPriceShopBased:"autoIncrementId",
+    discount:"autoIncrementId"
   };
   return primaryKeys[tableName];
 };
@@ -178,7 +180,7 @@ export const deleteDataIndexDb = async (tableData) => {
           }
           break;
              case "productPriceShopBased":
-          // Delete productPriceShopBased data based on customerProdPriceId
+          // Delete productPriceShopBased data based on autoIncrementId
           for (const record of records) {
             if (record.autoIncrementId) {
               const deletedCount = await db[tableName]
@@ -187,6 +189,20 @@ export const deleteDataIndexDb = async (tableData) => {
                 .delete();
               console.log(
                 `Deleted ${deletedCount} productPriceShopBased records with autoIncrementId: ${record.autoIncrementId}`
+              );
+            }
+          }
+          break;
+             case "discount":
+          // Delete discount data based on autoIncrementId
+          for (const record of records) {
+            if (record.autoIncrementId) {
+              const deletedCount = await db[tableName]
+                .where("value")
+                .equals(record.autoIncrementId)
+                .delete();
+              console.log(
+                `Deleted ${deletedCount} discount records with autoIncrementId: ${record.autoIncrementId}`
               );
             }
           }

@@ -30,7 +30,7 @@ export default function InfoIcon({ children, title = "", body = "", placement = 
         </>
       }
     >
-      <MdInfoOutline />
+      <MdInfoOutline size={18} />
     </HtmlTooltip>
   );
 }
