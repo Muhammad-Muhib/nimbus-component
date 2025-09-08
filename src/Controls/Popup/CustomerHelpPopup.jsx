@@ -1,8 +1,7 @@
 import { useState, useEffect } from "react";
-import { useSelector } from "react-redux";
-import "../../../styles/CustomerHelp/CustomerHelpPopup.css";
-import { Input } from 'nimbus-kit';
-import { PopupPaginationComp, getTableData } from 'nimbus-kit';
+import { getTableData } from "../../IndexDbServices/indexDbServices";
+import Input from "../Input/Input";
+import PopupPaginationComp from "../Pagination/PopupPagination";
 
 export default function CustomerHelpPopup(props) {
   const [allCustomers, setAllCustomers] = useState([]);

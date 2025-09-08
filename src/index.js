@@ -36,6 +36,8 @@ import InfoIcon from './Controls/Tooltip/InfoIcon';
 import RelatedOperationsMenu from './Controls/RelatedOperation/RelatedOperation';
 import RightDrawer from './Controls/RightDrawer/RightDrawer';
 import { thousandformater } from './Utilities/thousandFormater';
+import CustomerHelpPopup from './Controls/Popup/CustomerHelpPopup';
+import CustomerAutoCompleteDropDown from './Controls/Popup/CustomerAutoCompleteDropDown';
 
 export {apiService};
 export {CheckBox};
@@ -84,3 +86,5 @@ export {InfoIcon}
 export {RelatedOperationsMenu}
 export {RightDrawer}
 export {thousandformater}
+export {CustomerHelpPopup}
+export {CustomerAutoCompleteDropDown}

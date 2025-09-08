@@ -1957,3 +1957,295 @@ body.drawer-open {
         display: none;
       }
 }
+
+/* Customer Auto Complete Dropdown */
+.autoCompleteCustomerInputField {
+  position: relative;
+  width: 100%;
+}
+
+.autoCompleteCustomerInputField .customerAutoComplete__control {
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  min-height: 38px;
+  background-color: white;
+  box-shadow: none;
+}
+
+.autoCompleteCustomerInputField .customerAutoComplete__control:hover {
+  border-color: #999;
+}
+
+.autoCompleteCustomerInputField .customerAutoComplete__control--is-focused {
+  border-color: #007bff;
+  box-shadow: 0 0 0 1px #007bff;
+}
+
+.autoCompleteCustomerInputField .customerAutoComplete__input {
+  color: #333;
+  font-size: 14px;
+}
+
+.autoCompleteCustomerInputField .customerAutoComplete__placeholder {
+  color: #999;
+  font-size: 14px;
+}
+
+.autoCompleteCustomerInputField .customerAutoComplete__menu {
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+  background-color: white;
+  z-index: 1000;
+}
+
+.autoCompleteCustomerInputField .customerAutoComplete__option {
+  padding: 8px 12px;
+  cursor: pointer;
+  background-color: white;
+  color: #333;
+}
+
+.autoCompleteCustomerInputField .customerAutoComplete__option:hover {
+  background-color: #f8f9fa;
+}
+
+.autoCompleteCustomerInputField .customerAutoComplete__option--is-focused {
+  background-color: #e9ecef;
+}
+
+.autoCompleteCustomerInputField .customerAutoComplete__option--is-selected {
+  background-color: #007bff;
+  color: white;
+}
+
+.autoCompleteCustomerInputField .customerAutoComplete__option--is-selected:hover {
+  background-color: #0056b3;
+}
+
+.autoCompleteCustomerInputField .auto_complete_name {
+  font-weight: 500;
+  color: #333;
+}
+
+.autoCompleteCustomerInputField .auto_complete_label {
+  font-size: 12px;
+  color: #666;
+  margin-right: 15px;
+}
+
+.autoCompleteCustomerInputField .auto_complete_price {
+  font-size: 12px;
+  color: #666;
+}
+
+.autoCompleteCustomerInputField .custom-label {
+  position: absolute;
+  top: -8px;
+  left: 12px;
+  background-color: white;
+  padding: 0 4px;
+  font-size: 12px;
+  color: #666;
+  z-index: 1;
+}
+
+.autoCompleteCustomerInputField .customerAutoComplete__single-value {
+  color: #333;
+  font-size: 14px;
+}
+
+.autoCompleteCustomerInputField .customerAutoComplete__value-container {
+  padding: 2px 8px;
+}
+
+.autoCompleteCustomerInputField .customerAutoComplete__input-container {
+  margin: 0;
+  padding: 0;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .autoCompleteCustomerInputField .customerAutoComplete__menu {
+    max-width: 100%;
+  }
+  
+  .autoCompleteCustomerInputField .auto_complete_name {
+    font-size: 13px;
+  }
+  
+  .autoCompleteCustomerInputField .auto_complete_label,
+  .autoCompleteCustomerInputField .auto_complete_price {
+    font-size: 11px;
+  }
+}
+
+/* Customer Help Popup Styling */
+.autoCompleteCustomerInputField{
+  width: 300px !important;
+  font-size: 13px;
+}
+.customerHelpPopupHeader {
+  background-color: rgb(52, 152, 219) !important;
+  color: white !important;
+  font-size: 13px !important;
+}
+
+.customerHelpPopupText {
+  font-size: 13px !important;
+}
+
+.modalCloseBtn {
+  filter: invert(1) !important;
+  margin-right: 0%;
+  font-size: 12px !important;
+  padding-right: 0rem !important;
+  padding-top: 1rem !important;
+}
+
+.closeBtnContainer {
+  position: absolute;
+  right: 2rem;
+  border: 2px solid white;
+  border-radius: 50%;
+  width: 1.5rem;
+  height: 1.5rem;
+}
+
+.modalSearchContainer {
+  display: flex;
+  gap: 1rem;
+  margin-bottom: 1rem;
+  flex-wrap: wrap;
+}
+
+.customerSearchBtn {
+  height: 2.3rem;
+  min-width: 100px;
+  font-weight: bold;
+  text-transform: uppercase;
+}
+
+.customerHelpInput {
+  min-width: 150px;
+}
+
+.customerHelpTable {
+  max-height: 400px;
+  overflow-y: auto;
+}
+
+.customerHelpTable table {
+  margin-bottom: 0;
+}
+
+.customerHelpTable thead th {
+  position: sticky;
+  top: 0;
+  background-color: rgb(52, 152, 219);
+  z-index: 10;
+}
+
+.customerHelpRow:hover {
+  background-color: #f8f9fa;
+  cursor: pointer;
+}
+
+.customerHelpRow.selected {
+  background-color: rgb(52, 152, 219) !important;
+  color: white !important;
+}
+
+.customerHelpRow.selected:hover {
+  background-color: rgb(41, 128, 185) !important;
+}
+
+.customerHelpPagination {
+  margin-top: 1rem;
+  display: flex;
+  justify-content: center;
+}
+
+.customerHelpNoData {
+  text-align: center;
+  padding: 2rem;
+  color: #6c757d;
+  font-style: italic;
+}
+
+/* Input Field Styles - Matching Purchase Order Item field */
+.customerHelpInputContainer {
+  margin-bottom: 1rem;
+}
+
+/* Override dropdown-wrapper styles for CustomerHelpPopup */
+.customerHelpPopup .dropdown-wrapper {
+  position: relative;
+  margin-bottom: 24px;
+  z-index: 10;
+  cursor: pointer !important;
+  width: 300px !important;
+}
+
+.customerHelpPopup .dropdown-wrapper .custom-label {
+  position: absolute;
+  top: -8px;
+  left: 12px;
+  padding: 0 4px;
+  background-color: white;
+  font-size: 12px;
+  color: deepskyblue;
+  z-index: 1;
+}
+
+.customerHelpPopup .autoCompleteCustomerInputField {
+  position: relative;
+  width: 100% !important;
+}
+
+.customerHelpPopup .autocomplete-input {
+  width: 100%;
+  padding: 8px;
+  box-sizing: border-box;
+  outline: none;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  font-size: 13px;
+  background-color: white;
+  transition: border-color 0.15s ease-in-out;
+}
+
+.customerHelpPopup .autocomplete-input:focus {
+  border-color: #007bff;
+  box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.25);
+}
+
+.customerHelpPopup .autocomplete-input:disabled {
+  background-color: #e9ecef;
+  cursor: not-allowed;
+}
+
+/* Mobile Responsiveness for CustomerHelpPopup */
+@media screen and (max-width: 1000px) {
+  .customerHelpPopup .dropdown-wrapper {
+      width: 100% !important;
+      margin-bottom: 16px;
+  }
+}
+
+@media screen and (max-width: 700px) {
+  .customerHelpPopup .dropdown-wrapper {
+      margin-bottom: 12px;
+  }
+}
+
+@media screen and (max-width: 480px) {
+  .customerHelpPopup .dropdown-wrapper {
+      margin-bottom: 10px;
+  }
+}
+
+/* Modal overlay styles */
+.modal.fade.show {
+  background-color: rgba(0, 0, 0, 0.5);
+}

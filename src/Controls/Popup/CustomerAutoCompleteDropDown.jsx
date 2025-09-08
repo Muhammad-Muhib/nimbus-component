@@ -1,7 +1,6 @@
 import Select, { components } from "react-select";
 import { useState, useEffect } from "react";
-import { getTableData } from "nimbus-kit";
-import "../../../styles/CustomerHelp/CustomerHelpPopup.css";
+import {getTableData} from "../../IndexDbServices/indexDbServices";
 
 
 const CustomerAutoCompleteDropDown = ({ 
