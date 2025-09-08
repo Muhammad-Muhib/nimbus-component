@@ -10,6 +10,7 @@ import { MdInfoOutline } from "react-icons/md";
 import CustomTooltip from "../Tooltip/CustomTooltip";
 import { useGetTokenValue } from "../../CustomHooks/GetTokenValue";
 import { isValid, format, parse } from "date-fns";
+import { BsInfoCircle } from "react-icons/bs";
 
 export default function RecordGrid({
   tablebody,
@@ -167,11 +168,6 @@ export default function RecordGrid({
       return false;
     }
 
-    if (!tableData || tableData.length === 0) {
-      toast.error("No data to convert");
-      return false;
-    }
-
     if (toMail == null || toMail == "") {
       toast.error("Please enter an Email ID.");
       return false;
@@ -259,7 +255,12 @@ export default function RecordGrid({
     setBody(
       `${printHeading} as on ${day}/${month}/${year} ${hours}:${minutes}:${seconds} ${ampm}`
     );
-    setShowMailModal(true);
+    if (!tableData || tableData.length === 0) {
+      toast.error("No data in grid to email!");
+      return false;
+    }else{
+      setShowMailModal(true);
+    }
   };
 
   const renderTableRows = () => {
@@ -398,7 +399,11 @@ export default function RecordGrid({
                     }
                     className="gridTableHeader"
                   >
-                    {item.name}
+                    {item.name} {item.showInfoIcon !=null && item.showInfoIcon == true ? <>
+                    <CustomTooltip body={item.tooltipText}>
+                      <BsInfoCircle size={14} className="gridHeaderInfoIcon" />
+                    </CustomTooltip>
+                    </> : null}
                   </th>
                 );
               })}

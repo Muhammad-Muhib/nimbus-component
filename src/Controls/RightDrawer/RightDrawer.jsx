@@ -100,7 +100,7 @@ const RightDrawer = ({
                 {articleModel.map((item, index) => {
                   return (
                     <div key={index}>
-                      <a href={`${item.articleLink}`} className="articleText">
+                      <a href={`${item.articleLink}`} className="articleText"  target="_blank">
                         {item.articleText}
                       </a>
                     </div>
