@@ -127,7 +127,7 @@ export default function Tabs({
               tooltipText != "" && <span style={{marginLeft:'8px'}}>
               <CustomTooltip
                           placement="top"
-                          body={`${tooltipText}`}
+                          body={tooltipText}
                         >
                           <MdInfoOutline size={20} />
                         </CustomTooltip>

@@ -33,7 +33,8 @@ db.version(3).stores({
   accountHead:"accountId,accountHead,accountHeadCount",
   customerTypeBasedPrice:"customerProdPriceId,customerTypeId,proItemId",
   productPriceShopBased:"autoIncrementId,shopId,productPriceShopBaseId,productItemId",
-  discount:"autoIncrementId,discountId,discountCode,discountType"
+  discount:"autoIncrementId,discountId,discountCode,discountType",
+  register:"Id,ShopId,RegisterCode"
 });
 
 const getUpdateKey = (tableName) => {
@@ -66,7 +67,8 @@ const getUpdateKey = (tableName) => {
     accountHead:"accountId",
     customerTypeBasedPrice:"customerProdPriceId",
     productPriceShopBased:"autoIncrementId",
-    discount:"autoIncrementId"
+    discount:"autoIncrementId",
+    register:"Id"
   };
   return primaryKeys[tableName];
 };
@@ -175,6 +177,19 @@ export const deleteDataIndexDb = async (tableData) => {
                 .delete();
               console.log(
                 `Deleted ${deletedCount} customerTypeBasedPrice records with customerProdPriceId: ${record.customerProdPriceId}`
+              );
+            }
+          }
+           case "register":
+          // Delete register data based on registerId
+          for (const record of records) {
+            if (record.registerId) {
+              const deletedCount = await db[tableName]
+                .where("value")
+                .equals(record.registerId)
+                .delete();
+              console.log(
+                `Deleted ${deletedCount} register records with registerId: ${record.registerId}`
               );
             }
           }
