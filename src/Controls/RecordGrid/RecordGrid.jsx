@@ -10,7 +10,7 @@ import { MdInfoOutline } from "react-icons/md";
 import CustomTooltip from "../Tooltip/CustomTooltip";
 import { useGetTokenValue } from "../../CustomHooks/GetTokenValue";
 import { isValid, format, parse } from "date-fns";
-import { BsInfoCircle } from "react-icons/bs";
+import { BsInfoCircleFill } from "react-icons/bs";
 
 export default function RecordGrid({
   tablebody,
@@ -400,8 +400,8 @@ export default function RecordGrid({
                     className="gridTableHeader"
                   >
                     {item.name} {item.showInfoIcon !=null && item.showInfoIcon == true ? <>
-                    <CustomTooltip body={item.tooltipText}>
-                      <BsInfoCircle size={14} className="gridHeaderInfoIcon" />
+                    <CustomTooltip body={item.tooltipText}>                      
+                      <BsInfoCircleFill size={14} className="gridHeaderInfoIcon" />
                     </CustomTooltip>
                     </> : null}
                   </th>
@@ -433,7 +433,7 @@ export default function RecordGrid({
           {showFotter && tableData.length > 0 && (
             <tfoot
               className="total-section"
-              style={{ width: "100%", backgroundColor: "pink", height: "3rem" }}
+              style={{ width: "100%", height: "3rem" }}
             >
               <tr>
                 {header.map((item, index) => {
