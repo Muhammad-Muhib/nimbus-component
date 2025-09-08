@@ -1705,24 +1705,7 @@ body.drawer-open {
   }
 }
 
-/* Dark mode support (if needed) */
-@media (prefers-color-scheme: dark) {
-  .right-drawer {
-    border-left: 1px solid #4a5568;
-  }
 
-  
-  .drawer-close-btn {
-    color: #a0aec0;
-    background-color: #4d4d4d;
-    position: relative;
-  }
-  
-  /* .drawer-close-btn:hover {
-    background-color: #4a5568;
-    color: #f7fafc;
-  }   */
-}
 
 @media screen and (max-width:800px) {
  .right-drawer{
