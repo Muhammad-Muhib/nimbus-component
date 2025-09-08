@@ -34,7 +34,7 @@ db.version(3).stores({
   customerTypeBasedPrice:"customerProdPriceId,customerTypeId,proItemId",
   productPriceShopBased:"autoIncrementId,shopId,productPriceShopBaseId,productItemId",
   discount:"autoIncrementId,discountId,discountCode,discountType",
-  register:"Id,ShopId,RegisterCode"
+  register:"id,shopId,registerCode"
 });
 
 const getUpdateKey = (tableName) => {
