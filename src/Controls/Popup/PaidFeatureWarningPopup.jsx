@@ -55,7 +55,8 @@ export default function PaidFeatureWarningPopup({
           className="pfw-toggle"
           onClick={() => setShowDetails((s) => !s)}
         >
-          {showDetails ? <IoIosArrowUp /> : <IoIosArrowDown />} Show/Hide Details
+          {showDetails ? <IoIosArrowUp /> : <IoIosArrowDown />} Show/Hide
+          Details
         </button>
 
         <ShowHideContainer show={showDetails}>
@@ -84,8 +85,10 @@ export default function PaidFeatureWarningPopup({
                     <b>{formatCurrency(currentCosts.kitchenDaily)}</b>
                   </li>
                   <li>
-                    <span>New License Cost (daily)</span>
-                    <b>{formatCurrency(currentCosts.licenseDaily)}</b>
+                    <strong>
+                      <span>New License Cost (daily)</span>
+                      <b>{formatCurrency(currentCosts.licenseDaily)}</b>
+                    </strong>
                   </li>
                   <li>
                     <span>New License Cost (Monthly)</span>

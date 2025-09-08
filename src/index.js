@@ -35,6 +35,7 @@ import Tooltip from './Controls/Tooltip/CustomTooltip';
 import InfoIcon from './Controls/Tooltip/InfoIcon';
 import RelatedOperationsMenu from './Controls/RelatedOperation/RelatedOperation';
 import RightDrawer from './Controls/RightDrawer/RightDrawer';
+import { thousandformater } from './Utilities/thousandFormater';
 
 export {apiService};
 export {CheckBox};
@@ -82,3 +83,4 @@ export {Tooltip}
 export {InfoIcon}
 export {RelatedOperationsMenu}
 export {RightDrawer}
+export {thousandformater}
