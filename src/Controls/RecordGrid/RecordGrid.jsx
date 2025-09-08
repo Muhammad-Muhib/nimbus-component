@@ -29,6 +29,7 @@ export default function RecordGrid({
   disablePrint = false,
   disableCSV = false,
   selectedRecord = null,
+  hideTimeCsv = false,
 }) {
   const CandelaVersion = useGetTokenValue("CandelaVersion");
   const [selectedId, setSelectedId] = useState();
@@ -120,6 +121,10 @@ export default function RecordGrid({
           // Format date
           if (col.columnType.toLowerCase() === "date") {
             value = /^\d{1,2}\/[A-Za-z]{3}\/\d{4}$/.test(value) ? value : parseDate(value);
+            // Hide time in CSV if hideTimeCsv is true
+            if (hideTimeCsv && value.includes(" ")) {
+              value = value.split(" ")[0];
+            }
           }
 
           return `"${value}"`;
@@ -131,6 +136,10 @@ export default function RecordGrid({
           // Format date
           if (col.columnType.toLowerCase() === "date") {
             value = /^\d{1,2}\/[A-Za-z]{3}\/\d{4}$/.test(value) ? value : parseDate(value);
+            // Hide time in CSV if hideTimeCsv is true
+            if (hideTimeCsv && value.includes(" ")) {
+              value = value.split(" ")[0];
+            }
           }
 
           return `"${value}"`;
