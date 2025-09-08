@@ -53,13 +53,15 @@ const RightDrawer = ({
         {/* Drawer Header */}
         <div className="drawer-header">
           <h1 className="drawer-title">Help</h1>
-          <button
+          {
+            isOpen &&  <button
             className="drawer-close-btn"
             onClick={onClose}
             aria-label="Close drawer"
           >
             <IoClose size={24} />
           </button>
+          }          
         </div>
 
         {/* Drawer Content */}
