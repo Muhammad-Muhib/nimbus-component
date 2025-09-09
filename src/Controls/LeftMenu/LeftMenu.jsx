@@ -3,11 +3,16 @@ import LeftMenuList from "./LeftMenuList";
 import { MdLaptop } from "react-icons/md";
 import LeftMenuTop from "./LeftMenuTop";
 import { motion, AnimatePresence } from "framer-motion";
+import { useSelector } from "react-redux";
+import { useEffect, useState } from "react";
+import {getTableData} from "../../IndexDbServices/indexDbServices"
 
 export default function LeftMenu({
   isOpen = true,
   setIsOpen
 }) {
+  const productAttributeLeftMenuName = useSelector(state=>state.productAttributeLeftMenuName)
+  const [attributeNames,setAttributeNames] = useState([])
   const updateDate = "Apr 30, 2025" 
   const currentVersion = "4.3.4.5"
   // Animation variants for better control
@@ -65,6 +70,32 @@ export default function LeftMenu({
     }
   };
 
+  useEffect(()=>{
+    if(productAttributeLeftMenuName){
+      fetchAttributeName()
+    }else{
+      setAttributeNames(productAttributeLeftMenuName)
+    }
+  },[productAttributeLeftMenuName])
+
+  const fetchAttributeName =async ()=>{
+    let prName = await getTableData("rcmsConfiguration")
+    let attributeLeftMenuName =
+           prName.filter(
+            (item) =>
+              item.configurationName == "ProductVariable1" ||
+              item.configurationName == "ProductVariable2" ||
+              item.configurationName == "ProductVariable3" ||
+              item.configurationName == "ProductVariable4" ||
+              item.configurationName == "ProductVariable5" ||
+              item.configurationName == "ProductVariable6" ||
+              item.configurationName == "ProductVariable7" ||
+              item.configurationName == "ProductVariable8" ||
+              item.configurationName == "ProductVariable9" 
+          );
+          setAttributeNames(attributeLeftMenuName)
+  }
+
   const handleNavigation = ()=>{
     window.location.replace("https://nimbus.nimbusrms.com/Home")
   }
@@ -96,7 +127,7 @@ export default function LeftMenu({
               style={{ overflow: 'hidden' }}
               className="leftMenuListContiner"
             >
-              <LeftMenuList showLeftMenu={isOpen} />
+              <LeftMenuList showLeftMenu={isOpen} attributeNames={attributeNames} />
               <div className="nimbusInfoContainer">
                 <div className="currentVersion">
                   <MdLaptop className="laptopIcon" /> Version: {currentVersion}
