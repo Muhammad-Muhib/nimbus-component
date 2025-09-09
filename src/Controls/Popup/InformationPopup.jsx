@@ -1,9 +1,10 @@
-import React, { useState,useEffect } from 'react'
+import React, { useState,useEffect,useRef } from 'react'
 
 export default function InformationPopup({setShowModal,onConfirm,modalBody,modalTitle}) {
     const [addBgColor,setAddBgColor] = useState(true)
+    const okRef = useRef();
     useEffect(() => {
-          document.querySelector("#okBtn").focus()
+      okRef.current.focus()
         const handleKeyDown = (e) => {
           if (e.key == "Escape") {
             setShowModal(false);
@@ -41,6 +42,7 @@ export default function InformationPopup({setShowModal,onConfirm,modalBody,modal
                         setShowModal(false)
                         onConfirm()
                     }}
+                    ref={okRef}
                   >
                     OK
                   </button>

@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { IoClose } from "react-icons/io5";
 import OptionSelection from "../DropDown/OptionSelection";
+import VideoPopup from "../VideoPopup/VideoPopup";
 
 const RightDrawer = ({
   isOpen,
@@ -18,6 +19,8 @@ const RightDrawer = ({
     value: "1",
     label: "English",
   });
+  const [showHideVideo,setShowHideVideo] = useState(false)
+  const [videoLink,setVideoLink] = useState("")
 
   useEffect(() => {
     const handleKeyDown = (e) => {
@@ -41,6 +44,10 @@ const RightDrawer = ({
       );
     }
   }, [videoModel, selectedLanguage]);
+  const handleVideoPopup = (playVideoLink)=>{
+    setVideoLink(playVideoLink)
+    setShowHideVideo(true)
+  }
   return (
     <>
       {/* Overlay */}
@@ -81,6 +88,7 @@ const RightDrawer = ({
                 {videoSlice.map((item, index) => {
                   return (
                     <a
+                    onClick={handleVideoPopup(item.youTubeLink)}
                       href={`${item.youTubeLink}`}
                       className="videoCard"
                       key={index}
@@ -100,7 +108,7 @@ const RightDrawer = ({
                 {articleModel.map((item, index) => {
                   return (
                     <div key={index}>
-                      <a href={`${item.articleLink}`} className="articleText"  target="_blank">
+                      <a  href={`${item.articleLink}`} className="articleText"  target="_blank">
                         {item.articleText}
                       </a>
                     </div>
@@ -111,6 +119,9 @@ const RightDrawer = ({
           )}
         </div>
       </div>
+      {
+        showHideVideo && <VideoPopup handleClose={setShowHideVideo} youTubeLink={videoLink} />
+      }
     </>
   );
 };
