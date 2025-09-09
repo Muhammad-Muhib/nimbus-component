@@ -1953,6 +1953,7 @@ body.drawer-open {
   .btnMainContainer {
     padding-right: 0;
     padding-bottom: 4rem;
+    right: 0px;
   }
   .btn-style {
     width: 65px;
