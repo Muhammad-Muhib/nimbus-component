@@ -676,6 +676,38 @@
 #searchInput {
   display: none;
 }
+.leftMenuListContiner {
+  overflow-y: auto;
+  max-height: 80%;
+
+  /* Always reserve scrollbar space (avoids text shifting) */
+  scrollbar-gutter: stable;
+}
+
+/* Thin scrollbar for WebKit browsers (Chrome, Edge, Safari) */
+.leftMenuListContiner::-webkit-scrollbar {
+  width: 6px;              /* make it thin */
+}
+
+.leftMenuListContiner::-webkit-scrollbar-track {
+  background: transparent; /* no track background */
+}
+
+.leftMenuListContiner::-webkit-scrollbar-thumb {
+  background-color: rgba(0, 0, 0, 0.3); /* subtle thumb */
+  border-radius: 4px;
+}
+
+.leftMenuListContiner::-webkit-scrollbar-thumb:hover {
+  background-color: rgba(0, 0, 0, 0.5); /* darker on hover */
+}
+
+/* Firefox */
+.leftMenuListContiner {
+  scrollbar-width: thin;         /* makes it thin */
+  scrollbar-color: rgba(0,0,0,0.3) transparent;
+}
+
 
 .leftmenucontainer {
   width: 13.5rem;

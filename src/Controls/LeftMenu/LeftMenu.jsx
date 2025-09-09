@@ -71,7 +71,7 @@ export default function LeftMenu({
   };
 
   useEffect(()=>{
-    if(productAttributeLeftMenuName){
+    if(productAttributeLeftMenuName == "" || productAttributeLeftMenuName == null){
       fetchAttributeName()
     }else{
       setAttributeNames(productAttributeLeftMenuName)
@@ -123,8 +123,7 @@ export default function LeftMenu({
               variants={contentVariants}
               initial={isOpen}
               animate="open"
-              exit="closed"
-              style={{ overflow: 'hidden' }}
+              exit="closed"              
               className="leftMenuListContiner"
             >
               <LeftMenuList showLeftMenu={isOpen} attributeNames={attributeNames} />
