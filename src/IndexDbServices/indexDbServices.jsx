@@ -45,6 +45,7 @@ const getUpdateKey = (tableName) => {
     suppliers: 'supplierId',
     shop: 'value',
     rcmsConfiguration: 'configurationId',
+    creditCards:"creditCardId",
     department:"lineItemId",
     category:"categoryId",
     memberTypes:"memberTypeId",
@@ -169,7 +170,21 @@ export const deleteDataIndexDb = async (tableData) => {
             }
           }
           break;
-             case "customerTypeBasedPrice":
+          case "creditCards":
+          // Delete creditCards data based on creditCardId
+          for (const record of records) {
+            if (record.creditCardId) {
+              const deletedCount = await db[tableName]
+                .where("value")
+                .equals(record.creditCardId)
+                .delete();
+              console.log(
+                `Deleted ${deletedCount} creditCards records with creditCardId: ${record.creditCardId}`
+              );
+            }
+          }
+          break;
+              case "customerTypeBasedPrice":
           // Delete customerTypeBasedPrice data based on customerProdPriceId
           for (const record of records) {
             if (record.customerProdPriceId) {
