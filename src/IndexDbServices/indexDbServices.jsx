@@ -34,7 +34,8 @@ db.version(3).stores({
   customerTypeBasedPrice:"customerProdPriceId,customerTypeId,proItemId",
   productPriceShopBased:"autoIncrementId,shopId,productPriceShopBaseId,productItemId",
   discount:"autoIncrementId,discountId,discountCode,discountType",
-  register:"id,shopId,registerCode"
+  register:"id,shopId,registerCode",
+  shopEmployee:"shopEmployeeId,employeeName,employeeCode,shopId"
 });
 
 const getUpdateKey = (tableName) => {
@@ -68,7 +69,8 @@ const getUpdateKey = (tableName) => {
     customerTypeBasedPrice:"customerProdPriceId",
     productPriceShopBased:"autoIncrementId",
     discount:"autoIncrementId",
-    register:"Id"
+    register:"Id",
+    shopEmployee:"shopEmployeeId"
   };
   return primaryKeys[tableName];
 };
@@ -177,6 +179,19 @@ export const deleteDataIndexDb = async (tableData) => {
                 .delete();
               console.log(
                 `Deleted ${deletedCount} customerTypeBasedPrice records with customerProdPriceId: ${record.customerProdPriceId}`
+              );
+            }
+          }
+          case "shopEmployee":
+          // Delete shopEmployee data based on shopEmployeeId
+          for (const record of records) {
+            if (record.shopEmployeeId) {
+              const deletedCount = await db[tableName]
+                .where("value")
+                .equals(record.shopEmployeeId)
+                .delete();
+              console.log(
+                `Deleted ${deletedCount} shopEmployee records with autoIncrementId: ${record.shopEmployeeId}`
               );
             }
           }
