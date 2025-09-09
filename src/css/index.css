@@ -1956,6 +1956,9 @@ body.drawer-open {
       .hideInMobile{
         display: none;
       }
+      .modeLabel{
+        font-size: 14px;
+      }
 }
 
 /* Customer Auto Complete Dropdown */
@@ -2248,4 +2251,223 @@ body.drawer-open {
 /* Modal overlay styles */
 .modal.fade.show {
   background-color: rgba(0, 0, 0, 0.5);
+}
+
+
+/* Paid Feature Popup */
+/* Overlay */
+.pfw-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.35);
+  z-index: 9999;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  padding-top: 40px;
+}
+
+/* Modal */
+.pfw-modal {
+  width: min(920px, 96vw);
+  background: #fff;
+  border-radius: 6px;
+  box-shadow: 0 10px 30px rgba(0,0,0,.2);
+  overflow: hidden;
+  border-top: 6px solid #c0392b; /* red top bar */
+}
+
+/* Header */
+.pfw-header {
+  display: flex;
+  gap: 12px;
+  padding: 14px 16px 8px 16px;
+}
+.pfw-icon {
+  position: relative;
+  margin-right: 6px;
+}
+.pfw-gear {
+  color: #e74c3c; /* red */
+  font-size: 28px;
+}
+.pfw-hand {
+  position: absolute;
+  left: -8px;
+  bottom: -6px;
+  color: #3498db;
+  font-size: 22px;
+}
+.pfw-title {
+  display: flex;
+  flex-direction: column;
+  line-height: 1.4;
+}
+.pfw-warning {
+  color: #c0392b;
+  font-weight: 700;
+  margin-right: 4px;
+}
+.pfw-text {
+  color: #e74c3c;
+  font-weight: 500;
+}
+.pfw-subtext { color: black;font-weight: 400; }
+.pfw-date {  font-weight: 700; margin-left: 4px; }
+.pfw-date-green{color: green;}
+.pfw-date-red{color: #e74c3c;}
+
+/* Toggle */
+.pfw-toggle {
+  background: none;
+  border: none;
+  color: #0d6efd;
+  margin-left: 16px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 12px;
+  border-radius: 4px;
+  transition: all 0.2s ease;
+  font-size: 14px;
+  font-weight: 500;
+}
+
+.pfw-toggle:hover:not(:disabled) {
+  background: rgba(13, 110, 253, 0.1);
+  color: #0a58ca;
+}
+
+.pfw-toggle:disabled {
+  cursor: not-allowed;
+  opacity: 0.7;
+}
+
+.pfw-loading {
+  background: rgba(13, 110, 253, 0.1);
+  color: #0a58ca;
+}
+
+/* Loader Spinner */
+.pfw-spinner {
+  animation: spin 1s linear infinite;
+  font-size: 16px;
+}
+
+@keyframes spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+/* Details */
+.pfw-details { padding: 6px 16px 16px 16px; }
+.pfw-balance {
+  font-size: 20px;
+  color: #c0392b;
+  font-weight: 700;
+  margin: 8px 0 16px 0;
+}
+
+.pfw-panels {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 18px;
+}
+.pfw-panel {
+  border-radius: 6px;
+  border: 1px solid #e0e0e0;
+  padding: 12px 14px;
+}
+.pfw-current { background: #fff7e6; }
+.pfw-new { background: #eafff0; }
+
+.pfw-panel-header {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 10px;
+}
+.pfw-panel ul { list-style: none; padding: 0; margin: 0; }
+.pfw-panel li {
+  display: flex;
+  justify-content: space-between;
+  padding: 6px 0;
+  border-bottom: 1px dashed #ddd;
+}
+.pfw-panel li:last-child { border-bottom: none; }
+
+/* Actions */
+.pfw-actions {
+  padding: 14px 16px 18px 16px;
+  display: flex;
+  gap: 12px;
+  justify-content: center;
+}
+.pfw-btn {
+  border: none;
+  border-radius: 6px;
+  padding: 10px 22px;
+  font-weight: 600;
+  color: #fff;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.pfw-btn:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+}
+
+.pfw-proceed { background: #27ae60; }
+.pfw-proceed:hover { background: #229954; }
+
+.pfw-cancel { background: #e74c3c; }
+.pfw-cancel:hover { background: #c0392b; }
+
+/* Responsive Design */
+@media (max-width: 720px) {
+  .pfw-panels { 
+    grid-template-columns: 1fr; 
+  }
+  
+  .pfw-toggle {
+    margin: 8px 16px;
+    justify-content: center;
+    width: calc(100% - 32px);
+  }
+  
+  .pfw-actions {
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  .pfw-btn {
+    width: 100%;
+    max-width: 200px;
+  }
+}
+
+@media (max-width: 480px) {
+  .pfw-overlay {
+    padding: 20px 10px;
+  }
+  
+  .pfw-modal {
+    width: 100%;
+    margin: 0 10px;
+  }
+  
+  .pfw-header {
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+  }
+  
+  .pfw-title {
+    align-items: center;
+  }
 }
