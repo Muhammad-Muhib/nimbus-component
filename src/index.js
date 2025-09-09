@@ -38,6 +38,7 @@ import RightDrawer from './Controls/RightDrawer/RightDrawer';
 import { thousandformater } from './Utilities/thousandFormater';
 import CustomerHelpPopup from './Controls/Popup/CustomerHelpPopup';
 import CustomerAutoCompleteDropDown from './Controls/Popup/CustomerAutoCompleteDropDown';
+import PaidFeatureWarning from './Controls/Popup/PaidFeatureWarningPopup';
 
 export {apiService};
 export {CheckBox};
@@ -88,3 +89,4 @@ export {RightDrawer}
 export {thousandformater}
 export {CustomerHelpPopup}
 export {CustomerAutoCompleteDropDown}
+export {PaidFeatureWarning}
