@@ -88,7 +88,9 @@ const RightDrawer = ({
                 {videoSlice.map((item, index) => {
                   return (
                     <a
-                    onClick={handleVideoPopup(item.youTubeLink)}
+                    onClick={(e)=>{
+                      e.preventDefault();
+                      handleVideoPopup(item.youTubeLink)}}
                       href={`${item.youTubeLink}`}
                       className="videoCard"
                       key={index}

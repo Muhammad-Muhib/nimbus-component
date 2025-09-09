@@ -2531,7 +2531,7 @@ body.drawer-open {
   flex-direction: column;
 }
 .popupHeader {
-  background: #f2f2f2;
+  background: #3f4d54;
   padding: 10px 16px;
   display: flex;
   justify-content: space-between;
@@ -2541,12 +2541,14 @@ body.drawer-open {
 .popupTitle {
   font-weight: 600;
   font-size: 16px;
+  color: whitesmoke;
 }
 .popupClose {
   background: none;
   border: none;
   font-size: 20px;
   cursor: pointer;
+  color: whitesmoke;
 }
 .popupBody {
   background: #000;
