@@ -39,8 +39,8 @@ const RightDrawer = ({
   // Filter videos by language
   useEffect(() => {
     if (videoModel.length > 0) {
-      selectedLanguage = selectedLanguage == "1" ? "Urdu" : "English"
-      setVideoSlice(videoModel.filter((item) => item.language == selectedLanguage));
+      let selectedLan = selectedLanguage == "1" ? "Urdu" : "English"      
+      setVideoSlice(videoModel.filter((item) => item.language == selectedLan));
     }
   }, [videoModel, selectedLanguage]);
 
