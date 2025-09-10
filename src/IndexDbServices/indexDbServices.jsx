@@ -175,7 +175,7 @@ export const deleteDataIndexDb = async (tableData) => {
           for (const record of records) {
             if (record.creditCardId) {
               const deletedCount = await db[tableName]
-                .where("value")
+                .where("creditCardId")
                 .equals(record.creditCardId)
                 .delete();
               console.log(
