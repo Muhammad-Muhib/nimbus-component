@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { IoClose } from "react-icons/io5";
 import OptionSelection from "../DropDown/OptionSelection";
+import OptionSeletionTopMenu from "../DropDown/OptionSelectorTopMenu";
 import VideoPopup from "../VideoPopup/VideoPopup";
 
 const RightDrawer = ({
@@ -80,7 +81,7 @@ const RightDrawer = ({
             <div className="videosContainer">
               <h2 className="videoHeader">Videos</h2>
               <div className="videoLanguageDropDownContainer">
-                <OptionSelection
+                <OptionSeletionTopMenu
                   label={"Select language for video"}
                   options={languageOptions}
                   selectedOption={selectedLanguage}
