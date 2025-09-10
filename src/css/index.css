@@ -1581,6 +1581,58 @@
   overflow-wrap: break-word;
   word-break: break-word;
 }
+
+.youTubeVideoDropDown__menu-portal {
+  z-index: 1050 !important;
+}
+
+.youTubeVideoDropDown__menu {
+  z-index: 1050 !important;
+  position: fixed !important;
+}
+
+.youTubeVideoDropDown__menu-list {
+  z-index: 1050 !important;
+}
+
+/* Alternative: Target any react-select inside the drawer */
+.right-drawer .css-1n7v3ny-option,
+.right-drawer .css-yt9ioa-option {
+  z-index: 1050 !important;
+}
+
+/* Fix for the dropdown container */
+.right-drawer [class*="__menu-portal"] {
+  z-index: 1050 !important;
+}
+
+.right-drawer [class*="__menu"] {
+  z-index: 1050 !important;
+  position: fixed !important;
+}
+
+/* Ensure the drawer doesn't clip the dropdown */
+.right-drawer {
+  overflow: visible !important;
+}
+
+.drawer-content {
+  overflow: visible !important;
+}
+
+/* Mobile specific fix */
+@media (max-width: 768px) {
+  .youTubeVideoDropDown__menu-portal {
+    z-index: 1100 !important;
+  }
+  
+  .youTubeVideoDropDown__menu {
+    z-index: 1100 !important;
+    max-height: 200px !important;
+    overflow-y: auto !important;
+  }
+}
+
 /* Drawer Container */
 .right-drawer {
   position: fixed;
