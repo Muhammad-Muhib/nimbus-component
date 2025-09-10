@@ -12,18 +12,16 @@ const RightDrawer = ({
 }) => {
   const [videoSlice, setVideoSlice] = useState([]);
   const languageOptions = [
-    { value: "1", label: "English" },
-    { value: "2", label: "Urdu" },
+    { value: "2", label: "English" },
+    { value: "1", label: "Urdu" },
   ];
   const [selectedLanguage, setSelectedLanguage] = useState(null);
   const [showHideVideo,setShowHideVideo] = useState(false)
   const [videoLink,setVideoLink] = useState("")
 
   useEffect(()=>{
-    if(localStorage.defaultLanguageForVideos == "1"){
-      setSelectedLanguage("1")
-    }else{
-      setSelectedLanguage("2")
+    if(localStorage.defaultLanguageForVideos != null){
+      setSelectedLanguage(languageOptions.filter(item=>item.value == localStorage.defaultLanguageForVideos))      
     }
   },[isOpen])
 
