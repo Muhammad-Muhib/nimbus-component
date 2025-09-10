@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { IoClose } from "react-icons/io5";
-import BootstrapDropdown from "../DropDown/BootstrapDropDown";
+import LanguageRadio from "../RadioButton/LanguageRadio";
 import VideoPopup from "../VideoPopup/VideoPopup";
 
 const RightDrawer = ({
@@ -11,30 +11,21 @@ const RightDrawer = ({
   setIsOpen,
 }) => {
   const [videoSlice, setVideoSlice] = useState([]);
-  const languageOptions = [
-    { value: "2", label: "English" },
-    { value: "1", label: "Urdu" },
-  ];
-  const [selectedLanguage, setSelectedLanguage] = useState({
-    value: "2",
-    label: "English",
-  });
+  const [selectedLanguage, setSelectedLanguage] = useState("1"); // 1 = Urdu, 2 = English
   const [showHideVideo, setShowHideVideo] = useState(false);
   const [videoLink, setVideoLink] = useState("");
 
+  // Load default from localStorage if available
   useEffect(() => {
-    if (localStorage.defaultLanguageForVideos != null) {
-      setSelectedLanguage(
-        languageOptions.find(
-          (item) => item.value == localStorage.defaultLanguageForVideos
-        )
-      );
+    if (localStorage.defaultLanguageForVideos) {
+      setSelectedLanguage(localStorage.defaultLanguageForVideos);
     }
   }, [isOpen]);
 
+  // Escape key closes drawer
   useEffect(() => {
     const handleKeyDown = (e) => {
-      if (e.key == "Escape") {
+      if (e.key === "Escape") {
         setIsOpen(false);
       }
     };
@@ -43,34 +34,28 @@ const RightDrawer = ({
     return () => {
       document.removeEventListener("keydown", handleKeyDown);
     };
-  }, [isOpen]);
+  }, [isOpen, setIsOpen]);
+
+  // Filter videos by language
   useEffect(() => {
     if (videoModel.length > 0) {
-      setVideoSlice(
-        videoModel.filter(
-          (item) =>
-            item.language.toLowerCase() == selectedLanguage.label.toLowerCase()
-        )
-      );
+      selectedLanguage = selectedLanguage == "1" ? "Urdu" : "English"
+      setVideoSlice(videoModel.filter((item) => item.language == selectedLanguage));
     }
   }, [videoModel, selectedLanguage]);
+
   const handleVideoPopup = (playVideoLink) => {
     setVideoLink(playVideoLink);
     setShowHideVideo(true);
   };
-  const handleLanguageSelect = (option) =>{
-    console.log(option)
-    setSelectedLanguage(option)
-  }
+
   return (
     <>
       {/* Overlay */}
       {isOpen && <div className="drawer-overlay" onClick={onClose} />}
 
       {/* Drawer */}
-      <div
-        className={`right-drawer ${isOpen ? "drawer-open" : "drawer-closed"}`}
-      >
+      <div className={`right-drawer ${isOpen ? "drawer-open" : "drawer-closed"}`}>
         {/* Drawer Header */}
         <div className="drawer-header">
           <h1 className="drawer-title">Help</h1>
@@ -90,29 +75,29 @@ const RightDrawer = ({
           {videoModel.length > 0 && (
             <div className="videosContainer">
               <h2 className="videoHeader">Videos</h2>
-              <div className="videoLanguageDropDownContainer">
-                <BootstrapDropdown
-                  label={"Select language for video"}
-                  options={languageOptions}
-                  defaultValue={selectedLanguage}
-                  onSelect={handleLanguageSelect}
-                  className="w-100"
-                  prefix="youtubeLanguage" 
+
+              {/* Language Radio */}
+              <div className="videoLanguageRadioContainer">
+                <LanguageRadio
+                  selected={selectedLanguage}
+                  setSelected={setSelectedLanguage}
                 />
               </div>
+
+              {/* Videos */}
               <div className="videoCardContainer">
                 {videoSlice.map((item, index) => {
                   return (
                     <a
+                      key={index}
+                      href={item.youTubeLink}
+                      className="videoCard"
                       onClick={(e) => {
                         e.preventDefault();
                         handleVideoPopup(item.youTubeLink);
                       }}
-                      href={`${item.youTubeLink}`}
-                      className="videoCard"
-                      key={index}
                     >
-                      <img src={`${item.youTubePic}`} className="youTubeImg" />
+                      <img src={item.youTubePic} className="youTubeImg" alt="" />
                       <div className="youtubeText">{item.description}</div>
                     </a>
                   );
@@ -120,28 +105,29 @@ const RightDrawer = ({
               </div>
             </div>
           )}
+
           {articleModel.length > 0 && (
             <div className="articleContainer">
               <h2 className="videoHeader">Articles</h2>
               <div className="artcleCardContainer">
-                {articleModel.map((item, index) => {
-                  return (
-                    <div key={index}>
-                      <a
-                        href={`${item.articleLink}`}
-                        className="articleText"
-                        target="_blank"
-                      >
-                        {item.articleText}
-                      </a>
-                    </div>
-                  );
-                })}
+                {articleModel.map((item, index) => (
+                  <div key={index}>
+                    <a
+                      href={item.articleLink}
+                      className="articleText"
+                      target="_blank"
+                      rel="noreferrer"
+                    >
+                      {item.articleText}
+                    </a>
+                  </div>
+                ))}
               </div>
             </div>
           )}
         </div>
       </div>
+
       {showHideVideo && (
         <VideoPopup handleClose={setShowHideVideo} youTubeLink={videoLink} />
       )}

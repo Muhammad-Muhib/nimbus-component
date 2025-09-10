@@ -2657,58 +2657,64 @@ body.drawer-open {
 
 
 /* Language DropDown */
-.youtubeLanguage-dropdown-container {
+/* Hide the default radio */
+.youtubeLanguage-custom-radio input[type="radio"] {
+  display: none;
+}
+
+/* Label acts as the styled radio */
+.youtubeLanguage-custom-radio label {
   position: relative;
-  width: 100%;
-}
-
-.youtubeLanguage-dropdown-label {
-  display: block;
-  font-size: 14px;
-  margin-bottom: 4px;
-  font-weight: 500;
-}
-
-.youtubeLanguage-dropdown-button {
-  width: 100%;
-  padding: 6px 10px;
-  border: 1px solid #ccc;
-  border-radius: 6px;
-  background: #fff;
-  display: flex;
-  justify-content: space-between;
+  cursor: pointer;
+  padding-left: 28px;
+  line-height: 20px;
+  display: inline-flex;
   align-items: center;
-  cursor: pointer;
+  font-size: 15px;
+  color: #333;
+  user-select: none;
+  transition: color 0.2s ease-in-out;
 }
 
-.youtubeLanguage-dropdown-menu {
+/* Outer circle */
+.youtubeLanguage-custom-radio label::before {
+  content: "";
   position: absolute;
-  top: 100%;
   left: 0;
-  z-index: 1050;
-  width: 100%;
-  margin-top: 4px;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 18px;
+  height: 18px;
+  border: 2px solid #3f4d54;   /* brand color */
+  border-radius: 50%;
   background: #fff;
-  border: 1px solid #ccc;
-  border-radius: 6px;
-  box-shadow: 0 4px 8px rgba(0,0,0,0.08);
-  padding: 4px 0;
+  transition: border-color 0.3s ease, background-color 0.3s ease;
 }
 
-.youtubeLanguage-dropdown-item {
-  width: 100%;
-  padding: 6px 10px;
-  text-align: left;
-  border: none;
-  background: none;
-  cursor: pointer;
+/* Inner dot */
+.youtubeLanguage-custom-radio label::after {
+  content: "";
+  position: absolute;
+  left: 4px;
+  top: 50%;
+  transform: translateY(-50%) scale(0);
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: #3f4d54;
+  transition: transform 0.2s ease-in-out;
 }
 
-.youtubeLanguage-dropdown-item:hover {
-  background: #f5f5f5;
+/* Checked state */
+.youtubeLanguage-custom-radio input[type="radio"]:checked + label::after {
+  transform: translateY(-50%) scale(1);
 }
 
-.youtubeLanguage-dropdown-item.youtubeLanguage-active {
-  background: #e9ecef;
-  font-weight: 600;
+.youtubeLanguage-custom-radio input[type="radio"]:checked + label::before {
+  border-color: #3f4d54;
+}
+
+/* Hover effect */
+.youtubeLanguage-custom-radio label:hover {
+  color: #3f4d54;
 }

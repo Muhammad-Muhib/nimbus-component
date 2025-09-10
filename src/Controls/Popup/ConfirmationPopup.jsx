@@ -12,66 +12,70 @@ export default function ConfirmationPopup({
   const [addBgColor, setAddBgColor] = useState(true);
   const okRef = useRef();
   const noRef = useRef();
-  useEffect(() => {
-    if (modalBody.toLowerCase().includes("delete")) {
-      noRef.current.focus();
-      setAddBgColor(false);
-    } else {
-      okRef.current.focus();
+
+  // helper: set focus and force-focus-visible class
+  const setFocus = (button) => {
+    if (!okRef.current || !noRef.current) return;
+
+    // clear both first
+    okRef.current.classList.remove("force-focus-visible");
+    noRef.current.classList.remove("force-focus-visible");
+
+    // apply to the right one
+    if (button === "ok") {
       setAddBgColor(true);
+      okRef.current.classList.add("force-focus-visible");
+      okRef.current.focus();
+    } else if (button === "no") {
+      setAddBgColor(false);
+      noRef.current.classList.add("force-focus-visible");
+      noRef.current.focus();
     }
+  };
+
+  // initial focus setup
+  useEffect(() => {
+    const isDelete = modalBody.toLowerCase().includes("delete");
+
+    const timer = setTimeout(() => {
+      if (isDelete) {
+        setFocus("no");
+      } else {
+        setFocus("ok");
+      }
+    }, 50);
+
+    return () => clearTimeout(timer);
+  }, [modalBody]);
+
+  // keyboard shortcuts
+  useEffect(() => {
     const handleKeyDown = (e) => {
-      if (e.key == "Escape") {
+      if (e.key === "Escape") {
         setShowModal(false);
       }
-      if (e.key == "ArrowLeft") {
-        setAddBgColor(true);
-        okRef.current.focus();
+      if (e.key === "ArrowLeft") {
+        setFocus("ok");
       }
-      if (e.key == "ArrowRight") {
-        setAddBgColor(false);
-        noRef.current.focus();
+      if (e.key === "ArrowRight") {
+        setFocus("no");
       }
-      // F8 key - focus on Yes button
-      if (e.key == "F8") {
+      if (e.key === "F8" || e.key === "F7") {
         e.preventDefault();
-        setAddBgColor(true);
-        okRef.current.focus();
+        setFocus("ok");
       }
-      // F7 key - focus on Yes button
-      if (e.key == "F7") {
+      if (e.altKey && e.key.toLowerCase() === "d") {
         e.preventDefault();
-        setAddBgColor(true);
-        okRef.current.focus();
-      }
-      // Alt+D key - focus on No button
-      if (e.altKey && e.key.toLowerCase() == "d") {
-        e.preventDefault();
-        setAddBgColor(false);
-        noRef.current.focus();
+        setFocus("no");
       }
     };
 
     document.addEventListener("keydown", handleKeyDown);
-
     return () => {
       document.removeEventListener("keydown", handleKeyDown);
     };
   }, []);
-  useEffect(() => {
-    const isDelete = modalBody.toLowerCase().includes("delete");
-    setAddBgColor(!isDelete);
 
-    const timer = setTimeout(() => {
-      if (isDelete && noRef.current) {
-        noRef.current.focus();
-      } else if (okRef.current) {
-        okRef.current.focus();
-      }
-    }, 0);
-
-    return () => clearTimeout(timer);
-  }, [modalBody]);
   return (
     <div className="modal fade show confirmationModal" tabIndex="-1">
       <div className="modal-dialog modal-dialog-centered">
@@ -95,10 +99,7 @@ export default function ConfirmationPopup({
                 backgroundColor: addBgColor ? "#3f4d54" : "white",
                 color: addBgColor ? "white" : "black",
               }}
-              onMouseEnter={() => {
-                setAddBgColor(true);
-                okRef.current.focus();
-              }}
+              onMouseEnter={() => setFocus("ok")}
               onClick={() => {
                 setShowModal(false);
                 onConfirm();
@@ -107,20 +108,17 @@ export default function ConfirmationPopup({
               Yes
             </button>
             <button
-              type="button"
-              id="noBtn"
               ref={noRef}
+              type="button"
               className="btn btn-secondary confirmationbtn"
+              id="noBtn"
               style={{
                 backgroundColor: !addBgColor ? "#3f4d54" : "white",
                 color: !addBgColor ? "white" : "black",
               }}
-              onMouseEnter={() => {
-                setAddBgColor(false);
-                noRef.current.focus();
-              }}
+              onMouseEnter={() => setFocus("no")}
               onClick={() => {
-                if (onClose != null) {
+                if (onClose) {
                   onClose();
                 }
                 setShowModal(false);
