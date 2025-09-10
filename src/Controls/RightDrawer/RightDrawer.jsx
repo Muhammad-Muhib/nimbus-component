@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { IoClose } from "react-icons/io5";
-import OptionSelection from "../DropDown/OptionSelection";
-import OptionSeletionTopMenu from "../DropDown/OptionSelectorTopMenu";
+import BootstrapDropdown from "../DropDown/BootstrapDropDown";
 import VideoPopup from "../VideoPopup/VideoPopup";
 
 const RightDrawer = ({
@@ -16,15 +15,22 @@ const RightDrawer = ({
     { value: "2", label: "English" },
     { value: "1", label: "Urdu" },
   ];
-  const [selectedLanguage, setSelectedLanguage] = useState({ value: "2", label: "English" });
-  const [showHideVideo,setShowHideVideo] = useState(false)
-  const [videoLink,setVideoLink] = useState("")
+  const [selectedLanguage, setSelectedLanguage] = useState({
+    value: "2",
+    label: "English",
+  });
+  const [showHideVideo, setShowHideVideo] = useState(false);
+  const [videoLink, setVideoLink] = useState("");
 
-  useEffect(()=>{
-    if(localStorage.defaultLanguageForVideos != null){
-      setSelectedLanguage(languageOptions.find(item=>item.value == localStorage.defaultLanguageForVideos))      
+  useEffect(() => {
+    if (localStorage.defaultLanguageForVideos != null) {
+      setSelectedLanguage(
+        languageOptions.find(
+          (item) => item.value == localStorage.defaultLanguageForVideos
+        )
+      );
     }
-  },[isOpen])
+  }, [isOpen]);
 
   useEffect(() => {
     const handleKeyDown = (e) => {
@@ -48,9 +54,13 @@ const RightDrawer = ({
       );
     }
   }, [videoModel, selectedLanguage]);
-  const handleVideoPopup = (playVideoLink)=>{
-    setVideoLink(playVideoLink)
-    setShowHideVideo(true)
+  const handleVideoPopup = (playVideoLink) => {
+    setVideoLink(playVideoLink);
+    setShowHideVideo(true);
+  };
+  const handleLanguageSelect = (option) =>{
+    console.log(option)
+    setSelectedLanguage(option)
   }
   return (
     <>
@@ -64,15 +74,15 @@ const RightDrawer = ({
         {/* Drawer Header */}
         <div className="drawer-header">
           <h1 className="drawer-title">Help</h1>
-          {
-            isOpen &&  <button
-            className="drawer-close-btn"
-            onClick={onClose}
-            aria-label="Close drawer"
-          >
-            <IoClose size={24} />
-          </button>
-          }          
+          {isOpen && (
+            <button
+              className="drawer-close-btn"
+              onClick={onClose}
+              aria-label="Close drawer"
+            >
+              <IoClose size={24} />
+            </button>
+          )}
         </div>
 
         {/* Drawer Content */}
@@ -81,21 +91,21 @@ const RightDrawer = ({
             <div className="videosContainer">
               <h2 className="videoHeader">Videos</h2>
               <div className="videoLanguageDropDownContainer">
-                <OptionSeletionTopMenu
+                <BootstrapLanguageDropdown
                   label={"Select language for video"}
                   options={languageOptions}
-                  selectedOption={selectedLanguage}
-                  setSelectedOption={setSelectedLanguage}
-                  customDropDown={"youTubeVideoDropDown"}
+                  defaultValue={selectedLanguage}
+                  onSelect={handleLanguageSelect}
                 />
               </div>
               <div className="videoCardContainer">
                 {videoSlice.map((item, index) => {
                   return (
                     <a
-                    onClick={(e)=>{
-                      e.preventDefault();
-                      handleVideoPopup(item.youTubeLink)}}
+                      onClick={(e) => {
+                        e.preventDefault();
+                        handleVideoPopup(item.youTubeLink);
+                      }}
                       href={`${item.youTubeLink}`}
                       className="videoCard"
                       key={index}
@@ -115,7 +125,11 @@ const RightDrawer = ({
                 {articleModel.map((item, index) => {
                   return (
                     <div key={index}>
-                      <a  href={`${item.articleLink}`} className="articleText"  target="_blank">
+                      <a
+                        href={`${item.articleLink}`}
+                        className="articleText"
+                        target="_blank"
+                      >
                         {item.articleText}
                       </a>
                     </div>
@@ -126,9 +140,9 @@ const RightDrawer = ({
           )}
         </div>
       </div>
-      {
-        showHideVideo && <VideoPopup handleClose={setShowHideVideo} youTubeLink={videoLink} />
-      }
+      {showHideVideo && (
+        <VideoPopup handleClose={setShowHideVideo} youTubeLink={videoLink} />
+      )}
     </>
   );
 };
