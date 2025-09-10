@@ -70,7 +70,7 @@ const getUpdateKey = (tableName) => {
     customerTypeBasedPrice:"customerProdPriceId",
     productPriceShopBased:"autoIncrementId",
     discount:"autoIncrementId",
-    register:"Id",
+    register:"id",
     shopEmployee:"shopEmployeeId"
   };
   return primaryKeys[tableName];
