@@ -39,6 +39,7 @@ import { thousandformater } from './Utilities/thousandFormater';
 import CustomerHelpPopup from './Controls/Popup/CustomerHelpPopup';
 import CustomerAutoCompleteDropDown from './Controls/Popup/CustomerAutoCompleteDropDown';
 import PaidFeatureWarning from './Controls/Popup/PaidFeatureWarningPopup';
+import CustomRadioButton from './Controls/RadioButton/CustomRadioButton';
 
 export {apiService};
 export {CheckBox};
@@ -90,3 +91,4 @@ export {thousandformater}
 export {CustomerHelpPopup}
 export {CustomerAutoCompleteDropDown}
 export {PaidFeatureWarning}
+export {CustomRadioButton}
