@@ -1,7 +1,7 @@
 export default function LanguageRadio({selected,setSelected}) {
 
   return (
-    <div>
+    <div className="youtubeLanguage-radio-container">
       <div className="youtubeLanguage-custom-radio">
         <input
           type="radio"

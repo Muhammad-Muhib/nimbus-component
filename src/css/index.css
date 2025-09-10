@@ -2718,3 +2718,9 @@ body.drawer-open {
 .youtubeLanguage-custom-radio label:hover {
   color: #3f4d54;
 }
+.youtubeLanguage-radio-container{
+  display: flex;
+    gap: 2rem;
+    padding-left: 1rem;
+    padding-bottom: 1rem;
+}
