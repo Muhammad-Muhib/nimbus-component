@@ -83,19 +83,7 @@ const BootstrapDropdown = ({
                   ))}
                 </div>
               )}
-            </div>
-
-            {/* Demo Info */}
-            <div className="demo-info">
-              <p className="mb-2">
-                <strong>Selected:</strong>{" "}
-                {selectedOption ? JSON.stringify(selectedOption) : "None"}
-              </p>
-              <small className="text-muted">
-                This dropdown displays labels, but returns the full object
-                {{ value, label }} when selected.
-              </small>
-            </div>
+            </div>            
           </div>
         </div>
       </div>
