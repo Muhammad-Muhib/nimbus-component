@@ -84,8 +84,8 @@ export default function LeftMenuList(props) {
                 {
                   expandedSubMenu["DepartmentBasedAttributes"] ? <>
                   <li className="active"><Link className="navLink listLink subLink" to="/app/ItemGroup"><span className="scoop-micon"></span><span className="scoop-mtext list-text">Item Group</span></Link></li>
-                  <li className="active"><Link className="navLink listLink subLink" to="/app/DBattribute1"><span className="scoop-micon"></span><span className="scoop-mtext list-text">{props.attributeNames[0].configurationValue || "DB attribute 1"}</span></Link></li>
-                  <li className="active"><Link className="navLink listLink subLink" to="/app/DBattribute2"><span className="scoop-micon"></span><span className="scoop-mtext list-text">{props.attributeNames[2].configurationValue || "DB attribute 2"}</span></Link></li>
+                  <li className="active"><Link className="navLink listLink subLink" to="/app/ProductAttribute1"><span className="scoop-micon"></span><span className="scoop-mtext list-text">{props.attributeNames[0].configurationValue || "DB attribute 1"}</span></Link></li>
+                  <li className="active"><Link className="navLink listLink subLink" to="/app/ProductAttribute3"><span className="scoop-micon"></span><span className="scoop-mtext list-text">{props.attributeNames[2].configurationValue || "DB attribute 2"}</span></Link></li>
                   <li className="active"><Link className="navLink listLink subLink" to="/app/Category"><span className="scoop-micon"></span><span className="scoop-mtext list-text">Category</span></Link></li>
                   <li className="active"><Link className="navLink listLink subLink" to="/app/SubCategory"><span className="scoop-micon"></span><span className="scoop-mtext list-text">Sub Category</span></Link></li>
                   </> : <></>
@@ -95,13 +95,13 @@ export default function LeftMenuList(props) {
                 } </span></Link>
                 {
                   expandedSubMenu["ItemBasedAttributes"] ? <>
-                  <li className="active"><Link className="navLink listLink subLink" to="/app/CalenderSeason"><span className="scoop-micon"></span><span className="scoop-mtext list-text">{ props.attributeNames[1].configurationValue || "Calender Season"}</span></Link></li>
-                  <li className="active"><Link className="navLink listLink subLink" to="/app/IBattribute2"><span className="scoop-micon"></span><span className="scoop-mtext list-text">{ props.attributeNames[3].configurationValue || "IB attribute 2"}</span></Link></li>
-                  <li className="active"><Link className="navLink listLink subLink" to="/app/Gender"><span className="scoop-micon"></span><span className="scoop-mtext list-text">{ props.attributeNames[4].configurationValue || "Gender"}</span></Link></li>
-                  <li className="active"><Link className="navLink listLink subLink" to="/app/Brand"><span className="scoop-micon"></span><span className="scoop-mtext list-text">{ props.attributeNames[5].configurationValue || "Brand"}</span></Link></li>
-                  <li className="active"><Link className="navLink listLink subLink" to="/app/IBattribute5"><span className="scoop-micon"></span><span className="scoop-mtext list-text">{ props.attributeNames[6].configurationValue || "IB attribute 5"}</span></Link></li>
-                  <li className="active"><Link className="navLink listLink subLink" to="/app/IBattribute6"><span className="scoop-micon"></span><span className="scoop-mtext list-text">{props.attributeNames[7].configurationValue || "IB attribute 6"}</span></Link></li>
-                  <li className="active"><Link className="navLink listLink subLink" to="/app/ModifierGroup"><span className="scoop-micon"></span><span className="scoop-mtext list-text">{props.attributeNames[8].configurationValue || "Modifier Group"}</span></Link></li>
+                  <li className="active"><Link className="navLink listLink subLink" to="/app/ProductAttribute2"><span className="scoop-micon"></span><span className="scoop-mtext list-text">{ props.attributeNames[1].configurationValue || "Calender Season"}</span></Link></li>
+                  <li className="active"><Link className="navLink listLink subLink" to="/app/ProductAttribute4"><span className="scoop-micon"></span><span className="scoop-mtext list-text">{ props.attributeNames[3].configurationValue || "IB attribute 2"}</span></Link></li>
+                  <li className="active"><Link className="navLink listLink subLink" to="/app/ProductAttribute5"><span className="scoop-micon"></span><span className="scoop-mtext list-text">{ props.attributeNames[4].configurationValue || "Gender"}</span></Link></li>
+                  <li className="active"><Link className="navLink listLink subLink" to="/app/ProductAttribute6"><span className="scoop-micon"></span><span className="scoop-mtext list-text">{ props.attributeNames[5].configurationValue || "Brand"}</span></Link></li>
+                  <li className="active"><Link className="navLink listLink subLink" to="/app/ProductAttribute7"><span className="scoop-micon"></span><span className="scoop-mtext list-text">{ props.attributeNames[6].configurationValue || "IB attribute 5"}</span></Link></li>
+                  <li className="active"><Link className="navLink listLink subLink" to="/app/ProductAttribute8"><span className="scoop-micon"></span><span className="scoop-mtext list-text">{props.attributeNames[7].configurationValue || "IB attribute 6"}</span></Link></li>
+                  <li className="active"><Link className="navLink listLink subLink" to="/app/ProductAttribute9"><span className="scoop-micon"></span><span className="scoop-mtext list-text">{props.attributeNames[8].configurationValue || "Modifier Group"}</span></Link></li>
                   </> : <></>
                 }
               </div> : <></>

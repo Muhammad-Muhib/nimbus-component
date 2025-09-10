@@ -1759,8 +1759,9 @@ body.drawer-open {
   }
   .drawer-close-btn {
     color: #a0aec0;
-    background-color: #4d4d4d;
+    background-color: transparent;
     position: relative;
+    left: 0px;
   }
 }
 
@@ -2594,4 +2595,10 @@ body.drawer-open {
   left: 0;
   width: 100%;
   height: 100%;
+}
+
+@media screen and (min-width:700px) and (max-width:1000px) {
+  .low_margin{
+    padding-right: 10.5rem;
+  }
 }

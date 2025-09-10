@@ -14,6 +14,7 @@ export default function PaidFeatureWarning({
   onCancel,
   newExpiryDate = "",
   dateColor = "red",
+  isExtending = true
 }) {
   const apiUrl = import.meta.env.VITE_BACKEND_API_URL;
   const proceedRef = useRef(null);
@@ -43,7 +44,7 @@ export default function PaidFeatureWarning({
       setIsLoading(true);
       let Obj = {
         transactionHead: "Register",
-        isExtending: true,
+        isExtending: isExtending,
       };
 
       try {
