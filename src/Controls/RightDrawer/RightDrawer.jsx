@@ -96,6 +96,8 @@ const RightDrawer = ({
                   options={languageOptions}
                   defaultValue={selectedLanguage}
                   onSelect={handleLanguageSelect}
+                  className="w-100"
+                  prefix="youtubeLanguage" 
                 />
               </div>
               <div className="videoCardContainer">
