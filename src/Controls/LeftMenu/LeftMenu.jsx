@@ -91,7 +91,8 @@ export default function LeftMenu({
               item.configurationName == "ProductVariable6" ||
               item.configurationName == "ProductVariable7" ||
               item.configurationName == "ProductVariable8" ||
-              item.configurationName == "ProductVariable9" 
+              item.configurationName == "ProductVariable9" ||
+              item.configurationName == "ISRestaurantVersion"              
           );
           setAttributeNames(attributeLeftMenuName)
   }
