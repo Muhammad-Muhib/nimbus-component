@@ -43,7 +43,7 @@ const getUpdateKey = (tableName) => {
     product: 'productCode',
     company: 'CompanyId',
     suppliers: 'supplierId',
-    shop: 'value',
+    shop: 'shopId',
     rcmsConfiguration: 'configurationId',
     creditCards:"creditCardId",
     department:"lineItemId",
@@ -161,7 +161,7 @@ export const deleteDataIndexDb = async (tableData) => {
           for (const record of records) {
             if (record.shopId) {
               const deletedCount = await db[tableName]
-                .where("value")
+                .where("shopId")
                 .equals(record.shopId)
                 .delete();
               console.log(
@@ -189,7 +189,7 @@ export const deleteDataIndexDb = async (tableData) => {
           for (const record of records) {
             if (record.customerProdPriceId) {
               const deletedCount = await db[tableName]
-                .where("value")
+                .where("customerProdPriceId")
                 .equals(record.customerProdPriceId)
                 .delete();
               console.log(
@@ -202,7 +202,7 @@ export const deleteDataIndexDb = async (tableData) => {
           for (const record of records) {
             if (record.shopEmployeeId) {
               const deletedCount = await db[tableName]
-                .where("value")
+                .where("shopEmployeeId")
                 .equals(record.shopEmployeeId)
                 .delete();
               console.log(
@@ -215,7 +215,7 @@ export const deleteDataIndexDb = async (tableData) => {
           for (const record of records) {
             if (record.registerId) {
               const deletedCount = await db[tableName]
-                .where("value")
+                .where("registerId")
                 .equals(record.registerId)
                 .delete();
               console.log(
@@ -229,7 +229,7 @@ export const deleteDataIndexDb = async (tableData) => {
           for (const record of records) {
             if (record.autoIncrementId) {
               const deletedCount = await db[tableName]
-                .where("value")
+                .where("autoIncrementId")
                 .equals(record.autoIncrementId)
                 .delete();
               console.log(
@@ -243,7 +243,7 @@ export const deleteDataIndexDb = async (tableData) => {
           for (const record of records) {
             if (record.autoIncrementId) {
               const deletedCount = await db[tableName]
-                .where("value")
+                .where("autoIncrementId")
                 .equals(record.autoIncrementId)
                 .delete();
               console.log(

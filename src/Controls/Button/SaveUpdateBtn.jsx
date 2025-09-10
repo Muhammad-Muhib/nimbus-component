@@ -22,6 +22,7 @@ export default function SaveUpdateBtn({
   CustomButtonText = "Custom Button",
   CustomTooltipText = 'Custom Button Tooltip',
   hideCustomButton = true,
+  deleteLoading = false
 }) {
   const [isMobile, setIsMobile] = useState(false);
 
@@ -246,7 +247,8 @@ export default function SaveUpdateBtn({
               </Tooltip>
             ) : (
               <Tooltip title="Delete loaded data" placement="top">
-                <motion.button
+                {
+                  deleteLoading ? <span className="loader"></span> : <motion.button
                   type="button"
                   className="btn-style btn-red"
                   onClick={handleDelete}
@@ -264,6 +266,7 @@ export default function SaveUpdateBtn({
                     "Delete"
                   )}
                 </motion.button>
+                }                
               </Tooltip>
             )
           )}
