@@ -1803,7 +1803,7 @@ body.drawer-open {
 
 .drawer-content {
   overflow: visible !important;
-}
+} 
 
 /* Mobile specific fix */
 @media (max-width: 768px) {
