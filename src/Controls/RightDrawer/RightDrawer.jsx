@@ -12,15 +12,18 @@ const RightDrawer = ({
 }) => {
   const [videoSlice, setVideoSlice] = useState([]);
   const languageOptions = [
-    { value: "1", label: "English" },
-    { value: "2", label: "Urdu" },
+    { value: "2", label: "English" },
+    { value: "1", label: "Urdu" },
   ];
-  const [selectedLanguage, setSelectedLanguage] = useState({
-    value: "1",
-    label: "English",
-  });
+  const [selectedLanguage, setSelectedLanguage] = useState({ value: "2", label: "English" });
   const [showHideVideo,setShowHideVideo] = useState(false)
   const [videoLink,setVideoLink] = useState("")
+
+  useEffect(()=>{
+    if(localStorage.defaultLanguageForVideos != null){
+      setSelectedLanguage(languageOptions.find(item=>item.value == localStorage.defaultLanguageForVideos))      
+    }
+  },[isOpen])
 
   useEffect(() => {
     const handleKeyDown = (e) => {

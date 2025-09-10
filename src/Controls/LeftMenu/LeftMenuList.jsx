@@ -76,8 +76,12 @@ export default function LeftMenuList(props) {
           <li className="active"><Link className="navLink listLink subLink" to="/app/StoreBasedPrices"><span className="scoop-micon"></span><span className="scoop-mtext list-text">Store Based Prices</span></Link></li>
                     </> : <></>
                 }
-                <li className="active"><Link className="navLink listLink" to="/app/ItemCombinations"><span className="scoop-micon"></span><span className="scoop-mtext list-text">Item Combinations</span></Link></li>
-                <li className="active"><Link className="navLink listLink" to="/app/ItemSizes"><span className="scoop-micon"></span><span className="scoop-mtext list-text">Item Sizes</span></Link></li>
+                {
+                  props.attributeNames[9].configurationValue.toLowerCase() == "false" && <>
+                  <li className="active"><Link className="navLink listLink" to="/app/ItemCombinations"><span className="scoop-micon"></span><span className="scoop-mtext list-text">Item Combinations</span></Link></li>
+                  <li className="active"><Link className="navLink listLink" to="/app/ItemSizes"><span className="scoop-micon"></span><span className="scoop-mtext list-text">Item Sizes</span></Link></li>
+                  </>
+                }                
                 <Link onClick={() => toggleSubMenu("DepartmentBasedAttributes")} className="navLink listLink"><span className="scoop-micon"></span><span className="scoop-mtext list-text"> Department Based Attributes {
                   expandedSubMenu["DepartmentBasedAttributes"] ?<IoIosArrowDown className='navArrow' />:<IoIosArrowForward className='navArrow' />
                 } </span></Link>

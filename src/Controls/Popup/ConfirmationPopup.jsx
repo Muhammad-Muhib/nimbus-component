@@ -50,6 +50,15 @@ export default function ConfirmationPopup({setShowModal,onClose,onConfirm,showEx
       document.removeEventListener("keydown", handleKeyDown);
     };
   }, []);
+  useEffect(()=>{
+    if(modalBody.toLowerCase().includes("delete")){
+        noRef.current.focus()        
+        setAddBgColor(false)
+      }else{
+        okRef.current.focus()
+        setAddBgColor(true)
+      }
+  },[modalBody])
   return (
     <div
             className="modal fade show confirmationModal"

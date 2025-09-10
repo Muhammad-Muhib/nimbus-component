@@ -1,6 +1,6 @@
 import Select from "react-select";
 
-export default function OptionSelection({label,customClass,selectedOption,setSelectedOption,options,placeholder,disable,customDropDown}) {
+export default function OptionSelection({label,customClass,selectedOption,setSelectedOption,options,placeholder,disable,customDropDown,isClearable = false}) {
   const classNamePrefix = `DepartmentCompStyle-${label.replace(
     /\s+/g,
     ""
@@ -15,7 +15,7 @@ export default function OptionSelection({label,customClass,selectedOption,setSel
         onChange={setSelectedOption}
         options={options}
         placeholder={placeholder}
-        isClearable={false}
+        isClearable={isClearable}
         menuPortalTarget={document.body}
         isDisabled={disable == null ? false : disable}
         formatOptionLabel={(data, { inputValue }) =>
