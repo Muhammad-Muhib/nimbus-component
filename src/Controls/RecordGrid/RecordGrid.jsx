@@ -11,6 +11,7 @@ import CustomTooltip from "../Tooltip/CustomTooltip";
 import { useGetTokenValue } from "../../CustomHooks/GetTokenValue";
 import { isValid, format, parse } from "date-fns";
 import { BsInfoCircleFill } from "react-icons/bs";
+import InfoIcon from "../Tooltip/InfoIcon";
 
 export default function RecordGrid({
   tablebody,
@@ -356,12 +357,7 @@ export default function RecordGrid({
         <div className="tableHeaderContainer">
           <span className="tablePrintHead ">{printHeading}</span>
           <span className="printBtnContainer">
-            <CustomTooltip
-              placement="top"
-              body={`${isMobile ? "Note: Email will be done for the values displayed in the grid." : "Note: Email, print or export will be done for the values displayed in the grid."}`}
-            >
-              <MdInfoOutline size={20} />
-            </CustomTooltip>
+            <InfoIcon placement="top" body={`${isMobile ? "Note: Email will be done for the values displayed in the grid." : "Note: Email, print or export will be done for the values displayed in the grid."}`} />            
             <motion.button
               whileTap={{
                 scale: "0.8",
