@@ -102,6 +102,7 @@ export default function InfoIcon({
         onClick={handleClick}
         onMouseEnter={handleMouseEnter}
         onMouseLeave={handleMouseLeave}
+        onBlur={handleMouseLeave}
         style={{ cursor: 'pointer' }}
       >
         <MdInfoOutline size={18} />

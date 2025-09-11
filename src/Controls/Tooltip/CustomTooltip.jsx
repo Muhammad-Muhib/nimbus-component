@@ -102,6 +102,7 @@ export default function CustomTooltip({
         onClick={handleClick}
         onMouseEnter={handleMouseEnter}
         onMouseLeave={handleMouseLeave}
+        onBlur={handleMouseLeave}
         style={{ cursor: 'pointer' }}
       >
         {children}
