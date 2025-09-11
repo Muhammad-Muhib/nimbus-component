@@ -3,7 +3,7 @@ import { FaBars, FaThumbtack } from 'react-icons/fa';
 import { useNavigate } from 'react-router-dom';
 import Tooltip from '@mui/material/Tooltip';
 
-const RelatedOperationsMenu = ({menuItems}) => {
+const RelatedOperationsMenu = ({menuItems,customClass}) => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isPinned, setIsPinned] = useState(false);
   const menuRef = useRef(null);
@@ -62,7 +62,7 @@ const RelatedOperationsMenu = ({menuItems}) => {
   }, [isMenuOpen, isPinned]);
 
   return (
-    <div className="related-operations-container">
+    <div className={`related-operations-container ${customClass}`}>
       <Tooltip placement="top" title="Related Operations">
         <span 
           ref={buttonRef}
