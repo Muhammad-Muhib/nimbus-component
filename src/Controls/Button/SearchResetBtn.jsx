@@ -6,7 +6,7 @@ import CustomTooltip from "../Tooltip/CustomTooltip";
 export default function SearchResetBtn({handleSearch,loading,handleSearchReset,resetLoad,showResetBtn=true}) {
   return (
     <>
-    <CustomTooltip body={"Search"}>
+    <CustomTooltip body={"Search"} showOnMobile={false}>
       <motion.button
           type="button"
           className="btn-orange btn-search"
@@ -20,7 +20,7 @@ export default function SearchResetBtn({handleSearch,loading,handleSearchReset,r
     </CustomTooltip>    
         {
           showResetBtn && 
-          <CustomTooltip body={"Search Reset"}>
+          <CustomTooltip body={"Search Reset"} showOnMobile={false}>
           <motion.button
           type="button"
           className="btn-search btn-green btn-reset"
