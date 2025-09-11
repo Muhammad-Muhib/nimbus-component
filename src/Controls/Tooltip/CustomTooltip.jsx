@@ -3,12 +3,12 @@ import { styled } from "@mui/material/styles";
 import Tooltip, { tooltipClasses } from "@mui/material/Tooltip";
 import Typography from "@mui/material/Typography";
 
-export default function CustomTooltip({ 
-  children, 
-  title = "", 
-  body = null, 
-  placement = "bottom" ,
-  showOnMobile = true
+export default function CustomTooltip({
+  children,
+  title = "",
+  body = null,
+  placement = "bottom",
+  showOnMobile = true,
 }) {
   const [open, setOpen] = useState(false);
   const [clickOpen, setClickOpen] = useState(false);
@@ -30,7 +30,7 @@ export default function CustomTooltip({
       disableFocusListener
       disableTouchListener={false}
       PopperProps={{
-        ref: tooltipRef
+        ref: tooltipRef,
       }}
     />
   ))(({ theme }) => ({
@@ -48,10 +48,10 @@ export default function CustomTooltip({
   useEffect(() => {
     const handleClickOutside = (event) => {
       if (
-        clickOpen && 
-        tooltipRef.current && 
+        clickOpen &&
+        tooltipRef.current &&
         !tooltipRef.current.contains(event.target) &&
-        !event.target.closest('[data-tooltip-trigger]')
+        !event.target.closest("[data-tooltip-trigger]")
       ) {
         setClickOpen(false);
         setOpen(false);
@@ -59,28 +59,30 @@ export default function CustomTooltip({
     };
 
     if (clickOpen) {
-      document.addEventListener('mousedown', handleClickOutside);
+      document.addEventListener("mousedown", handleClickOutside);
     }
 
     return () => {
-      document.removeEventListener('mousedown', handleClickOutside);
+      document.removeEventListener("mousedown", handleClickOutside);
     };
   }, [clickOpen]);
 
   const handleClick = () => {
-    const newClickOpen = !clickOpen;
-    setClickOpen(newClickOpen);
-    setOpen(newClickOpen);
+    if (showOnMobile) {
+      const newClickOpen = !clickOpen;
+      setClickOpen(newClickOpen);
+      setOpen(newClickOpen);
+    }
   };
 
   const handleMouseEnter = () => {
-    if (!clickOpen && showOnMobile) {
+    if (!clickOpen) {
       setOpen(true);
     }
   };
 
   const handleMouseLeave = () => {
-    if (!clickOpen && showOnMobile) {
+    if (!clickOpen) {
       setOpen(false);
     }
   };
@@ -93,7 +95,9 @@ export default function CustomTooltip({
     <HtmlTooltip
       title={
         <>
-          {title.trim() !== "" && <Typography color="inherit">{title}</Typography>}
+          {title.trim() !== "" && (
+            <Typography color="inherit">{title}</Typography>
+          )}
           {body != "" && body != null && body}
         </>
       }
@@ -104,7 +108,7 @@ export default function CustomTooltip({
         onMouseEnter={handleMouseEnter}
         onMouseLeave={handleMouseLeave}
         onBlur={handleMouseLeave}
-        style={{ cursor: 'pointer' }}
+        style={{ cursor: "pointer" }}
       >
         {children}
       </span>
