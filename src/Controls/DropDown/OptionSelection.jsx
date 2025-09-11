@@ -1,14 +1,37 @@
+import { forwardRef,useImperativeHandle } from "react";
 import Select from "react-select";
 
-export default function OptionSelection({label,customClass,selectedOption,setSelectedOption,options,placeholder,disable,customDropDown,isClearable = false}) {
-  const classNamePrefix = `DepartmentCompStyle-${label.replace(
-    /\s+/g,
-    ""
-  )}`;
+const OptionSelection = forwardRef(
+  (
+    {
+      label,
+      customClass,
+      selectedOption,
+      setSelectedOption,
+      options,
+      placeholder,
+      disable,
+      customDropDown,
+      isClearable = false,
+      dropDownRef
+    },
+    ref
+  ) => {
+  const classNamePrefix = `DepartmentCompStyle-${label.replace(/\s+/g, "")}`;
+  
+  const innerRef = useRef(null); // will point to <select> or react-select instance
+  const resolvedRef = dropDownRef ?? innerRef;
+
+  // Expose focus/blur no matter what the inner control is
+  useImperativeHandle(ref, () => ({
+    focus: () => resolvedRef.current?.focus?.(),
+    blur: () => resolvedRef.current?.blur?.(),
+    get node() {
+      return resolvedRef.current;
+    },
+  }));
   return (
-    <div
-      className={`dropdown-wrapper ${classNamePrefix} ${customClass}`}
-    >
+    <div className={`dropdown-wrapper ${classNamePrefix} ${customClass}`}>
       <Select
         classNamePrefix={`${customDropDown} DepartmentCompStyle`}
         value={selectedOption}
@@ -18,11 +41,10 @@ export default function OptionSelection({label,customClass,selectedOption,setSel
         isClearable={isClearable}
         menuPortalTarget={document.body}
         isDisabled={disable == null ? false : disable}
-        formatOptionLabel={(data, { inputValue }) =>
-                  <div style={{fontSize:'14px'}}>
-                      {data.label}
-                    </div>
-                }
+        formatOptionLabel={(data, { inputValue }) => (
+          <div style={{ fontSize: "14px" }}>{data.label}</div>
+        )}
+        ref={resolvedRef}
         styles={{
           menuPortal: (base) => ({ ...base, zIndex: 9999 }),
         }}
@@ -31,3 +53,6 @@ export default function OptionSelection({label,customClass,selectedOption,setSel
     </div>
   );
 }
+)
+
+export default OptionSelection;

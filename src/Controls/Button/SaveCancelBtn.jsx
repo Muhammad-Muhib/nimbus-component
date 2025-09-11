@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import {motion} from "framer-motion"
-export default function SaveCancelBtn({hideCancel,handleReset,handleSave,loading,showUnderLine = false}) {
+export default function SaveCancelBtn({hideCancel,handleReset,handleSave,loading,showUnderLine = false,disableSave=false}) {
   const [isMobile, setIsMobile] = useState(false);
 
   // Check if device is mobile
@@ -52,7 +52,26 @@ export default function SaveCancelBtn({hideCancel,handleReset,handleSave,loading
           Cancel
         </motion.button>
         }
-        <motion.button
+        {
+          disableSave ? <>
+          <motion.button
+            type="button"
+            className="btn-style btn-disable"
+            disabled
+            style={{cursor:'not-allowed'}}            
+          >
+            {loading ? (
+              <span className="loader"></span>
+            ) : showUnderLine ? (
+              <>
+                <span style={{ textDecoration: "underline" }}>S</span>
+                <span>ave (F8)</span>
+              </>
+            ) : (
+              "Save"
+            )}
+          </motion.button>
+          </> : <motion.button
             type="button"
             className="btn-style btn-green"
             onClick={handleSave}
@@ -73,6 +92,7 @@ export default function SaveCancelBtn({hideCancel,handleReset,handleSave,loading
               "Save"
             )}
           </motion.button>
+        }        
       </div>
     </div>
   );
