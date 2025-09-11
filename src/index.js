@@ -40,6 +40,7 @@ import CustomerHelpPopup from './Controls/Popup/CustomerHelpPopup';
 import CustomerAutoCompleteDropDown from './Controls/Popup/CustomerAutoCompleteDropDown';
 import PaidFeatureWarning from './Controls/Popup/PaidFeatureWarningPopup';
 import CustomRadioButton from './Controls/RadioButton/CustomRadioButton';
+import InformationPopupSmall from './Controls/Popup/InformationPopupSmall';
 
 export {apiService};
 export {CheckBox};
@@ -92,3 +93,4 @@ export {CustomerHelpPopup}
 export {CustomerAutoCompleteDropDown}
 export {PaidFeatureWarning}
 export {CustomRadioButton}
+export {InformationPopupSmall}
