@@ -67,14 +67,6 @@ export default function CustomTooltip({
     };
   }, [clickOpen]);
 
-  const handleClick = () => {
-    if (showOnMobile) {
-      const newClickOpen = !clickOpen;
-      setClickOpen(newClickOpen);
-      setOpen(newClickOpen);
-    }
-  };
-
   const handleMouseEnter = () => {
     if (!clickOpen) {
       setOpen(true);
