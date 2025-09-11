@@ -112,7 +112,7 @@ export default function PaidFeatureWarning({
           <div className="pfw-title">
             <span className="pfw-warning">
               {
-                dateColor == "green" ? "Information!" : "Warning!" 
+                dateColor == "green" ? "Information! " : "Warning! " 
               }              
               <span className={`pfw-text ${dateColor == "green" ? "pfw-date-green" : "pfw-date-red"}`}>
                 {
