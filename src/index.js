@@ -41,6 +41,7 @@ import CustomerAutoCompleteDropDown from './Controls/Popup/CustomerAutoCompleteD
 import PaidFeatureWarning from './Controls/Popup/PaidFeatureWarningPopup';
 import CustomRadioButton from './Controls/RadioButton/CustomRadioButton';
 import InformationPopupSmall from './Controls/Popup/InformationPopupSmall';
+import InventoryFileLoader from './Controls/FileLoader/InventoryFileLoader';
 
 export {apiService};
 export {CheckBox};
@@ -94,3 +95,4 @@ export {CustomerAutoCompleteDropDown}
 export {PaidFeatureWarning}
 export {CustomRadioButton}
 export {InformationPopupSmall}
+export {InventoryFileLoader}

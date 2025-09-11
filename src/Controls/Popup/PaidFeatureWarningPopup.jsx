@@ -114,7 +114,7 @@ export default function PaidFeatureWarning({
               {
                 dateColor == "green" ? "Information!" : "Warning!" 
               }              
-              <span className="pfw-text">
+              <span className={`pfw-text ${dateColor == "green" ? "pfw-date-green" : "pfw-date-red"}`}>
                 {
                   dateColor == "green" ? "You are switching OFF a paid feature. Your monthly cost will be reduced." : "This is a paid feature. This will cost you."
                 }                
@@ -178,7 +178,7 @@ export default function PaidFeatureWarning({
                     <span>Retail Module Cost (daily)</span>
                     <b>
                       {thousandformater(
-                        formatCurrency(beforeTrans.licenseCost / 30)
+                        formatCurrency(beforeTrans.retailModuleTotal / 30)
                       )}
                     </b>
                   </li>
@@ -259,7 +259,7 @@ export default function PaidFeatureWarning({
                     <span>Retail Module Cost (daily)</span>
                     <b>
                       {thousandformater(
-                        formatCurrency(afterTrans.licenseCost / 30)
+                        formatCurrency(afterTrans.retailModuleTotal / 30)
                       )}
                     </b>
                   </li>
