@@ -31,7 +31,7 @@ export default function InformationPopupSmall({setShowModal,onConfirm,modalBody,
                 <div className="modal-footer">
                   <button
                     type="button"
-                    className="btn btn-secondary btn-green"
+                    className="btn btn-style2 btn-green"
                     id='okBtn'
                     style={{
                         backgroundColor: addBgColor ? '#3f4d54' : "white",
