@@ -74,6 +74,10 @@ export default function PaidFeatureWarning({
     }
   };
 
+  useEffect(()=>{
+    proceedRef.current?.focus();
+  },[showDetails])
+
   if (!show) return null;
   useEffect(() => {
     proceedRef.current?.focus();
