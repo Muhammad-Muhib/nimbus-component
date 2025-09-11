@@ -2,7 +2,7 @@ import { styled } from '@mui/material/styles';
 import Tooltip, { tooltipClasses } from '@mui/material/Tooltip';
 import Typography from '@mui/material/Typography';
 import { MdInfoOutline } from "react-icons/md";
-import { useState,useRef } from 'react';
+import { useState,useRef,useEffect  } from 'react';
 export default function InfoIcon({ 
   children, 
   title = "", 
