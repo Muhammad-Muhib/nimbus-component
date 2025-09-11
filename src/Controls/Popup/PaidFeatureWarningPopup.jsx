@@ -111,9 +111,13 @@ export default function PaidFeatureWarning({
           </div>
           <div className="pfw-title">
             <span className="pfw-warning">
-              Warning!{" "}
+              {
+                dateColor == "green" ? "Information!" : "Warning!" 
+              }              
               <span className="pfw-text">
-                This is a paid feature. This will cost you.
+                {
+                  dateColor == "green" ? "You are switching OFF a paid feature. Your monthly cost will be reduced." : "This is a paid feature. This will cost you."
+                }                
               </span>
               <span className="pfw-subtext">
                 Your Nimbus subscription expiry date will be changed to:
