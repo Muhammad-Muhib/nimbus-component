@@ -6,8 +6,9 @@ import Typography from "@mui/material/Typography";
 export default function CustomTooltip({ 
   children, 
   title = "", 
-  body = "", 
-  placement = "bottom" 
+  body = null, 
+  placement = "bottom" ,
+  showOnMobile = true
 }) {
   const [open, setOpen] = useState(false);
   const [clickOpen, setClickOpen] = useState(false);
@@ -73,13 +74,13 @@ export default function CustomTooltip({
   };
 
   const handleMouseEnter = () => {
-    if (!clickOpen) {
+    if (!clickOpen && showOnMobile) {
       setOpen(true);
     }
   };
 
   const handleMouseLeave = () => {
-    if (!clickOpen) {
+    if (!clickOpen && showOnMobile) {
       setOpen(false);
     }
   };
@@ -93,7 +94,7 @@ export default function CustomTooltip({
       title={
         <>
           {title.trim() !== "" && <Typography color="inherit">{title}</Typography>}
-          {body !== "" && <span>{body}</span>}
+          {body != "" && body != null && {body}}
         </>
       }
     >

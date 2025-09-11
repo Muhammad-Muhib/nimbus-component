@@ -20,7 +20,7 @@ export default function Tabs({
   showYouTubeVideo = true,
   showRelatedOperation = true,
   menuItems = [],
-  tooltipText = "",
+  tooltipText  = null,
   showNewMode = true
 }) {
     const [isDrawerOpen, setIsDrawerOpen] = useState(false)
@@ -52,7 +52,7 @@ export default function Tabs({
       >
         <li className="modeBtnContainer">
           {
-            showNewMode && <CustomTooltip body="Create New Record">
+            showNewMode && <CustomTooltip body="Create New Record" showOnMobile={false}>
           <button
             style={{
               borderRadius: isRecordTab
@@ -77,7 +77,7 @@ export default function Tabs({
           </CustomTooltip>
           }          
           {isRecordTab && (
-            <CustomTooltip body="Modify Selected Record">
+            <CustomTooltip body="Modify Selected Record" showOnMobile={false}>
             <button
               className="page_edit_btn"
               onClick={() => {
@@ -124,7 +124,7 @@ export default function Tabs({
           >
             {tab1name || "Record"} 
             {
-              tooltipText != "" && <span style={{marginLeft:'8px'}}>
+              tooltipText != "" && tooltipText != null && <span style={{marginLeft:'8px'}}>
               <CustomTooltip
                           placement="top"
                           body={tooltipText}
