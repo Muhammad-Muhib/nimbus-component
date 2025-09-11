@@ -43,6 +43,22 @@ export default function RecordGrid({
   const [showStoreColumn, setShowStoreColumn] = useState(true);
   const tableRef = useRef(null);
   const apiUrl = import.meta.env.VITE_BACKEND_API_URL;
+  const [isMobile, setIsMobile] = useState(false);
+
+  // Check if device is mobile
+  useEffect(() => {
+    const checkMobile = () => {
+      const isMobileDevice = window.innerWidth <= 768;
+      setIsMobile(isMobileDevice);
+    };
+
+    checkMobile();
+    window.addEventListener('resize', checkMobile);
+    
+    return () => {
+      window.removeEventListener('resize', checkMobile);
+    };
+  }, []);
 
   let formattedDate = "";
   useEffect(() => {
@@ -342,7 +358,7 @@ export default function RecordGrid({
           <span className="printBtnContainer">
             <CustomTooltip
               placement="top"
-              body="Note: Email, print or export will be done for the values displayed in the grid."
+              body={`${isMobile ? "Note: Email will be done for the values displayed in the grid." : "Note: Email, print or export will be done for the values displayed in the grid."}`}
             >
               <MdInfoOutline size={20} />
             </CustomTooltip>
