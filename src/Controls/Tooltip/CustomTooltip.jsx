@@ -67,6 +67,10 @@ export default function CustomTooltip({
     };
   }, [clickOpen]);
 
+  const handleClick = () => {
+    setOpen(false);
+  };
+
   const handleMouseEnter = () => {
     if (!clickOpen) {
       setOpen(true);
@@ -96,6 +100,7 @@ export default function CustomTooltip({
     >
       <span
         data-tooltip-trigger
+        onClick={handleClick}
         onMouseEnter={handleMouseEnter}
         onMouseLeave={handleMouseLeave}
         onBlur={handleMouseLeave}
