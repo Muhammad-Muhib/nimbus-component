@@ -94,7 +94,7 @@ export default function CustomTooltip({
       title={
         <>
           {title.trim() !== "" && <Typography color="inherit">{title}</Typography>}
-          {body != "" && body != null && <>{body}</>}
+          {body != "" && body != null && body}
         </>
       }
     >
