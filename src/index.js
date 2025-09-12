@@ -42,6 +42,7 @@ import PaidFeatureWarning from './Controls/Popup/PaidFeatureWarningPopup';
 import CustomRadioButton from './Controls/RadioButton/CustomRadioButton';
 import InformationPopupSmall from './Controls/Popup/InformationPopupSmall';
 import InventoryFileLoader from './Controls/FileLoader/InventoryFileLoader';
+import InputPassword from "./Controls/Input/InputPassword"
 
 export {apiService};
 export {CheckBox};
@@ -96,3 +97,4 @@ export {PaidFeatureWarning}
 export {CustomRadioButton}
 export {InformationPopupSmall}
 export {InventoryFileLoader}
+export {InputPassword}

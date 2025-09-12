@@ -1,6 +1,6 @@
 import { useRef,useEffect } from "react";
 
-export default function Input({
+export default function InputPassword({
   customClass,
   label,
   name,
@@ -14,7 +14,8 @@ export default function Input({
   maxLength,
   inputRef,
   handleBlur,
-  inputTitle = ""
+  inputTitle = "",
+  type = "password"
 }) {
   const internalRef = useRef(null);
   useEffect(() => {
@@ -35,7 +36,7 @@ export default function Input({
             onClick={(e) => e.target.select()}
             placeholder={placeholder != null ? `${placeholder}` : ""}
             id={`${id}`}
-            type="password"
+            type={type}
             className={`form-control candela_input ${customInputClass}`}
             value={inputVal}
             onChange={(e) => {
