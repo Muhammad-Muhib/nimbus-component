@@ -312,10 +312,16 @@ export default function RecordGrid({
               if (
                 !showStoreColumn &&
                 (key.toLowerCase().includes("shop") ||
-                  key.toLowerCase().includes("store") || localStorage.ShopId != "0")
+                  key.toLowerCase().includes("store"))
               ) {
                 return null;
               }
+              if (                  
+                  ((item.name.toLowerCase().includes("shop") ||
+                    item.name.toLowerCase().includes("store") ) && localStorage.ShopId != "0")
+                ) {
+                  return null;
+                }
               return (
                 <td
                   key={key}
@@ -405,8 +411,14 @@ export default function RecordGrid({
               {header.map((item, index) => {
                 if (
                   !showStoreColumn &&
-                  (item.name.toLowerCase().includes("shop") ||
-                    item.name.toLowerCase().includes("store") || localStorage.ShopId != "0")
+                  ((item.name.toLowerCase().includes("shop") ||
+                    item.name.toLowerCase().includes("store")))
+                ) {
+                  return null;
+                }
+                if (                  
+                  ((item.name.toLowerCase().includes("shop") ||
+                    item.name.toLowerCase().includes("store") ) && localStorage.ShopId != "0")
                 ) {
                   return null;
                 }
@@ -465,6 +477,12 @@ export default function RecordGrid({
                   ) {
                     return null;
                   }
+                  if (                  
+                  ((item.name.toLowerCase().includes("shop") ||
+                    item.name.toLowerCase().includes("store") ) && localStorage.ShopId != "0")
+                ) {
+                  return null;
+                }
                   if (index == 0) {
                     return (
                       <td key={index} className="footColor recordtotal">
