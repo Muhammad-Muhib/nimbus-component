@@ -34,7 +34,9 @@ export default function InputNumber({
     }
   };
   return (
-    <div className={`form-group SearchField ${customClass}`}>
+    <div className={`form-group ${
+        customClass == null ? "SearchField" : `${customClass}`
+      }`}>
       <div className="inputContainer">
         <div className="inputLabel">{label}</div>
         <input
