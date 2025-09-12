@@ -120,7 +120,7 @@ export default function PaidFeatureWarning({
               }              
               <span className={`pfw-text ${dateColor == "green" ? "pfw-date-green" : "pfw-date-red"}`}>
                 {
-                  dateColor == "green" ? "You are switching OFF a paid feature. Your monthly cost will be reduced." : "This is a paid feature. This will cost you."
+                  dateColor == "green" ? "You are switching OFF a paid feature. Your monthly cost will be reduced. " : "This is a paid feature. Your monthly cost will be increased. "
                 }                
               </span>
               <span className="pfw-subtext">
