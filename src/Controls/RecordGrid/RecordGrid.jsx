@@ -312,8 +312,7 @@ export default function RecordGrid({
               if (
                 !showStoreColumn &&
                 (key.toLowerCase().includes("shop") ||
-                  key.toLowerCase().includes("store") || localStorage.ShopId != "0"
-                )
+                  key.toLowerCase().includes("store"))
               ) {
                 return null;
               }
