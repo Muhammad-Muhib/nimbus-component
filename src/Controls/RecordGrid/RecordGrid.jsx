@@ -317,8 +317,8 @@ export default function RecordGrid({
                 return null;
               }
               if (                  
-                  ((item.name.toLowerCase().includes("shop") ||
-                    item.name.toLowerCase().includes("store") ) && localStorage.ShopId != "0")
+                  ((key.toLowerCase().includes("shop") ||
+                    key.toLowerCase().includes("store") ) && localStorage.ShopId != "0")
                 ) {
                   return null;
                 }
