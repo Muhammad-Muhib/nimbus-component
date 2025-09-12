@@ -74,6 +74,10 @@ export default function RecordGrid({
   useEffect(() => {
     if (CandelaVersion == "1") {
       setShowStoreColumn(false);
+    }else{
+      if(localStorage.ShopId != "0"){
+        setShowStoreColumn(false)
+      }
     }
   }, [CandelaVersion]);
 

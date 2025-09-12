@@ -1617,7 +1617,7 @@
 }
 
 .drawer-content {
-  overflow: visible !important;
+  overflow-y: scroll;
 }
 
 /* Mobile specific fix */
