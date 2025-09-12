@@ -39,7 +39,7 @@ export default function LeftMenuList(props) {
                     expandedSubMenu["StoreConfiguration"] ? <>
                     <li className="active "><Link className="navLink listLink subLink" to="/app/StoreDefinition"><span className="scoop-micon"></span><span className="scoop-mtext list-text">Store Definition</span></Link></li>
           <li className="active"><Link className="navLink listLink subLink" to="/app/EmployeeType"><span className="scoop-micon"></span><span className="scoop-mtext list-text">Employee Type</span></Link></li>
-          <li className="active"><Link className="navLink listLink subLink" to="/app/Register"><span className="scoop-micon"></span><span className="scoop-mtext list-text">Register</span></Link></li>
+          <li className="active"><Link className="navLink listLink subLink" to="/app/SalesRegister"><span className="scoop-micon"></span><span className="scoop-mtext list-text">SalesRegister</span></Link></li>
           <li className="active"><Link className="navLink listLink subLink" to="/app/StoreEmployee"><span className="scoop-micon"></span><span className="scoop-mtext list-text">Store Employee</span></Link></li>
                     </> : <></>
                   }
