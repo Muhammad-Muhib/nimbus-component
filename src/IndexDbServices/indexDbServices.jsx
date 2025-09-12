@@ -36,7 +36,8 @@ db.version(3).stores({
   discount:"autoIncrementId,discountId,discountCode,discountType",
   register:"id,shopId,registerCode",
   shopEmployee:"shopEmployeeId,employeeName,employeeCode,shopId",
-  securityGroup:"groupId,groupName,groupType"
+  securityGroup:"groupId,groupName,groupType",
+  financialYear:"financialYearId,name,isClosed"
 });
 
 const getUpdateKey = (tableName) => {
@@ -72,7 +73,8 @@ const getUpdateKey = (tableName) => {
     productPriceShopBased:"autoIncrementId",
     discount:"autoIncrementId",
     register:"id",
-    shopEmployee:"shopEmployeeId"
+    shopEmployee:"shopEmployeeId",
+    financialYear:"financialYearId"
   };
   return primaryKeys[tableName];
 };
@@ -167,6 +169,20 @@ export const deleteDataIndexDb = async (tableData) => {
                 .delete();
               console.log(
                 `Deleted ${deletedCount} shop records with shopId: ${record.shopId}`
+              );
+            }
+          }
+          break;
+          case "financialYear":
+          // Delete financialYear data based on financialYearId
+          for (const record of records) {
+            if (record.financialYearId) {
+              const deletedCount = await db[tableName]
+                .where("financialYearId")
+                .equals(record.financialYearId)
+                .delete();
+              console.log(
+                `Deleted ${deletedCount} financialYear records with financialYearId: ${record.financialYearId}`
               );
             }
           }

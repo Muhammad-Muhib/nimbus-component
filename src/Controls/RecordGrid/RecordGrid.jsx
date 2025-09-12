@@ -312,7 +312,7 @@ export default function RecordGrid({
               if (
                 !showStoreColumn &&
                 (key.toLowerCase().includes("shop") ||
-                  key.toLowerCase().includes("store"))
+                  key.toLowerCase().includes("store") || localStorage.ShopId != "0")
               ) {
                 return null;
               }
@@ -406,7 +406,7 @@ export default function RecordGrid({
                 if (
                   !showStoreColumn &&
                   (item.name.toLowerCase().includes("shop") ||
-                    item.name.toLowerCase().includes("store"))
+                    item.name.toLowerCase().includes("store") || localStorage.ShopId != "0")
                 ) {
                   return null;
                 }
