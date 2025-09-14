@@ -39,7 +39,7 @@ const InventoryFileLoader = ({ LoadProductsThroughLoaderFile,format }) => {
           const singleObj = {
             productCode: cells[0].toUpperCase().trim(),
             qty: parseFloat(cells[1].trim()) || 0,
-            invQty:parseFloat(cells[2].trim()) || 0,
+            invQty: cells[2] == null ? "" : parseFloat(cells[2].trim()) || 0,
           };
           listOfObjects.push(singleObj);
         }
@@ -50,7 +50,7 @@ const InventoryFileLoader = ({ LoadProductsThroughLoaderFile,format }) => {
         listOfObjects.reduce((acc, curr) => {
           if (acc[curr.productCode]) {
             acc[curr.productCode].qty += curr.qty;
-            acc[curr.productCode].invQty += curr.invQty;
+            acc[curr.productCode].invQty = acc[curr.productCode].invQty == null ? "" : acc[curr.productCode].invQty + curr.invQty;
           } else {
             acc[curr.productCode] = { ...curr };
           }
