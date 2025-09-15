@@ -7,6 +7,7 @@ export default function UpdateCancelBtn({
   disableUpdate = false,
   updateBtnColor = "btn-green",
   showUnderLine = false,
+  hideCancel = false,
 }) {
   const [isMobile, setIsMobile] = useState(false);
 
@@ -61,7 +62,8 @@ export default function UpdateCancelBtn({
   return (
     <div className="btnMainContainer saveCancel col-md-11 col-sm-11 form-group print_box_bg low_margin">
       <div>
-        <motion.button
+        {
+          !hideCancel && <motion.button
           type="button"
           className="btn-style blue-btn"
           onClick={handleReset}
@@ -71,6 +73,7 @@ export default function UpdateCancelBtn({
         >
           Cancel
         </motion.button>
+        }        
         {disableUpdate ? (
           <>
             <CustomTooltip body="Update loaded data" placement="top">

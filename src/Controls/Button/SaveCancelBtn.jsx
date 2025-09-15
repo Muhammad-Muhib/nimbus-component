@@ -27,15 +27,23 @@ export default function SaveCancelBtn({
     };
   }, []);
 
-  switch (e.key) {
-    case "F8":
-      e.preventDefault();
-      e.stopPropagation();
-      saveRef.current.click();
-      break;
-    default:
-      break;
-  }
+  useEffect(() => {
+    const handleKeyDown = (e) => {
+      switch (e.key) {
+        case "F8":
+          e.preventDefault();
+          e.stopPropagation();
+          saveRef.current.click();
+          break;
+        default:
+          break;
+      }
+    };
+    document.addEventListener("keydown", handleKeyDown);
+    return () => {
+      document.removeEventListener("keydown", handleKeyDown);
+    };
+  }, []);
 
   useEffect(() => {
     const handleKeyDown = (e) => {
@@ -54,6 +62,7 @@ export default function SaveCancelBtn({
       document.removeEventListener("keydown", handleKeyDown);
     };
   }, []);
+  
   return (
     <div className="btnMainContainer saveCancel col-md-11 col-sm-11 form-group print_box_bg low_margin">
       <div>
