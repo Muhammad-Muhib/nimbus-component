@@ -74,7 +74,8 @@ const getUpdateKey = (tableName) => {
     discount:"autoIncrementId",
     register:"id",
     shopEmployee:"shopEmployeeId",
-    financialYear:"financialYearId"
+    financialYear:"financialYearId",
+    securityGroup:"groupId"
   };
   return primaryKeys[tableName];
 };
@@ -169,6 +170,20 @@ export const deleteDataIndexDb = async (tableData) => {
                 .delete();
               console.log(
                 `Deleted ${deletedCount} shop records with shopId: ${record.shopId}`
+              );
+            }
+          }
+          break;
+           case "securityGroup":
+          // Delete securityGroup data based on groupId
+          for (const record of records) {
+            if (record.groupId) {
+              const deletedCount = await db[tableName]
+                .where("groupId")
+                .equals(record.groupId)
+                .delete();
+              console.log(
+                `Deleted ${deletedCount} securityGroup records with groupId: ${record.groupId}`
               );
             }
           }
