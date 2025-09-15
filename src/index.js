@@ -43,6 +43,7 @@ import CustomRadioButton from './Controls/RadioButton/CustomRadioButton';
 import InformationPopupSmall from './Controls/Popup/InformationPopupSmall';
 import InventoryFileLoader from './Controls/FileLoader/InventoryFileLoader';
 import InputPassword from "./Controls/Input/InputPassword"
+import { dateParser } from './Controls/DateParser/dateParser';
 
 export {apiService};
 export {CheckBox};
@@ -98,3 +99,4 @@ export {CustomRadioButton}
 export {InformationPopupSmall}
 export {InventoryFileLoader}
 export {InputPassword}
+export {dateParser}
