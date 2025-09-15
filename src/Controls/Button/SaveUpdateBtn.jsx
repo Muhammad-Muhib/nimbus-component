@@ -1,6 +1,6 @@
 import { FaPrint } from "react-icons/fa";
 import { motion } from "framer-motion";
-import { useEffect, useState } from "react";
+import { useEffect, useState,useRef } from "react";
 import Tooltip from '@mui/material/Tooltip';
 
 export default function SaveUpdateBtn({
@@ -25,7 +25,9 @@ export default function SaveUpdateBtn({
   deleteLoading = false
 }) {
   const [isMobile, setIsMobile] = useState(false);
-
+  const saveRef = useRef();
+  const deleteRef = useRef();
+  const updateRef = useRef();
   // Check if device is mobile
   useEffect(() => {
     const checkMobile = () => {
@@ -55,7 +57,7 @@ export default function SaveUpdateBtn({
             if (mode.toLowerCase() == "new") {
               e.preventDefault();
               e.stopPropagation();
-              document.querySelector("#btnSave").click()
+              saveRef.current.click()
               break;
             } else {
               break;
@@ -64,7 +66,7 @@ export default function SaveUpdateBtn({
             if (mode.toLowerCase() == "update") {
               e.preventDefault();
               e.stopPropagation();
-              document.querySelector("#btnUpdate").click()
+              updateRef.current.click()
               break;
             } else {
               break;
@@ -73,7 +75,7 @@ export default function SaveUpdateBtn({
             if (mode.toLowerCase() == "update") {
               e.preventDefault();
               e.stopPropagation();
-              document.querySelector("#btnDelete").click()
+              deleteRef.current.click()
               break;
             } else {
               break;
@@ -90,7 +92,7 @@ export default function SaveUpdateBtn({
             if (mode.toLowerCase() == "update") {
               e.preventDefault();
               e.stopPropagation();
-              document.querySelector("#btnUpdate").click()
+              updateRef.current.click()
               break;
             } else {
               break;
@@ -99,7 +101,7 @@ export default function SaveUpdateBtn({
             if (mode.toLowerCase() == "new") {
               e.preventDefault();
               e.stopPropagation();
-              document.querySelector("#btnSave").click()
+              saveRef.current.click()
               break;
             } else {
               break;
@@ -171,6 +173,7 @@ export default function SaveUpdateBtn({
                 scale: "0.8",
               }}
               disabled={loading}
+              ref={saveRef}
             >
               {loading ? (
                 <span className="loader"></span>
@@ -214,6 +217,7 @@ export default function SaveUpdateBtn({
                   scale: "0.8",
                 }}
                 disabled={loading}
+                ref={updateRef}
               >
                 {loading ? (
                   <span className="loader"></span>
@@ -256,6 +260,7 @@ export default function SaveUpdateBtn({
                     scale: "0.8",
                   }}
                   id="btnDelete"
+                  ref={deleteRef}
                 >
                   {showUnderLine ? (
                     <>
