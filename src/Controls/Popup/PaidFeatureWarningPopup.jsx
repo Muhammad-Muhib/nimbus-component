@@ -1,7 +1,7 @@
-import React, { useState, useRef, useEffect } from "react";
+import { useState, useRef, useEffect } from "react";
 import { createPortal } from "react-dom";
 import { IoIosArrowDown, IoIosArrowUp } from "react-icons/io";
-import { FaCogs, FaHandHoldingUsd, FaSpinner } from "react-icons/fa";
+import { FaSpinner } from "react-icons/fa";
 import ShowHideContainer from "../Slider/ShowHideContainer";
 import apiService from "../../ApiService/apiService";
 import { toast } from "react-toastify";
@@ -14,7 +14,8 @@ export default function PaidFeatureWarning({
   onCancel,
   newExpiryDate = "",
   dateColor = "red",
-  isExtending = true
+  isExtending = true,
+  transactionHead
 }) {
   const apiUrl = import.meta.env.VITE_BACKEND_API_URL;
   const proceedRef = useRef(null);
@@ -43,7 +44,7 @@ export default function PaidFeatureWarning({
     if (!showDetails) {
       setIsLoading(true);
       let Obj = {
-        transactionHead: "Register",
+        transactionHead: `${transactionHead}`,
         isExtending: isExtending,
       };
 
