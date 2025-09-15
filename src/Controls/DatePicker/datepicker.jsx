@@ -3,7 +3,7 @@ import DatePicker from "react-datepicker";
 import { getYear, getMonth } from "date-fns";
 import { SlCalender } from "react-icons/sl";
 
-export default function Datepicker({customClass,startDate,setStartDate,toCaption,disableDateChange = false}) {
+export default function Datepicker({customClass,startDate,setStartDate,toCaption,disableDateChange = false,clearAble = false}) {
   const currentYear = getYear(new Date());
 
   const years = range(currentYear - 10, currentYear + 11);
@@ -18,7 +18,7 @@ export default function Datepicker({customClass,startDate,setStartDate,toCaption
         value={value}
         readOnly
         className="custom-input"
-        placeholder="Select Date"
+        placeholder="dd/MMM/yyyy"
         disabled={disableDateChange}
         style={disableDateChange ? {backgroundColor:"#e9ecef"} : {backgroundColor:"white"}}
       />
@@ -36,6 +36,7 @@ export default function Datepicker({customClass,startDate,setStartDate,toCaption
         calendarClassName="custom-calendar"
         customInput={<CustomInput />}
         disabled={disableDateChange}
+        isClearable={clearAble}
         renderCustomHeader={({
           date,
           changeYear,
