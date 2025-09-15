@@ -237,31 +237,32 @@
 
 /* Position inside input */
 .react-datepicker__close-icon {
-  position: absolute;
-  right: 8px;
-  top: 50%;
-  transform: translateY(-50%);
-  cursor: pointer;
+    background-color: transparent;
+    border: 0;
+    outline: 0;
+    padding: 0 0px 0 0;
+    position: absolute;
+    top: 45%;
+    right: 30px;
+    height: 100%;
+    display: table-cell;    
+    vertical-align: middle;
 }
 
 /* Style the button itself */
 .react-datepicker__close-icon::after {
-  content: "✕"; /* simple cross */
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  width: 18px;
-  height: 18px;
-  font-size: 12px;
-  background: transparent; /* match input */
-  border-radius: 50%;
-  color: #495057; /* match text color */
-  font-weight: bold;
-}
-
-/* On hover */
-.react-datepicker__close-icon:hover::after {
-  background: #f1f1f1;
+    content: "✕";
+    cursor: pointer;
+    align-items: center;
+    background: transparent !important;
+    border-radius: 50%;
+    color: #495057 !important;
+    display: flex;
+    font-size: 12px;
+    font-weight: 700;
+    height: 18px !important;
+    justify-content: center;
+    width: 18px !important;
 }
 
 
