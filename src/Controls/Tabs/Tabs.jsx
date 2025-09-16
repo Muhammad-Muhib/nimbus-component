@@ -85,7 +85,7 @@ export default function Tabs({
               }}
               style={{
               borderRadius: showNewMode
-                ? "30px 0px 0px 30px"
+                ? "0px 30px 30px 0px"
                 : "30px 30px 30px 30px",
             }}
             >
