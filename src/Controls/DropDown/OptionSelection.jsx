@@ -49,6 +49,7 @@ const OptionSelection = forwardRef(
         styles={{
           menuPortal: (base) => ({ ...base, zIndex: 9999 }),
         }}
+        menuPosition="fixed"
       />
       <div className="custom-label">{label}</div>
     </div>
