@@ -243,7 +243,7 @@
     padding: 0 0px 0 0;
     position: absolute;
     top: 45%;
-    right: 30px;
+    right: 30px !important;
     height: 100%;
     display: table-cell;    
     vertical-align: middle;
@@ -253,16 +253,13 @@
 .react-datepicker__close-icon::after {
     content: "✕";
     cursor: pointer;
-    align-items: center;
     background: transparent !important;
     border-radius: 50%;
     color: #495057 !important;
     display: flex;
-    font-size: 12px;
     font-weight: 700;
-    height: 18px !important;
-    justify-content: center;
-    width: 18px !important;
+    padding: none !important;
+    padding-bottom: 3px !important;
 }
 
 
@@ -569,7 +566,6 @@
   background: #f7941d;
   color: #fff;
   padding: 8px 18px;
-  border-radius: 0px 30px 30px 0px;
   cursor: pointer;
   font-weight: 500;
   font-size: 15px;
@@ -2083,7 +2079,8 @@ body.drawer-open {
     display: none;
   }
   .modeLabel {
-    font-size: 14px;
+    font-size: 13px;
+    padding-left: 0.5rem;
   }
 }
 
