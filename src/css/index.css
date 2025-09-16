@@ -289,15 +289,15 @@
 
 /* Style the button itself */
 .react-datepicker__close-icon::after {
-    content: "✕";
+    content: "✕" !important;
     cursor: pointer;
     background: transparent !important;
     border-radius: 50%;
     color: #495057 !important;
     display: flex;
     font-weight: 700;
-    padding: none !important;
-    padding-bottom: 3px !important;
+    font-size: 17px !important;
+    padding-bottom: 2px !important;
 }
 
 
