@@ -2035,7 +2035,8 @@ body.drawer-open {
   }
   .btnMainContainer {
     padding-right: 0;
-    padding-bottom: 4rem;
+    padding-bottom: .5rem;
+    width: 100%;
     right: 0px;
   }
   .btn-style {

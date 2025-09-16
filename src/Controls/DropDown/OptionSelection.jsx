@@ -44,6 +44,7 @@ const OptionSelection = forwardRef(
         formatOptionLabel={(data, { inputValue }) => (
           <div style={{ fontSize: "14px" }}>{data.label}</div>
         )}
+         menuPlacement="auto"
         ref={resolvedRef}
         styles={{
           menuPortal: (base) => ({ ...base, zIndex: 9999 }),
