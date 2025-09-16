@@ -114,7 +114,45 @@
   pointer-events: none;
 }
 .inputContainer {
+  display: flex;
   position: relative;
+}
+.infoIcon-Input-container {
+  width: 30px;
+  box-sizing: border-box;
+  display: flex;
+  border: 1px solid;
+  border-left-color: #dee2e6;
+  border-right-color: #dee2e6;
+  border-top-color: #dee2e6;
+  border-bottom-color: #dee2e6;
+  border-bottom-right-radius: 11%;
+  border-top-right-radius: 11%;
+  align-items: center;
+  justify-content: center;
+}
+.infoIcon-CheckBox-container {
+  display: flex;
+}
+.infoIcon-OptionSelection-container {
+  width: 30px;
+  box-sizing: border-box;
+  display: flex;
+  border: 1px solid;
+  border-left-color: #dee2e6;
+  border-right-color: #dee2e6;
+  border-top-color: #dee2e6;
+  border-bottom-color: #dee2e6;
+  border-bottom-right-radius: 11%;
+  border-top-right-radius: 11%;
+  align-items: center;
+  justify-content: center;
+  position: absolute;
+  right: 0px;
+  height: 38px;
+  top: 0%;
+  z-index: 10;
+  float: revert;
 }
 .number_input {
   text-align: right;

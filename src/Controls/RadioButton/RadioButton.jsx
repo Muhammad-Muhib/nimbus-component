@@ -1,4 +1,5 @@
-export default function RadioButton({id,label,groupName,value,setSelectedValue,selectedValue,disable=false}) {
+import InfoIcon from "../Tooltip/InfoIcon";
+export default function RadioButton({id,label,groupName,value,setSelectedValue,selectedValue,disable=false,infoIconBody=""}) {
   return (
     <div className="custom-radio-wrapper">
       <input
@@ -11,6 +12,7 @@ export default function RadioButton({id,label,groupName,value,setSelectedValue,s
         disabled={disable}
       />
       <label htmlFor={id}>{label}</label>
+      {infoIconBody != "" && <InfoIcon body={infoIconBody} />}
     </div>
   );
 }

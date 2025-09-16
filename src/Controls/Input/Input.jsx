@@ -1,5 +1,5 @@
 import { useRef,useEffect } from "react";
-
+import InfoIcon from "../Tooltip/InfoIcon";
 export default function Input({
   customClass,
   label,
@@ -14,7 +14,8 @@ export default function Input({
   maxLength,
   inputRef,
   handleBlur,
-  inputTitle = ""
+  inputTitle = "",
+  infoIconBody = ""
 }) {
   const internalRef = useRef(null);
   useEffect(() => {
@@ -31,25 +32,35 @@ export default function Input({
       <div className="inputContainer">
         <div className="inputLabel">{label}</div>
         {name != null ? (
-          <input
-          ref={internalRef}
-            name={`${name}`}
-            onClick={(e) => e.target.select()}
-            placeholder={placeholder != null ? `${placeholder}` : ""}
-            id={id}
-            type="text"
-            className={`form-control candela_input ${customInputClass}`}
-            value={inputVal}
-            onChange={(e) => {
-              setInputVal(e);
-            }}
-            style={important == "true" ? { backgroundColor: "#FFFFE8" } : {}}
-            disabled={disable || false}
-            maxLength={`${maxLength}`}
-            onBlur={handleBlur}
-            title={inputTitle}
-          />
+          <>
+            <input
+            ref={internalRef}
+              name={`${name}`}
+              onClick={(e) => e.target.select()}
+              placeholder={placeholder != null ? `${placeholder}` : ""}
+              id={id}
+              type="text"
+              className={`form-control candela_input ${customInputClass}`}
+              value={inputVal}
+              onChange={(e) => {
+                setInputVal(e);
+              }}
+              style={important == "true" ? { backgroundColor: "#FFFFE8" } : {}}
+              disabled={disable || false}
+              maxLength={`${maxLength}`}
+              onBlur={handleBlur}
+              title={inputTitle}
+            />
+            {infoIconBody != "" && (<>
+            <div className="infoIcon-Input-container">
+            <InfoIcon body={infoIconBody}>
+            </InfoIcon>
+          </div>
+          </>
+          )}
+          </>
         ) : ( 
+          <>
           <input
           ref={internalRef}
             onClick={(e) => e.target.select()}
@@ -67,6 +78,14 @@ export default function Input({
             onBlur={handleBlur}
             title={inputTitle}
           />
+          {infoIconBody != "" && (<>
+          <div className="infoIcon-Input-container">
+          <InfoIcon body={infoIconBody}>
+          </InfoIcon>
+        </div>
+        </>
+        )}
+        </>
         )}
       </div>
     </div>

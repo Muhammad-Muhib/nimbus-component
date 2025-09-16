@@ -1,6 +1,6 @@
 import { forwardRef,useImperativeHandle,useRef  } from "react";
 import Select from "react-select";
-
+import InfoIcon from "../Tooltip/InfoIcon";
 const OptionSelection = forwardRef(
   (
     {
@@ -13,7 +13,8 @@ const OptionSelection = forwardRef(
       disable,
       customDropDown,
       isClearable = false,
-      dropDownRef
+      dropDownRef,
+      infoIconBody = ""
     },
     ref
   ) => {
@@ -48,9 +49,17 @@ const OptionSelection = forwardRef(
         ref={resolvedRef}
         styles={{
           menuPortal: (base) => ({ ...base, zIndex: 9999 }),
+          ...(infoIconBody !== "" && {
+            container: (base) => ({ ...base, width: `calc(100% - 30px)` }),
+          }),
         }}
         menuPosition="fixed"
       />
+      {infoIconBody != "" && (
+          <div className="infoIcon-OptionSelection-container">
+            <InfoIcon body={infoIconBody} />
+          </div>
+        )}
       <div className="custom-label">{label}</div>
     </div>
   );

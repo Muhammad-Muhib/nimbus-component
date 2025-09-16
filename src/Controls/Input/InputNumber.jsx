@@ -1,4 +1,5 @@
 import { useRef, useEffect } from "react";
+import InfoIcon from "../Tooltip/InfoIcon";
 export default function InputNumber({
   customClass,
   label,
@@ -12,7 +13,8 @@ export default function InputNumber({
   inputRef,
   handleBlur,
   allowNegative = false,
-  placeholder = 0
+  placeholder = 0,
+  infoIconBody = ""
 }) {
   const internalRef = useRef(null);
   useEffect(() => {
@@ -56,6 +58,12 @@ export default function InputNumber({
           onBlur={handleBlur}
           placeholder={placeholder}
         />
+        {infoIconBody != "" && (<>
+          <div className="infoIcon-Input-container">
+            <InfoIcon body={infoIconBody}>
+            </InfoIcon>
+          </div>
+        </>)}
       </div>
     </div>
   );
