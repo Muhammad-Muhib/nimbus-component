@@ -105,7 +105,7 @@ export default function InfoIcon({
         onBlur={handleMouseLeave}
         style={{ cursor: 'pointer' }}
       >
-        <MdInfoOutline size={18} />
+        <MdInfoOutline size={21} />
       </span>
     </HtmlTooltip>
   );
