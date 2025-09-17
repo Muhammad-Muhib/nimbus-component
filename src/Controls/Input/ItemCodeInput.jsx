@@ -17,11 +17,7 @@ export default function ItemCodeInput({
       inputRef.current = internalRef.current;
     }
   }, [inputRef]);
-  const handleInputChange = (e) => {
-    let value = e.target.value;    
-    value = value.replace(/[^a-zA-Z\s0-9]/g, "");
-    setInputVal(value);
-  };
+  
   return (
     <div className={`form-group ${
         customClass == null ? "SearchField" : `${customClass}`
@@ -36,7 +32,7 @@ export default function ItemCodeInput({
           className={`form-control item_code_input candela_input ${customInputClass}`}
           value={inputVal}
           onChange={(e) => {
-            handleInputChange(e);
+            setInputVal(value.target.value)
           }}
           style={important == "true" ? { backgroundColor: "#FFFFE8" } : {}}
           maxLength={`${maxLength}`}
