@@ -164,7 +164,7 @@ export default function Tabs({
             style={{
               color:
                 mode.toLowerCase() == "new"
-                  ? customLabel.trim() == "" ?  "rgb(39, 174, 96)" : "rgb(39, 174, 96)"
+                  ? customLabel.trim() == "" ?  "rgb(39, 174, 96)" : "#C52424"
                   : mode.toLowerCase() == "viewmode" ||
                     mode.toLowerCase() == "poapproved"
                   ? "red"
