@@ -32,7 +32,7 @@ export default function ItemCodeInput({
           className={`form-control item_code_input candela_input ${customInputClass}`}
           value={inputVal}
           onChange={(e) => {
-            setInputVal(value.target.value)
+            setInputVal(e.target.value)
           }}
           style={important == "true" ? { backgroundColor: "#FFFFE8" } : {}}
           maxLength={`${maxLength}`}
