@@ -1,5 +1,6 @@
 import { useEffect, useState, useRef } from "react";
 import { motion } from "framer-motion";
+import Tooltip from '@mui/material/Tooltip';
 export default function SaveCancelBtn({
   hideCancel,
   handleReset,
@@ -69,6 +70,7 @@ export default function SaveCancelBtn({
         {hideCancel == true ? (
           <></>
         ) : (
+          <Tooltip title="Clear inputs data" placement="top">
           <motion.button
             type="button"
             className="btn-style blue-btn"
@@ -79,9 +81,11 @@ export default function SaveCancelBtn({
           >
             Cancel
           </motion.button>
+          </Tooltip>
         )}
         {disableSave ? (
           <>
+           <Tooltip title="Save input data" placement="top">
             <motion.button
               type="button"
               className="btn-style btn-disable"
@@ -99,8 +103,10 @@ export default function SaveCancelBtn({
                 "Save"
               )}
             </motion.button>
+            </Tooltip>
           </>
         ) : (
+          <Tooltip title="Save input data" placement="top">
           <motion.button
             type="button"
             className="btn-style btn-green"
@@ -123,6 +129,7 @@ export default function SaveCancelBtn({
               "Save"
             )}
           </motion.button>
+          </Tooltip>
         )}
       </div>
     </div>
