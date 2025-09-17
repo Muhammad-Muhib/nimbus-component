@@ -14,7 +14,8 @@ const OptionSelection = forwardRef(
       customDropDown,
       isClearable = false,
       dropDownRef,
-      infoIconBody = ""
+      infoIconBody = "",
+      textAlignment = "left"
     },
     ref
   ) => {
@@ -49,9 +50,7 @@ const OptionSelection = forwardRef(
         ref={resolvedRef}
         styles={{
           menuPortal: (base) => ({ ...base, zIndex: 9999 }),
-          ...(infoIconBody !== "" && {
-            container: (base) => ({ ...base, width: `calc(100% - 30px)` }),
-          }),
+          container: (base) => ({ ...base, width: `${infoIconBody !== "" ? "calc(100% - 30px)" : "100%"}`,textAlign:`${textAlignment}` }),          
         }}
         menuPosition="fixed"
       />

@@ -21,7 +21,8 @@ export default function Tabs({
   showRelatedOperation = true,
   menuItems = [],
   tooltipText  = null,
-  showNewMode = true
+  showNewMode = true,
+  customLabel = ""
 }) {
     const [isDrawerOpen, setIsDrawerOpen] = useState(false)
   useEffect(() => {
@@ -127,7 +128,7 @@ export default function Tabs({
               setMode("");
             }}
           >
-            {tab1name || "Record"} 
+            {tab1name || "Records"} 
             {
               tooltipText != "" && tooltipText != null && <span style={{marginLeft:'8px'}}>
               <CustomTooltip
@@ -163,7 +164,7 @@ export default function Tabs({
             style={{
               color:
                 mode.toLowerCase() == "new"
-                  ? "rgb(39, 174, 96)"
+                  ? customLabel.trim() == "" ?  "rgb(39, 174, 96)" : "rgb(39, 174, 96)"
                   : mode.toLowerCase() == "viewmode" ||
                     mode.toLowerCase() == "poapproved"
                   ? "red"
@@ -171,7 +172,7 @@ export default function Tabs({
             }}
           >
             {mode.toLowerCase() == "new"
-              ? "Add New Record"
+              ? customLabel.trim() == "" ? "Add New Record" : customLabel
               : mode.toLowerCase() == "viewmode"
               ? "View mode only"
               : mode.toLowerCase() == "poapproved"
