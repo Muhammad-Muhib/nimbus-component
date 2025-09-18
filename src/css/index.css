@@ -1257,69 +1257,6 @@
     visibility: hidden !important;
   }
 
-  /* Table container - remove top spacing */
-  .grn-print-table-container {
-    width: 100% !important;
-    max-width: 100% !important;
-    overflow: visible !important;
-    page-break-inside: avoid;
-    margin: 0 !important; /* Remove all margins */
-    padding: 0 !important; /* Remove all padding */
-    border: 1px solid #000;
-    position: static !important;
-  }
-
-  /* Main table - position at top */
-  .grn-print-table {
-    width: 100% !important;
-    table-layout: auto !important;
-    font-size: 10px !important;
-    word-wrap: break-word;
-    border-collapse: collapse !important;
-    border: 1px solid #000;
-    background: white;
-    margin: 0 !important; /* Remove margins */
-    padding: 0 !important; /* Remove padding */
-    position: static !important;
-    table-layout: fixed !important;
-  }
-
-  /* Remove spacing from table elements */
-  .grn-print-table caption {
-    margin: 0 !important;
-    padding: 5px 0 !important;
-    font-weight: bold;
-  }
-
-  /* Table headers */
-  .gridTableHeader,
-  .grn-print-table th {
-    color: black !important;
-    font-weight: bold !important;
-    background-color: #f0f0f0 !important;
-    border: 1px solid #000 !important;
-    padding: 6px 4px !important;
-    text-align: left;
-    font-size: 10px;
-    margin: 0 !important;
-    width: auto !important;
-    word-wrap: break-word;
-    overflow-wrap: break-word;
-  }
-
-  /* Table cells */
-  .grn-print-table td {
-    border: 1px solid #000 !important;
-    padding: 4px !important;
-    text-align: left;
-    vertical-align: top;
-    word-break: break-word;
-    font-size: 9px;
-    line-height: 1.2;
-    margin: 0 !important;
-    width: 100% !important;
-  }
-
   /* Page container - ensure no top spacing */
   .pagePrintContainer {
     position: absolute !important;
