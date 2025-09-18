@@ -25,7 +25,7 @@ const PrintMenuBtn = ({ options = [], onSelect, className = "" }) => {
 
   return (
     <div 
-      className={`detailPrinterContainer position-relative d-inline-block ${className}`} 
+      className={`detailPrinterContainer d-inline-block ${className}`} 
       ref={dropdownRef}
     >
       {/* Dropdown Menu */}
