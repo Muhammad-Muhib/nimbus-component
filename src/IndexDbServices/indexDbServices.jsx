@@ -37,7 +37,9 @@ db.version(3).stores({
   register:"id,shopId,registerCode",
   shopEmployee:"shopEmployeeId,employeeName,employeeCode,shopId",
   securityGroup:"groupId,groupName,groupType",
-  financialYear:"financialYearId,name,isClosed"
+  financialYear:"financialYearId,name,isClosed",
+  userPrintSettings:"id,userId,invoiceType",
+  customReceiptConfiguration:"customReceiptId,receiptKeyName,receiptKeyValue"  
 });
 
 const getUpdateKey = (tableName) => {
@@ -75,7 +77,9 @@ const getUpdateKey = (tableName) => {
     register:"id",
     shopEmployee:"shopEmployeeId",
     financialYear:"financialYearId",
-    securityGroup:"groupId"
+    securityGroup:"groupId",
+    userPrintSettings:"id",
+    customReceiptConfiguration:"customReceiptId"
   };
   return primaryKeys[tableName];
 };
@@ -170,6 +174,34 @@ export const deleteDataIndexDb = async (tableData) => {
                 .delete();
               console.log(
                 `Deleted ${deletedCount} shop records with shopId: ${record.shopId}`
+              );
+            }
+          }
+          break;
+          case "userPrintSettings":
+          // Delete serPrintSettings data based on shopId
+          for (const record of records) {
+            if (record.id) {
+              const deletedCount = await db[tableName]
+                .where("id")
+                .equals(record.id)
+                .delete();
+              console.log(
+                `Deleted ${deletedCount} userPrintSettings records with shopId: ${record.id}`
+              );
+            }
+          }
+          break;
+          case "customReceiptConfiguration":
+          // Delete customReceiptConfiguration data based on shopId
+          for (const record of records) {
+            if (record.customReceiptId) {
+              const deletedCount = await db[tableName]
+                .where("customReceiptId")
+                .equals(record.customReceiptId)
+                .delete();
+              console.log(
+                `Deleted ${deletedCount} customReceiptConfiguration records with shopId: ${record.customReceiptId}`
               );
             }
           }
