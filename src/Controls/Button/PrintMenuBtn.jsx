@@ -33,11 +33,12 @@ const PrintMenuBtn = ({ options = [], onSelect, className = "" }) => {
         className={`dropdown-menu ${isDropdownOpen ? "show" : ""} position-absolute`}
         style={{
           bottom: "100%",
-          left: "50%",
+          left: "100%",
           transform: "translateX(-50%)",
           marginBottom: "8px",
           minWidth: "200px",
           zIndex: 1000,
+          marginLeft:"70px"
         }}
       >
         {options.map((option) => (
