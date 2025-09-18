@@ -2,6 +2,7 @@ import { FaPrint } from "react-icons/fa";
 import { motion } from "framer-motion";
 import { useEffect, useState,useRef } from "react";
 import Tooltip from '@mui/material/Tooltip';
+import PrintMenuBtn from "./PrintMenuBtn";
 
 export default function SaveUpdateBtn({
   showPrint,
@@ -22,7 +23,9 @@ export default function SaveUpdateBtn({
   CustomButtonText = "Custom Button",
   CustomTooltipText = 'Custom Button Tooltip',
   hideCustomButton = true,
-  deleteLoading = false
+  deleteLoading = false,
+  printOptions= [],
+  handlePrintReport = ()=>{}
 }) {
   const [isMobile, setIsMobile] = useState(false);
   const saveRef = useRef();
@@ -118,13 +121,7 @@ export default function SaveUpdateBtn({
     <>
       <div className="btnMainContainer col-md-11 col-sm-11 form-group print_box_bg low_margin">
         {showPrint && mode.toLowerCase() != "new" && mode.toLowerCase() != "viewmode" && (
-          <div className="detailPrinterContainer">
-            <FaPrint
-              className="detailPrinterIcon"
-              size={26}
-              onClick={handlePrint}
-            />
-          </div>
+          <PrintMenuBtn onSelect={handlePrintReport} options={printOptions} />
         )}
         <div>
           {mode.toLowerCase() == "viewmode" ? (
