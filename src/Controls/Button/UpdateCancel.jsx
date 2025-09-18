@@ -80,7 +80,6 @@ export default function UpdateCancelBtn({
               <motion.button
               type="button"
               className={`btn-style btn-disable`}
-              onClick={handleUpdate}
               whileTap={{
                 scale: "0.8",
               }}
