@@ -44,6 +44,7 @@ import InformationPopupSmall from './Controls/Popup/InformationPopupSmall';
 import InventoryFileLoader from './Controls/FileLoader/InventoryFileLoader';
 import InputPassword from "./Controls/Input/InputPassword"
 import { dateParser } from './Controls/DateParser/dateParser';
+import ToggleBtn from './Controls/Button/ToggleBtn';
 
 export {apiService};
 export {CheckBox};
@@ -100,3 +101,4 @@ export {InformationPopupSmall}
 export {InventoryFileLoader}
 export {InputPassword}
 export {dateParser}
+export {ToggleBtn}

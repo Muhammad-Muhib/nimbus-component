@@ -2,7 +2,7 @@ import apiService from "../../ApiService/apiService"
 import html2canvas from "html2canvas";
 import {toast} from "react-toastify"
 
-export const sendEmail = async (tableRef,body,toMail,subject,setShowMailModal,isEmailValid)=>{
+export const sendEmail = async (tableRef,body,toMail,subject,setShowMailModal,isEmailValid,picName="PO.png")=>{
     const apiUrl = import.meta.env.VITE_BACKEND_API_URL;
     if (!tableRef.current) {
       toast.error("Table not found");
@@ -38,7 +38,7 @@ export const sendEmail = async (tableRef,body,toMail,subject,setShowMailModal,is
         (blob) => {
           if (blob) {
             const formData = new FormData();
-            formData.append("Attachment", blob, `PO.png`);
+            formData.append("Attachment", blob, picName);
             formData.append("EmailBody", body);
             formData.append("EmailTo", toMail);
             formData.append("EmailSubject", subject);
