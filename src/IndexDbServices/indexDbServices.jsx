@@ -39,7 +39,8 @@ db.version(3).stores({
   securityGroup:"groupId,groupName,groupType",
   financialYear:"financialYearId,name,isClosed",
   userPrintSettings:"id,userId,invoiceType",
-  customReceiptConfiguration:"customReceiptId,receiptKeyName,receiptKeyValue"  
+  customReceiptConfiguration:"customReceiptId,receiptKeyName,receiptKeyValue",
+  physicalAudit:"physicalAuditId,shopId,status"
 });
 
 const getUpdateKey = (tableName) => {
@@ -79,7 +80,8 @@ const getUpdateKey = (tableName) => {
     financialYear:"financialYearId",
     securityGroup:"groupId",
     userPrintSettings:"id",
-    customReceiptConfiguration:"customReceiptId"
+    customReceiptConfiguration:"customReceiptId",
+    physicalAudit:"physicalAuditId"
   };
   return primaryKeys[tableName];
 };
@@ -174,6 +176,20 @@ export const deleteDataIndexDb = async (tableData) => {
                 .delete();
               console.log(
                 `Deleted ${deletedCount} shop records with shopId: ${record.shopId}`
+              );
+            }
+          }
+          break;
+          case "physicalAudit":
+          // Delete physicalAudit data based on shopId
+          for (const record of records) {
+            if (record.Id) {
+              const deletedCount = await db[tableName]
+                .where("physicalAuditId")
+                .equals(record.Id)
+                .delete();
+              console.log(
+                `Deleted ${deletedCount} physicalAudit records with Id: ${record.Id}`
               );
             }
           }

@@ -1,6 +1,6 @@
 import InfoIcon from "../Tooltip/InfoIcon";
 
-export default function CheckBox({item,setItem,name,customClass,customTextClass,infoIconBody = ""}) {
+export default function CheckBox({item,setItem,name,customClass,customTextClass,infoIconBody = "",disable=false}) {
   return (
     <div className={`custom-checkbox-wrapper ${customClass}`}>
     <input
@@ -8,6 +8,7 @@ export default function CheckBox({item,setItem,name,customClass,customTextClass,
         className="custom-checkbox"
         checked={item}
         onChange={() => setItem(!item)}
+        disabled={disable}
     />
     <label className={customTextClass == null ? "fontStyle" : `${customTextClass}`} >{name}</label>
     {infoIconBody != "" && (<>
