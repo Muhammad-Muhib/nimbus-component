@@ -45,6 +45,7 @@ import InventoryFileLoader from './Controls/FileLoader/InventoryFileLoader';
 import InputPassword from "./Controls/Input/InputPassword"
 import { dateParser } from './Controls/DateParser/dateParser';
 import ToggleBtn from './Controls/Button/ToggleBtn';
+import ConfirmationPopupWithCustomText from './Controls/Popup/ConfirmationPopupWithCustomText';
 
 export {apiService};
 export {CheckBox};
@@ -102,3 +103,4 @@ export {InventoryFileLoader}
 export {InputPassword}
 export {dateParser}
 export {ToggleBtn}
+export {ConfirmationPopupWithCustomText}

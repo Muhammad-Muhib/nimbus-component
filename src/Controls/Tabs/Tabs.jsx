@@ -22,7 +22,8 @@ export default function Tabs({
   menuItems = [],
   tooltipText  = null,
   showNewMode = true,
-  customLabel = ""
+  customLabel = "",
+  importButtonLink = ""
 }) {
     const [isDrawerOpen, setIsDrawerOpen] = useState(false)
   useEffect(() => {
@@ -52,6 +53,8 @@ export default function Tabs({
         role="tablist"
       >
         <li className="modeBtnContainer">
+        {importButtonLink !="" && <a  style={{color: '#007bff', fontWeight: 'bold', textDecoration: 'underline',marginRight:'10px'}} href={importButtonLink} target="_blank">Import Customers</a>}
+          
           {
             showNewMode && <CustomTooltip body="Create New Record" showOnMobile={false}>
           <button
