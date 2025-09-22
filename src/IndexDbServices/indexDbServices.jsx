@@ -40,7 +40,8 @@ db.version(3).stores({
   financialYear:"financialYearId,name,isClosed",
   userPrintSettings:"id,userId,invoiceType",
   customReceiptConfiguration:"customReceiptId,receiptKeyName,receiptKeyValue",
-  physicalAudit:"physicalAuditId,shopId,status"
+  physicalAudit:"physicalAuditId,shopId,status",
+  posCashManagement:"posCode,shopId,isClosed"
 });
 
 const getUpdateKey = (tableName) => {
@@ -81,7 +82,8 @@ const getUpdateKey = (tableName) => {
     securityGroup:"groupId",
     userPrintSettings:"id",
     customReceiptConfiguration:"customReceiptId",
-    physicalAudit:"physicalAuditId"
+    physicalAudit:"physicalAuditId",
+    posCashManagement:"posCode"
   };
   return primaryKeys[tableName];
 };
@@ -176,6 +178,20 @@ export const deleteDataIndexDb = async (tableData) => {
                 .delete();
               console.log(
                 `Deleted ${deletedCount} shop records with shopId: ${record.shopId}`
+              );
+            }
+          }
+          break;
+          case "posCashManagement":
+          // Delete shop data based on shopId
+          for (const record of records) {
+            if (record.autoIncrementId) {
+              const deletedCount = await db[tableName]
+                .where("autoIncrementId")
+                .equals(record.autoIncrementId)
+                .delete();
+              console.log(
+                `Deleted ${deletedCount} posCashManagement records with shopId: ${record.autoIncrementId}`
               );
             }
           }
