@@ -12,6 +12,7 @@ import { useGetTokenValue } from "../../CustomHooks/GetTokenValue";
 import { isValid, format, parse } from "date-fns";
 import { BsInfoCircleFill } from "react-icons/bs";
 import InfoIcon from "../Tooltip/InfoIcon";
+import { thousandformater } from "../../Utilities/thousandFormater";
 
 export default function RecordGrid({
   tablebody,
@@ -344,9 +345,9 @@ export default function RecordGrid({
                     : obj.columnType.toLowerCase() == "date"
                     ? item[key].split(" ")[0]
                     : obj.columnType.toLowerCase() == "quantity"
-                    ? parseFloat(item[key]).toFixed(quantityPoint)
+                    ? thousandformater(item[key],quantityPoint)
                     : obj.columnType.toLowerCase() == "value"
-                    ? parseFloat(item[key]).toFixed(amountPoint)
+                    ? thousandformater(item[key],amountPoint)
                     : obj.columnType.toLowerCase() == "boolean"
                     ? item[key] == true
                       ? item[key].toString()
@@ -499,7 +500,7 @@ export default function RecordGrid({
                         key={index}
                         className="footColor recordAlignRight footText"
                       >
-                        {parseFloat(totalQtyFoot).toFixed(2)}
+                        {thousandformater(totalQtyFoot,quantityPoint)}
                       </td>
                     );
                   } else if (
@@ -511,7 +512,7 @@ export default function RecordGrid({
                         key={index}
                         className="footColor recordAlignRight footText"
                       >
-                        {parseFloat(totalAmountFoot).toFixed(2)}
+                        {thousandformater(totalAmountFoot,amountPoint)}
                       </td>
                     );
                   } else {
