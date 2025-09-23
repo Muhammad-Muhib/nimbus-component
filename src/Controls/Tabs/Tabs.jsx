@@ -56,7 +56,7 @@ export default function Tabs({
         {importButtonLink !="" && <a  style={{color: '#007bff', fontWeight: 'bold', textDecoration: 'underline',marginRight:'10px'}} href={importButtonLink} target="_blank">Import Customers</a>}
           
           {
-            showNewMode && <CustomTooltip body="Create New Record" showOnMobile={false}>
+            showNewMode && <CustomTooltip body="Create New Record" showOnMobile={false} placement="bottom">
           <button
             style={{
               borderRadius: isRecordTab
@@ -81,7 +81,7 @@ export default function Tabs({
           </CustomTooltip>
           }          
           {isRecordTab && (
-            <CustomTooltip body="Modify Selected Record" showOnMobile={false}>
+            <CustomTooltip body="Modify Selected Record" showOnMobile={false} placement="bottom">
             <button
               className="page_edit_btn"
               onClick={() => {
