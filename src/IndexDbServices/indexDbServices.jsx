@@ -83,7 +83,8 @@ const getUpdateKey = (tableName) => {
     userPrintSettings:"id",
     customReceiptConfiguration:"customReceiptId",
     physicalAudit:"physicalAuditId",
-    posCashManagement:"posCode"
+    posCashManagement:"posCode",
+    cboTableCollection:"pkId,cboTableName"
   };
   return primaryKeys[tableName];
 };
