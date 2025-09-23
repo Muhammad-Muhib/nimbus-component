@@ -1,112 +1,119 @@
-import { styled } from '@mui/material/styles';
-import Tooltip, { tooltipClasses } from '@mui/material/Tooltip';
-import Typography from '@mui/material/Typography';
-import { MdInfoOutline } from "react-icons/md";
-import { useState,useRef,useEffect  } from 'react';
-export default function InfoIcon({ 
-  children, 
-  title = "", 
-  body = "", 
-  placement = "bottom" 
+import React, { useState } from "react";
+import { Tooltip } from "react-tooltip";
+
+export default function InfoIcon({
+  children,
+  title = "",
+  body = null,
+  placement = "top",
+  variant = "default" // default, success, warning, error
 }) {
-  const [open, setOpen] = useState(false);
-  const [clickOpen, setClickOpen] = useState(false);
-  const tooltipRef = useRef(null);
+  const [id] = useState(() => `tooltip-${Math.random().toString(36).substr(2, 9)}`);
 
-  const HtmlTooltip = styled(({ className, ...props }) => (
-    <Tooltip
-      {...props}
-      classes={{ popper: className }}
-      arrow
-      placement={placement}
-      open={open}
-      onClose={() => {
-        if (!clickOpen) {
-          setOpen(false);
-        }
-      }}
-      // Enable hover listeners for mouse hover functionality
-      disableFocusListener
-      disableTouchListener={false}
-      PopperProps={{
-        ref: tooltipRef
-      }}
-    />
-  ))(({ theme }) => ({
-    [`& .${tooltipClasses.tooltip}`]: {
-      backgroundColor: "white",
-      color: "rgba(0, 0, 0, 0.87)",
-      maxWidth: 220,
-      fontSize: theme.typography.pxToRem(12),
-      border: "1px solid rgba(0,0,0,0.4)",
-      boxShadow: "2px 2px 2px rgba(0,0,0,0.4)",
-    },
-  }));
-
-  // Handle clicking outside to close tooltip
-  useEffect(() => {
-    const handleClickOutside = (event) => {
-      if (
-        clickOpen && 
-        tooltipRef.current && 
-        !tooltipRef.current.contains(event.target) &&
-        !event.target.closest('[data-tooltip-trigger]')
-      ) {
-        setClickOpen(false);
-        setOpen(false);
-      }
-    };
-
-    if (clickOpen) {
-      document.addEventListener('mousedown', handleClickOutside);
-    }
-
-    return () => {
-      document.removeEventListener('mousedown', handleClickOutside);
-    };
-  }, [clickOpen]);
-
-  const handleClick = () => {
-    const newClickOpen = !clickOpen;
-    setClickOpen(newClickOpen);
-    setOpen(newClickOpen);
-  };
-
-  const handleMouseEnter = () => {
-    if (!clickOpen) {
-      setOpen(true);
-    }
-  };
-
-  const handleMouseLeave = () => {
-    if (!clickOpen) {
-      setOpen(false);
-    }
-  };
-
-  if (title.trim() === "" && body === "") {
+  if (title.trim() === "" && !body) {
     return <>{children}</>;
   }
 
+  // Define color schemes for different variants
+  const variants = {
+    default: {
+      bg: "#1f2937",
+      text: "#ffffff",
+      border: "#3b82f6"
+    },
+    success: {
+      bg: "#065f46",
+      text: "#ffffff", 
+      border: "#10b981"
+    },
+    warning: {
+      bg: "#92400e",
+      text: "#ffffff",
+      border: "#f59e0b"
+    },
+    error: {
+      bg: "#7f1d1d",
+      text: "#ffffff",
+      border: "#ef4444"
+    }
+  };
+
+  const currentVariant = variants[variant] || variants.default;
+
+  const tooltipStyle = {
+    backgroundColor: "white",
+    color: "black",
+    border: `3px solid ${currentVariant.border}`,
+    borderRadius: "12px",
+    padding: "12px 16px",
+    fontSize: "14px",
+    fontWeight: "500",
+    maxWidth: "280px",
+    zIndex: 10000,
+    boxShadow: "0 10px 25px rgba(0, 0, 0, 0.25), 0 4px 10px rgba(0, 0, 0, 0.1)",
+    backdropFilter: "blur(8px)",
+    lineHeight: "1.5",
+    fontFamily: "-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif"
+  };
+
   return (
-    <HtmlTooltip
-      title={
-        <>
-          {title.trim() !== "" && <Typography color="inherit">{title}</Typography>}
-          {body !== "" && <span>{body}</span>}
-        </>
-      }
-    >
+    <>
+      {/* Trigger element with hover effect */}
       <span
-        data-tooltip-trigger
-        onClick={handleClick}
-        onMouseEnter={handleMouseEnter}
-        onMouseLeave={handleMouseLeave}
-        onBlur={handleMouseLeave}
-        style={{ cursor: 'pointer' }}
+        data-tooltip-id={id}
+        style={{ 
+          cursor: "pointer", 
+          display: "inline-block",
+          transition: "all 0.2s ease",
+          borderRadius: "4px"
+        }}
+        onMouseEnter={(e) => {
+          e.target.style.transform = "translateY(-1px)";
+          e.target.style.filter = "brightness(1.05)";
+        }}
+        onMouseLeave={(e) => {
+          e.target.style.transform = "translateY(0)";
+          e.target.style.filter = "brightness(1)";
+        }}
       >
         <MdInfoOutline size={21} />
       </span>
-    </HtmlTooltip>
+
+      {/* Beautiful Tooltip */}
+      <Tooltip
+        id={id}
+        place={placement}
+        style={tooltipStyle}
+        opacity={0.96}
+        delayShow={300}
+        delayHide={100}
+        clickable={true}
+        noArrow={false}
+        offset={8}
+      >
+        <div style={{ position: "relative" }}>
+          {title.trim() !== "" && (
+            <div style={{ 
+              fontWeight: "600", 
+              fontSize: "15px",
+              marginBottom: body ? "8px" : "0",
+              letterSpacing: "0.025em"
+            }}>
+              {title}
+            </div>
+          )}
+          {body && (
+            <div style={{ 
+              fontSize: "13px", 
+              opacity: "0.9",
+              lineHeight: "1.6"
+            }}>
+              {body}
+            </div>
+          )}
+         
+        </div>
+      </Tooltip>
+    </>
   );
 }
