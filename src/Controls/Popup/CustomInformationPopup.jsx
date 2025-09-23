@@ -33,11 +33,11 @@ export default function CustomInformationPopup({
             }}
           >
             <h5 className="modal-title custom-modal-title">{modalTitle}</h5>
-            <div className="closeBtnContainer">
+            <div className="closeBtnContainer t-1r">
               <button
                 type="button"
                 onClick={() => setShowModal(false)}
-                className="btn-close modalCloseBtn"
+                className="btn-close custom-modalCloseBtn"
                 data-bs-dismiss="modal"
                 aria-label="Close"
               ></button>
