@@ -41,7 +41,8 @@ db.version(3).stores({
   userPrintSettings:"id,userId,invoiceType",
   customReceiptConfiguration:"customReceiptId,receiptKeyName,receiptKeyValue",
   physicalAudit:"physicalAuditId,shopId,status",
-  posCashManagement:"posCode,shopId,isClosed"
+  posCashManagement:"posCode,shopId,isClosed",
+  cboTableCollection:"pkId,cboTableName"
 });
 
 const getUpdateKey = (tableName) => {
@@ -83,8 +84,7 @@ const getUpdateKey = (tableName) => {
     userPrintSettings:"id",
     customReceiptConfiguration:"customReceiptId",
     physicalAudit:"physicalAuditId",
-    posCashManagement:"posCode",
-    cboTableCollection:"pkId,cboTableName"
+    posCashManagement:"posCode",   
   };
   return primaryKeys[tableName];
 };
