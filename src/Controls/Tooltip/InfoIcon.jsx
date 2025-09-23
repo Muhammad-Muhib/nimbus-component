@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { Tooltip } from "react-tooltip";
+import { MdInfoOutline } from "react-icons/md";
 
 export default function InfoIcon({
   children,
