@@ -46,6 +46,7 @@ import InputPassword from "./Controls/Input/InputPassword"
 import { dateParser } from './Controls/DateParser/dateParser';
 import ToggleBtn from './Controls/Button/ToggleBtn';
 import ConfirmationPopupWithCustomText from './Controls/Popup/ConfirmationPopupWithCustomText';
+import CustomInformationPopup from './Controls/Popup/CustomInformationPopup';
 
 export {apiService};
 export {CheckBox};
@@ -104,3 +105,4 @@ export {InputPassword}
 export {dateParser}
 export {ToggleBtn}
 export {ConfirmationPopupWithCustomText}
+export {CustomInformationPopup}
