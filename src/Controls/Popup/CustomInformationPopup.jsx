@@ -24,7 +24,7 @@ export default function CustomInformationPopup({
   }, []);
   return (
     <div className="modal fade show confirmationModal" tabIndex="-1">
-      <div className="modal-dialog modal-dialog-centered">
+      <div className="modal-dialog modal-dialog-centered modal-lg">
         <div className="modal-content">
           <div
             className="custom-modal-header"

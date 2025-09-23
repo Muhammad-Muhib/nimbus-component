@@ -1395,15 +1395,6 @@
   padding-right: 0rem !important;
   padding-top: 1rem !important;
 }
-
-.closeBtnContainer {
-  position: absolute;
-  right: 2rem;
-  border: 2px solid white;
-  border-radius: 50%;
-  width: 1.5rem;
-  height: 1.5rem;
-}
 .modalSearchContainer {
   display: flex;
   gap: 2rem;
@@ -2223,15 +2214,6 @@ body.drawer-open {
   font-size: 12px !important;
   padding-right: 0rem !important;
   padding-top: 1rem !important;
-}
-
-.closeBtnContainer {
-  position: absolute;
-  right: 2rem;
-  border: 2px solid white;
-  border-radius: 50%;
-  width: 1.5rem;
-  height: 1.5rem;
 }
 
 .modalSearchContainer {
