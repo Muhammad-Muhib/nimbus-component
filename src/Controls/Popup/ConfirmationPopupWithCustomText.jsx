@@ -12,6 +12,11 @@ export default function ConfirmationPopupWithCustomText({
   const [addBgColor, setAddBgColor] = useState(true);
   const okRef = useRef();
   const noRef = useRef();
+  
+    useEffect(()=>{
+    okRef.current.focus();
+    okRef.current.classList.add("force-focus-visible");
+  },[])
 
   // helper: set focus and force-focus-visible class
   const setFocus = (button) => {

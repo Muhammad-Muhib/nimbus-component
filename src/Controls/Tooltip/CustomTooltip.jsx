@@ -3,108 +3,87 @@ import { styled } from "@mui/material/styles";
 import Tooltip, { tooltipClasses } from "@mui/material/Tooltip";
 import Typography from "@mui/material/Typography";
 
+// Styled Tooltip
+const HtmlTooltip = styled(({ className, ...props }) => (
+  <Tooltip
+    {...props}
+    classes={{ popper: className }}
+    arrow
+  />
+))(({ theme }) => ({
+  [`& .${tooltipClasses.tooltip}`]: {
+    backgroundColor: "white",
+    color: "rgba(0, 0, 0, 0.87)",
+    maxWidth: 220,
+    fontSize: theme.typography.pxToRem(12),
+    border: "1px solid rgba(0,0,0,0.4)",
+    boxShadow: "2px 2px 2px rgba(0,0,0,0.4)",
+  },
+}));
+
 export default function CustomTooltip({
   children,
   title = "",
   body = null,
-  placement = "bottom",
-  showOnMobile = true,
+  placement = "auto",
 }) {
   const [open, setOpen] = useState(false);
-  const [clickOpen, setClickOpen] = useState(false);
-  const tooltipRef = useRef(null);
+  const triggerRef = useRef(null);
 
-  const HtmlTooltip = styled(({ className, ...props }) => (
-    <Tooltip
-      {...props}
-      classes={{ popper: className }}
-      arrow
-      placement={placement}
-      open={open}
-      onClose={() => {
-        if (!clickOpen) {
-          setOpen(false);
-        }
-      }}
-      // Enable hover listeners for mouse hover functionality
-      disableFocusListener
-      disableTouchListener={false}
-      PopperProps={{
-        ref: tooltipRef,
-      }}
-    />
-  ))(({ theme }) => ({
-    [`& .${tooltipClasses.tooltip}`]: {
-      backgroundColor: "white",
-      color: "rgba(0, 0, 0, 0.87)",
-      maxWidth: 220,
-      fontSize: theme.typography.pxToRem(12),
-      border: "1px solid rgba(0,0,0,0.4)",
-      boxShadow: "2px 2px 2px rgba(0,0,0,0.4)",
-    },
-  }));
+  // detect mobile
+  const isMobile = typeof window !== "undefined" && /Mobi|Android/i.test(navigator.userAgent);
 
-  // Handle clicking outside to close tooltip
+  // close tooltip when clicking outside
   useEffect(() => {
     const handleClickOutside = (event) => {
       if (
-        clickOpen &&
-        tooltipRef.current &&
-        !tooltipRef.current.contains(event.target) &&
-        !event.target.closest("[data-tooltip-trigger]")
+        triggerRef.current &&
+        !triggerRef.current.contains(event.target)
       ) {
-        setClickOpen(false);
         setOpen(false);
       }
     };
 
-    if (clickOpen) {
+    if (open) {
       document.addEventListener("mousedown", handleClickOutside);
     }
+    return () => document.removeEventListener("mousedown", handleClickOutside);
+  }, [open]);
 
-    return () => {
-      document.removeEventListener("mousedown", handleClickOutside);
-    };
-  }, [clickOpen]);
-
-  const handleClick = () => {
-    setOpen(false);
-  };
-
-  const handleMouseEnter = () => {
-    if (!clickOpen) {
-      setOpen(true);
-    }
-  };
-
-  const handleMouseLeave = () => {
-    if (!clickOpen) {
-      setOpen(false);
-    }
-  };
-
-  if (title.trim() === "" && body === "") {
+  if (title.trim() === "" && !body) {
     return <>{children}</>;
   }
 
+  const tooltipContent = (
+    <>
+      {title.trim() !== "" && <Typography color="inherit">{title}</Typography>}
+      {body}
+    </>
+  );
+
   return (
     <HtmlTooltip
-      title={
-        <>
-          {title.trim() !== "" && (
-            <Typography color="inherit">{title}</Typography>
-          )}
-          {body != "" && body != null && body}
-        </>
-      }
+      title={tooltipContent}
+      placement={placement}
+      open={open}
+      disableFocusListener
+      disableTouchListener
+      disableHoverListener={isMobile} // disable hover on mobile
+      disableInteractive={false}
     >
       <span
+        ref={triggerRef}
         data-tooltip-trigger
-        onClick={handleClick}
-        onMouseEnter={handleMouseEnter}
-        onMouseLeave={handleMouseLeave}
-        onBlur={handleMouseLeave}
         style={{ cursor: "pointer" }}
+        onMouseEnter={() => {
+          if (!isMobile) setOpen(true);
+        }}
+        onMouseLeave={() => {
+          if (!isMobile) setOpen(false);
+        }}
+        onClick={() => {
+          if (isMobile) setOpen((prev) => !prev);
+        }}
       >
         {children}
       </span>

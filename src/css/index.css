@@ -657,10 +657,10 @@
   padding-left: 1rem;
 }
 .custom-modalCloseBtn{
-  filter: invert(1);
+  filter: invert(1) !important;
   font-size: 12px;
-  padding-left: 5px;
-  padding-bottom: 0;
+  padding-left: 5px !important;
+  padding-bottom: 0px !important;
 }
 .modal-footer {
   border: none;
