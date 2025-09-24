@@ -5,7 +5,7 @@ export default function ItemCodeInput({
   inputVal,
   setInputVal,
   important,
-  id,
+  id="",
   maxLength,
   inputRef,
   handleBlur,

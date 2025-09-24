@@ -10,7 +10,7 @@ export default function Input({
   setInputVal,
   important,
   disable,
-  id,
+  id = "",
   maxLength,
   inputRef,
   handleBlur,
