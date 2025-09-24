@@ -9,6 +9,8 @@ export default function CustomTooltip({
   variant = "default" // default, success, warning, error
 }) {
   const [id] = useState(() => `tooltip-${Math.random().toString(36).substr(2, 9)}`);
+  const safeId = id && id !== "undefined" ? id : `tooltip-${Math.random().toString(36).substr(2, 9)}`;
+
 
   if (title.trim() === "" && !body) {
     return <>{children}</>;
@@ -60,7 +62,7 @@ export default function CustomTooltip({
     <>
       {/* Trigger element with hover effect */}
       <span
-        data-tooltip-id={id}
+        data-tooltip-id={safeId}
         style={{ 
           cursor: "pointer", 
           display: "inline-block",
@@ -81,7 +83,7 @@ export default function CustomTooltip({
 
       {/* Beautiful Tooltip */}
       <Tooltip
-        id={id}
+        id={safeId}
         place={placement}
         style={tooltipStyle}
         opacity={0.96}

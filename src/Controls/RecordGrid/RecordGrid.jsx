@@ -490,7 +490,7 @@ export default function RecordGrid({
                 }
                   if (index == 0) {
                     return (
-                      <td key={index} className="footColor recordtotal">
+                      <td key={localStorage.ShopId != "0" ? 1 :index} className="footColor recordtotal">
                         Total:
                       </td>
                     );

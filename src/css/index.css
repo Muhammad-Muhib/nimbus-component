@@ -164,6 +164,7 @@
   font-size: 13px !important;
   font-family: Segoe, "Segoe UI", "DejaVu Sans", "Trebuchet MS", Verdana,
     sans-serif !important;
+    cursor: text;
 }
 .commentField {
   width: 100% !important;

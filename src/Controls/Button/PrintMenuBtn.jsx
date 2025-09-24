@@ -1,5 +1,6 @@
 import React, { useState, useRef, useEffect } from 'react';
 import { FaPrint, FaChevronUp } from 'react-icons/fa';
+import CustomTooltip from '../Tooltip/CustomTooltip';
 
 const PrintMenuBtn = ({ options = [], onSelect, className = "" }) => {
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
@@ -55,6 +56,7 @@ const PrintMenuBtn = ({ options = [], onSelect, className = "" }) => {
 
       {/* Button Container */}
       <div className="d-flex align-items-center">
+        <CustomTooltip body={"Print"}>
         {/* Print Icon Button */}
         <FaPrint
           className="detailPrinterIcon"
@@ -62,6 +64,7 @@ const PrintMenuBtn = ({ options = [], onSelect, className = "" }) => {
           onClick={() => onSelect("default")}
           style={{ cursor: "pointer" }}
         />
+        </CustomTooltip>
         {/* Arrow Button */}
         <button
           className="btn btn-outline-secondary p-1 me-1"
