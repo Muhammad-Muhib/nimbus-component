@@ -1441,8 +1441,7 @@
   max-height: 200px !important;
   overflow-y: auto !important;
 }
-/* Hide dropdown indicator and separator */
-[class*="DepartmentCompStyle__dropdown-indicator"],
+/* Hide  separator indicator  */
 [class*="DepartmentCompStyle__indicator-separator"] {
   display: none !important;
 }

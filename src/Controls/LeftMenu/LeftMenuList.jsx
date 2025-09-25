@@ -122,7 +122,7 @@ export default function LeftMenuList(props) {
                     <li className="active"><Link className="navLink listLink" to="/app/PurchaseOrder"><span className="scoop-micon"></span><span className="scoop-mtext list-text">Purchase Order</span></Link></li>
                     <li className="active"><Link className="navLink listLink" to="/app/POMatrix"><span className="scoop-micon"></span><span className="scoop-mtext list-text">PO Matrix (Purchase Order Matrix)</span></Link></li>
                     <li className="active"><Link className="navLink listLink" to="/app/GRN"><span className="scoop-micon"></span><span className="scoop-mtext list-text">GRN (Goods Receipt Note)</span></Link></li>
-                    <li className="active"><Link className="navLink listLink" to="/app/GRNMatrix"><span className="scoop-micon"></span><span className="scoop-mtext list-text">GRN Matrix(Goods Receipt Note Matrix)</span></Link></li>
+                    <li className="active"><Link className="navLink listLink" to="/app/GRNMatrix"><span className="scoop-micon"></span><span className="scoop-mtext list-text">GRN Matrix (Goods Receipt Note Matrix)</span></Link></li>
                     <li className="active"><Link className="navLink listLink" to="/app/RTV"><span className="scoop-micon"></span><span className="scoop-mtext list-text">RTV (Return to Vendor)</span></Link></li>
                     <li className="active"><Link className="navLink listLink" to="/app/POApprovalLimits"><span className="scoop-micon"></span><span className="scoop-mtext list-text">PO Approval Limits</span></Link></li>
                   </div> : <></>
@@ -138,7 +138,7 @@ export default function LeftMenuList(props) {
                   expandedMenus["Sale"] ? <div className="navlistcontainer">
                     <li className="active"><Link className="navLink listLink" to="/app/SaleAndReturn"><span className="scoop-micon"></span><span className="scoop-mtext list-text">Sale And Return</span></Link></li>
                     <li className="active"><Link className="navLink listLink" to="/app/Discounts"><span className="scoop-micon"></span><span className="scoop-mtext list-text">Discounts</span></Link></li>
-                    <li className="active"><Link className="navLink listLink" to="/app/Shift Management"><span className="scoop-micon"></span><span className="scoop-mtext list-text">Shift Management</span></Link></li>
+                    <li className="active"><Link className="navLink listLink" to="/app/ShiftManagement"><span className="scoop-micon"></span><span className="scoop-mtext list-text">Shift Management</span></Link></li>
                     <li className="active"><Link className="navLink listLink" to="/app/EndofDay"><span className="scoop-micon"></span><span className="scoop-mtext list-text">End of Day</span></Link></li>
                     <Link onClick={() => toggleSubMenu("GiftCards")} className="navLink listLink"><span className="scoop-micon"></span><span className="scoop-mtext list-text"> Gift Cards {
                   expandedSubMenu["GiftCards"] ?<IoIosArrowDown className='navArrow' />:<IoIosArrowForward className='navArrow' />
