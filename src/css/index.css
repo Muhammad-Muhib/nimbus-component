@@ -366,7 +366,7 @@
 .pagination {
   height: 1rem;
 }
-.paginationContainer {
+.paginationContainer, .tablePaginationContainer {
   display: flex;
   gap: 2rem;
   justify-content: space-between;
@@ -438,6 +438,18 @@
   cursor: pointer;
   width: 91px;
   margin: 0px 5px;
+}
+.btn-style:disabled{
+  background-color: #cccccc !important;
+  box-shadow: 0px 4px 0px #b5b5b5 !important;
+  cursor: no-drop;
+  color: white;
+}
+.btn-style2:disabled{
+  background-color: #cccccc !important;
+  box-shadow: 0px 4px 0px #b5b5b5 !important;
+  cursor: no-drop;
+  color: white;
 }
 .blue-btn {
   background-color: #4b91ea !important;

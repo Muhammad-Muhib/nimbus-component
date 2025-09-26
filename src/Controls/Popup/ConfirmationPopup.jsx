@@ -43,7 +43,7 @@ export default function ConfirmationPopup({
       } else {
         setFocus("ok");
       }
-    }, 10);
+    }, 5);
 
     return () => clearTimeout(timer);
   }, [modalBody]);

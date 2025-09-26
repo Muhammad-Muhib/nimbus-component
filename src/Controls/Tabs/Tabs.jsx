@@ -110,7 +110,7 @@ export default function Tabs({
                   handleEditClick();
                 }}
                 style={{
-                  borderRadius: showNewMode
+                  borderRadius: hideNewBtn
                     ? "0px 30px 30px 0px"
                     : "30px 30px 30px 30px",
                 }}

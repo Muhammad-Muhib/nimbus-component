@@ -31,7 +31,7 @@ export default function PaginationComp({ currentPage = 1, detailObjLength, rowsP
 
     return (
         <div
-            className='paginationContainer'
+            className='tablePaginationContainer'
         >
              <Form.Group controlId="rowsPerPageDropdown">
                 <Form.Control
