@@ -2767,7 +2767,6 @@ body.drawer-open {
 .toggle-switch-label {
   font-weight: 600;
   color: #333;
-  min-width: 210px; /* Adjust as needed for alignment */
 }
 
 .toggle-switch {

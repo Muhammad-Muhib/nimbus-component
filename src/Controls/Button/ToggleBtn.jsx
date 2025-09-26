@@ -1,10 +1,10 @@
 import React from 'react';
-import { InfoIcon } from 'nimbus-kit';
+import InfoIcon from '../Tooltip/InfoIcon';
 
-const ToggleBtn = ({ label, isOn, onToggle, readOnly = false, infoText = null }) => {
+const ToggleBtn = ({ label, isOn, onToggle, readOnly = false, infoText = null, customClassContainer="", customClassLabel="" }) => {
   return (
-    <div className="toggle-switch-container">
-      <span className="toggle-switch-label">{label}</span>
+    <div className={`${customClassContainer != "" ? customClassContainer : "toggle-switch-container"}`}>
+      <span className={`${customClassLabel != "" ? customClassLabel : "toggle-switch-label "}`}>{label}</span>
       <div 
         className={`toggle-switch ${isOn ? 'on' : 'off'} ${readOnly ? 'readonly' : ''}`} 
         onClick={readOnly ? undefined : onToggle}

@@ -273,9 +273,6 @@ export default function SaveUpdateBtn({
             )
           )}
            {!hideCustomButton && (
-            mode.toLowerCase() == "new" ||
-            mode.toLowerCase() == "viewmode"
-            ? (
               <>
               {
                 disableCustomButton ? <Tooltip title={CustomTooltipText} placement="top">
@@ -296,10 +293,7 @@ export default function SaveUpdateBtn({
                 </motion.button>
               </Tooltip>
               }
-              </>              
-            ) : (
-              null
-            )
+              </>                          
           )}
         </div>
       </div>
