@@ -1,8 +1,6 @@
 import axios from "axios";
-import { useNavigate } from "react-router-dom";
 
 export default async function apiService({ endpoint, method = 'GET', data = null,contentType = "application/json" }) {
-  const navigate = useNavigate();
   try {
     const config = {
       method,
@@ -23,8 +21,6 @@ export default async function apiService({ endpoint, method = 'GET', data = null
     return response;
   } catch (error) {
     console.error('API Error:', error);
-    let errorMessage = error.response?.data?.message || error.message
-    errorMessage.includes("Session Expired") 
-    return { error: errorMessage,data:{success:false} };
+    return { error: error.response?.data?.message || error.message,data:{success:false} };
   }
 }
