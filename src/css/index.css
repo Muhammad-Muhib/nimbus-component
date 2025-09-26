@@ -157,6 +157,11 @@
   z-index: 10;
   float: revert;
 }
+.itemCodeInfoIcon{
+  position: absolute;
+  right: 0;
+  top: 8px;
+}
 .number_input {
   text-align: right;
 }

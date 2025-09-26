@@ -21,7 +21,7 @@ const FileLoader = ({ LoadProductsThroughLoaderFile,format }) => {
       fileInputRef.current.value = null;
       handleUpload(file); // Pass the file to parent handler
     } else {
-      toast.warn("Please select a valid CSV or TXT file.");
+      toast.error("Please select a valid CSV or txt file.");
       fileInputRef.current.value = null;
     }
   };
