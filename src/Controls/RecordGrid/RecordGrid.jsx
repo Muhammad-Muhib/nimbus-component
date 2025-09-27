@@ -32,7 +32,8 @@ export default function RecordGrid({
   disableCSV = false,
   selectedRecord = null,
   hideTimeCsv = false,
-  showTime = false
+  showTime = false,
+  hideGridOperations = false
 }) {
   const CandelaVersion = useGetTokenValue("CandelaVersion");
   const [selectedId, setSelectedId] = useState();
@@ -368,7 +369,8 @@ export default function RecordGrid({
         <h3 className="printHeading">{printHeading || ""}</h3>
         <div className="tableHeaderContainer">
           <span className="tablePrintHead ">{printHeading}</span>
-          <span className="printBtnContainer">
+          {
+            !hideGridOperations && <span className="printBtnContainer">
             <InfoIcon placement="top" body={`${isMobile ? "Note: Email will be done for the values displayed in the grid." : "Note: Email, print or export will be done for the values displayed in the grid."}`} />            
             <motion.button
               whileTap={{
@@ -404,6 +406,7 @@ export default function RecordGrid({
               Email
             </motion.button>
           </span>
+          }          
         </div>
         <Table
           ref={tableRef}
