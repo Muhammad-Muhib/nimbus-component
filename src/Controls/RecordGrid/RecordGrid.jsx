@@ -32,6 +32,7 @@ export default function RecordGrid({
   disableCSV = false,
   selectedRecord = null,
   hideTimeCsv = false,
+  showTime = false
 }) {
   const CandelaVersion = useGetTokenValue("CandelaVersion");
   const [selectedId, setSelectedId] = useState();
@@ -343,7 +344,7 @@ export default function RecordGrid({
                   {obj.columnType.toLowerCase() == "numeric"
                     ? item[key]
                     : obj.columnType.toLowerCase() == "date"
-                    ? item[key].split(" ")[0]
+                    ? showTime ? item[key] : item[key].split(" ")[0]
                     : obj.columnType.toLowerCase() == "quantity"
                     ? thousandformater(item[key],quantityPoint)
                     : obj.columnType.toLowerCase() == "value"
