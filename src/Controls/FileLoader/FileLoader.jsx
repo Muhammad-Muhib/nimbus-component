@@ -4,7 +4,7 @@ import { MdInfoOutline } from "react-icons/md";
 import Tooltip from "@mui/material/Tooltip";
 import CustomTooltip from "../Tooltip/CustomTooltip";
 
-const FileLoader = ({ LoadProductsThroughLoaderFile,format }) => {
+const FileLoader = ({ LoadProductsThroughLoaderFile,format,disable=false }) => {
   const fileInputRef = useRef(null);
 
   const handleFileChange = (event) => {
@@ -86,6 +86,7 @@ const FileLoader = ({ LoadProductsThroughLoaderFile,format }) => {
         accept=".csv,.txt"
         onChange={handleFileChange}
         className="fileLoaderInput"
+        disabled={disable}
       />
       <CustomTooltip body={
         <>
