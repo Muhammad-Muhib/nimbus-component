@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import { getTableData } from "../../IndexDbServices/indexDbServices";
 import Input from "../Input/Input";
 import PopupPaginationComp from "../Pagination/PopupPagination";
@@ -17,11 +17,21 @@ export default function CustomerHelpPopup(props) {
    
   const [customerName, setCustomerName] = useState("");
   const [customerCode, setCustomerCode] = useState("");
+  const customerCodeRef = useRef(null);
   
   useEffect(() => {
     fetchAllProducts();
     fetchAllShops();
   }, [])
+
+  // Focus on customer code input when modal opens
+  useEffect(() => {
+    if (showModal && customerCodeRef.current) {
+      console.log("Focusing on customer code input");
+      customerCodeRef.current.focus();
+      customerCodeRef.current.select();
+    }
+  }, [showModal]);
    
   // Get data from IndexedDB
   const fetchAllProducts = async () => {
@@ -192,21 +202,23 @@ export default function CustomerHelpPopup(props) {
                 </div>
               </div>
               <div className="modal-body">
-                <div className="modalSearchContainer">
-                  <Input
-                    label="Customer No"
-                    inputVal={customerCode}
-                    setInputVal={setCustomerCode}
-                    customClass="customerHelpInput"
-                    placeholder="Enter customer number"
-                  />
+                  <div className="modalSearchContainer">
+                    <div className="row d-flex">
+                    <Input
+                      label="Customer Code"
+                      inputVal={customerCode}
+                      setInputVal={setCustomerCode}
+                      customClass="customerHelpInput col-lg-6 col-md-6 col-sm-12 mb-2"
+                      inputRef={customerCodeRef}
+                    />
                   <Input
                     label="Customer Name"
                     inputVal={customerName}
                     setInputVal={setCustomerName}
-                    customClass="customerHelpInput"
-                    placeholder="Enter customer name"
+                    customClass="customerHelpInput  col-sm-12 col-lg-6 col-md-6"
                   />
+                    </div>
+                   
                   <button
                     onClick={handleSearch}
                     className="btn btn-success customerSearchBtn"
