@@ -47,6 +47,7 @@ import { dateParser } from './Controls/DateParser/dateParser';
 import ToggleBtn from './Controls/Button/ToggleBtn';
 import ConfirmationPopupWithCustomText from './Controls/Popup/ConfirmationPopupWithCustomText';
 import CustomInformationPopup from './Controls/Popup/CustomInformationPopup';
+import DateTimePicker from './Controls/DatePicker/DateTimePicker';
 
 export {apiService};
 export {CheckBox};
@@ -106,3 +107,4 @@ export {dateParser}
 export {ToggleBtn}
 export {ConfirmationPopupWithCustomText}
 export {CustomInformationPopup}
+export {DateTimePicker}

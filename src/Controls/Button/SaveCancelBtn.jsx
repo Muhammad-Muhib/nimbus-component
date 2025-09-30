@@ -1,6 +1,7 @@
 import { useEffect, useState, useRef } from "react";
 import { motion } from "framer-motion";
 import Tooltip from '@mui/material/Tooltip';
+import InfoIcon from "../Tooltip/InfoIcon";
 export default function SaveCancelBtn({
   hideCancel,
   handleReset,
@@ -8,6 +9,7 @@ export default function SaveCancelBtn({
   loading,
   showUnderLine = false,
   disableSave = false,
+  infoText = ""
 }) {
   const [isMobile, setIsMobile] = useState(false);
   const saveRef = useRef();
@@ -106,6 +108,7 @@ export default function SaveCancelBtn({
             </Tooltip>
           </>
         ) : (
+          <span>
           <Tooltip title="Save input data" placement="top">
           <motion.button
             type="button"
@@ -130,6 +133,10 @@ export default function SaveCancelBtn({
             )}
           </motion.button>
           </Tooltip>
+          {
+            infoText != "" && <InfoIcon body={infoText} />
+          }          
+          </span>
         )}
       </div>
     </div>

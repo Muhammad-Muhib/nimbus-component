@@ -1,16 +1,21 @@
 import React, { useState, useEffect, useRef } from 'react';
-
+import '../styles/SessionExpiredPopup/SessionExpiredPopup.css';
+import { useNavigate } from 'react-router-dom';
 export default function SessionExpiredPopup({
-  setShowModal,
-  onConfirm,
   modalTitle = "Session Expired",
-  modalBody = "Your session timed out. Click OK to log in again."
+  modalBody = "Your session timed out. Click OK to log in again.",
+  setShowModal,
+  isTokenExpired = false
 }) {
   const [addBgColor, setAddBgColor] = useState(true);
   const okRef = useRef();
-
+  const navigate = useNavigate();
+  
+  // Set appropriate title and message based on scenario
+  const displayTitle = isTokenExpired ? "Token Expired" : modalTitle;
+  const displayMessage = isTokenExpired ? "This link has expired. Request a new password reset link to continue." : modalBody;
   // Set focus on OK button when component mounts
-  useEffect(() => {
+  useEffect(() => { 
     if (okRef.current) {
       okRef.current.focus();
     }
@@ -19,9 +24,6 @@ export default function SessionExpiredPopup({
   // Handle keyboard events
   useEffect(() => {
     const handleKeyDown = (e) => {
-      if (e.key === "Escape") {
-        setShowModal(false);
-      }
       if (e.key === "Enter") {
         handleOkClick();
       }
@@ -35,36 +37,48 @@ export default function SessionExpiredPopup({
 
   const handleOkClick = () => {
     setShowModal(false);
-    if (onConfirm) {
-      onConfirm();
-    }
+      localStorage.clear()
+    navigate("/")
   };
 
   return (
-    <div className="modal fade show confirmationModal" tabIndex="-1">
-      <div className="modal-dialog modal-dialog-centered">
-        <div className="modal-content">
-          <div className="modal-header">
-            <h5 className="modal-title">{modalTitle}</h5>
+    <div className="modal fade show session-expired-modal" tabIndex="-1">
+      <div className="modal-dialog modal-dialog-centered session-expired-dialog">
+        <div className="modal-content session-expired-content">
+          {/* Header with dark teal background */}
+          <div className="modal-header session-expired-header">
+            <h5 className="modal-title session-expired-title">
+              {displayTitle}
+            </h5>
+            <button
+              type="button"
+              className="btn-close session-expired-close-btn"
+              onClick={handleOkClick}
+            >
+              ×
+            </button>
           </div>
-          <div className="modal-body" style={{ textAlign: 'center' }}>
-            <div className="displayGroupName">{modalBody}</div>
-            <br />
+          
+          {/* Body with centered message */}
+          <div className="modal-body session-expired-body">
+            <div className="session-expired-message">
+              {displayMessage}
+            </div>
           </div>
-          <div className="modal-footer" style={{ justifyContent: 'center' }}>
+          
+          {/* Footer with green OK button */}
+          <div className=" session-expired-footer">
             <button
               ref={okRef}
               type="button"
-              className="btn btn-secondary confirmationbtn"
-              id="okBtn"
-              style={{
-                backgroundColor: addBgColor ? "#3f4d54" : "white",
-                color: addBgColor ? "white" : "black",
-              }}
-              onMouseEnter={() => setAddBgColor(true)}
               onClick={handleOkClick}
+              id="btn-SessionExpired-Login"
+              className="btn_style green_btn session-expired-ok-btn"
+              onMouseEnter={() => setAddBgColor(true)}
+              onMouseLeave={() => setAddBgColor(false)}
             >
-              <i className="fa fa-check"></i> OK
+              <i className="fa fa-check"></i>
+              OK
             </button>
           </div>
         </div>

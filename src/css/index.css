@@ -2831,3 +2831,122 @@ body.drawer-open {
   font-size: 12px;
   font-weight: bold;
 }
+
+
+/* Session Popup */
+/* Session Expired Popup Styles */
+
+.session-expired-modal {
+  display: block !important;
+  background-color: rgba(0, 0, 0, 0.5);
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 1050;
+}
+
+.session-expired-dialog {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+  margin: 0;
+  width: 100%;
+  max-width: 100%;
+}
+
+.session-expired-content {
+  width: 100%;
+  max-width: 100%;
+  border-radius: 0;
+  box-shadow: none;
+  border: none;
+}
+
+.session-expired-header {
+  background-color: #3f4d54;
+  color: white;
+  border-bottom: none;
+  border-radius: 0;
+  padding: 15px 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.session-expired-title {
+  margin: 0;
+  font-weight: bold;
+  font-size: 16px;
+}
+
+.session-expired-close-btn {
+  background: none;
+  border: none;
+  color: white;
+  font-size: 18px;
+  cursor: pointer;
+  padding: 0;
+  width: 20px;
+  height: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.session-expired-body {
+  text-align: center;
+  padding: 20px;
+  background-color: white;
+}
+
+.session-expired-message {
+  font-size: 14px;
+  color: #333;
+  line-height: 1.4;
+}
+
+.session-expired-footer {
+  justify-content: center;
+  border-top: none;
+  background-color: white;
+  border-radius: 0;
+  padding: 7px;
+  display: flex;
+  gap: 10px;
+  background-color: #f8f9fa;
+  border-top: 1px solid #e9ecef;
+}
+
+.session-expired-ok-btn {
+  background-color: #37bc9b !important;
+  box-shadow: 0px 4px 0px #299278 !important;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  padding: 10px 20px;
+  font-size: 14px;
+  font-weight: bold;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  min-width: 80px;
+  justify-content: center;
+}
+
+.session-expired-ok-btn:hover {
+  background-color: #32a085 !important;
+  box-shadow: 0px 2px 0px #299278 !important;
+}
+
+.session-expired-ok-btn:active {
+  box-shadow: 0px 1px 0px #299278 !important;
+  transform: translateY(1px);
+}
+
+.session-expired-ok-btn i {
+  font-size: 12px;
+}
