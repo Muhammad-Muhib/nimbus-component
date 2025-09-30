@@ -2,6 +2,7 @@ import { Pagination, Form } from 'react-bootstrap';
 
 export default function GridPaginationComp({ currentPage = 1, totalRecords, rowsPerPage, setRowsPerPage, setCurrentPage,pageLength=0}) {
     const pageCount = Math.ceil(totalRecords / rowsPerPage);
+    pageLength = pageLength > rowsPerPage ? rowsPerPage : pageLength;
     // Calculate the range of page numbers to display
     const visiblePages = 5;
     const halfVisible = Math.floor(visiblePages / 2);
