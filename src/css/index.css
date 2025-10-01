@@ -447,13 +447,13 @@
 .btn-style:disabled{
   background-color: #cccccc !important;
   box-shadow: 0px 4px 0px #b5b5b5 !important;
-  cursor: no-drop;
+  cursor: not-allowed;
   color: white;
 }
 .btn-style2:disabled{
   background-color: #cccccc !important;
   box-shadow: 0px 4px 0px #b5b5b5 !important;
-  cursor: no-drop;
+  cursor: not-allowed;
   color: white;
 }
 .blue-btn {
