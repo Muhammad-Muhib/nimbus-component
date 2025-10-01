@@ -9,7 +9,9 @@ export default function CloseDeleteBtn({
   disableSave = false,
   infoText = "",
   closeInfoText = "",
-  mode = "new"
+  showPrint = true,
+  handlePrintReport,
+  printOptions
 }) {
   const [isMobile, setIsMobile] = useState(false);
   const saveRef = useRef();
@@ -51,10 +53,8 @@ export default function CloseDeleteBtn({
   return (
     <div className="btnMainContainer saveCancel col-md-11 col-sm-11 form-group print_box_bg low_margin">
       {showPrint &&
-        mode.toLowerCase() != "new" &&
-        mode.toLowerCase() != "viewmode" && (
-          <PrintMenuBtn onSelect={handlePrintReport} options={printOptions} />
-        )}
+        <PrintMenuBtn onSelect={handlePrintReport} options={printOptions} />
+      }
       <div>
         <span>
           <motion.button
