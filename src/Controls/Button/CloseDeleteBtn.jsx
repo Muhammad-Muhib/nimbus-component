@@ -1,6 +1,7 @@
 import { useEffect, useState, useRef } from "react";
 import { motion } from "framer-motion";
 import InfoIcon from "../Tooltip/InfoIcon";
+import PrintMenuBtn from "./PrintMenuBtn";
 export default function CloseDeleteBtn({
   handleReset,
   handleSave,
