@@ -48,6 +48,7 @@ import ToggleBtn from './Controls/Button/ToggleBtn';
 import ConfirmationPopupWithCustomText from './Controls/Popup/ConfirmationPopupWithCustomText';
 import CustomInformationPopup from './Controls/Popup/CustomInformationPopup';
 import DateTimePicker from './Controls/DatePicker/DateTimePicker';
+import CloseDeleteBtn from './Controls/Button/CloseDeleteBtn';
 
 export {apiService};
 export {CheckBox};
@@ -108,3 +109,4 @@ export {ToggleBtn}
 export {ConfirmationPopupWithCustomText}
 export {CustomInformationPopup}
 export {DateTimePicker}
+export {CloseDeleteBtn}
