@@ -3,16 +3,17 @@ import { motion } from "framer-motion";
 import InfoIcon from "../Tooltip/InfoIcon";
 import PrintMenuBtn from "./PrintMenuBtn";
 export default function CloseDeleteBtn({
-  handleReset,
-  handleSave,
+  handleClose,
+  handleDelete,
   loading,
   showUnderLine = false,
-  disableSave = false,
+  disableDelete = false,
   infoText = "",
   closeInfoText = "",
   showPrint = true,
   handlePrintReport,
-  printOptions
+  printOptions,
+  disableClose = false
 }) {
   const [isMobile, setIsMobile] = useState(false);
   const saveRef = useRef();
@@ -57,11 +58,24 @@ export default function CloseDeleteBtn({
         <PrintMenuBtn onSelect={handlePrintReport} options={printOptions} />
       }
       <div>
-        <span>
+        {
+          disableClose ? <span>
+          <motion.button
+            type="button"
+            className="btn-style btn-disable"
+            disabled={true}
+            whileTap={{
+              scale: "0.8",
+            }}
+          >
+            Close
+          </motion.button>
+          {closeInfoText != "" && <InfoIcon body={closeInfoText} />}
+        </span> : <span>
           <motion.button
             type="button"
             className="btn-style btn-green"
-            onClick={handleReset}
+            onClick={handleClose}
             whileTap={{
               scale: "0.8",
             }}
@@ -70,13 +84,13 @@ export default function CloseDeleteBtn({
           </motion.button>
           {closeInfoText != "" && <InfoIcon body={closeInfoText} />}
         </span>
-        {disableSave ? (
+        }        
+        {disableDelete ? (
           <span>
             <motion.button
               type="button"
-              className="btn-style btn-red"
-              onClick={handleSave}
-              disabled={loading}
+              className="btn-style btn-disable"
+              disabled={true}
               style={
                 loading ? { cursor: "not-allowed" } : { cursor: "pointer" }
               }
@@ -103,7 +117,7 @@ export default function CloseDeleteBtn({
             <motion.button
               type="button"
               className="btn-style btn-red"
-              onClick={handleSave}
+              onClick={handleDelete}
               disabled={loading}
               style={
                 loading ? { cursor: "not-allowed" } : { cursor: "pointer" }

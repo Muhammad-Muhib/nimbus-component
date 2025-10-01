@@ -87,6 +87,7 @@ export default function SaveCancelBtn({
         )}
         {disableSave ? (
           <>
+          <span>
            <Tooltip title="Save input data" placement="top">
             <motion.button
               type="button"
@@ -106,6 +107,10 @@ export default function SaveCancelBtn({
               )}
             </motion.button>
             </Tooltip>
+            {
+            infoText != "" && <InfoIcon body={infoText} />
+            }      
+          </span>
           </>
         ) : (
           <span>
