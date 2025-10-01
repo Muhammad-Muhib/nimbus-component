@@ -33,7 +33,7 @@ export default function RecordGrid({
   selectedRecord = null,
   hideTimeCsv = false,
   showTime = false,
-  hideGridOperations = false
+  hideGridOperations = false,
 }) {
   const CandelaVersion = useGetTokenValue("CandelaVersion");
   const [selectedId, setSelectedId] = useState();
@@ -57,10 +57,10 @@ export default function RecordGrid({
     };
 
     checkMobile();
-    window.addEventListener('resize', checkMobile);
-    
+    window.addEventListener("resize", checkMobile);
+
     return () => {
-      window.removeEventListener('resize', checkMobile);
+      window.removeEventListener("resize", checkMobile);
     };
   }, []);
 
@@ -77,9 +77,9 @@ export default function RecordGrid({
   useEffect(() => {
     if (CandelaVersion == "1") {
       setShowStoreColumn(false);
-    }else{
-      if(localStorage.ShopId != "0"){
-        setShowStoreColumn(false)
+    } else {
+      if (localStorage.ShopId != "0") {
+        setShowStoreColumn(false);
       }
     }
   }, [CandelaVersion]);
@@ -108,8 +108,10 @@ export default function RecordGrid({
   }, [selectedRecord]);
 
   const handleRowSelect = (item) => {
-    setSelectedId(item[id]);
-    setSelectedRecord(item);
+    if (item[id] != null) {
+      setSelectedId(item[id]);
+      setSelectedRecord(item);
+    }
   };
   const handleDownloadCSV = () => {
     if (!tableData || tableData.length === 0) {
@@ -117,8 +119,10 @@ export default function RecordGrid({
       return;
     }
 
-    //Remove Grid Model 
-    gridModel = gridModel.filter((item)=>!(item.csvHeader.toLowerCase().includes("removefromcsv")))
+    //Remove Grid Model
+    gridModel = gridModel.filter(
+      (item) => !item.csvHeader.toLowerCase().includes("removefromcsv")
+    );
 
     // Step 1: Build headers
     let headers = gridModel.map((col) => col.csvHeader);
@@ -131,35 +135,41 @@ export default function RecordGrid({
           )
       );
     }
-        
-    // Step 2: Build rows
-    const rows = tableData.map((item) => {      
-      if (!showStoreColumn) {
-        return gridModel.filter(
-      (col) =>
-        (!col.name.toLowerCase().includes("shop") &&
-         !col.name.toLowerCase().includes("store"))
-    ).map((col) => {
-          const key = col.name.replace(/\s/g, "");
-          let value = item[key];
-          // Format date
-          if (col.columnType.toLowerCase() === "date") {
-            value = /^\d{1,2}\/[A-Za-z]{3}\/\d{4}$/.test(value) ? value : parseDate(value);
-            // Hide time in CSV if hideTimeCsv is true
-            if (hideTimeCsv && value.includes(" ")) {
-              value = value.split(" ")[0];
-            }
-          }
 
-          return `"${value}"`;
-        });
+    // Step 2: Build rows
+    const rows = tableData.map((item) => {
+      if (!showStoreColumn) {
+        return gridModel
+          .filter(
+            (col) =>
+              !col.name.toLowerCase().includes("shop") &&
+              !col.name.toLowerCase().includes("store")
+          )
+          .map((col) => {
+            const key = col.name.replace(/\s/g, "");
+            let value = item[key];
+            // Format date
+            if (col.columnType.toLowerCase() === "date") {
+              value = /^\d{1,2}\/[A-Za-z]{3}\/\d{4}$/.test(value)
+                ? value
+                : parseDate(value);
+              // Hide time in CSV if hideTimeCsv is true
+              if (hideTimeCsv && value.includes(" ")) {
+                value = value.split(" ")[0];
+              }
+            }
+
+            return `"${value}"`;
+          });
       } else {
         return gridModel.map((col) => {
           const key = col.name.replace(/\s/g, "");
           let value = item[key];
           // Format date
           if (col.columnType.toLowerCase() === "date") {
-            value = /^\d{1,2}\/[A-Za-z]{3}\/\d{4}$/.test(value) ? value : parseDate(value);
+            value = /^\d{1,2}\/[A-Za-z]{3}\/\d{4}$/.test(value)
+              ? value
+              : parseDate(value);
             // Hide time in CSV if hideTimeCsv is true
             if (hideTimeCsv && value.includes(" ")) {
               value = value.split(" ")[0];
@@ -291,7 +301,7 @@ export default function RecordGrid({
     if (!tableData || tableData.length === 0) {
       toast.error("No data in grid to email!");
       return false;
-    }else{
+    } else {
       setShowMailModal(true);
     }
   };
@@ -323,12 +333,13 @@ export default function RecordGrid({
               ) {
                 return null;
               }
-              if (                  
-                  ((key.toLowerCase().includes("shop") ||
-                    key.toLowerCase().includes("store") ) && localStorage.ShopId != "0")
-                ) {
-                  return null;
-                }
+              if (
+                (key.toLowerCase().includes("shop") ||
+                  key.toLowerCase().includes("store")) &&
+                localStorage.ShopId != "0"
+              ) {
+                return null;
+              }
               return (
                 <td
                   key={key}
@@ -345,11 +356,13 @@ export default function RecordGrid({
                   {obj.columnType.toLowerCase() == "numeric"
                     ? item[key]
                     : obj.columnType.toLowerCase() == "date"
-                    ? showTime ? item[key] : item[key].split(" ")[0]
+                    ? showTime
+                      ? item[key]
+                      : item[key].split(" ")[0]
                     : obj.columnType.toLowerCase() == "quantity"
-                    ? thousandformater(item[key],quantityPoint)
+                    ? thousandformater(item[key], quantityPoint)
                     : obj.columnType.toLowerCase() == "value"
-                    ? thousandformater(item[key],amountPoint)
+                    ? thousandformater(item[key], amountPoint)
                     : obj.columnType.toLowerCase() == "boolean"
                     ? item[key] == true
                       ? item[key].toString()
@@ -369,44 +382,51 @@ export default function RecordGrid({
         <h3 className="printHeading">{printHeading || ""}</h3>
         <div className="tableHeaderContainer">
           <span className="tablePrintHead ">{printHeading}</span>
-          {
-            !hideGridOperations && <span className="printBtnContainer">
-            <InfoIcon placement="top" body={`${isMobile ? "Note: Email will be done for the values displayed in the grid." : "Note: Email, print or export will be done for the values displayed in the grid."}`} />            
-            <motion.button
-              whileTap={{
-                scale: "0.8",
-              }}
-              onClick={handleDownloadPDF}
-              className={`gridPrintBtn mobileHideShow ${
-                disablePrint ? "disableBtn" : ""
-              }`}
-              disabled={disablePrint}
-            >
-              Print
-            </motion.button>
-            <motion.button
-              whileTap={{
-                scale: "0.8",
-              }}
-              onClick={handleDownloadCSV}
-              className={`gridPrintBtn mobileHideShow ${
-                disableCSV ? "disableBtn" : ""
-              }`}
-              disabled={disableCSV}
-            >
-              CSV
-            </motion.button>
-            <motion.button
-              whileTap={{
-                scale: "0.8",
-              }}
-              onClick={convertTableToImage}
-              className="gridPrintBtn"
-            >
-              Email
-            </motion.button>
-          </span>
-          }          
+          {!hideGridOperations && (
+            <span className="printBtnContainer">
+              <InfoIcon
+                placement="top"
+                body={`${
+                  isMobile
+                    ? "Note: Email will be done for the values displayed in the grid."
+                    : "Note: Email, print or export will be done for the values displayed in the grid."
+                }`}
+              />
+              <motion.button
+                whileTap={{
+                  scale: "0.8",
+                }}
+                onClick={handleDownloadPDF}
+                className={`gridPrintBtn mobileHideShow ${
+                  disablePrint ? "disableBtn" : ""
+                }`}
+                disabled={disablePrint}
+              >
+                Print
+              </motion.button>
+              <motion.button
+                whileTap={{
+                  scale: "0.8",
+                }}
+                onClick={handleDownloadCSV}
+                className={`gridPrintBtn mobileHideShow ${
+                  disableCSV ? "disableBtn" : ""
+                }`}
+                disabled={disableCSV}
+              >
+                CSV
+              </motion.button>
+              <motion.button
+                whileTap={{
+                  scale: "0.8",
+                }}
+                onClick={convertTableToImage}
+                className="gridPrintBtn"
+              >
+                Email
+              </motion.button>
+            </span>
+          )}
         </div>
         <Table
           ref={tableRef}
@@ -420,14 +440,15 @@ export default function RecordGrid({
               {header.map((item, index) => {
                 if (
                   !showStoreColumn &&
-                  ((item.name.toLowerCase().includes("shop") ||
-                    item.name.toLowerCase().includes("store")))
+                  (item.name.toLowerCase().includes("shop") ||
+                    item.name.toLowerCase().includes("store"))
                 ) {
                   return null;
                 }
-                if (                  
-                  ((item.name.toLowerCase().includes("shop") ||
-                    item.name.toLowerCase().includes("store") ) && localStorage.ShopId != "0")
+                if (
+                  (item.name.toLowerCase().includes("shop") ||
+                    item.name.toLowerCase().includes("store")) &&
+                  localStorage.ShopId != "0"
                 ) {
                   return null;
                 }
@@ -441,11 +462,17 @@ export default function RecordGrid({
                     }
                     className="gridTableHeader"
                   >
-                    {item.name} {item.showInfoIcon !=null && item.showInfoIcon == true ? <>
-                    <CustomTooltip body={item.tooltipText}>                      
-                      <BsInfoCircleFill size={14} className="gridHeaderInfoIcon" />
-                    </CustomTooltip>
-                    </> : null}
+                    {item.name}{" "}
+                    {item.showInfoIcon != null && item.showInfoIcon == true ? (
+                      <>
+                        <CustomTooltip body={item.tooltipText}>
+                          <BsInfoCircleFill
+                            size={14}
+                            className="gridHeaderInfoIcon"
+                          />
+                        </CustomTooltip>
+                      </>
+                    ) : null}
                   </th>
                 );
               })}
@@ -486,15 +513,19 @@ export default function RecordGrid({
                   ) {
                     return null;
                   }
-                  if (                  
-                  ((item.name.toLowerCase().includes("shop") ||
-                    item.name.toLowerCase().includes("store") ) && localStorage.ShopId != "0")
-                ) {
-                  return null;
-                }
+                  if (
+                    (item.name.toLowerCase().includes("shop") ||
+                      item.name.toLowerCase().includes("store")) &&
+                    localStorage.ShopId != "0"
+                  ) {
+                    return null;
+                  }
                   if (index == 0) {
                     return (
-                      <td key={localStorage.ShopId != "0" ? 1 :index} className="footColor recordtotal">
+                      <td
+                        key={localStorage.ShopId != "0" ? 1 : index}
+                        className="footColor recordtotal"
+                      >
                         Total:
                       </td>
                     );
@@ -504,7 +535,7 @@ export default function RecordGrid({
                         key={index}
                         className="footColor recordAlignRight footText"
                       >
-                        {thousandformater(totalQtyFoot,quantityPoint)}
+                        {thousandformater(totalQtyFoot, quantityPoint)}
                       </td>
                     );
                   } else if (
@@ -516,7 +547,7 @@ export default function RecordGrid({
                         key={index}
                         className="footColor recordAlignRight footText"
                       >
-                        {thousandformater(totalAmountFoot,amountPoint)}
+                        {thousandformater(totalAmountFoot, amountPoint)}
                       </td>
                     );
                   } else {
@@ -558,5 +589,5 @@ const parseDate = (input) => {
   }
   // Final validation
   if (!isValid(date)) return "";
-  return  format(date, "dd/MMM/yyyy hh:mm:ss a");
+  return format(date, "dd/MMM/yyyy hh:mm:ss a");
 };
