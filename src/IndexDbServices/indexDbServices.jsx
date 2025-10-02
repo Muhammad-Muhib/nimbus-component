@@ -798,3 +798,7 @@ export const syncUpdateDataIndexDb = async (tableData) => {
 export const addUpdateGRNIndexDb = async(grnModel)=>{
     return await db.grn.put(grnModel,"singleton");   
 }
+
+export const deleteGRNIndexDb = async()=>{
+    return await db.grn.clear()
+}

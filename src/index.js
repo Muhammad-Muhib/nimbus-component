@@ -26,7 +26,7 @@ import ConfirmationPopup from "./Controls/Popup/ConfirmationPopup"
 import InformationPopup from "./Controls/Popup/InformationPopup"
 import OptionSelection from './Controls/DropDown/OptionSelection';
 import OptionSelectorTopMenu from './Controls/DropDown/OptionSelectorTopMenu';
-import {addDataIndexDb,updateDataIndexDb,deleteDataIndexDb,getTableData,syncIndexDb,initDb,checkExistance,getTableDataByKey,syncUpdateDataIndexDb,getDataForDropDown,addUpdateGRNIndexDb} from "./IndexDbServices/indexDbServices"
+import {addDataIndexDb,updateDataIndexDb,deleteDataIndexDb,getTableData,deleteGRNIndexDb,syncIndexDb,initDb,checkExistance,getTableDataByKey,syncUpdateDataIndexDb,getDataForDropDown,addUpdateGRNIndexDb} from "./IndexDbServices/indexDbServices"
 import {useGetAllDataOfTable} from "./CustomHooks/GetAllDataOfTable"
 import {useGetTokenValue} from "./CustomHooks/GetTokenValue"
 import MailPopup from "./Controls/Popup/MailPopup"
@@ -110,3 +110,4 @@ export {ConfirmationPopupWithCustomText}
 export {CustomInformationPopup}
 export {DateTimePicker}
 export {CloseDeleteBtn}
+export {deleteGRNIndexDb}
