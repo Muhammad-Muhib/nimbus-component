@@ -11,6 +11,7 @@ export default function DateTimePicker({
   toCaption,
   disableDateChange = false,
   clearAble = false,
+  datePickerClassName= ""
 }) {
   const currentYear = getYear(new Date());
 
@@ -140,6 +141,7 @@ export default function DateTimePicker({
         dateFormat="dd/MMM/yyyy hh:mm:ss aa"
         calendarClassName="custom-calendar"
         customInput={<CustomInput />}
+        className={datePickerClassName}
         disabled={disableDateChange}
         isClearable={clearAble}
         showTimeInput
