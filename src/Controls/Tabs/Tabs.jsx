@@ -4,6 +4,7 @@ import RightDrawer from "../RightDrawer/RightDrawer";
 import Tooltip from "@mui/material/Tooltip";
 import CustomTooltip from "../Tooltip/CustomTooltip";
 import RelatedOperationsMenu from "../RelatedOperation/RelatedOperation";
+import InfoIcon from "../Tooltip/InfoIcon";
 
 export default function Tabs({
   tab1name,
@@ -25,6 +26,7 @@ export default function Tabs({
   customLabel = "",
   editBtnName = "Edit",
   importButtonLink = "",
+  editBtnInfoText = ""
 }) {
   const [isDrawerOpen, setIsDrawerOpen] = useState(false);
   useEffect(() => {
@@ -121,7 +123,7 @@ export default function Tabs({
                   height="15"
                   alt=""
                 />
-                {editBtnName}                
+                {editBtnName}  {editBtnInfoText != "" && <InfoIcon body={editBtnInfoText} /> } 
               </button>
             </CustomTooltip>
           )}
