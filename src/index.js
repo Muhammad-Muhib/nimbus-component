@@ -49,6 +49,7 @@ import ConfirmationPopupWithCustomText from './Controls/Popup/ConfirmationPopupW
 import CustomInformationPopup from './Controls/Popup/CustomInformationPopup';
 import DateTimePicker from './Controls/DatePicker/DateTimePicker';
 import CloseDeleteBtn from './Controls/Button/CloseDeleteBtn';
+import CustomActionButton from './Controls/Button/CustomActionBtn';
 
 export {apiService};
 export {CheckBox};
@@ -111,3 +112,4 @@ export {CustomInformationPopup}
 export {DateTimePicker}
 export {CloseDeleteBtn}
 export {deleteGRNIndexDb}
+export {CustomActionButton}
