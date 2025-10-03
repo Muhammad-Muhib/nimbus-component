@@ -101,6 +101,7 @@ export default function Tabs({
             </CustomTooltip>
           )}
           {isRecordTab && (
+            <>
             <CustomTooltip
               body="Modify Selected Record"
               showOnMobile={false}
@@ -123,9 +124,12 @@ export default function Tabs({
                   height="15"
                   alt=""
                 />
-                {editBtnName}  {editBtnInfoText != "" && <InfoIcon body={editBtnInfoText} /> } 
+                {editBtnName}
               </button>
             </CustomTooltip>
+            {editBtnInfoText != "" && <InfoIcon body={editBtnInfoText} /> } 
+            </>            
+            
           )}
           {showRelatedOperation && (
             <RelatedOperationsMenu menuItems={menuItems} />
