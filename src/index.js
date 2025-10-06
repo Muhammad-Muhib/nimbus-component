@@ -50,6 +50,7 @@ import CustomInformationPopup from './Controls/Popup/CustomInformationPopup';
 import DateTimePicker from './Controls/DatePicker/DateTimePicker';
 import CloseDeleteBtn from './Controls/Button/CloseDeleteBtn';
 import CustomActionButton from './Controls/Button/CustomActionBtn';
+import VideoPopup from './Controls/VideoPopup/VideoPopup';
 
 export {apiService};
 export {CheckBox};
@@ -113,3 +114,4 @@ export {DateTimePicker}
 export {CloseDeleteBtn}
 export {deleteGRNIndexDb}
 export {CustomActionButton}
+export {VideoPopup}

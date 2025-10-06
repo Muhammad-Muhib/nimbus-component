@@ -516,19 +516,48 @@
   padding-right: 9rem;
 }
 /* Printer Styling */
-.detailPrinterContainer {
+.footerPrintBtnContainer {
   height: 100%;
-  width: 3.4rem;
-  position: absolute;
-  left: 0;
+  gap: 0.5rem;
   background-color: #4b91ea;
-  cursor: pointer;
+  padding: 0 0.5rem;
+  border-radius: 6px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
+
 .detailPrinterIcon {
-  color: white !important;
-  margin-left: 25%;
-  margin-top: 7px;
+  color: white;
+  cursor: pointer;
+  transition: transform 0.2s ease;
 }
+
+.detailPrinterIcon:hover {
+  transform: scale(1.1);
+}
+
+.printDropdownBtn {
+  border: none;
+  background: transparent;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-left: 1px solid rgba(255, 255, 255, 0.6); /* left border added */
+  padding-left: 0.75rem;
+  cursor: pointer;
+  transition: background 0.2s ease;
+}
+
+.printDropdownBtn:hover {
+  background: rgba(255, 255, 255, 0.1);
+}
+
+.printDropdownBtn svg {
+  color: white;
+  transition: transform 0.2s ease;
+}
+
 /* File Loader CSS */
 .fileLoaderComponent {
   position: relative;

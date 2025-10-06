@@ -1,6 +1,6 @@
-import React, { useState, useRef, useEffect } from 'react';
-import { FaPrint, FaChevronUp } from 'react-icons/fa';
-import CustomTooltip from '../Tooltip/CustomTooltip';
+import React, { useState, useRef, useEffect } from "react";
+import { FaPrint, FaChevronUp } from "react-icons/fa";
+import CustomTooltip from "../Tooltip/CustomTooltip";
 
 const PrintMenuBtn = ({ options = [], onSelect, className = "" }) => {
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
@@ -25,13 +25,15 @@ const PrintMenuBtn = ({ options = [], onSelect, className = "" }) => {
   };
 
   return (
-    <div 
-      className={`detailPrinterContainer d-inline-block ${className}`} 
+    <div
+      className={`detailPrinterContainer d-inline-block ${className}`}
       ref={dropdownRef}
     >
       {/* Dropdown Menu */}
       <div
-        className={`dropdown-menu ${isDropdownOpen ? "show" : ""} position-absolute`}
+        className={`dropdown-menu ${
+          isDropdownOpen ? "show" : ""
+        } position-absolute`}
         style={{
           bottom: "100%",
           left: "100%",
@@ -39,7 +41,7 @@ const PrintMenuBtn = ({ options = [], onSelect, className = "" }) => {
           marginBottom: "8px",
           minWidth: "200px",
           zIndex: 1000,
-          marginLeft:"70px"
+          marginLeft: "70px",
         }}
       >
         {options.map((option) => (
@@ -54,41 +56,27 @@ const PrintMenuBtn = ({ options = [], onSelect, className = "" }) => {
         ))}
       </div>
 
-      {/* Button Container */}
-      <div className="d-flex align-items-center">
+      <div className="d-flex align-items-center footerPrintBtnContainer">
+        {/* Print Icon with Tooltip */}
         <CustomTooltip body={"Print"}>
-        {/* Print Icon Button */}
-        <FaPrint
-          className="detailPrinterIcon"
-          size={30}
-          onClick={() => onSelect("default")}
-          style={{ cursor: "pointer" }}
-        />
+          <FaPrint
+            className="detailPrinterIcon"
+            size={24}
+            onClick={() => onSelect("default")}
+          />
         </CustomTooltip>
-        {/* Arrow Button */}
+
+        {/* Dropdown Arrow Button */}
         <button
-          className="btn btn-outline-secondary p-1 me-1"
+          className="printDropdownBtn"
           onClick={toggleDropdown}
-          style={{
-            border: "none",
-            background: "transparent",
-            fontSize: "12px",
-            width: "20px",
-            height: "26px",
-            display: "flex",
-            alignItems: "center",
-            justifyContent: "center",
-          }}
           aria-label="Print options"
         >
           <FaChevronUp
-            className={`transition-transform ${isDropdownOpen ? "rotate-180" : ""}`}
-            size={10}
-            style={{
-              transition: "transform 0.2s ease",
-              transform: isDropdownOpen ? "rotate(180deg)" : "rotate(0deg)",
-              color: "white",
-            }}
+            className={`transition-transform ${
+              isDropdownOpen ? "rotate-180" : ""
+            }`}
+            size={16}
           />
         </button>
       </div>
