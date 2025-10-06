@@ -1,5 +1,5 @@
 import React, { useState, useRef, useEffect } from "react";
-import { FaPrint, FaChevronUp } from "react-icons/fa";
+import { FaPrint, FaChevronUp,FaChevronDown } from "react-icons/fa";
 import CustomTooltip from "../Tooltip/CustomTooltip";
 
 const PrintMenuBtn = ({ options = [], onSelect, className = "" }) => {

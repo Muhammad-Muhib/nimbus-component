@@ -526,6 +526,16 @@
   align-items: center;
   justify-content: center;
 }
+.detailPrinterContainer{
+  position: absolute;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  padding-bottom: 4px;
+}
+.rotate-180{
+  transform: rotate(180deg);
+}
 
 .detailPrinterIcon {
   color: white;
