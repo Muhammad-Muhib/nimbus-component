@@ -26,7 +26,8 @@ export default function Tabs({
   customLabel = "",
   editBtnName = "Edit",
   importButtonLink = "",
-  editBtnInfoText = ""
+  editBtnInfoText = "",
+  customEditLabel = ""
 }) {
   const [isDrawerOpen, setIsDrawerOpen] = useState(false);
   useEffect(() => {
@@ -208,7 +209,7 @@ export default function Tabs({
               ? "View mode only"
               : mode.toLowerCase() == "poapproved"
               ? "Approved PO cannot be Updated"
-              : "Edit Existing Record"}
+              : customEditLabel = "" ? "Edit Existing Record" : customEditLabel}
           </li>
         )}
       </ul>
